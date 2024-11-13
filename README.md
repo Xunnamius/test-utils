@@ -12,7 +12,7 @@
 
 <!-- prettier-ignore-end -->
 
-# jest-utils
+# test-utils
 
 <!-- TODO -->
 
@@ -44,29 +44,29 @@ information.
 
 [badge-blm]: https://xunn.at/badge-blm 'Join the movement!'
 [link-blm]: https://xunn.at/donate-blm
-[link-repo]: https://github.com/xunnamius/jest-utils
+[link-repo]: https://github.com/xunnamius/test-utils
 [badge-last-commit]:
-  https://img.shields.io/github/last-commit/xunnamius/jest-utils
+  https://img.shields.io/github/last-commit/xunnamius/test-utils
   'Latest commit timestamp'
 [badge-issues]:
-  https://img.shields.io/github/issues/Xunnamius/jest-utils
+  https://img.shields.io/github/issues/Xunnamius/test-utils
   'Open issues'
-[link-issues]: https://github.com/Xunnamius/jest-utils/issues?q=
+[link-issues]: https://github.com/Xunnamius/test-utils/issues?q=
 [badge-pulls]:
-  https://img.shields.io/github/issues-pr/xunnamius/jest-utils
+  https://img.shields.io/github/issues-pr/xunnamius/test-utils
   'Open pull requests'
-[link-pulls]: https://github.com/xunnamius/jest-utils/pulls
+[link-pulls]: https://github.com/xunnamius/test-utils/pulls
 [badge-fossa]:
-  https://app.fossa.com/api/projects/custom%2B27276%2Fgit%40github.com%3AXunnamius%2Fjest-utils.git.svg?type=large
+  https://app.fossa.com/api/projects/custom%2B27276%2Fgit%40github.com%3AXunnamius%2Ftest-utils.git.svg?type=large
   "Analysis of this package's license obligations"
 [link-fossa]:
-  https://app.fossa.com/projects/custom+27276%2Fgit@github.com:Xunnamius%2Fjest-utils.git
+  https://app.fossa.com/projects/custom+27276%2Fgit@github.com:Xunnamius%2Ftest-utils.git
 [badge-semantic-release]:
   https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
   'This repo practices continuous integration and deployment!'
 [link-semantic-release]: https://github.com/semantic-release/semantic-release
-[choose-new-issue]: https://github.com/xunnamius/jest-utils/issues/new/choose
-[pr-compare]: https://github.com/xunnamius/jest-utils/compare
+[choose-new-issue]: https://github.com/xunnamius/test-utils/issues/new/choose
+[pr-compare]: https://github.com/xunnamius/test-utils/compare
 [contributing]: CONTRIBUTING.md
 [support]: .github/SUPPORT.md
 [1]: /packages
