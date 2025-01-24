@@ -1,0 +1,20 @@
+{
+  "name": "bad-monorepo-topological-cycle",
+  "version": "0.0.0-monorepo",
+  "private": true,
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monorepo-owner/repo-name.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "devDependencies": {
+    "async": "^3.2.3",
+    "@namespaced/pkg": "^1.0.0"
+  }
+}

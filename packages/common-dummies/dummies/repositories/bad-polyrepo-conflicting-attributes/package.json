@@ -1,0 +1,6 @@
+{
+  "name": "bad-polyrepo-conflicting-attributes",
+  "version": "0.0.0-polyrepo",
+  "type": "commonjs",
+  "bin": "./src/cli.js"
+}

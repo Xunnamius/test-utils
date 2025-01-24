@@ -1,0 +1,11 @@
+{
+  "name": "package-one",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "bin": {
+    "executable": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}

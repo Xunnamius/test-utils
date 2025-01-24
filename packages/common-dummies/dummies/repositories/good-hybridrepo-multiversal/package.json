@@ -1,0 +1,15 @@
+{
+  "name": "good-hybridrepo-multiversal",
+  "version": "0.0.0-monorepo",
+  "type": "commonjs",
+  "private": true,
+  "bin": {
+    "faker": "./dist/src/cli.js"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:dist": "symbiote build distributables --not-multiversal=false"
+  }
+}

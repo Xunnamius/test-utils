@@ -1,0 +1,8 @@
+# Wildcard ignores that should be partially negatable by later rules must use
+# this double-asterisk syntax. This is because it's not possible to re-include a
+# file if a parent directory of that file is excluded. See also:
+# https://git-scm.com/docs/gitignore
+.git-ignored/**
+*.ignore
+*.ignore.*
+ignore.*

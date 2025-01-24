@@ -1,0 +1,12 @@
+{@symbiote/notExtraneous
+  - all~contributors~cli remark~7
+  - @jest/something~dev
+  - @babel/cli~5
+}
+
+{@symbiote/notInvalid
+  - all~contributors~cli
+  - remark~7
+  - @jest/something~dev
+  - @babel/cli~5
+}

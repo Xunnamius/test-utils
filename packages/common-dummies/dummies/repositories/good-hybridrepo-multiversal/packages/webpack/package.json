@@ -1,0 +1,12 @@
+{
+  "name": "@namespaced/webpack-common-config",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "@namespaced/pkg": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo 'it works!'",
+    "build:dist": "symbiote build distributables --not-multiversal"
+  }
+}

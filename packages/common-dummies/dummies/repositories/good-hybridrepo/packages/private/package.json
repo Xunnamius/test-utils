@@ -1,0 +1,16 @@
+{
+  "name": "private",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "private": true,
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hybridrepo-owner/repo-name.git"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}

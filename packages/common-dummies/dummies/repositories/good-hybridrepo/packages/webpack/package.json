@@ -1,0 +1,24 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hybridrepo-owner/repo-name.git"
+  },
+  "dependencies": {
+    "@namespaced/pkg": "^1.0.0"
+  }
+}

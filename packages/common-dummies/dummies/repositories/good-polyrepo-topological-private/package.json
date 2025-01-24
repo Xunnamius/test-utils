@@ -1,0 +1,13 @@
+{
+  "name": "good-polyrepo-topological-private",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "repository": "https://github.com/polyrepo-owner/repo-name",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}

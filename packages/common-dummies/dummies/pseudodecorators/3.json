@@ -1,0 +1,4 @@
+{
+  "name": "my-package",
+  "//": "{@symbiote/notExtraneous a1 p2 @lib/three @-xun/four doc!toc-broken}"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "good-monorepo-nextjs-project",
+  "version": "1.2.3",
+  "type": "commonjs",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "dependencies": {
+    "async": "^3.2.3"
+  }
+}

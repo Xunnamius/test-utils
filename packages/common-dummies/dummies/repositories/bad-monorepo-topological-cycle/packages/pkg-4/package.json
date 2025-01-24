@@ -1,0 +1,23 @@
+{
+  "name": "pkg-4",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "repository": "https://github.com/repo-owner/repo-name",
+  "bin": "./dist/index.js",
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "dependencies": {
+    "pkg-1": "^1.0.0",
+    "pkg-3": "^1.0.0"
+  }
+}

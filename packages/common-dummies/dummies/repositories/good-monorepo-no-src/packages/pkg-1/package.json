@@ -1,0 +1,13 @@
+{
+  "name": "pkg-1",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "repository": "https://github.com/repo-owner/repo-name",
+  "bin": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}

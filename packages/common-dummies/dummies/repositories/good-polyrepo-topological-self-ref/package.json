@@ -1,0 +1,18 @@
+{
+  "name": "good-polyrepo-topological-self-ref",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "repository": "https://github.com/polyrepo-owner/repo-name",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "dependencies": {
+    "good-polyrepo-topological-private": "^1.0.0"
+  },
+  "devDependencies": {
+    "good-polyrepo-topological-private": "^1.0.0"
+  }
+}

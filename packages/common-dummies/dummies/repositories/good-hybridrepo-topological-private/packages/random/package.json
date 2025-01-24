@@ -1,0 +1,25 @@
+{
+  "name": "random",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "private": true,
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hybridrepo-owner/repo-name.git"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1"
+  },
+  "peerDependencies": {
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.7"
+  }
+}

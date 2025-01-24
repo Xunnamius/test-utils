@@ -1,0 +1,18 @@
+{
+  "name": "good-monorepo-no-src",
+  "version": "0.0.0-monorepo",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monorepo-owner/repo-name.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "dependencies": {
+    "async": "^3.2.3"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@namespaced/importer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "repository": "https://github.com/repo-owner/repo-name.git",
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "scripts": {
+    "test": "echo 'it works!'"
+  },
+  "dependencies": {
+    "@namespaced/pkg": "^1.0.0",
+    "pkg-5": "^1.0.0"
+  }
+}
