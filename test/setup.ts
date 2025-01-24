@@ -1,9 +1,11 @@
-import { name as pkgName } from 'package';
-import debugFactory from 'debug';
-import 'jest-extended/all';
+/**
+ ** This file is automatically imported by Jest, and is responsible for
+ **  bootstrapping the runtime for every test file.
+ */
+
+// ? jest-extended will always come from @-xun/symbiote (i.e. transitively)
+// {@symbiote/notInvalid jest-extended}
+
+// ? https://github.com/jest-community/jest-extended#typescript
 import 'jest-extended';
-
-const debug = debugFactory(`${pkgName}:jest-setup`);
-
-debug(`pkgName: "${pkgName}"`);
-debug(`pkgVersion: "N/A"`);
+import 'jest-extended/all';
