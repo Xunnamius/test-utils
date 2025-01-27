@@ -21,17 +21,46 @@
   "sideEffects": false,
   "type": "commonjs",
   "exports": {
-    ".": {
-      "types": "./dist/packages/common-dummies/src/index.d.ts",
-      "default": "./dist/packages/common-dummies/src/index.js"
+    "./imports": {
+      "types": "./dist/packages/common-dummies/src/imports.d.ts",
+      "default": "./dist/packages/common-dummies/src/imports.js"
     },
+    "./loaders": {
+      "types": "./dist/packages/common-dummies/src/loaders.d.ts",
+      "default": "./dist/packages/common-dummies/src/loaders.js"
+    },
+    "./packages": {
+      "types": "./dist/packages/common-dummies/src/packages.d.ts",
+      "default": "./dist/packages/common-dummies/src/packages.js"
+    },
+    "./pseudodecorators": {
+      "types": "./dist/packages/common-dummies/src/pseudodecorators.d.ts",
+      "default": "./dist/packages/common-dummies/src/pseudodecorators.js"
+    },
+    "./repositories": {
+      "types": "./dist/packages/common-dummies/src/repositories.d.ts",
+      "default": "./dist/packages/common-dummies/src/repositories.js"
+    },
+    "./post-install": "./dist/packages/common-dummies/src/post-install.mjs",
     "./package": "./package.json",
     "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
-      "index": [
-        "dist/packages/common-dummies/src/index.d.ts"
+      "imports": [
+        "dist/packages/common-dummies/src/imports.d.ts"
+      ],
+      "loaders": [
+        "dist/packages/common-dummies/src/loaders.d.ts"
+      ],
+      "packages": [
+        "dist/packages/common-dummies/src/packages.d.ts"
+      ],
+      "pseudodecorators": [
+        "dist/packages/common-dummies/src/pseudodecorators.d.ts"
+      ],
+      "repositories": [
+        "dist/packages/common-dummies/src/repositories.d.ts"
       ],
       "package": [
         "package.json"
@@ -47,7 +76,7 @@
   "scripts": {
     "build": "npm run build:dist --",
     "build:changelog": "symbiote build changelog --env NODE_NO_WARNINGS=1",
-    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal",
+    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal --include-external-assets dummies/**/*",
     "build:docs": "symbiote build docs --env NODE_NO_WARNINGS=1",
     "clean": "symbiote clean --env NODE_NO_WARNINGS=1",
     "format": "symbiote format --env NODE_NO_WARNINGS=1 --hush",
