@@ -1,6 +1,6 @@
 {
   "name": "@-xun/test-mock-exit",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "A generic testing utility that mocks process.exit",
   "keywords": [
     "utils",

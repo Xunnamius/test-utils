@@ -1,6 +1,6 @@
 {
   "name": "@-xun/test-mock-import",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "A generic testing utility that wraps require to ensure imports are performed without caching",
   "keywords": [
     "utils",
