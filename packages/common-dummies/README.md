@@ -70,7 +70,8 @@ npm install @-xun/common-dummies
 
 <!-- TODO -->
 
-TODO
+TODO (must add
+`node --no-warnings -e "import('@-xun/common-dummies/post-install')"`)
 
 <!-- symbiote-template-region-start 5 -->
 

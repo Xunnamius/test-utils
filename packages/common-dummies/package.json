@@ -76,7 +76,7 @@
   "scripts": {
     "build": "npm run build:dist --",
     "build:changelog": "symbiote build changelog --env NODE_NO_WARNINGS=1",
-    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal --include-external-assets dummies/**/*",
+    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal --include-external-assets packages/common-dummies/dummies/**/*",
     "build:docs": "symbiote build docs --env NODE_NO_WARNINGS=1",
     "clean": "symbiote clean --env NODE_NO_WARNINGS=1",
     "format": "symbiote format --env NODE_NO_WARNINGS=1 --hush",
@@ -96,8 +96,10 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
   "dependencies": {
+    "@-xun/fs": "^1.0.0",
+    "@-xun/project-types": "^1.0.0",
     "core-js": "^3.40.0",
-    "rejoinder": "^1.2.2",
+    "rejoinder": "^1.2.4",
     "type-fest": "^4.33.0"
   },
   "engines": {
