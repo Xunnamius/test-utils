@@ -1,10 +1,35 @@
-export interface WebpackTestFixtureOptions {
-  webpackVersion?: string;
-}
+import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-export function webpackTestFixture(): MockFixture {
+const name = 'webpack-test';
+
+/**
+ * @see {@link webpackTestFixture}
+ */
+export type WebpackTestFixture = MockFixture<typeof name>;
+
+/**
+ * @see {@link webpackTestFixture}
+ */
+export type WebpackTestFixtureOptions = {
+  /**
+   * The semver Webpack version to pull from the NPM registry before executing
+   * any tests.
+   */
+  webpackVersion: string;
+};
+
+/**
+ * This fixture initializes the dummy root directory with an index file under
+ * `src` (described by `initialFileContents`) and then executes Webpack. The
+ * index file should import and test the package under test or otherwise trigger the desired Webpack functionality.
+ *
+ * The index file must have a path matching the pattern `src/index${extension}`;
+ * it can have any of the following extensions: `.js`, `.cjs`, `.mjs`, `.jsx`,
+ * `.ts`, `.cts`, `.mts`, `.tsx`.
+ */
+export function webpackTestFixture(): WebpackTestFixture {
   return {
-    name: 'webpack-test',
+    name,
     description: 'setting up webpack jest integration test',
     setup: async (context) => {
       if (typeof context.options.webpackVersion !== 'string') {

@@ -1,36 +1,29 @@
-export type * from 'universe+test-mock-fixture:types.ts';
+import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { FixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
 
-export type FixtureAction<Context = FixtureContext> = (
-  context: Context
-) => Promise<unknown>;
+export type * from 'universe+test-mock-fixture:types/fixtures.ts';
+export type * from 'universe+test-mock-fixture:types/options.ts';
 
-export interface FixtureOptions
-  extends WebpackTestFixtureOptions,
-    GitRepositoryFixtureOptions,
-    NodeImportTestFixtureOptions,
-    DummyDirectoriesFixtureOptions {
-  performCleanup: boolean;
-  use: MockFixture[];
-  initialFileContents: { [filePath: string]: string };
-}
+export type * from 'universe+test-mock-fixture:fixtures/describe-root.ts';
+export type * from 'universe+test-mock-fixture:fixtures/dummy-directories.ts';
+export type * from 'universe+test-mock-fixture:fixtures/dummy-files.ts';
+export type * from 'universe+test-mock-fixture:fixtures/dummy-npm-package.ts';
+export type * from 'universe+test-mock-fixture:fixtures/git-repository.ts';
+export type * from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
+export type * from 'universe+test-mock-fixture:fixtures/run-test.ts';
+export type * from 'universe+test-mock-fixture:fixtures/npm-copy-self.ts';
+export type * from 'universe+test-mock-fixture:fixtures/npm-link-self.ts';
+export type * from 'universe+test-mock-fixture:fixtures/root.ts';
+export type * from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 
-export type MockedFixtureOptions<
-  CustomOptions extends Record<string, unknown> = Record<string, unknown>,
-  CustomContext extends Record<string, unknown> = Record<string, unknown>
-> = {
-  options?: Partial<FixtureOptions & CustomOptions>;
-};
-
-export async function withMockedFixture<
-  CustomOptions extends Record<string, unknown> = Record<string, unknown>,
-  CustomContext extends Record<string, unknown> = Record<string, unknown>
+export async function withMockedFixtures<
+  Fixtures extends ((...args: never[]) => MockFixture<string>)[],
+  AdditionalOptions extends Record<string, unknown> = never,
+  AdditionalContext extends Record<string, unknown> = never
 >(
-  test: FixtureAction<
-    FixtureContext<FixtureOptions & Partial<Record<string, unknown> & CustomOptions>> &
-      CustomContext
-  >,
-  testIdentifier: string,
-  {}: MockedFixtureOptions<CustomOptions, CustomContext>
+  test: unknown,
+  fixtures: Fixtures,
+  options: FixtureOptions<ReturnType<Fixtures[number]>>
 ) {
   type CustomizedFixtureOptions = FixtureOptions &
     Partial<Record<string, unknown> & CustomOptions>;
@@ -144,8 +137,9 @@ export async function withMockedFixture<
 }
 
 export function mockFixtureFactory<
-  CustomOptions extends Record<string, unknown> = Record<string, unknown>,
-  CustomContext extends Record<string, unknown> = Record<string, unknown>
+  Fixtures extends ((...args: never[]) => MockFixture<string>)[],
+  AdditionalOptions extends Record<string, unknown> = never,
+  AdditionalContext extends Record<string, unknown> = never
 >(testIdentifier: string, options?: Partial<FixtureOptions & CustomOptions>) {
   return (
     test: FixtureAction<
@@ -158,25 +152,4 @@ export function mockFixtureFactory<
       testIdentifier,
       options
     });
-}
-
-type ReturnsString<Context = FixtureContext> = (
-  context: Context
-) => Promise<string> | string;
-
-type WithoutContextProperty<T> = T extends (config: infer U) => infer V
-  ? (config: Omit<U, 'context'>) => V
-  : never;
-
-type WithContextProperty<T> = T extends (config: infer U) => infer V
-  ? (config: U & { context: FixtureContext }) => V
-  : never;
-
-function wrapFilesystemFunction<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  T extends WithContextProperty<(...args: any[]) => Promise<any>>
->(filesystemFn: T, context: FixtureContext) {
-  return function wrapper(config: Parameters<WithoutContextProperty<T>>[0]) {
-    return filesystemFn({ ...config, context });
-  };
 }

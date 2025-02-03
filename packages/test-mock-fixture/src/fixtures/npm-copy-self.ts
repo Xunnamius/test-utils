@@ -1,6 +1,27 @@
-export function npmCopySelfFixture(): MockFixture {
+import type { EmptyObject } from 'type-fest';
+import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+
+const name = 'npm-copy-self';
+
+/**
+ * @see {@link npmCopySelfFixture}
+ */
+export type NpmCopySelfFixture = MockFixture<typeof name>;
+
+/**
+ * @see {@link npmCopySelfFixture}
+ */
+export type NpmCopySelfFixtureOptions = EmptyObject;
+
+/**
+ * This fixture is similar to `npmLinkSelf` except it copies all of the
+ * distributables, identified by the package under test's `package.json` `files`
+ * field, into the dummy `node_modules` directory created by a fixture like
+ * `dummyNpmPackage`.
+ */
+export function npmCopySelfFixture(): NpmCopySelfFixture {
   return {
-    name: 'npm-copy-self',
+    name,
     description:
       'copying package.json `files` into node_modules to emulate package installation',
     setup: async (context) => {

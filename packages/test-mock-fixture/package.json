@@ -25,6 +25,10 @@
       "types": "./dist/packages/test-mock-fixture/src/index.d.ts",
       "default": "./dist/packages/test-mock-fixture/src/index.js"
     },
+    "./util": {
+      "types": "./dist/packages/test-mock-fixture/src/util.d.ts",
+      "default": "./dist/packages/test-mock-fixture/src/util.js"
+    },
     "./package": "./package.json",
     "./package.json": "./package.json"
   },
@@ -32,6 +36,9 @@
     "*": {
       "index": [
         "dist/packages/test-mock-fixture/src/index.d.ts"
+      ],
+      "util": [
+        "dist/packages/test-mock-fixture/src/util.d.ts"
       ],
       "package": [
         "package.json"
