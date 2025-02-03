@@ -1,0 +1,49 @@
+[**@-xun/jest**](../../README.md)
+
+***
+
+[@-xun/jest](../../README.md) / [index](../README.md) / mockArgvFactory
+
+# Function: mockArgvFactory()
+
+> **mockArgvFactory**(`factorySimulatedArgv`, `factoryOptions`): (`test`, `simulatedArgv`?, `options`?) => `Promise`\<`void`\>
+
+Defined in: packages/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:31
+
+Return a function that, when invoked, returns a pre-configured
+[withMockedArgv](withMockedArgv.md) function.
+
+This is useful for centralizing mock configuration in one place instead of
+duplicating configuration across [withMockedArgv](withMockedArgv.md) calls.
+
+## Parameters
+
+### factorySimulatedArgv
+
+`string`[]
+
+### factoryOptions
+
+[`MockedArgvOptions`](../type-aliases/MockedArgvOptions.md)
+
+## Returns
+
+`Function`
+
+### Parameters
+
+#### test
+
+() => `Promisable`\<`void`\>
+
+#### simulatedArgv?
+
+`string`[]
+
+#### options?
+
+[`MockedArgvOptions`](../type-aliases/MockedArgvOptions.md)
+
+### Returns
+
+`Promise`\<`void`\>
