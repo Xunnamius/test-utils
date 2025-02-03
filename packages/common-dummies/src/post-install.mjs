@@ -30,7 +30,10 @@ await Promise.all([
   mkdir(goodHybridrepoDir, {
     recursive: true
   }).then(async () => {
-    await writeFile(toPath(goodHybridrepoDir, 'nope.md'), 'Nope!', { encoding: 'utf8' });
+    await writeFile(toPath(goodHybridrepoDir, 'nope.md'), 'Nope!\n', {
+      encoding: 'utf8'
+    });
+
     log('Created .git-ignored dummy directory in good-hybridrepo');
   })
 ]);
