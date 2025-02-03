@@ -31,7 +31,7 @@ A collection of utilities for the jest test runner
 
 <!-- symbiote-template-region-end -->
 
-A collection of utilities for the jest test runner
+A collection of utilities for the jest test runner.
 
 <!-- symbiote-template-region-start 3 -->
 

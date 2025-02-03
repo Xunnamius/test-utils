@@ -31,7 +31,7 @@ A generic testing utility that mocks process.argv
 
 <!-- symbiote-template-region-end -->
 
-A generic testing utility that mocks process.argv
+A generic testing utility that mocks `process.argv`.
 
 <!-- symbiote-template-region-start 3 -->
 

@@ -32,7 +32,7 @@ A generic testing utility that captures console and stdout/stderr output before 
 <!-- symbiote-template-region-end -->
 
 A generic testing utility that captures console and stdout/stderr output before
-it reaches the terminal
+it reaches the terminal.
 
 <!-- symbiote-template-region-start 3 -->
 

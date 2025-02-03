@@ -32,7 +32,7 @@ A generic testing utility that wraps require to ensure imports are performed wit
 <!-- symbiote-template-region-end -->
 
 A generic testing utility that wraps require to ensure imports are performed
-without caching
+without caching.
 
 <!-- symbiote-template-region-start 3 -->
 

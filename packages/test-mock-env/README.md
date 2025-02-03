@@ -31,7 +31,7 @@ A generic testing utility that mocks process.env
 
 <!-- symbiote-template-region-end -->
 
-A generic testing utility that mocks process.env
+A generic testing utility that mocks `process.env`.
 
 <!-- symbiote-template-region-start 3 -->
 

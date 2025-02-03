@@ -32,7 +32,7 @@ A generic testing utility that creates mock fixtures simulating a variety of run
 <!-- symbiote-template-region-end -->
 
 A generic testing utility that creates mock fixtures simulating a variety of
-runtime environments
+runtime environments.
 
 <!-- symbiote-template-region-start 3 -->
 

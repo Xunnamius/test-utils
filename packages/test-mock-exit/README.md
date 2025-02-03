@@ -31,7 +31,7 @@ A generic testing utility that mocks process.exit
 
 <!-- symbiote-template-region-end -->
 
-A generic testing utility that mocks process.exit
+A generic testing utility that mocks `process.exit`.
 
 <!-- symbiote-template-region-start 3 -->
 
