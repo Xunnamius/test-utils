@@ -97,6 +97,7 @@
   },
   "dependencies": {
     "@-xun/fs": "^1.0.0",
+    "@-xun/project-fs": "^1.0.0",
     "@-xun/project-types": "^1.0.0",
     "core-js": "^3.40.0",
     "rejoinder": "^1.2.4",
