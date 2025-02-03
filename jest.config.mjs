@@ -10,7 +10,8 @@ const debug = createDebugLogger({ namespace: 'symbiote:config:jest' });
 const config = deepMergeConfig(
   moduleExport({ derivedAliases: getJestAliases(), ...assertEnvironment() }),
   {
-    // Any custom configs here will be deep merged with moduleExport's result
+    // ? Make sure jest-haste-map doesn't try to parse and cache dummies
+    modulePathIgnorePatterns: ['/dummies/']
   }
 );
 
