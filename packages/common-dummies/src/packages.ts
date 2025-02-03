@@ -1,5 +1,6 @@
-import { toAbsolutePath, type AbsolutePath } from '@-xun/fs';
+import { toAbsolutePath, toPath, type AbsolutePath } from '@-xun/fs';
 import { TrialError } from 'named-app-errors';
+import { type Merge } from 'type-fest';
 
 import type { XPackageJson } from '@-xun/project-types';
 
@@ -26,88 +27,89 @@ export type DummyPackageMetadata<
 > = {
   path: AbsolutePath;
   name: string;
-  packageJson: XPackageJson;
-
-  imports: RequireObjectImports extends true
-    ? Exclude<XPackageJson['imports'], string | undefined | null | unknown[]>
-    : XPackageJson['imports'] | undefined;
-
-  exports: RequireObjectExports extends true
-    ? Exclude<XPackageJson['exports'], string | undefined | null | unknown[]>
-    : XPackageJson['exports'] | undefined;
+  packageJson: Merge<
+    XPackageJson,
+    {
+      imports: RequireObjectImports extends true
+        ? Exclude<XPackageJson['imports'], string | undefined | null | unknown[]>
+        : XPackageJson['imports'] | undefined;
+      exports: RequireObjectExports extends true
+        ? Exclude<XPackageJson['exports'], string | undefined | null | unknown[]>
+        : XPackageJson['exports'] | undefined;
+    }
+  >;
 };
 
 /**
  * Return metadata about an available dummy package.
  */
-export function getDummyPackage<
-  RequireObjectImports extends boolean = false,
-  RequireObjectExports extends boolean = false
->(
+export function getDummyPackage(
   id: PackageName,
-  options?: {
+  {
+    requireObjectImports = false,
+    requireObjectExports = false
+  }: {
     /**
      * If `true`, `imports` must be an object and not `null`, `undefined`,
      * `string`, or an array.
      *
      * @default false
      */
-    requireObjectImports?: RequireObjectImports;
+    requireObjectImports?: boolean;
     /**
      * If `true`, `exports` must be an object and not `null`, `undefined`,
      * `string`, or an array.
      *
      * @default false
      */
-    requireObjectExports?: RequireObjectExports;
-  }
-): DummyPackageMetadata<RequireObjectImports, RequireObjectExports> {
-  const { requireObjectImports, requireObjectExports } = options ?? {};
-
-  const package_ = {
-    path: '',
-    json: {} as XPackageJson
-  };
+    requireObjectExports?: boolean;
+  } = {}
+): DummyPackageMetadata<typeof requireObjectImports, typeof requireObjectExports> {
+  // eslint-disable-next-line unicorn/prevent-abbreviations
+  const pkg = {} as DummyPackageMetadata<
+    typeof requireObjectImports,
+    typeof requireObjectExports
+  >;
 
   if (id === 'root') {
-    package_.path = DUMMY_PACKAGE_DIR;
-    package_.json = require(`${package_.path}/package.json`);
+    pkg.path = DUMMY_PACKAGE_DIR;
+    pkg.packageJson = require(`${pkg.path}/package.json`);
   } else {
-    package_.path = `${DUMMY_PACKAGE_DIR}/node_modules/dummy-${id}-pkg`;
-    package_.json = require(`${package_.path}/package.json`);
+    pkg.path = toPath(DUMMY_PACKAGE_DIR, 'node_modules', `dummy-${id}-pkg`);
+    pkg.packageJson = require(`${pkg.path}/package.json`);
   }
 
-  if (!package_.json.name) {
-    throwNewError('package.json is missing "name" field');
+  if (!pkg.packageJson.name) {
+    throw makeDummyPackageError('packageJson is missing "name" field');
   }
+
+  pkg.name = pkg.packageJson.name;
 
   if (
     requireObjectImports &&
-    (!package_.json.imports ||
-      typeof package_.json.imports === 'string' ||
-      Array.isArray(package_.json.imports))
+    (!pkg.packageJson.imports ||
+      typeof pkg.packageJson.imports === 'string' ||
+      Array.isArray(pkg.packageJson.imports))
   ) {
-    throwNewError('package.json has string, array, null, or undefined "imports" field');
+    throw makeDummyPackageError(
+      'packageJson has string, array, null, or undefined "imports" field'
+    );
   }
 
   if (
     requireObjectExports &&
-    (!package_.json.exports ||
-      typeof package_.json.exports === 'string' ||
-      Array.isArray(package_.json.exports))
+    (!pkg.packageJson.exports ||
+      typeof pkg.packageJson.exports === 'string' ||
+      Array.isArray(pkg.packageJson.exports))
   ) {
-    throwNewError('package.json has string, array, null, or undefined "exports" field');
+    throw makeDummyPackageError(
+      'packageJson has string, array, null, or undefined "exports" field'
+    );
   }
 
-  return {
-    path: package_.path,
-    name: package_.json.name,
-    imports: package_.json.imports,
-    exports: package_.json.exports,
-    packageJson: package_.json
-  } as DummyPackageMetadata<RequireObjectImports, RequireObjectExports>;
+  return pkg;
 
-  function throwNewError(error: string): never {
-    throw new TrialError(`unable to get package "${id}": ${error}`);
+  function makeDummyPackageError(error: string) {
+    return new TrialError(`unable to get package "${id}": ${error}`);
   }
 }
