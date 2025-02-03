@@ -1,6 +1,7 @@
 import { basename } from 'node:path';
 
 import { toAbsolutePath, toPath, type AbsolutePath, type RelativePath } from '@-xun/fs';
+import * as fs from '@-xun/project-fs';
 
 import {
   ProjectAttribute,
@@ -188,6 +189,69 @@ export function dummyToProjectMetadata(
   }
 
   return mockProjectMetadata;
+}
+
+/**
+ * Patch the package.json data returned by {@link fs.readXPackageJsonAtRoot} or
+ * the sync version before attempting to read in package data from a dummy
+ * repository.
+ *
+ * Successive calls to this function overwrite previous calls.
+ */
+export function patchReadXPackageJsonAtRoot(
+  /**
+   * The `package.json` patches to apply per root path. When `root` is equal to
+   * `"*"`, it will be used to patch all `package.json` imports but can be
+   * overwritten by a more specific `root` string.
+   */
+  spec: { [root: string]: XPackageJson },
+  /**
+   * Options that influence the patching process.
+   */
+  options?: {
+    /**
+     * Whether to merely patch the actual package.json contents (`undefined`),
+     * completely replace them (`true`), or only overwrite them if they don't
+     * already exist (`false`).
+     *
+     * @default undefined
+     */
+    replace?: boolean;
+  }
+) {
+  const actualReadXPackageJsonAtRoot =
+    jest.requireActual<typeof import('@-xun/project-fs')>(
+      '@-xun/project-fs'
+    ).readXPackageJsonAtRoot;
+
+  jest
+    .spyOn(fs, 'readXPackageJsonAtRoot')
+    .mockImplementation(async (root, { useCached }) => {
+      const packageJson = await actualReadXPackageJsonAtRoot(root, { useCached });
+      return finalize(root, packageJson);
+    });
+
+  // @ts-expect-error: we're mocking do we'll do what we like
+  fs.readXPackageJsonAtRoot.sync = (root, { useCached }) => {
+    const packageJson = actualReadXPackageJsonAtRoot.sync(root, { useCached });
+    return finalize(root, packageJson);
+  };
+
+  return spec;
+
+  function finalize(root: string, packageJson: XPackageJson): XPackageJson {
+    return options?.replace === false
+      ? {
+          ...spec['*'],
+          ...spec[root],
+          ...packageJson
+        }
+      : {
+          ...(options?.replace ? {} : packageJson),
+          ...spec['*'],
+          ...spec[root]
+        };
+  }
 }
 
 /**
