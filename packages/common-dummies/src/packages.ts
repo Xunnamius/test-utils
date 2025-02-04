@@ -2,6 +2,8 @@ import { toAbsolutePath, toPath, type AbsolutePath } from '@-xun/fs';
 import { TrialError } from 'named-app-errors';
 import { type Merge } from 'type-fest';
 
+import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
 import type { XPackageJson } from '@-xun/project-types';
 
 const DUMMY_PACKAGE_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'packages');
@@ -80,7 +82,7 @@ export function getDummyPackage(
   }
 
   if (!pkg.packageJson.name) {
-    throw makeDummyPackageError('packageJson is missing "name" field');
+    throw makeDummyPackageError(ErrorMessage.PackageMissingField('name'));
   }
 
   pkg.name = pkg.packageJson.name;
@@ -91,9 +93,7 @@ export function getDummyPackage(
       typeof pkg.packageJson.imports === 'string' ||
       Array.isArray(pkg.packageJson.imports))
   ) {
-    throw makeDummyPackageError(
-      'packageJson has string, array, null, or undefined "imports" field'
-    );
+    throw makeDummyPackageError(ErrorMessage.PackageInvalidImportExportField('imports'));
   }
 
   if (
@@ -102,14 +102,12 @@ export function getDummyPackage(
       typeof pkg.packageJson.exports === 'string' ||
       Array.isArray(pkg.packageJson.exports))
   ) {
-    throw makeDummyPackageError(
-      'packageJson has string, array, null, or undefined "exports" field'
-    );
+    throw makeDummyPackageError(ErrorMessage.PackageInvalidImportExportField('exports'));
   }
 
   return pkg;
 
   function makeDummyPackageError(error: string) {
-    return new TrialError(`unable to get package "${id}": ${error}`);
+    return new TrialError(ErrorMessage.PackageUnresolvable(id, error));
   }
 }

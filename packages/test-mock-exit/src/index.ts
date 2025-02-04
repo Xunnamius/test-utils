@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
+import { ErrorMessage } from 'universe+test-mock-exit:error.ts';
+
 import type { Promisable } from 'type-fest';
 
 /**
@@ -14,11 +16,7 @@ export async function withMockedExit(
   }) => Promisable<void>
 ) {
   const _exitSpy = jest.spyOn(process, 'exit').mockImplementation((code) => {
-    throw new Error(
-      `process.exit(${
-        code ?? ''
-      }) was just called, but it was suppressed via withMockedExit`
-    );
+    throw new Error(ErrorMessage.SuppressedExitAttempt(code));
   });
 
   const oldProcessExitCode = process.exitCode;

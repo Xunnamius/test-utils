@@ -6,6 +6,8 @@ import {
   type RelativePath
 } from '@-xun/fs';
 
+import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
 const DUMMY_PSEUDODECORATOR_DIR = toAbsolutePath(
   __dirname,
   '..',
@@ -59,8 +61,7 @@ function pseudodecoratedNameToFilename(id: PseudodecoratorFileName): RelativePat
     }
 
     default: {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new TypeError(`unknown pseudo-decorated filename "${id}"`);
+      throw new TypeError(ErrorMessage.UnknownPseudodecorator(id));
     }
   }
 }

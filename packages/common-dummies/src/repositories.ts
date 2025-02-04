@@ -16,6 +16,8 @@ import {
   type XPackageJson
 } from '@-xun/project-types';
 
+import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
 import type { LiteralUnion, PackageJson } from 'type-fest';
 
 const DUMMY_REPO_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'repositories');
@@ -136,11 +138,7 @@ export function dummyToProjectMetadata(
         return foundPackage as GenericPackage;
       }
 
-      throw new Error(
-        `"${cwdPackageName}" is not a valid package in dummy repository "${
-          repositoryName
-        }"`
-      );
+      throw new Error(ErrorMessage.PackageInvalid(cwdPackageName, repositoryName));
     }
 
     return rootPackage as GenericPackage;

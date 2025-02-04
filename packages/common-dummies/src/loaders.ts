@@ -7,6 +7,8 @@ import {
   type RelativePath
 } from '@-xun/fs';
 
+import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
 const DUMMY_LOADER_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'loaders');
 
 /**
@@ -28,8 +30,7 @@ function loaderNameToFilename(id: LoaderName): RelativePath {
     }
 
     default: {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new TypeError(`unknown loader name "${id}"`);
+      throw new TypeError(ErrorMessage.UnknownLoader(id));
     }
   }
 }
