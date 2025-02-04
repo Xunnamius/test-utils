@@ -8,7 +8,7 @@
 
 > **patchReadXPackageJsonAtRoot**(`spec`, `options`?): `object`
 
-Defined in: [repositories.ts:201](https://github.com/Xunnamius/test-utils/blob/fb7ffeb540b6329cd58507a70130e011f552c63c/packages/common-dummies/src/repositories.ts#L201)
+Defined in: [repositories.ts:199](https://github.com/Xunnamius/test-utils/blob/bf9dad1dc32da28cbc1e037209c9470095d7efa6/packages/common-dummies/src/repositories.ts#L199)
 
 Patch the package.json data returned by fs.readXPackageJsonAtRoot or
 the sync version before attempting to read in package data from a dummy

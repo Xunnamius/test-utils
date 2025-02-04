@@ -6,17 +6,11 @@
 
 # Function: getDummyPackage()
 
-> **getDummyPackage**\<`RequireObjectImports`, `RequireObjectExports`\>(`id`, `options`?): [`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<`RequireObjectImports`, `RequireObjectExports`\>
+> **getDummyPackage**(`id`, `__namedParameters`): [`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<*typeof* `requireObjectImports`, *typeof* `requireObjectExports`\>
 
-Defined in: [packages.ts:43](https://github.com/Xunnamius/test-utils/blob/fb7ffeb540b6329cd58507a70130e011f552c63c/packages/common-dummies/src/packages.ts#L43)
+Defined in: [packages.ts:48](https://github.com/Xunnamius/test-utils/blob/bf9dad1dc32da28cbc1e037209c9470095d7efa6/packages/common-dummies/src/packages.ts#L48)
 
 Return metadata about an available dummy package.
-
-## Type Parameters
-
-• **RequireObjectImports** *extends* `boolean` = `false`
-
-• **RequireObjectExports** *extends* `boolean` = `false`
 
 ## Parameters
 
@@ -24,11 +18,11 @@ Return metadata about an available dummy package.
 
 [`PackageName`](../type-aliases/PackageName.md)
 
-### options?
+### \_\_namedParameters
 
 #### requireObjectExports
 
-`RequireObjectExports`
+`boolean` = `false`
 
 If `true`, `exports` must be an object and not `null`, `undefined`,
 `string`, or an array.
@@ -41,7 +35,7 @@ false
 
 #### requireObjectImports
 
-`RequireObjectImports`
+`boolean` = `false`
 
 If `true`, `imports` must be an object and not `null`, `undefined`,
 `string`, or an array.
@@ -54,4 +48,4 @@ false
 
 ## Returns
 
-[`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<`RequireObjectImports`, `RequireObjectExports`\>
+[`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<*typeof* `requireObjectImports`, *typeof* `requireObjectExports`\>

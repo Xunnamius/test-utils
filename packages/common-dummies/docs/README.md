@@ -6,6 +6,7 @@
 
 ## Modules
 
+- [error](error/README.md)
 - [imports](imports/README.md)
 - [loaders](loaders/README.md)
 - [packages](packages/README.md)

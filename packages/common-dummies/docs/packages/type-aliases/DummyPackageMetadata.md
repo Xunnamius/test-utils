@@ -8,7 +8,7 @@
 
 > **DummyPackageMetadata**\<`RequireObjectImports`, `RequireObjectExports`\>: `object`
 
-Defined in: [packages.ts:23](https://github.com/Xunnamius/test-utils/blob/fb7ffeb540b6329cd58507a70130e011f552c63c/packages/common-dummies/src/packages.ts#L23)
+Defined in: [packages.ts:26](https://github.com/Xunnamius/test-utils/blob/bf9dad1dc32da28cbc1e037209c9470095d7efa6/packages/common-dummies/src/packages.ts#L26)
 
 Represents the dummy package metadata returned by the `getDummyPackage`
 function.
@@ -21,21 +21,13 @@ function.
 
 ## Type declaration
 
-### exports
-
-> **exports**: `RequireObjectExports` *extends* `true` ? `Exclude`\<`XPackageJson`\[`"exports"`\], `string` \| `undefined` \| `null` \| `unknown`[]\> : `XPackageJson`\[`"exports"`\] \| `undefined`
-
-### imports
-
-> **imports**: `RequireObjectImports` *extends* `true` ? `Exclude`\<`XPackageJson`\[`"imports"`\], `string` \| `undefined` \| `null` \| `unknown`[]\> : `XPackageJson`\[`"imports"`\] \| `undefined`
-
 ### name
 
 > **name**: `string`
 
 ### packageJson
 
-> **packageJson**: `XPackageJson`
+> **packageJson**: `Merge`\<`XPackageJson`, \{ `exports`: `RequireObjectExports` *extends* `true` ? `Exclude`\<`XPackageJson`\[`"exports"`\], `string` \| `undefined` \| `null` \| `unknown`[]\> : `XPackageJson`\[`"exports"`\] \| `undefined`; `imports`: `RequireObjectImports` *extends* `true` ? `Exclude`\<`XPackageJson`\[`"imports"`\], `string` \| `undefined` \| `null` \| `unknown`[]\> : `XPackageJson`\[`"imports"`\] \| `undefined`; \}\>
 
 ### path
 

@@ -8,7 +8,7 @@
 
 > **Repository**: `object`
 
-Defined in: [repositories.ts:80](https://github.com/Xunnamius/test-utils/blob/fb7ffeb540b6329cd58507a70130e011f552c63c/packages/common-dummies/src/repositories.ts#L80)
+Defined in: [repositories.ts:82](https://github.com/Xunnamius/test-utils/blob/bf9dad1dc32da28cbc1e037209c9470095d7efa6/packages/common-dummies/src/repositories.ts#L82)
 
 A type representing a dummy monorepo or polyrepo project's metadata.
 
