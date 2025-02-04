@@ -1,17 +1,19 @@
-import type { EmptyObject } from 'type-fest';
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
 
-const name = 'npm-copy-self';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-/**
- * @see {@link npmCopySelfFixture}
- */
-export type NpmCopySelfFixture = MockFixture<typeof name>;
+export const npmCopySelfFixtureName = 'npm-copy-self';
 
 /**
  * @see {@link npmCopySelfFixture}
  */
-export type NpmCopySelfFixtureOptions = EmptyObject;
+export type NpmCopySelfFixture = MockFixture<typeof npmCopySelfFixtureName, FixtureContext<NpmCopySelfFixtureOptions>>;
+
+/**
+ * @see {@link npmCopySelfFixture}
+ */
+export type NpmCopySelfFixtureOptions = GlobalFixtureOptions;
 
 /**
  * This fixture is similar to `npmLinkSelf` except it copies all of the
@@ -21,7 +23,7 @@ export type NpmCopySelfFixtureOptions = EmptyObject;
  */
 export function npmCopySelfFixture(): NpmCopySelfFixture {
   return {
-    name,
+    name: npmCopySelfFixtureName,
     description:
       'copying package.json `files` into node_modules to emulate package installation',
     setup: async (context) => {
@@ -43,7 +45,7 @@ export function npmCopySelfFixture(): NpmCopySelfFixture {
       await copy({ sourcePaths, destinationPath, context });
 
       if (!destinationPackageJson) {
-        throw new Error(`expected "${destinationPackageJson}" to exist`);
+        throw new Error(ErrorMessage.ExpectedPathDoesNotExist(destinationPackageJson));
       }
 
       // TODO: only optionally remove peer dependencies from the install loop

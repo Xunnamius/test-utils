@@ -1,19 +1,19 @@
-import { getTreeOutput } from 'multiverse+test-mock-fixture:util.ts';
+import { getTreeOutput } from 'universe+test-mock-fixture:util.ts';
 
-import type { EmptyObject } from 'type-fest';
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GlobalFixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
 
-const name = 'describe-root';
-
-/**
- * @see {@link describeRootFixture}
- */
-export type DescribeRootFixture = MockFixture<typeof name>;
+export const describeRootFixtureName = 'describe-root';
 
 /**
  * @see {@link describeRootFixture}
  */
-export type DescribeRootFixtureOptions = EmptyObject;
+export type DescribeRootFixture = MockFixture<typeof describeRootFixtureName, FixtureContext<DescribeRootFixtureOptions>>;
+
+/**
+ * @see {@link describeRootFixture}
+ */
+export type DescribeRootFixtureOptions = GlobalFixtureOptions;
 
 /**
  * This fixture outputs debug information describing the runtime environment.
@@ -29,13 +29,15 @@ export type DescribeRootFixtureOptions = EmptyObject;
  */
 export function describeRootFixture(): DescribeRootFixture {
   return {
-    name,
+    name: describeRootFixtureName,
     description: 'outputting debug information about environment',
     setup: async (context) => {
       context.debug('test identifier: %O', context.testIdentifier);
       context.debug('root: %O', context.root);
       context.debug(context.treeOutput ?? (await getTreeOutput(context)));
-      context.debug('per-file contents: %O', context.fileContents);
+      context.debug('per-file contents: %O', context.virtualFiles);
     }
+    // ! INVARIANT: this fixture should never have a teardown function defined
+    // ! since there are edge cases where it might not be executed.
   };
 }

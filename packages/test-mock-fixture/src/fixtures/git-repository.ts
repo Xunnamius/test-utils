@@ -1,18 +1,19 @@
 import type { SimpleGit } from 'simple-git';
 import type { Promisable } from 'type-fest';
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-const name = 'git-repository';
-
-/**
- * @see {@link gitRepositoryFixture}
- */
-export type GitRepositoryFixture = MockFixture<typeof name>;
+export const gitRepositoryFixtureName = 'git-repository';
 
 /**
  * @see {@link gitRepositoryFixture}
  */
-export type GitRepositoryFixtureOptions = {
+export type GitRepositoryFixture = MockFixture<typeof gitRepositoryFixtureName, FixtureContext<GitRepositoryFixtureOptions>>;
+
+/**
+ * @see {@link gitRepositoryFixture}
+ */
+export type GitRepositoryFixtureOptions = GlobalFixtureOptions & {
   setupGit: (git: SimpleGit) => Promisable<void>;
 };
 
@@ -21,7 +22,7 @@ export type GitRepositoryFixtureOptions = {
  */
 export function gitRepositoryFixture(): GitRepositoryFixture {
   return {
-    name,
+    name: gitRepositoryFixtureName,
     description: 'configuring fixture root to be a git repository',
     setup: async (context) => {
       // TODO: these types of constructions can now be deleted

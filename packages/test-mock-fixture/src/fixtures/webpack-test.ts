@@ -1,16 +1,19 @@
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
 
-const name = 'webpack-test';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-/**
- * @see {@link webpackTestFixture}
- */
-export type WebpackTestFixture = MockFixture<typeof name>;
+export const webpackTestFixtureName = 'webpack-test';
 
 /**
  * @see {@link webpackTestFixture}
  */
-export type WebpackTestFixtureOptions = {
+export type WebpackTestFixture = MockFixture<typeof webpackTestFixtureName, FixtureContext<WebpackTestFixtureOptions>>;
+
+/**
+ * @see {@link webpackTestFixture}
+ */
+export type WebpackTestFixtureOptions = GlobalFixtureOptions & {
   /**
    * The semver Webpack version to pull from the NPM registry before executing
    * any tests.
@@ -20,7 +23,7 @@ export type WebpackTestFixtureOptions = {
 
 /**
  * This fixture initializes the dummy root directory with an index file under
- * `src` (described by `initialFileContents`) and then executes Webpack. The
+ * `src` (described by `initialVirtualFiles`) and then executes Webpack. The
  * index file should import and test the package under test or otherwise trigger the desired Webpack functionality.
  *
  * The index file must have a path matching the pattern `src/index${extension}`;
@@ -29,7 +32,7 @@ export type WebpackTestFixtureOptions = {
  */
 export function webpackTestFixture(): WebpackTestFixture {
   return {
-    name,
+    name: webpackTestFixtureName,
     description: 'setting up webpack jest integration test',
     setup: async (context) => {
       if (typeof context.options.webpackVersion !== 'string') {
@@ -38,29 +41,30 @@ export function webpackTestFixture(): WebpackTestFixture {
         );
       }
 
-      const indexPath = Object.keys(context.fileContents).find((path) => {
+      const indexPath = Object.keys(context.virtualFiles).find((path) => {
         return /^src\/index\.(((c|m)?js)|ts)x?$/.test(path);
       });
 
-      if (!indexPath) {
-        throw new Error('could not find initial contents for src/index file');
+      if (!indexPath) {throw new Error(
+          ErrorMessage.MissingVirtualFile('src/index.${validExtension}')
+        );
       }
 
-      if (!context.fileContents[webpackConfigProjectBase]) {
+      if (!context.virtualFiles[webpackConfigProjectBase]) {
         throw new Error(
-          `could not find initial contents for ${webpackConfigProjectBase} file`
+          ErrorMessage.MissingVirtualFile(webpackConfigProjectBase)
         );
       }
 
       await Promise.all([
         writeFile({
           path: `${context.root}/${indexPath}`,
-          data: context.fileContents[indexPath],
+          data: context.virtualFiles[indexPath],
           context
         }),
         writeFile({
           path: `${context.root}/${webpackConfigProjectBase}`,
-          data: context.fileContents[webpackConfigProjectBase],
+          data: context.virtualFiles[webpackConfigProjectBase],
           context
         })
       ]);

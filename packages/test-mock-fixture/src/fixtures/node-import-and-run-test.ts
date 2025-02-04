@@ -1,18 +1,21 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
- 
-const name = 'node-import-and-run-test';
+import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
+
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+
+export const nodeImportAndRunTestFixtureName = 'node-import-and-run-test';
 
 /**
  * @see {@link nodeImportAndRunTestFixture}
  */
-export type NodeImportAndRunTestFixture = MockFixture<typeof name>;
+export type NodeImportAndRunTestFixture = MockFixture<typeof nodeImportAndRunTestFixtureName, FixtureContext<NodeImportAndRunTestFixtureOptions>>;
 
 /**
  * @see {@link nodeImportAndRunTestFixture}
  */
-export type NodeImportAndRunTestFixtureOptions = {
+export type NodeImportAndRunTestFixtureOptions = GlobalFixtureOptions & {
   /**
    * Additional packages to install.
    */
@@ -47,13 +50,13 @@ export type NodeImportAndRunTestFixtureOptions = {
      * The options passed to `@-xun/run`'s {@link runNoRejectOnBadExit}
      * function.
      */
-    opts?: Record<string, unknown>;
+    runnerOptions?: Record<string, unknown>;
   };
 };
 
 /**
  * This fixture initializes the dummy root directory with an index file under
- * `src` (described by `initialFileContents`) and then executes it. This file
+ * `src` (described by `initialVirtualFiles`) and then executes it. This file
  * should import and test the package under test.
  *
  * The index file must have a path matching the pattern `src/index${extension}`;
@@ -62,20 +65,20 @@ export type NodeImportAndRunTestFixtureOptions = {
  */
 export function nodeImportAndRunTestFixture(): NodeImportAndRunTestFixture {
   return {
-    name,
+    name: nodeImportAndRunTestFixtureName,
     description: 'setting up node import and runtime integration test',
     setup: async (context) => {
-      const targetPath = Object.keys(context.fileContents).find((path) =>
+      const targetPath = Object.keys(context.virtualFiles).find((path) =>
         /^src\/index(\.test)?\.(((c|m)?js)|ts)x?$/.test(path)
       );
 
       if (!targetPath) {
-        throw new Error('could not find initial contents for src/index test file');
+        throw new Error(ErrorMessage.MissingVirtualFile('src/index.${validExtension}'));
       }
 
       await writeFile({
         path: `${context.root}/${targetPath}`,
-        data: context.fileContents[targetPath],
+        data: context.virtualFiles[targetPath],
         context
       });
 
@@ -89,11 +92,11 @@ export function nodeImportAndRunTestFixture(): NodeImportAndRunTestFixture {
 
       const options = Object.assign(
         { env: { DEBUG_COLORS: 'false' } },
-        context.options.runWith?.opts ?? {}
+        context.options.runWith?.runnerOptions ?? {}
       );
 
       context.treeOutput = await getTreeOutput(context);
-      context.testResult = await run(bin, [...args, targetPath], {
+      context.testResult = await runNoRejectOnBadExit(bin, [...args, targetPath], {
         cwd: context.root,
         ...options
       });

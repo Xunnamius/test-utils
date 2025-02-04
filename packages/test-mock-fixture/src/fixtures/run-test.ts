@@ -1,30 +1,35 @@
+import { runNoRejectOnBadExit } from '@-xun/run';
+
+import type { RequiredDeep } from 'type-fest';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
 import type { NodeImportAndRunTestFixtureOptions } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-const name = 'run-test';
 
-/**
- * @see {@link runTestFixture}
- */
-export type RunTestFixture = MockFixture<typeof name>;
+export const runTestFixtureName = 'run-test';
 
 /**
  * @see {@link runTestFixture}
  */
-export type RunTestFixtureOptions = NodeImportAndRunTestFixtureOptions['runWith'];
+export type RunTestFixture = MockFixture<typeof runTestFixtureName, FixtureContext<RunTestFixtureOptions>>;
+
+/**
+ * @see {@link runTestFixture}
+ */
+export type RunTestFixtureOptions = GlobalFixtureOptions & RequiredDeep<Pick<NodeImportAndRunTestFixtureOptions, 'runWith'>>;
 
 /**
  * This fixture executes a binary with the specified arguments.
  */
 export function runTestFixture(): RunTestFixture {
   return {
-    name,
+    name: runTestFixtureName,
     description: 'setting up runtime integration test',
     setup: async (context) => {
       // TODO:
-      const bin = context.options.runWith?.binary;
-      const args = context.options.runWith?.args || [];
-      const options = context.options.runWith?.opts || {};
+      const bin = context.options.runWith.binary;
+      const args = context.options.runWith.args || [];
+      const options = context.options.runWith.runnerOptions || {};
 
       context.treeOutput = await getTreeOutput(context);
 

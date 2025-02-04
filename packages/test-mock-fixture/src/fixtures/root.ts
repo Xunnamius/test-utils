@@ -1,11 +1,11 @@
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GenericFixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-const name = 'root';
+export const rootFixtureName = 'root';
 
 /**
  * @see {@link rootFixture}
  */
-export type RootFixture = MockFixture<typeof name>;
+export type RootFixture = MockFixture<typeof rootFixtureName, GenericFixtureContext>;
 
 /**
  * This fixture creates the dummy root directory. It is perhaps the most
@@ -20,7 +20,7 @@ export type RootFixture = MockFixture<typeof name>;
  */
 export function rootFixture(): RootFixture {
   return {
-    name,
+    name: rootFixtureName,
     description: (context) =>
       `creating a unique root directory${
         context.options.performCleanup

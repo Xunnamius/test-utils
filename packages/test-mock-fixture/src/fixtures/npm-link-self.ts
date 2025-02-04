@@ -1,17 +1,17 @@
-import type { EmptyObject } from 'type-fest';
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-const name = 'npm-link-self';
-
-/**
- * @see {@link npmLinkSelfFixture}
- */
-export type NpmLinkSelfFixture = MockFixture<typeof name>;
+export const npmLinkSelfFixtureName = 'npm-link-self';
 
 /**
  * @see {@link npmLinkSelfFixture}
  */
-export type NpmLinkSelfFixtureOptions = EmptyObject;
+export type NpmLinkSelfFixture = MockFixture<typeof npmLinkSelfFixtureName, FixtureContext<NpmLinkSelfFixtureOptions>>;
+
+/**
+ * @see {@link npmLinkSelfFixture}
+ */
+export type NpmLinkSelfFixtureOptions = GlobalFixtureOptions;
 
 /**
  * This fixture is similar to `npmCopySelf` except it makes a symbolic link
@@ -23,7 +23,7 @@ export type NpmLinkSelfFixtureOptions = EmptyObject;
  */
 export function npmLinkSelfFixture(): NpmLinkSelfFixture {
   return {
-    name,
+    name: npmLinkSelfFixtureName,
     description:
       'soft-linking project repo into node_modules to emulate package installation',
     setup: async (context) => {

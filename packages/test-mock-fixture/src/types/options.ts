@@ -1,3 +1,5 @@
+import type { RelativePath } from '@-xun/fs';
+
 import type {
   DescribeRootFixture,
   DescribeRootFixtureOptions
@@ -48,22 +50,15 @@ import type {
   WebpackTestFixtureOptions
 } from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GenericMockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
 /**
- * These type combines all configurable options conditioned on which fixtures
- * are actually used.
- *
- * When using custom fixtures, custom options may be provided via the
- * `AdditionalOptions` type parameter.
+ * The options available to every fixture.
  */
-export type FixtureOptions<
-  T extends MockFixture<string>,
-  AdditionalOptions extends Record<string, unknown> = never
-> = {
+export type GlobalFixtureOptions = {
   /**
    * The identifier used in various places, including when creating the dummy
-   * root directory and when describing the fixture in output text.
+   * root directory and when describing the test environment in output text.
    *
    * Must be alphanumeric, optionally including hyphens and underscores. Every
    * other character will be replaced with a hyphen.
@@ -77,7 +72,37 @@ export type FixtureOptions<
    * disable this behavior.
    */
   performCleanup: boolean;
-} & Partial<DummyFilesFixtureOptions['initialFileContents']> &
+  /**
+   * An object describing "virtual files" represented by mappings between
+   * non-existent {@link RelativePath}s and their theoretical (immutable)
+   * contents. These paths are relative to the dummy root directory.
+   *
+   * Some fixtures use the `initialVirtualFiles` option to lookup certain
+   * values, such as picking out keys from a virtual `package.json` file.
+   *
+   * **These virtual files are not created on the filesystem automatically!**
+   *
+   * To have the virtual files described in `initialVirtualFiles` actually
+   * written out to the filesystem (relative to the dummy root directory), you
+   * must use {@link dummyFilesFixture}.
+   *
+   * Consider also `dummyDirectoriesFixture` for writing out directories to the
+   * filesystem using the `initialDirectories` option.
+   */
+  initialVirtualFiles?: { [filePath: RelativePath | string]: string };
+};
+
+/**
+ * This type combines all possible configurable options conditioned on which
+ * fixtures are actually used.
+ *
+ * When using custom fixtures, custom options may be provided via the
+ * `AdditionalOptions` type parameter.
+ */
+export type FixtureOptions<
+  T extends GenericMockFixture,
+  AdditionalOptions extends Record<string, unknown> = never
+> = GlobalFixtureOptions &
   (never extends AdditionalOptions ? unknown : AdditionalOptions) &
   (T extends DescribeRootFixture ? DescribeRootFixtureOptions : unknown) &
   (T extends DummyDirectoriesFixture ? DummyDirectoriesFixtureOptions : unknown) &

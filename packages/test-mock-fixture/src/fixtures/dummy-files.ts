@@ -1,39 +1,20 @@
-import type { RelativePath } from '@-xun/fs';
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-const name = 'dummy-files';
-
-/**
- * @see {@link dummyFilesFixture}
- */
-export type DummyFilesFixture = MockFixture<typeof name>;
+export const dummyFilesFixtureName = 'dummy-files';
 
 /**
  * @see {@link dummyFilesFixture}
  */
-export type DummyFilesFixtureOptions = {
-  /**
-   * An object describing "virtual files" represented by mappings between
-   * non-existent {@link RelativePath}s and their theoretical contents. These
-   * paths are relative to the dummy root directory.
-   *
-   * Some fixtures use the `initialFileContents` option to lookup certain
-   * values, such as picking out keys from a virtual `package.json` file.
-   *
-   * **These virtual files are not created on the filesystem automatically!**
-   *
-   * To have the virtual files described in `initialFileContents` actually
-   * written out to the filesystem (relative to the dummy root directory), you
-   * must use {@link dummyFilesFixture}.
-   *
-   * Consider also `dummyDirectoriesFixture` for writing out directories to the
-   * filesystem using the `initialDirectories` option.
-   */
-  initialFileContents: { [filePath: RelativePath | string]: string };
-};
+export type DummyFilesFixture = MockFixture<typeof dummyFilesFixtureName, FixtureContext<DummyFilesFixtureOptions>>;
 
 /**
- * This fixture writes out the files described by `initialFileContents` to the
+ * @see {@link dummyFilesFixture}
+ */
+export type DummyFilesFixtureOptions = Omit<GlobalFixtureOptions, 'initialVirtualFiles'> & Required<Pick<GlobalFixtureOptions, 'initialVirtualFiles'>>;
+
+/**
+ * This fixture writes out the files described by `initialVirtualFiles` to the
  * filesystem. Paths of any depth are allowed, any non-existent path components
  * (directories) will be created if they do not already exist, and any existing
  * components will be ignored.
@@ -43,11 +24,11 @@ export type DummyFilesFixtureOptions = {
  */
 export function dummyFilesFixture(): DummyFilesFixture {
   return {
-    name,
+    name: dummyFilesFixtureName,
     description: 'creating dummy files under fixture root',
     setup: async (context) => {
       await Promise.all(
-        Object.entries(context.fileContents).map(async ([path, contents]) => {
+        Object.entries(context.virtualFiles).map(async ([path, contents]) => {
           const fullPath = `${context.root}/${path}`;
           await accessFile({ path: fullPath, context }).then(
             () => {
@@ -56,10 +37,10 @@ export function dummyFilesFixture(): DummyFilesFixture {
               );
             },
             async () => {
-              context.fileContents[path] = contents;
+              context.virtualFiles[path] = contents;
               await writeFile({
                 path: fullPath,
-                data: context.fileContents[path],
+                data: context.virtualFiles[path],
                 context
               });
             }

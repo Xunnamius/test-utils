@@ -1,18 +1,19 @@
 import { toAbsolutePath, type RelativePath } from '@-xun/fs';
 
-import type { MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
-const name = 'dummy-directories';
-
-/**
- * @see {@link dummyDirectoriesFixture}
- */
-export type DummyDirectoriesFixture = MockFixture<typeof name>;
+export const dummyDirectoriesFixtureName = 'dummy-directories';
 
 /**
  * @see {@link dummyDirectoriesFixture}
  */
-export type DummyDirectoriesFixtureOptions = {
+export type DummyDirectoriesFixture = MockFixture<typeof dummyDirectoriesFixtureName, FixtureContext<DummyDirectoriesFixtureOptions>>;
+
+/**
+ * @see {@link dummyDirectoriesFixture}
+ */
+export type DummyDirectoriesFixtureOptions = GlobalFixtureOptions & {
   /**
    * An array of {@link RelativePath}s describing directories to be written out
    * to the filesystem by {@link dummyDirectoriesFixture}.
@@ -29,7 +30,7 @@ export type DummyDirectoriesFixtureOptions = {
  */
 export function dummyDirectoriesFixture(): DummyDirectoriesFixture {
   return {
-    name,
+    name: dummyDirectoriesFixtureName,
     description: 'creating dummy directories under fixture root',
     setup: async (context) => {
       if (!Array.isArray(context.options.directoryPaths)) {
