@@ -6,11 +6,7 @@
 
 # util
 
-## Interfaces
-
-- [FixtureContext](interfaces/FixtureContext.md)
-- [MockFixture](interfaces/MockFixture.md)
-
 ## Functions
 
+- [findIndexVirtualPath](functions/findIndexVirtualPath.md)
 - [getTreeOutput](functions/getTreeOutput.md)

@@ -6,15 +6,15 @@
 
 # Function: getTreeOutput()
 
-> **getTreeOutput**(`context`): `Promise`\<`string`\>
+> **getTreeOutput**(`root`): `Promise`\<`string`\>
 
-Defined in: [util.ts:38](https://github.com/Xunnamius/test-utils/blob/fb7ffeb540b6329cd58507a70130e011f552c63c/packages/test-mock-fixture/src/util.ts#L38)
+Defined in: [util.ts:9](https://github.com/Xunnamius/test-utils/blob/7f7e115f89b6524c00da237b9112899ec640d519/packages/test-mock-fixture/src/util.ts#L9)
 
 ## Parameters
 
-### context
+### root
 
-[`FixtureContext`](../interfaces/FixtureContext.md)
+`AbsolutePath`
 
 ## Returns
 
