@@ -4,6 +4,7 @@
 
 # @-xun/test-mock-exit
 
-## Functions
+## Modules
 
-- [withMockedExit](functions/withMockedExit.md)
+- [error](error/README.md)
+- [index](index/README.md)
