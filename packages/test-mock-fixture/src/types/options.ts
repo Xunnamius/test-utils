@@ -31,14 +31,14 @@ import type {
 } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 
 import type {
-  NpmCopySelfFixture,
-  NpmCopySelfFixtureOptions
-} from 'universe+test-mock-fixture:fixtures/npm-copy-self.ts';
+  NpmCopyPackageFixture,
+  NpmCopyPackageFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/npm-copy-package.ts';
 
 import type {
-  NpmLinkSelfFixture,
-  NpmLinkSelfFixtureOptions
-} from 'universe+test-mock-fixture:fixtures/npm-link-self.ts';
+  NpmLinkPackageFixture,
+  NpmLinkPackageFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/npm-link-package.ts';
 
 import type {
   RunTestFixture,
@@ -95,15 +95,8 @@ export type GlobalFixtureOptions = {
 /**
  * This type combines all possible configurable options conditioned on which
  * fixtures are actually used.
- *
- * When using custom fixtures, custom options may be provided via the
- * `AdditionalOptions` type parameter.
  */
-export type FixtureOptions<
-  T extends GenericMockFixture,
-  AdditionalOptions extends Record<string, unknown> = never
-> = GlobalFixtureOptions &
-  (never extends AdditionalOptions ? unknown : AdditionalOptions) &
+export type FixtureOptions<T extends GenericMockFixture> = GlobalFixtureOptions &
   (T extends DescribeRootFixture ? DescribeRootFixtureOptions : unknown) &
   (T extends DummyDirectoriesFixture ? DummyDirectoriesFixtureOptions : unknown) &
   (T extends DummyFilesFixture ? DummyFilesFixtureOptions : unknown) &
@@ -113,6 +106,6 @@ export type FixtureOptions<
     ? NodeImportAndRunTestFixtureOptions
     : unknown) &
   (T extends RunTestFixture ? RunTestFixtureOptions : unknown) &
-  (T extends NpmCopySelfFixture ? NpmCopySelfFixtureOptions : unknown) &
-  (T extends NpmLinkSelfFixture ? NpmLinkSelfFixtureOptions : unknown) &
+  (T extends NpmCopyPackageFixture ? NpmCopyPackageFixtureOptions : unknown) &
+  (T extends NpmLinkPackageFixture ? NpmLinkPackageFixtureOptions : unknown) &
   (T extends WebpackTestFixture ? WebpackTestFixtureOptions : unknown);

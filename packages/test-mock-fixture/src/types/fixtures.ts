@@ -1,7 +1,58 @@
 import type fs from 'node:fs/promises';
-import type { AbsolutePath } from '@-xun/fs';
+import type { AbsolutePath, RelativePath } from '@-xun/fs';
 import type { ExtendedDebugger } from 'rejoinder';
 import type { Promisable, ReadonlyDeep } from 'type-fest';
+
+import type {
+  DescribeRootFixtureContext,
+  DescribeRootFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/describe-root.ts';
+
+import type {
+  DummyDirectoriesFixtureContext,
+  DummyDirectoriesFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/dummy-directories.ts';
+
+import type {
+  DummyFilesFixtureContext,
+  DummyFilesFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/dummy-files.ts';
+
+import type {
+  DummyNpmPackageFixtureContext,
+  DummyNpmPackageFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/dummy-npm-package.ts';
+
+import type {
+  GitRepositoryFixtureContext,
+  GitRepositoryFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/git-repository.ts';
+
+import type {
+  NodeImportAndRunTestFixtureContext,
+  NodeImportAndRunTestFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
+
+import type {
+  NpmCopyPackageFixtureContext,
+  NpmCopyPackageFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/npm-copy-package.ts';
+
+import type {
+  NpmLinkPackageFixtureContext,
+  NpmLinkPackageFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/npm-link-package.ts';
+
+import type {
+  RunTestFixtureContext,
+  RunTestFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/run-test.ts';
+
+import type {
+  WebpackTestFixtureContext,
+  WebpackTestFixtureOptions
+} from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
+
 import type { GlobalFixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
 
 /**
@@ -79,12 +130,12 @@ export type FixtureContext<Options extends Record<string, unknown>> = {
    */
   fixtures: GenericMockFixture[];
   /**
-   * The mutable "virtual files" as they exist currently in memory, including any
-   * mutations performed by fixtures.
+   * The mutable "virtual files" as they exist currently in memory, including
+   * any mutations performed by fixtures.
    *
    * @see {@link GlobalFixtureOptions.initialVirtualFiles}
    */
-  virtualFiles: { [filePath: string]: string };
+  virtualFiles: { [filePath: RelativePath]: string };
   /**
    * An {@link ExtendedDebugger} instance extended specifically for use by the
    * current fixture.
@@ -100,7 +151,26 @@ export type FixtureContext<Options extends Record<string, unknown>> = {
    * {@link AbsolutePath}s as such.
    */
   fs: FixtureFs;
-};
+} & (Options extends DescribeRootFixtureOptions ? DescribeRootFixtureContext : unknown) &
+  (Options extends DummyDirectoriesFixtureOptions
+    ? DummyDirectoriesFixtureContext
+    : unknown) &
+  (Options extends DummyFilesFixtureOptions ? DummyFilesFixtureContext : unknown) &
+  (Options extends DummyNpmPackageFixtureOptions
+    ? DummyNpmPackageFixtureContext
+    : unknown) &
+  (Options extends GitRepositoryFixtureOptions ? GitRepositoryFixtureContext : unknown) &
+  (Options extends NodeImportAndRunTestFixtureOptions
+    ? NodeImportAndRunTestFixtureContext
+    : unknown) &
+  (Options extends RunTestFixtureOptions ? RunTestFixtureContext : unknown) &
+  (Options extends NpmCopyPackageFixtureOptions
+    ? NpmCopyPackageFixtureContext
+    : unknown) &
+  (Options extends NpmLinkPackageFixtureOptions
+    ? NpmLinkPackageFixtureContext
+    : unknown) &
+  (Options extends WebpackTestFixtureOptions ? WebpackTestFixtureContext : unknown);
 
 /**
  * @see {@link FixtureContext}

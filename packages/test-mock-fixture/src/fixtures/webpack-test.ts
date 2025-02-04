@@ -1,25 +1,69 @@
-import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
+import { toPath, toRelativePath } from '@-xun/fs';
+import { run, runNoRejectOnBadExit, type RunReturnType } from '@-xun/run';
 
-import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
-import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
+
+import type { Tagged } from 'type-fest';
+
+import type {
+  FixtureContext,
+  MockFixture
+} from 'universe+test-mock-fixture:types/fixtures.ts';
 
 export const webpackTestFixtureName = 'webpack-test';
 
 /**
+ * A {@link MockFixture} instantiation of this fixture.
+ *
  * @see {@link webpackTestFixture}
  */
-export type WebpackTestFixture = MockFixture<typeof webpackTestFixtureName, FixtureContext<WebpackTestFixtureOptions>>;
+export type WebpackTestFixture = MockFixture<
+  typeof webpackTestFixtureName,
+  FixtureContext<WebpackTestFixtureOptions>
+>;
 
 /**
+ * Contains any additional options properties this fixture expects or allows.
+ *
+ * This type is {@link Tagged} so that it can be differentiated from `XContext`
+ * types provided by other fixtures, even when they contain the same keys (or no
+ * keys).
+ *
  * @see {@link webpackTestFixture}
  */
-export type WebpackTestFixtureOptions = GlobalFixtureOptions & {
-  /**
-   * The semver Webpack version to pull from the NPM registry before executing
-   * any tests.
-   */
-  webpackVersion: string;
-};
+export type WebpackTestFixtureOptions = Tagged<
+  {
+    /**
+     * The semver Webpack version to pull from the NPM registry before executing
+     * any tests.
+     */
+    webpackVersion: string;
+  },
+  typeof webpackTestFixtureName
+>;
+
+/**
+ * Contains any additional context properties this fixture makes available by
+ * the time its `setup` function has successfully executed.
+ *
+ * It is the sole responsibility of this fixture to ensure the context contains
+ * the mentioned properties as described.
+ *
+ * This type is {@link Tagged} so that it can be differentiated from `XContext`
+ * types provided by other fixtures, even when they contain the same properties
+ * (or no properties).
+ *
+ * @see {@link webpackTestFixture}
+ */
+export type WebpackTestFixtureContext = Tagged<
+  {
+    /**
+     * The test result returned by `@-xun/run`.
+     */
+    testResult: RunReturnType;
+  },
+  typeof webpackTestFixtureName
+>;
 
 /**
  * This fixture initializes the dummy root directory with an index file under
@@ -33,63 +77,33 @@ export type WebpackTestFixtureOptions = GlobalFixtureOptions & {
 export function webpackTestFixture(): WebpackTestFixture {
   return {
     name: webpackTestFixtureName,
-    description: 'setting up webpack jest integration test',
+    description: 'setting up and executing webpack runtime test',
     setup: async (context) => {
-      if (typeof context.options.webpackVersion !== 'string') {
-        throw new TypeError(
-          'invalid or missing options.webpackVersion, expected string'
-        );
-      }
+      const { root, fs, virtualFiles, options, debug } = context;
+      const indexPath = findIndexVirtualPath(virtualFiles);
+      const webpackConfigPath = toRelativePath('webpack.config.mjs');
+      const webpackConfigContents = virtualFiles[indexPath];
 
-      const indexPath = Object.keys(context.virtualFiles).find((path) => {
-        return /^src\/index\.(((c|m)?js)|ts)x?$/.test(path);
-      });
-
-      if (!indexPath) {throw new Error(
-          ErrorMessage.MissingVirtualFile('src/index.${validExtension}')
-        );
-      }
-
-      if (!context.virtualFiles[webpackConfigProjectBase]) {
-        throw new Error(
-          ErrorMessage.MissingVirtualFile(webpackConfigProjectBase)
-        );
+      if (!webpackConfigContents) {
+        debug.warn('%O is empty in virtualFiles', webpackConfigPath);
       }
 
       await Promise.all([
-        writeFile({
-          path: `${context.root}/${indexPath}`,
-          data: context.virtualFiles[indexPath],
-          context
-        }),
-        writeFile({
-          path: `${context.root}/${webpackConfigProjectBase}`,
-          data: context.virtualFiles[webpackConfigProjectBase],
-          context
-        })
+        fs.writeFile(indexPath, virtualFiles[indexPath]),
+        fs.writeFile(webpackConfigPath, webpackConfigContents || '')
       ]);
-
-      context.treeOutput = await getTreeOutput(context);
 
       await run(
         'npm',
-        [
-          'install',
-          '--no-save',
-          `webpack@${context.options.webpackVersion}`,
-          'webpack-cli'
-        ],
-        {
-          cwd: context.root,
-          reject: true
-        }
+        ['install', '--no-save', `webpack@${options.webpackVersion}`, 'webpack-cli'],
+        { cwd: root }
       );
 
-      await run('npx', ['webpack'], { cwd: context.root, reject: true });
+      await run('npx', ['webpack'], { cwd: root });
 
-      context.testResult = await run('node', [
+      context.testResult = await runNoRejectOnBadExit('node', [
         '--no-warnings',
-        `${context.root}/dist/index.js`
+        toPath(root, 'dist', 'index.js')
       ]);
     }
   };

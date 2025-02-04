@@ -1,15 +1,25 @@
-import type { GenericFixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import { tmpdir } from 'node:os';
+
+import { toAbsolutePath, toPath } from '@-xun/fs';
+import uniqueFilename from 'unique-filename';
+
+import type {
+  GenericFixtureContext,
+  MockFixture
+} from 'universe+test-mock-fixture:types/fixtures.ts';
 
 export const rootFixtureName = 'root';
 
 /**
+ * A {@link MockFixture} instantiation of this fixture.
+ *
  * @see {@link rootFixture}
  */
 export type RootFixture = MockFixture<typeof rootFixtureName, GenericFixtureContext>;
 
 /**
- * This fixture creates the dummy root directory. It is perhaps the most
- * important fixture.
+ * This fixture creates the dummy root directory as well as the `src/`
+ * subdirectory. It is perhaps the most important fixture.
  *
  * If the first fixture in the array of fixtures passed to the `fixtures`
  * parameter of `withMockedFixtures` is not this fixture, then this fixture is
@@ -21,21 +31,24 @@ export type RootFixture = MockFixture<typeof rootFixtureName, GenericFixtureCont
 export function rootFixture(): RootFixture {
   return {
     name: rootFixtureName,
-    description: (context) =>
-      `creating a unique root directory${
-        context.options.performCleanup
-          ? ' (will be deleted after all tests complete)'
-          : ''
-      }`,
+    description: 'creating unique dummy root directory',
     setup: async (context) => {
-      // TODO: add the tmpdir suffix to all related debug outputs
-      context.root = uniqueFilename(tmpdir(), context.testIdentifier);
+      const { fs, options, root } = context;
 
-      await mkdir({ paths: [toAbsolutePath(context.root, 'src')], context });
+      context.root = toAbsolutePath(uniqueFilename(tmpdir(), options.identifier));
+      await fs.mkdir(toPath(root, 'src'), { recursive: true });
     },
-    teardown: async (context) => {
-      if (context.options.performCleanup) {
-        await remove({ paths: [context.root], context });
+    teardown: async ({ fs, options, root, debug }) => {
+      if (options.performCleanup) {
+        debug.message('deleting dummy root directory: %O', root);
+        await fs.rm(root, {
+          force: true,
+          recursive: true,
+          maxRetries: 10,
+          retryDelay: 250
+        });
+      } else {
+        debug.warn('did not delete dummy root directory: %O', root);
       }
     }
   };

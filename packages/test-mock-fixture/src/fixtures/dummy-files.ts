@@ -1,17 +1,54 @@
-import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
-import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
+import { toDirname } from '@-xun/fs';
+
+import type { EmptyObject, Tagged } from 'type-fest';
+
+import type {
+  FixtureContext,
+  MockFixture
+} from 'universe+test-mock-fixture:types/fixtures.ts';
+
+import type { GlobalFixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
 
 export const dummyFilesFixtureName = 'dummy-files';
 
 /**
+ * A {@link MockFixture} instantiation of this fixture.
+ *
  * @see {@link dummyFilesFixture}
  */
-export type DummyFilesFixture = MockFixture<typeof dummyFilesFixtureName, FixtureContext<DummyFilesFixtureOptions>>;
+export type DummyFilesFixture = MockFixture<
+  typeof dummyFilesFixtureName,
+  FixtureContext<DummyFilesFixtureOptions>
+>;
 
 /**
+ * Contains any additional options properties this fixture expects or allows.
+ *
+ * This type is {@link Tagged} so that it can be differentiated from `XContext`
+ * types provided by other fixtures, even when they contain the same keys (or no
+ * keys).
+ *
  * @see {@link dummyFilesFixture}
  */
-export type DummyFilesFixtureOptions = Omit<GlobalFixtureOptions, 'initialVirtualFiles'> & Required<Pick<GlobalFixtureOptions, 'initialVirtualFiles'>>;
+export type DummyFilesFixtureOptions = Tagged<
+  Required<Pick<GlobalFixtureOptions, 'initialVirtualFiles'>>,
+  typeof dummyFilesFixtureName
+>;
+
+/**
+ * Contains any additional context properties this fixture makes available by
+ * the time its `setup` function has successfully executed.
+ *
+ * It is the sole responsibility of this fixture to ensure the context contains
+ * the mentioned properties as described.
+ *
+ * This type is {@link Tagged} so that it can be differentiated from `XContext`
+ * types provided by other fixtures, even when they contain the same properties
+ * (or no properties).
+ *
+ * @see {@link dummyFilesFixture}
+ */
+export type DummyFilesFixtureContext = Tagged<EmptyObject, typeof dummyFilesFixtureName>;
 
 /**
  * This fixture writes out the files described by `initialVirtualFiles` to the
@@ -26,25 +63,15 @@ export function dummyFilesFixture(): DummyFilesFixture {
   return {
     name: dummyFilesFixtureName,
     description: 'creating dummy files under fixture root',
-    setup: async (context) => {
+    setup: async ({ fs, virtualFiles, debug }) => {
       await Promise.all(
-        Object.entries(context.virtualFiles).map(async ([path, contents]) => {
-          const fullPath = `${context.root}/${path}`;
-          await accessFile({ path: fullPath, context }).then(
-            () => {
-              context.debug(
-                `skipped creating dummy file: file already exists at ${path}`
-              );
-            },
-            async () => {
-              context.virtualFiles[path] = contents;
-              await writeFile({
-                path: fullPath,
-                data: context.virtualFiles[path],
-                context
-              });
-            }
-          );
+        Object.entries(virtualFiles).map(async ([path, contents]) => {
+          if (await fs.isAccessible(path)) {
+            debug('skipped creating dummy file since it already exists: %O', path);
+          } else {
+            await fs.mkdir(toDirname(path), { recursive: true });
+            await fs.writeFile(path, contents);
+          }
         })
       );
     }

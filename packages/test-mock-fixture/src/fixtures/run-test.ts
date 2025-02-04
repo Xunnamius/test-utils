@@ -1,22 +1,61 @@
-import { runNoRejectOnBadExit } from '@-xun/run';
+import { runNoRejectOnBadExit, type RunOptions, type RunReturnType } from '@-xun/run';
 
-import type { RequiredDeep } from 'type-fest';
-import type { GlobalFixtureOptions } from 'multiverse+test-mock-fixture:types/options.ts';
+import type { RequiredDeep, Tagged } from 'type-fest';
 import type { NodeImportAndRunTestFixtureOptions } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
-import type { FixtureContext, MockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 
+import type {
+  FixtureContext,
+  MockFixture
+} from 'universe+test-mock-fixture:types/fixtures.ts';
 
 export const runTestFixtureName = 'run-test';
 
 /**
+ * A {@link MockFixture} instantiation of this fixture.
+ *
  * @see {@link runTestFixture}
  */
-export type RunTestFixture = MockFixture<typeof runTestFixtureName, FixtureContext<RunTestFixtureOptions>>;
+export type RunTestFixture = MockFixture<
+  typeof runTestFixtureName,
+  FixtureContext<RunTestFixtureOptions>
+>;
 
 /**
+ * Contains any additional options properties this fixture expects or allows.
+ *
+ * This type is {@link Tagged} so that it can be differentiated from `XContext`
+ * types provided by other fixtures, even when they contain the same keys (or no
+ * keys).
+ *
  * @see {@link runTestFixture}
  */
-export type RunTestFixtureOptions = GlobalFixtureOptions & RequiredDeep<Pick<NodeImportAndRunTestFixtureOptions, 'runWith'>>;
+export type RunTestFixtureOptions = Tagged<
+  RequiredDeep<Pick<NodeImportAndRunTestFixtureOptions, 'runWith'>>,
+  typeof runTestFixtureName
+>;
+
+/**
+ * Contains any additional context properties this fixture makes available by
+ * the time its `setup` function has successfully executed.
+ *
+ * It is the sole responsibility of this fixture to ensure the context contains
+ * the mentioned properties as described.
+ *
+ * This type is {@link Tagged} so that it can be differentiated from `XContext`
+ * types provided by other fixtures, even when they contain the same properties
+ * (or no properties).
+ *
+ * @see {@link runTestFixture}
+ */
+export type RunTestFixtureContext = Tagged<
+  {
+    /**
+     * The test result returned by `@-xun/run`.
+     */
+    testResult: RunReturnType;
+  },
+  typeof runTestFixtureName
+>;
 
 /**
  * This fixture executes a binary with the specified arguments.
@@ -24,29 +63,19 @@ export type RunTestFixtureOptions = GlobalFixtureOptions & RequiredDeep<Pick<Nod
 export function runTestFixture(): RunTestFixture {
   return {
     name: runTestFixtureName,
-    description: 'setting up runtime integration test',
+    description: 'executing runtime test',
     setup: async (context) => {
-      // TODO:
-      const bin = context.options.runWith.binary;
-      const args = context.options.runWith.args || [];
-      const options = context.options.runWith.runnerOptions || {};
+      const { root, options } = context;
+      const { binary, args, runnerOptions } = options.runWith;
 
-      context.treeOutput = await getTreeOutput(context);
-
-      if (!bin) {
-        throw new Error('missing `runWith` binary');
-      }
-
-      const { exitCode, stdout, stderr } = await runNoRejectOnBadExit(bin, args, {
-        cwd: context.root,
-        ...options
+      context.testResult = await runNoRejectOnBadExit(binary, args as string[], {
+        cwd: root,
+        ...(runnerOptions as unknown as RunOptions),
+        env: {
+          DEBUG_COLORS: 'false',
+          ...runnerOptions.env
+        }
       });
-
-      context.testResult = {
-        code: exitCode ?? -1,
-        stdout,
-        stderr
-      };
     }
   };
 }

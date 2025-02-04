@@ -19,7 +19,7 @@ import {
 } from 'universe+test-mock-fixture:fixtures/root.ts';
 
 import type { PathLike } from 'node:fs';
-import type { ArraySlice, ReadonlyDeep } from 'type-fest';
+import type { ArraySlice, EmptyObject, ReadonlyDeep } from 'type-fest';
 
 import type {
   FixtureAction,
@@ -52,8 +52,8 @@ export * from 'universe+test-mock-fixture:fixtures/dummy-npm-package.ts';
 export * from 'universe+test-mock-fixture:fixtures/git-repository.ts';
 export * from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 export * from 'universe+test-mock-fixture:fixtures/run-test.ts';
-export * from 'universe+test-mock-fixture:fixtures/npm-copy-self.ts';
-export * from 'universe+test-mock-fixture:fixtures/npm-link-self.ts';
+export * from 'universe+test-mock-fixture:fixtures/npm-copy-package.ts';
+export * from 'universe+test-mock-fixture:fixtures/npm-link-package.ts';
 export * from 'universe+test-mock-fixture:fixtures/root.ts';
 export * from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 
@@ -63,17 +63,23 @@ export type * from 'universe+test-mock-fixture:types/options.ts';
 /**
  * Create a mock or "dummy" filesystem structure used to simulate one or more
  * runtime environments for the package under test.
+ *
+ * When passing one-off custom fixture functions via the `fixtures` parameter,
+ * use the `AdditionalOptions` and `AdditionalContext` type parameters to supply
+ * any additional options and context where necessary.
  */
 export async function withMockedFixtures<
   Fixtures extends ((...args: never[]) => GenericMockFixture)[],
-  AdditionalOptions extends Record<string, unknown> = never
+  AdditionalOptions extends Record<string, unknown> = EmptyObject,
+  AdditionalContext extends Record<string, unknown> = EmptyObject
 >(
   /**
    * The function responsible for interfacing with the testing framework (e.g.
    * running `expect` functions).
    */
   test: FixtureAction<
-    FixtureContext<FixtureOptions<ReturnType<Fixtures[number]>, AdditionalOptions>>
+    FixtureContext<FixtureOptions<ReturnType<Fixtures[number]>> & AdditionalOptions> &
+      AdditionalContext
   >,
   /**
    * The fixtures used to construct the dummy environment. If the describeRoot
@@ -87,13 +93,11 @@ export async function withMockedFixtures<
   /**
    * Options seen by all fixtures.
    */
-  options: ReadonlyDeep<FixtureOptions<ReturnType<Fixtures[number]>, AdditionalOptions>>
+  options: ReadonlyDeep<FixtureOptions<ReturnType<Fixtures[number]>> & AdditionalOptions>
 ) {
   const $test = Symbol.for('@xunnamius/test');
 
-  const context: FixtureContext<
-    FixtureOptions<ReturnType<Fixtures[number]>, AdditionalOptions>
-  > = {
+  const context = {
     get root(): never {
       throw new TypeError(ErrorMessage.RootAccessedTooEarly());
     },
@@ -143,7 +147,8 @@ export async function withMockedFixtures<
         .filter((entry) => !!entry)
         .concat(['isAccessible', wrapFsFunction(isAccessible, 1)])
     )
-  };
+  } as FixtureContext<FixtureOptions<ReturnType<Fixtures[number]>> & AdditionalOptions> &
+    AdditionalContext;
 
   if (
     !context.options.identifier ||
@@ -174,11 +179,11 @@ export async function withMockedFixtures<
   }
 
   if (!sawDescribeRootFixture) {
-    context.fixtures.push(describeRootFixture());
+    context.fixtures.push(describeRootFixture() as GenericMockFixture);
   }
 
   // ? A pseudo-fixture responsible for running the test function is technically
-  // ? the "final fixture".
+  // ? the "final fixture"
   context.fixtures.push({
     name: $test,
     description: 'executing user-supplied `test` function',
@@ -235,7 +240,7 @@ export async function withMockedFixtures<
 
       const fixture =
         context.fixtures.find(({ name }) => name === describeRootFixtureName) ||
-        describeRootFixture();
+        (describeRootFixture() as GenericMockFixture);
 
       await fixture.setup?.(localizedContext);
     }
@@ -283,15 +288,18 @@ export async function withMockedFixtures<
  */
 export function mockFixtureFactory<
   Fixtures extends ((...args: never[]) => GenericMockFixture)[],
-  AdditionalOptions extends Record<string, unknown> = never
+  AdditionalOptions extends Record<string, unknown> = EmptyObject,
+  AdditionalContext extends Record<string, unknown> = EmptyObject
 >(
   ...[fixtures, options]: ArraySlice<
-    Parameters<typeof withMockedFixtures<Fixtures, AdditionalOptions>>,
+    Parameters<
+      typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
+    >,
     1
   >
 ) {
   type WithMockedFixturesParameters = Parameters<
-    typeof withMockedFixtures<Fixtures, AdditionalOptions>
+    typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
   >;
 
   return function (
@@ -300,7 +308,7 @@ export function mockFixtureFactory<
       ...Partial<ArraySlice<WithMockedFixturesParameters, 1>>
     ]
   ) {
-    return withMockedFixtures<Fixtures, AdditionalOptions>(
+    return withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>(
       test,
       incomingFixtures ?? fixtures,
       incomingOptions ?? options

@@ -17,5 +17,8 @@ export const ErrorMessage = {
   },
   NonAlphaNumericIdentifier(key: string, invalidValue: unknown) {
     return `"${key}" must be an alphanumeric (including hyphens and underscores) string of length >=1, saw: ${String(invalidValue)}`;
+  },
+  PackageMissingField(field: string) {
+    return `package.json (under test) is missing a "${field}" field, or it is invalid`;
   }
 };
