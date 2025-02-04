@@ -1,13 +1,14 @@
 // * These tests ensure the exported interface under test functions as expected.
 
 import { toPath } from '@-xun/fs';
+
 import { getDummyImportPath } from 'universe+common-dummies:imports.ts';
 import { getDummyLoaderPath } from 'universe+common-dummies:loaders.ts';
 import { getDummyPackage } from 'universe+common-dummies:packages.ts';
 import { getDummyDecoratedPath } from 'universe+common-dummies:pseudodecorators.ts';
+
 import {
   dummyToProjectMetadata,
-  patchReadXPackageJsonAtRoot,
   repositories
 } from 'universe+common-dummies:repositories.ts';
 
