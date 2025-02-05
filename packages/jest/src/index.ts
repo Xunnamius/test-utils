@@ -145,7 +145,7 @@ export function asMocked<T extends NonNullable<unknown>>(
         ? args[0].shallow
         : undefined;
 
-  const source = (shallowArg !== undefined ? () => undefined : args[0]) as T;
+  const source = (shallowArg !== undefined ? jest.fn() : args[0]) as T;
   const options = { shallow: shallowArg ?? args[1]?.shallow ?? false };
 
   return jest.mocked<T>(source, options as Parameters<typeof jest.mocked>[1]);
