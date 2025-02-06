@@ -8,7 +8,7 @@
 
 > **WebpackTestFixtureOptions**: `Tagged`\<\{ `webpackVersion`: `string`; \}, *typeof* [`webpackTestFixtureName`](../variables/webpackTestFixtureName.md)\>
 
-Defined in: [fixtures/webpack-test.ts:34](https://github.com/Xunnamius/test-utils/blob/7f7e115f89b6524c00da237b9112899ec640d519/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L34)
+Defined in: [fixtures/webpack-test.ts:34](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L34)
 
 Contains any additional options properties this fixture expects or allows.
 

@@ -8,7 +8,7 @@
 
 > **GlobalFixtureOptions**: `object`
 
-Defined in: [types/options.ts:58](https://github.com/Xunnamius/test-utils/blob/7f7e115f89b6524c00da237b9112899ec640d519/packages/test-mock-fixture/src/types/options.ts#L58)
+Defined in: [types/options.ts:58](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/types/options.ts#L58)
 
 The options available to every fixture.
 
