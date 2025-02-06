@@ -52,14 +52,14 @@ export function getDummyPackage<
   id: PackageName,
   options: {
     /**
-     * If `true`, `imports` must be an object and not `null`, `undefined`,
+     * If `true`, `imports` must be an object and not `undefined`, `null`,
      * `string`, or an array.
      *
      * @default false
      */
     requireObjectImports?: RequireObjectImports;
     /**
-     * If `true`, `exports` must be an object and not `null`, `undefined`,
+     * If `true`, `exports` must be an object and not `undefined`, `null`,
      * `string`, or an array.
      *
      * @default false
