@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { access } from 'node:fs/promises';
+
+import { toPath, type AbsolutePath } from '@-xun/fs';
 import { withMockedArgv, type MockedArgvOptions } from '@-xun/test-mock-argv';
 import { withMockedEnv, type MockedEnvOptions } from '@-xun/test-mock-env';
 import { withMockedExit } from '@-xun/test-mock-exit';
@@ -7,8 +10,9 @@ import { withMockedOutput, type MockedOutputOptions } from '@-xun/test-mock-outp
 import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+jest:constant.ts';
+import { ErrorMessage } from 'universe+jest:error.ts';
 
-import type { Merge } from 'type-fest';
+import type { Merge, PackageJson } from 'type-fest';
 
 // {@symbiote/notExtraneous jest}
 
@@ -20,6 +24,10 @@ export * from '@-xun/test-mock-import';
 export * from '@-xun/test-mock-output';
 
 const globalDebug = createDebugLogger({ namespace: globalDebuggerNamespace });
+
+const ensurePackageHasBeenBuiltDebugger = globalDebug.extend(
+  'ensurePackageHasBeenBuilt'
+);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -284,5 +292,50 @@ export async function withMocks(
     },
     simulatedArgv,
     options
+  );
+}
+
+/**
+ * This function will throw if `packageName` (at `packageRoot`) has one or more
+ * inaccessible entry points defined in `packageExports`.
+ */
+export async function ensurePackageHasBeenBuilt(
+  packageRoot: AbsolutePath,
+  packageName: PackageJson['name'],
+  packageExports: PackageJson['exports']
+) {
+  if (!packageExports) {
+    throw new Error(ErrorMessage.NoEntryPointsInPackageJson(packageName));
+  }
+
+  const packageMainPaths = Object.values(packageExports).map((xport) => {
+    const isBadExport =
+      !xport || typeof xport === 'string' || Array.isArray(xport) || !xport.default;
+
+    if (isBadExport) {
+      throw new TypeError(
+        ErrorMessage.NoDefaultConditionInPackageJsonExport(packageName)
+      );
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
+    return toPath(packageRoot, String(xport.default));
+  });
+
+  ensurePackageHasBeenBuiltDebugger('packageMainPaths: %O', packageMainPaths);
+
+  await Promise.all(
+    packageMainPaths.map(async (packageMainPath) => {
+      if (await isNotAccessible(packageMainPath)) {
+        throw new Error(ErrorMessage.DistributablesNotBuilt());
+      }
+    })
+  );
+}
+
+async function isNotAccessible(packageMainPath: AbsolutePath) {
+  return access(packageMainPath).then(
+    () => false,
+    () => true
   );
 }
