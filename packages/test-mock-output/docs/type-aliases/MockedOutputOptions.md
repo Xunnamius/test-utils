@@ -8,7 +8,7 @@
 
 > **MockedOutputOptions**: `object`
 
-Defined in: [index.ts:8](https://github.com/Xunnamius/test-utils/blob/9b38e76a6ff9e51487f8a435077cf36221cafbc8/packages/test-mock-output/src/index.ts#L8)
+Defined in: [index.ts:10](https://github.com/Xunnamius/test-utils/blob/93cda7940afb86ec332e09c9cb61f62e1d6f6f36/packages/test-mock-output/src/index.ts#L10)
 
 ## Type declaration
 
