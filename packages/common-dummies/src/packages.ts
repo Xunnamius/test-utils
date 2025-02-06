@@ -45,33 +45,30 @@ export type DummyPackageMetadata<
 /**
  * Return metadata about an available dummy package.
  */
-export function getDummyPackage(
+export function getDummyPackage<
+  RequireObjectImports extends boolean = false,
+  RequireObjectExports extends boolean = false
+>(
   id: PackageName,
-  {
-    requireObjectImports = false,
-    requireObjectExports = false
-  }: {
+  options: {
     /**
      * If `true`, `imports` must be an object and not `null`, `undefined`,
      * `string`, or an array.
      *
      * @default false
      */
-    requireObjectImports?: boolean;
+    requireObjectImports?: RequireObjectImports;
     /**
      * If `true`, `exports` must be an object and not `null`, `undefined`,
      * `string`, or an array.
      *
      * @default false
      */
-    requireObjectExports?: boolean;
+    requireObjectExports?: RequireObjectExports;
   } = {}
-): DummyPackageMetadata<typeof requireObjectImports, typeof requireObjectExports> {
+): DummyPackageMetadata<RequireObjectImports, RequireObjectExports> {
   // eslint-disable-next-line unicorn/prevent-abbreviations
-  const pkg = {} as DummyPackageMetadata<
-    typeof requireObjectImports,
-    typeof requireObjectExports
-  >;
+  const pkg = {} as DummyPackageMetadata<RequireObjectImports, RequireObjectExports>;
 
   if (id === 'root') {
     pkg.path = DUMMY_PACKAGE_DIR;
@@ -88,7 +85,7 @@ export function getDummyPackage(
   pkg.name = pkg.packageJson.name;
 
   if (
-    requireObjectImports &&
+    options.requireObjectImports &&
     (!pkg.packageJson.imports ||
       typeof pkg.packageJson.imports === 'string' ||
       Array.isArray(pkg.packageJson.imports))
@@ -97,7 +94,7 @@ export function getDummyPackage(
   }
 
   if (
-    requireObjectExports &&
+    options.requireObjectExports &&
     (!pkg.packageJson.exports ||
       typeof pkg.packageJson.exports === 'string' ||
       Array.isArray(pkg.packageJson.exports))
