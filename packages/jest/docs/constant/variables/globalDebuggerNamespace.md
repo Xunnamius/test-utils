@@ -8,6 +8,6 @@
 
 > `const` **globalDebuggerNamespace**: `"xjest"` = `'xjest'`
 
-Defined in: [packages/jest/src/constant.ts:4](https://github.com/Xunnamius/test-utils/blob/e210a46ecf0359b2719b87acef5ff9173aab1469/packages/jest/src/constant.ts#L4)
+Defined in: [packages/jest/src/constant.ts:4](https://github.com/Xunnamius/test-utils/blob/05a8da2ba98451988365d5297a9261e32bd0d8dd/packages/jest/src/constant.ts#L4)
 
 The project-wide namespace that appears in debugger output.

@@ -73,6 +73,7 @@
 - [dummyDirectoriesFixture](functions/dummyDirectoriesFixture.md)
 - [dummyFilesFixture](functions/dummyFilesFixture.md)
 - [dummyNpmPackageFixture](functions/dummyNpmPackageFixture.md)
+- [ensurePackageHasBeenBuilt](functions/ensurePackageHasBeenBuilt.md)
 - [gitRepositoryFixture](functions/gitRepositoryFixture.md)
 - [isolatedImport](functions/isolatedImport.md)
 - [mockArgvFactory](functions/mockArgvFactory.md)
