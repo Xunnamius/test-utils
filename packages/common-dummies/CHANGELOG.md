@@ -16,15 +16,23 @@ this project adheres to [Semantic Versioning][2].
 
 <br />
 
-### 🏗️ Patch @-xun/common-dummies[@1.0.1][7] (2025-02-06)
+### 🏗️ Patch @-xun/common-dummies[@1.0.2][7] (2025-02-06)
 
 #### 🪄 Fixes
 
-- **packages/common-dummies:** pack and unpack "dummies" into/from a tarball to work around npm issues ([dc3b432][8])
+- **packages/common-dummies:** release `getDummyPackage` fix ([5ff40c7][8])
+
+<br />
+
+### 🏗️ Patch @-xun/common-dummies[@1.0.1][9] (2025-02-06)
+
+#### 🪄 Fixes
+
+- **packages/common-dummies:** pack and unpack "dummies" into/from a tarball to work around npm issues ([dc3b432][10])
 
 #### ⚙️ Build System
 
-- Add missing jest peer dependency ([af4e75f][9])
+- Add missing jest peer dependency ([af4e75f][11])
 
 [1]: https://conventionalcommits.org
 [2]: https://semver.org
@@ -32,6 +40,8 @@ this project adheres to [Semantic Versioning][2].
 [4]: https://github.com/Xunnamius/test-utils/commit/f75c4cd929f5d1720d466436ad2ee5c68cced170
 [5]: https://github.com/Xunnamius/test-utils/commit/8ae214d3b2af53c3db3a28f45d32879c57e7abed
 [6]: https://github.com/Xunnamius/test-utils/commit/bf9dad1dc32da28cbc1e037209c9470095d7efa6
-[7]: https://github.com/Xunnamius/test-utils/compare/@-xun/common-dummies@1.0.0...@-xun/common-dummies@1.0.1
-[8]: https://github.com/Xunnamius/test-utils/commit/dc3b432f6d15898a8396cf56c73f03cafcecb7a9
-[9]: https://github.com/Xunnamius/test-utils/commit/af4e75f9b436c758cd44a902f489c5640d8b2b47
+[7]: https://github.com/Xunnamius/test-utils/compare/@-xun/common-dummies@1.0.1...@-xun/common-dummies@1.0.2
+[8]: https://github.com/Xunnamius/test-utils/commit/5ff40c77a98ed0a1d0df44772fe12318f1efb439
+[9]: https://github.com/Xunnamius/test-utils/compare/@-xun/common-dummies@1.0.0...@-xun/common-dummies@1.0.1
+[10]: https://github.com/Xunnamius/test-utils/commit/dc3b432f6d15898a8396cf56c73f03cafcecb7a9
+[11]: https://github.com/Xunnamius/test-utils/commit/af4e75f9b436c758cd44a902f489c5640d8b2b47

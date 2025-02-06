@@ -8,7 +8,7 @@
 
 > `const` **repositories**: `Record`\<[`RepositoryName`](../type-aliases/RepositoryName.md), [`Repository`](../type-aliases/Repository.md)\>
 
-Defined in: [repositories.ts:261](https://github.com/Xunnamius/test-utils/blob/3de83a9dd3324f600949484f53198ae27ae68d7a/packages/common-dummies/src/repositories.ts#L261)
+Defined in: [repositories.ts:261](https://github.com/Xunnamius/test-utils/blob/5ff40c77a98ed0a1d0df44772fe12318f1efb439/packages/common-dummies/src/repositories.ts#L261)
 
 A collection of repositories representing dummy monorepo and polyrepo
 projects. Useful for testing purposes.
