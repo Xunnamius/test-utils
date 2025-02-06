@@ -10,6 +10,8 @@ import { globalDebuggerNamespace } from 'universe+jest:constant.ts';
 
 import type { Merge } from 'type-fest';
 
+// {@symbiote/notExtraneous jest}
+
 export * from '@-xun/test-mock-argv';
 export * from '@-xun/test-mock-env';
 export * from '@-xun/test-mock-exit';

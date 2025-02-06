@@ -2,6 +2,8 @@ import assert from 'node:assert';
 
 import type { Promisable } from 'type-fest';
 
+// {@symbiote/notExtraneous jest}
+
 /**
  * @see {@link withMockedOutput}
  */

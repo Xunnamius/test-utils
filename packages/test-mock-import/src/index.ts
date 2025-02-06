@@ -42,6 +42,7 @@ export function isolatedImport<T>(
 ): T {
   let package_: T | undefined;
 
+  // {@symbiote/notExtraneous jest}
   // ? Cache-busting
   jest.isolateModules(() => {
     package_ = ((required) => {

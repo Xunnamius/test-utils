@@ -15,6 +15,7 @@ export async function withMockedExit(
     getExitCode: () => typeof process.exitCode;
   }) => Promisable<void>
 ) {
+  // {@symbiote/notExtraneous jest}
   const _exitSpy = jest.spyOn(process, 'exit').mockImplementation((code) => {
     throw new Error(ErrorMessage.SuppressedExitAttempt(code));
   });

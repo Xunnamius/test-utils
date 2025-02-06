@@ -174,7 +174,7 @@ export async function withMockedFixtures<
     }
   }
 
-  if (context.fixtures.at(0)?.name !== rootFixtureName) {
+  if (context.fixtures[0]?.name !== rootFixtureName) {
     context.fixtures.unshift(rootFixture());
   }
 
