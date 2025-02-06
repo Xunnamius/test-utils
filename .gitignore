@@ -107,3 +107,4 @@ _book
 CertificateAuthorityCertificate.pem
 
 # Custom
+packages/common-dummies/dummies.tar.gz

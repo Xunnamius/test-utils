@@ -1,41 +1,32 @@
 // @ts-check
+
+// * Unpacks dummies.tar.gz in ./dist or errors if the tarball does not exist.
+// * See README.md for usage instructions.
+
 // ! It is imperative that operations performed by this script are IDEMPOTENT!
 
-import { mkdir, writeFile } from 'node:fs/promises';
-
 import { toAbsolutePath, toPath } from '@-xun/fs';
-import { glob as globAsync } from 'glob';
 import { createGenericLogger } from 'rejoinder';
+// {@symbiote/notExtraneous tar}
+import { extract } from 'tar';
 
 process.env.DEBUG_COLOR ??= 'true';
 
 const root = toAbsolutePath(import.meta.dirname);
 const log = createGenericLogger({
-  namespace: `common-dummies:post-npm-install`
+  namespace: `common-dummies:post-install`
 });
 
-const repositoriesDir = toPath(root, '..', 'dummies', 'repositories');
-const goodHybridrepoDir = toPath(repositoriesDir, 'good-hybridrepo', '.git-ignored');
+const dummiesOutputDir = toPath(root, '..');
+const dummiesInputFile = toPath(dummiesOutputDir, 'dummies.tar.gz');
 
-await Promise.all([
-  globAsync(`${repositoriesDir}/*/`, {
-    absolute: true,
-    dot: true,
-    windowsPathsNoEscape: true
-  }).then(async (paths) => {
-    await Promise.all(paths.map((path) => mkdir(`${path}/.git`, { recursive: true })));
-    log('Created %O test fixture dummy .git directories', paths.length);
-  }),
+log('Unpacking dummies from tarball at %O', dummiesInputFile);
 
-  mkdir(goodHybridrepoDir, {
-    recursive: true
-  }).then(async () => {
-    await writeFile(toPath(goodHybridrepoDir, 'nope.md'), 'Nope!\n', {
-      encoding: 'utf8'
-    });
+await extract({
+  cwd: dummiesOutputDir,
+  file: dummiesInputFile
+});
 
-    log('Created .git-ignored dummy directory in good-hybridrepo');
-  })
-]);
+log('Output unpacked dummies to %O', toPath(dummiesOutputDir, 'dummies'));
 
 log('✅');

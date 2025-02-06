@@ -69,6 +69,7 @@
   },
   "files": [
     "/dist",
+    "!/dist/dummies",
     "/LICENSE",
     "/package.json",
     "/README.md"
@@ -76,7 +77,7 @@
   "scripts": {
     "build": "npm run build:dist --",
     "build:changelog": "symbiote build changelog --env NODE_NO_WARNINGS=1",
-    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal --include-external-assets packages/common-dummies/dummies/**/*",
+    "build:dist": "node --no-warnings -e \"import('./pre-build.mjs')\" && symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal --include-external-assets packages/common-dummies/dummies.tar.gz",
     "build:docs": "symbiote build docs --env NODE_NO_WARNINGS=1",
     "clean": "symbiote clean --env NODE_NO_WARNINGS=1",
     "format": "symbiote format --env NODE_NO_WARNINGS=1 --hush",
@@ -100,10 +101,13 @@
     "@-xun/project-fs": "^1.0.0",
     "@-xun/project-types": "^1.0.0",
     "core-js": "^3.40.0",
-    "glob": "^11.0.1",
     "named-app-errors": "^4.0.2",
     "rejoinder": "^1.2.4",
+    "tar": "^7.4.3",
     "type-fest": "^4.33.0"
+  },
+  "devDependencies": {
+    "glob": "^11.0.1"
   },
   "peerDependencies": {
     "jest": ">=29 || >=30.0.0-alpha.1"

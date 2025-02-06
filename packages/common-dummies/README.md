@@ -74,6 +74,9 @@ before use. This can be done via either an `npm prepare` script (i.e.
 symbiote post-npm-install script (i.e.
 `import '@-xun/common-dummies/post-install'`).
 
+Additionally, depending on your environment, it may be necessary to configure
+jest-haste-map to ignore the directory containing the dummies.
+
 <!-- TODO -->
 <!-- symbiote-template-region-start 5 -->
 

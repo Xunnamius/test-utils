@@ -20,6 +20,8 @@ import { ErrorMessage } from 'universe+common-dummies:error.ts';
 
 import type { LiteralUnion, PackageJson } from 'type-fest';
 
+// {@symbiote/notExtraneous jest}
+
 const DUMMY_REPO_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'repositories');
 
 /**
@@ -130,9 +132,9 @@ export function dummyToProjectMetadata(
   // ? the "projectMetadata" property is properly initialized below
   const cwdPackage = (() => {
     if (cwdPackageName && cwdPackageName !== 'self') {
-      const foundPackage = repositories[repositoryName].namedPackageMapData
-        .find(([, entry]) => entry.json.name === cwdPackageName)
-        ?.at(1);
+      const foundPackage = repositories[repositoryName].namedPackageMapData.find(
+        ([, entry]) => entry.json.name === cwdPackageName
+      )?.[1];
 
       if (foundPackage) {
         return foundPackage as GenericPackage;
