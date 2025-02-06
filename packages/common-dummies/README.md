@@ -74,8 +74,19 @@ before use. This can be done via either an `npm prepare` script (i.e.
 symbiote post-npm-install script (i.e.
 `import '@-xun/common-dummies/post-install'`).
 
+> [!TIP]
+>
+> If you're seeing errors like:
+>
+> ```text
+> Cannot find module '/my/project/node_modules/@-xun/common-dummies/dist/...'
+> from 'node_modules/@-xun/common-dummies/dist/packages/common-dummies/src/...'
+> ```
+>
+> This is because you have not initialized the dummies before use.
+
 Additionally, depending on your environment, it may be necessary to configure
-jest-haste-map to ignore the directory containing the dummies.
+[jest-haste-map][1] to ignore the directory containing the dummies.
 
 <!-- TODO -->
 <!-- symbiote-template-region-start 5 -->
@@ -224,3 +235,4 @@ See the [table of contributors][x-repo-contributors].
 [x-repo-pr-compare]: https://github.com/Xunnamius/test-utils/compare
 [x-repo-sponsor]: https://github.com/sponsors/Xunnamius
 [x-repo-support]: /.github/SUPPORT.md
+[1]: https://www.npmjs.com/package/jest-haste-map
