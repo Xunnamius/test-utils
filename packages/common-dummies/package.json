@@ -69,7 +69,7 @@
   },
   "files": [
     "/dist",
-    "!/dist/dummies",
+    "!/dist/packages/common-dummies/dummies",
     "/LICENSE",
     "/package.json",
     "/README.md"
