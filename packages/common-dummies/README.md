@@ -86,7 +86,8 @@ symbiote post-npm-install script (i.e.
 > This is because you have not initialized the dummies before use.
 
 Additionally, depending on your environment, it may be necessary to configure
-[jest-haste-map][1] to ignore the directory containing the dummies.
+[jest-haste-map][1] (via [`modulePathIgnorePatterns`][2]) to ignore the
+directory containing the dummies.
 
 <!-- TODO -->
 <!-- symbiote-template-region-start 5 -->
@@ -236,3 +237,4 @@ See the [table of contributors][x-repo-contributors].
 [x-repo-sponsor]: https://github.com/sponsors/Xunnamius
 [x-repo-support]: /.github/SUPPORT.md
 [1]: https://www.npmjs.com/package/jest-haste-map
+[2]: https://jestjs.io/docs/configuration#modulepathignorepatterns-arraystring
