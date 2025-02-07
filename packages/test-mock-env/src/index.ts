@@ -5,11 +5,13 @@ import type { Promisable } from 'type-fest';
  */
 export type MockedEnvOptions = {
   /**
-   * By default, the `process.env` object is emptied and re-hydrated with
-   * `newEnv`. Setting `replace` to `false` will cause `newEnv` to be appended
-   * instead.
+   * By default, the `process.env` object (**except `process.env.DEBUG_COLORS`,
+   * if it exists**) is emptied and re-hydrated with `newEnv`. Setting `replace`
+   * to `false` will cause `newEnv` to be appended instead. Setting `replace` to
+   * `true` will cause `newEnv` to replace the _entire_ `process.env` object,
+   * including `process.env.DEBUG_COLORS`.
    *
-   * @default true
+   * @default undefined
    */
   replaceEntireEnv?: boolean;
   /**
@@ -31,19 +33,24 @@ export type MockedEnvOptions = {
 export async function withMockedEnv(
   test: () => Promisable<void>,
   simulatedEnv: Record<string, string>,
-  { replaceEntireEnv = true, passthroughDebugEnv = true }: MockedEnvOptions = {}
+  { replaceEntireEnv, passthroughDebugEnv = true }: MockedEnvOptions = {}
 ) {
   const previousEnv = { ...process.env };
 
-  const clearEnv = () => {
+  const clearEnv = ({ keepDebugColors }: { keepDebugColors: boolean }) => {
     Object.getOwnPropertyNames(process.env).forEach((property) => {
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-      delete process.env[property];
+      if (keepDebugColors && property !== 'DEBUG_COLORS') {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+        delete process.env[property];
+      }
     });
   };
 
   // ? Take care to preserve the original env object reference in memory
-  if (replaceEntireEnv) clearEnv();
+  if (replaceEntireEnv !== false) {
+    clearEnv({ keepDebugColors: replaceEntireEnv !== true });
+  }
+
   Object.assign(process.env, simulatedEnv);
 
   if (passthroughDebugEnv && previousEnv.DEBUG !== undefined) {
@@ -53,7 +60,7 @@ export async function withMockedEnv(
   try {
     await test();
   } finally {
-    clearEnv();
+    clearEnv({ keepDebugColors: false });
     Object.assign(process.env, previousEnv);
   }
 }
