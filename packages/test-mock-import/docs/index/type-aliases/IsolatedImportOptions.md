@@ -8,7 +8,7 @@
 
 > **IsolatedImportOptions**: `object`
 
-Defined in: [index.ts:14](https://github.com/Xunnamius/test-utils/blob/9f7edcc582dbbcfb1f6644dbb4c6ee8e4bc8a964/packages/test-mock-import/src/index.ts#L14)
+Defined in: [index.ts:16](https://github.com/Xunnamius/test-utils/blob/9033e9ea3146afb87c480e2950dbcd9de7baa843/packages/test-mock-import/src/index.ts#L16)
 
 ## Type declaration
 

@@ -6,9 +6,9 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`T`\>(`path`, `options`?): `T`
+> **isolatedImport**\<`T`\>(`specifier`, `options`?): `T`
 
-Defined in: [index.ts:36](https://github.com/Xunnamius/test-utils/blob/9f7edcc582dbbcfb1f6644dbb4c6ee8e4bc8a964/packages/test-mock-import/src/index.ts#L36)
+Defined in: [index.ts:38](https://github.com/Xunnamius/test-utils/blob/9033e9ea3146afb87c480e2950dbcd9de7baa843/packages/test-mock-import/src/index.ts#L38)
 
 Performs a module import as if it were being imported for the first time.
 
@@ -25,11 +25,13 @@ test to hang unexpectedly, even when all tests pass.
 
 ## Parameters
 
-### path
+### specifier
 
-`string`
+Specifier or absolute path to the module under test. Module resolution is
+handled by `require`, therefore the specifier, if a filesystem path, should
+never be relative and must always use unix-style separators (i.e. `/`).
 
-Path to the module to import. Module resolution is handled by `require`.
+`string` | `AbsolutePath`
 
 ### options?
 
