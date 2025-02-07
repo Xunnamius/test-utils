@@ -67,6 +67,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
   "dependencies": {
+    "@-xun/fs": "^1.0.0",
     "@-xun/test-mock-exit": "^1.0.1",
     "rejoinder": "^1.2.4"
   },
