@@ -8,7 +8,7 @@
 
 > **withMocks**(`fn`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:261](https://github.com/Xunnamius/test-utils/blob/05a8da2ba98451988365d5297a9261e32bd0d8dd/packages/jest/src/index.ts#L261)
+Defined in: [packages/jest/src/index.ts:261](https://github.com/Xunnamius/test-utils/blob/08c172fd86063ef2cb40963f770391649cfb8900/packages/jest/src/index.ts#L261)
 
 Wraps [withMockedArgv](withMockedArgv.md) + [withMockedEnv](withMockedEnv.md) with
 [withMockedExit](withMockedExit.md) + [withMockedOutput](withMockedOutput.md).
@@ -78,14 +78,16 @@ false
 
 `boolean`
 
-By default, the `process.env` object is emptied and re-hydrated with
-`newEnv`. Setting `replace` to `false` will cause `newEnv` to be appended
-instead.
+By default, the `process.env` object (**except `process.env.DEBUG_COLORS`,
+if it exists**) is emptied and re-hydrated with `newEnv`. Setting `replace`
+to `false` will cause `newEnv` to be appended instead. Setting `replace` to
+`true` will cause `newEnv` to replace the _entire_ `process.env` object,
+including `process.env.DEBUG_COLORS`.
 
 **Default**
 
 ```ts
-true
+undefined
 ```
 
 #### simulatedArgv

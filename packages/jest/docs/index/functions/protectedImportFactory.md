@@ -8,7 +8,7 @@
 
 > **protectedImportFactory**\<`T`\>(`path`): (`factoryOptions`?) => `Promise`\<`T`\>
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:38
+Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:41
 
 Returns a function that, when invoked, performs a module import as if it were
 being imported for the first time.

@@ -6,9 +6,9 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`T`\>(`path`, `options`?): `T`
+> **isolatedImport**\<`T`\>(`specifier`, `options`?): `T`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:24
+Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:25
 
 Performs a module import as if it were being imported for the first time.
 
@@ -25,11 +25,13 @@ test to hang unexpectedly, even when all tests pass.
 
 ## Parameters
 
-### path
+### specifier
 
-`string`
+Specifier or absolute path to the module under test. Module resolution is
+handled by `require`, therefore the specifier, if a filesystem path, should
+never be relative and must always use unix-style separators (i.e. `/`).
 
-Path to the module to import. Module resolution is handled by `require`.
+`string` | `AbsolutePath`
 
 ### options?
 
