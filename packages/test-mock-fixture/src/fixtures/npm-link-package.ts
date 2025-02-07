@@ -65,7 +65,13 @@ export type NpmLinkPackageFixtureContext = Tagged<
  * pointing to the package under test's `dist/` directory (which is typically
  * created by `dummyNpmPackage`).
  *
- * It is very similar to `npm link` but without any of the baggage.
+ * It is also very similar to the `npm link` command but without any of the
+ * baggage.
+ *
+ * **This fixture should be preferred over `npmCopyPackage` whenever the package
+ * under test has peer dependencies.** Using `npmCopyPackage` with a package
+ * that has peer dependencies could manifest something akin to the dual package
+ * hazard.
  */
 export function npmLinkPackageFixture(): NpmLinkPackageFixture {
   return {

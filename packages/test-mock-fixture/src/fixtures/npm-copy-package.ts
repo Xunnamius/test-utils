@@ -120,6 +120,11 @@ export type NpmCopyPackageFixtureContext = Tagged<
  * distributables, identified by the package under test's `package.json` `files`
  * field, into the dummy `node_modules` directory created by a fixture like
  * `dummyNpmPackage`.
+ *
+ * This fixture should be preferred over `npmLinkPackage` **only if the package
+ * under test does _not_ have peer dependencies.** If said package _does_ have
+ * peer dependencies, then using this fixture could manifest something akin to
+ * the dual package hazard.
  */
 export function npmCopyPackageFixture(): NpmCopyPackageFixture {
   return {
