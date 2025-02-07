@@ -8,7 +8,7 @@
 
 > **MockedEnvOptions**: `object`
 
-Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/051f777b8ef42d48509f53e1767f300bbd980798/packages/test-mock-env/src/index.ts#L6)
+Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/60e8c61898aab9d4fb9616284896eee5c15ac61b/packages/test-mock-env/src/index.ts#L6)
 
 ## Type declaration
 
@@ -30,14 +30,16 @@ true
 
 > `optional` **replaceEntireEnv**: `boolean`
 
-By default, the `process.env` object is emptied and re-hydrated with
-`newEnv`. Setting `replace` to `false` will cause `newEnv` to be appended
-instead.
+By default, the `process.env` object (**except `process.env.DEBUG_COLORS`,
+if it exists**) is emptied and re-hydrated with `newEnv`. Setting `replace`
+to `false` will cause `newEnv` to be appended instead. Setting `replace` to
+`true` will cause `newEnv` to replace the _entire_ `process.env` object,
+including `process.env.DEBUG_COLORS`.
 
 #### Default
 
 ```ts
-true
+undefined
 ```
 
 ## See

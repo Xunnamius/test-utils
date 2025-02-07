@@ -8,7 +8,7 @@
 
 > **withMockedEnv**(`test`, `simulatedEnv`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [index.ts:31](https://github.com/Xunnamius/test-utils/blob/051f777b8ef42d48509f53e1767f300bbd980798/packages/test-mock-env/src/index.ts#L31)
+Defined in: [index.ts:33](https://github.com/Xunnamius/test-utils/blob/60e8c61898aab9d4fb9616284896eee5c15ac61b/packages/test-mock-env/src/index.ts#L33)
 
 Mock `process.env` within the scope of `test`. Guaranteed to return
 `process.env` to its original state no matter how `test` terminates.
