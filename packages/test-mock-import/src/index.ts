@@ -4,6 +4,8 @@ import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+test-mock-import:constant.ts';
 
+import type { AbsolutePath } from '@-xun/fs';
+
 const globalDebug = createDebugLogger({ namespace: globalDebuggerNamespace });
 const globalDebugIsolatedImport = globalDebug.extend('isolated-import');
 const globalDebugProtectedImport = globalDebug.extend('protected-import-factory');
@@ -35,9 +37,11 @@ export type IsolatedImportOptions = {
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function isolatedImport<T>(
   /**
-   * Path to the module to import. Module resolution is handled by `require`.
+   * Specifier or absolute path to the module under test. Module resolution is
+   * handled by `require`, therefore the specifier, if a filesystem path, should
+   * never be relative and must always use unix-style separators (i.e. `/`).
    */
-  path: string,
+  specifier: AbsolutePath | string,
   options?: IsolatedImportOptions
 ): T {
   let package_: T | undefined;
@@ -53,7 +57,7 @@ export function isolatedImport<T>(
           Object.keys(required).length === 1);
 
       globalDebugIsolatedImport(
-        `performing isolated import of ${path}${
+        `performing isolated import of ${specifier}${
           shouldUseDefault
             ? ` (returning ::default${options?.useDefault ? ' by force' : ''})`
             : ''
@@ -61,7 +65,7 @@ export function isolatedImport<T>(
       );
 
       return required.default && shouldUseDefault ? required.default : required;
-    })(require(path));
+    })(require(specifier));
   });
 
   return package_ as T;
