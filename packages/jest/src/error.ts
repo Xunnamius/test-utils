@@ -10,6 +10,6 @@ export const ErrorMessage = {
     return `the package.json::exports field of ${packageName ? `package "${packageName}"` : 'an unnamed package'}" is invalid or empty`;
   },
   NoDefaultConditionInPackageJsonExport(packageName: string | undefined) {
-    return `a package.json::exports field of ${packageName ? `package "${packageName}"` : 'an unnamed package'}" does not contain a valid non-empty "default" condition`;
+    return `one or more package.json::exports fields of ${packageName ? `package "${packageName}"` : 'an unnamed package'}" contains an invalid, empty, or non-string "default" condition`;
   }
 };

@@ -296,8 +296,10 @@ export async function withMocks(
 }
 
 /**
- * This function will throw if `packageName` (at `packageRoot`) has one or more
- * inaccessible entry points defined in `packageExports`.
+ * This function will throw if at least one of `packageName`'s entry points
+ * (relative to `packageRoot` and as defined in `packageExports`, are
+ * inaccessible. If this package has no entry points, this function becomes a
+ * no-op.
  */
 export async function ensurePackageHasBeenBuilt(
   packageRoot: AbsolutePath,
@@ -308,24 +310,30 @@ export async function ensurePackageHasBeenBuilt(
     throw new Error(ErrorMessage.NoEntryPointsInPackageJson(packageName));
   }
 
-  const packageMainPaths = Object.values(packageExports).map((xport) => {
-    const isBadExport =
-      !xport || typeof xport === 'string' || Array.isArray(xport) || !xport.default;
+  const potentialEntryPoints = new Set(
+    Object.values(packageExports).map((xport) => {
+      const exportPath = Array.isArray(xport)
+        ? xport[0]!
+        : typeof xport === 'string'
+          ? xport
+          : xport && typeof xport.default === 'string' && xport.default
+            ? xport.default
+            : undefined;
 
-    if (isBadExport) {
-      throw new TypeError(
-        ErrorMessage.NoDefaultConditionInPackageJsonExport(packageName)
-      );
-    }
+      if (typeof exportPath !== 'string') {
+        throw new TypeError(
+          ErrorMessage.NoDefaultConditionInPackageJsonExport(packageName)
+        );
+      }
 
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
-    return toPath(packageRoot, String(xport.default));
-  });
+      return toPath(packageRoot, exportPath);
+    })
+  );
 
-  ensurePackageHasBeenBuiltDebugger('packageMainPaths: %O', packageMainPaths);
+  ensurePackageHasBeenBuiltDebugger('potentialEntryPoints: %O', potentialEntryPoints);
 
   await Promise.all(
-    packageMainPaths.map(async (packageMainPath) => {
+    potentialEntryPoints.values().map(async (packageMainPath) => {
       if (await isNotAccessible(packageMainPath)) {
         throw new Error(ErrorMessage.DistributablesNotBuilt());
       }
