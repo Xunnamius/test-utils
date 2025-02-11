@@ -2,11 +2,9 @@
 
 import { toAbsolutePath, toPath } from '@-xun/fs';
 
-import {
-  isolatedImport,
-  protectedImportFactory,
-  type AsDefault
-} from 'universe+test-mock-import';
+import { isolatedImport, protectedImportFactory } from 'universe+test-mock-import';
+
+import type { AsDefault } from 'universe+test-mock-import';
 
 const fixturesDir = toAbsolutePath(__dirname, 'fixtures');
 const fixture = toPath(fixturesDir, 'import.js');

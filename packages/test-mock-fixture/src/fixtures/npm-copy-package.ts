@@ -193,7 +193,7 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
               );
 
               const nameAndVersion = (
-                isTargetScoped ? [`@${targetSplit[0]}`, targetSplit[1]] : targetSplit
+                isTargetScoped ? [`@${targetSplit[0]!}`, targetSplit[1]] : targetSplit
               ) as [name: string, version: string];
 
               return [nameAndVersion[0], nameAndVersion[1] || 'latest'];

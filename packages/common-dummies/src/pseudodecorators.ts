@@ -1,12 +1,8 @@
-import {
-  toAbsolutePath,
-  toPath,
-  toRelativePath,
-  type AbsolutePath,
-  type RelativePath
-} from '@-xun/fs';
+import { toAbsolutePath, toPath, toRelativePath } from '@-xun/fs';
 
 import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
+import type { AbsolutePath, RelativePath } from '@-xun/fs';
 
 const DUMMY_PSEUDODECORATOR_DIR = toAbsolutePath(
   __dirname,

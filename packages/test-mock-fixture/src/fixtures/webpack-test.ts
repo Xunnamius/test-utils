@@ -1,8 +1,9 @@
 import { toPath, toRelativePath } from '@-xun/fs';
-import { run, runNoRejectOnBadExit, type RunReturnType } from '@-xun/run';
+import { run, runNoRejectOnBadExit } from '@-xun/run';
 
 import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
 
+import type { RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
 
 import type {

@@ -1,5 +1,6 @@
-import { simpleGit, type SimpleGit } from 'simple-git';
+import { simpleGit } from 'simple-git';
 
+import type { SimpleGit } from 'simple-git';
 import type { Promisable, Tagged } from 'type-fest';
 
 import type {

@@ -2,7 +2,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 
-import { toAbsolutePath, type AbsolutePath } from '@-xun/fs';
+import { toAbsolutePath } from '@-xun/fs';
 import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+test-mock-fixture:constant.ts';
@@ -19,6 +19,7 @@ import {
 } from 'universe+test-mock-fixture:fixtures/root.ts';
 
 import type { PathLike } from 'node:fs';
+import type { AbsolutePath } from '@-xun/fs';
 import type { ArraySlice, EmptyObject, ReadonlyDeep } from 'type-fest';
 
 import type {

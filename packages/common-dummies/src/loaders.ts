@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import {
-  toAbsolutePath,
-  toPath,
-  toRelativePath,
-  type AbsolutePath,
-  type RelativePath
-} from '@-xun/fs';
+import { toAbsolutePath, toPath, toRelativePath } from '@-xun/fs';
 
 import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
+import type { AbsolutePath, RelativePath } from '@-xun/fs';
 
 const DUMMY_LOADER_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'loaders');
 

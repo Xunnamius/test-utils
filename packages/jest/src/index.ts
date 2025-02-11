@@ -2,16 +2,20 @@
 
 import { access } from 'node:fs/promises';
 
-import { toPath, type AbsolutePath } from '@-xun/fs';
-import { withMockedArgv, type MockedArgvOptions } from '@-xun/test-mock-argv';
-import { withMockedEnv, type MockedEnvOptions } from '@-xun/test-mock-env';
+import { toPath } from '@-xun/fs';
+import { withMockedArgv } from '@-xun/test-mock-argv';
+import { withMockedEnv } from '@-xun/test-mock-env';
 import { withMockedExit } from '@-xun/test-mock-exit';
-import { withMockedOutput, type MockedOutputOptions } from '@-xun/test-mock-output';
+import { withMockedOutput } from '@-xun/test-mock-output';
 import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+jest:constant.ts';
 import { ErrorMessage } from 'universe+jest:error.ts';
 
+import type { AbsolutePath } from '@-xun/fs';
+import type { MockedArgvOptions } from '@-xun/test-mock-argv';
+import type { MockedEnvOptions } from '@-xun/test-mock-env';
+import type { MockedOutputOptions } from '@-xun/test-mock-output';
 import type { Merge, PackageJson } from 'type-fest';
 
 // {@symbiote/notExtraneous jest}

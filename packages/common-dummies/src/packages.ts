@@ -1,12 +1,13 @@
 import assert from 'node:assert';
 
-import { toAbsolutePath, toPath, type AbsolutePath } from '@-xun/fs';
+import { toAbsolutePath, toPath } from '@-xun/fs';
 import { TrialError } from 'named-app-errors';
-import { type Merge } from 'type-fest';
 
 import { ErrorMessage } from 'universe+common-dummies:error.ts';
 
+import type { AbsolutePath } from '@-xun/fs';
 import type { XPackageJson } from '@-xun/project-types';
+import type { Merge } from 'type-fest';
 
 const DUMMY_PACKAGE_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'packages');
 

@@ -1,7 +1,8 @@
-import { runNoRejectOnBadExit, type RunOptions, type RunReturnType } from '@-xun/run';
+import { runNoRejectOnBadExit } from '@-xun/run';
 
 import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
 
+import type { RunOptions, RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
 
 import type {

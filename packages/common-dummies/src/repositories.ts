@@ -1,22 +1,24 @@
 import { basename } from 'node:path';
 
-import { toAbsolutePath, toPath, type AbsolutePath, type RelativePath } from '@-xun/fs';
+import { toAbsolutePath, toPath } from '@-xun/fs';
 import * as fs from '@-xun/project-fs';
-
-import {
-  ProjectAttribute,
-  type GenericPackage,
-  type GenericProjectMetadata,
-  type GenericRootPackage,
-  type GenericWorkspacePackage,
-  type ProjectMetadata,
-  type RootPackage,
-  type WorkspacePackage,
-  type WorkspacePackageName,
-  type XPackageJson
-} from '@-xun/project-types';
+import { ProjectAttribute } from '@-xun/project-types';
 
 import { ErrorMessage } from 'universe+common-dummies:error.ts';
+
+import type { AbsolutePath, RelativePath } from '@-xun/fs';
+
+import type {
+  GenericPackage,
+  GenericProjectMetadata,
+  GenericRootPackage,
+  GenericWorkspacePackage,
+  ProjectMetadata,
+  RootPackage,
+  WorkspacePackage,
+  WorkspacePackageName,
+  XPackageJson
+} from '@-xun/project-types';
 
 import type { LiteralUnion, PackageJson } from 'type-fest';
 

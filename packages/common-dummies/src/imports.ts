@@ -1,4 +1,6 @@
-import { toAbsolutePath, toPath, type AbsolutePath } from '@-xun/fs';
+import { toAbsolutePath, toPath } from '@-xun/fs';
+
+import type { AbsolutePath } from '@-xun/fs';
 
 const DUMMY_IMPORT_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'imports');
 
