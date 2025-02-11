@@ -68,7 +68,9 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --scope unlimited --coverage"
   },
   "dependencies": {
-    "type-fest": "^4.33.0"
+    "core-js": "^3.40.0",
+    "named-app-errors": "^4.0.2",
+    "type-fest": "^4.34.1"
   },
   "peerDependencies": {
     "jest": ">=29 || >=30.0.0-alpha.1"
