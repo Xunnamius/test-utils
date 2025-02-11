@@ -1,7 +1,9 @@
 // * These tests ensure the exported interface under test functions as expected.
 
 import { toPath } from '@-xun/fs';
+import { readXPackageJsonAtRoot } from '@-xun/project-fs';
 
+import { ErrorMessage } from 'universe+common-dummies:error.ts';
 import { getDummyImportPath } from 'universe+common-dummies:imports.ts';
 import { getDummyLoaderPath } from 'universe+common-dummies:loaders.ts';
 import { getDummyPackage } from 'universe+common-dummies:packages.ts';
@@ -9,6 +11,7 @@ import { getDummyDecoratedPath } from 'universe+common-dummies:pseudodecorators.
 
 import {
   dummyToProjectMetadata,
+  patchReadXPackageJsonAtRoot,
   repositories
 } from 'universe+common-dummies:repositories.ts';
 
@@ -28,6 +31,11 @@ describe('loaders', () => {
 
     expect(getDummyLoaderPath('reflective')).toBe(
       toPath(__dirname, '..', 'dummies', 'loaders', 'reflective.mjs')
+    );
+
+    // @ts-expect-error: testing non-existent id
+    expect(() => getDummyLoaderPath('does-not-exist')).toThrow(
+      ErrorMessage.UnknownLoader('does-not-exist')
     );
   });
 });
@@ -68,6 +76,36 @@ describe('packages', () => {
         path,
         packageJson: require(`${path}/package.json`)
       });
+
+      expect(getDummyPackage('complex', { requireObjectExports: true })).toStrictEqual({
+        name: 'dummy-complex-pkg',
+        path,
+        packageJson: require(`${path}/package.json`)
+      });
+
+      expect(getDummyPackage('complex', { requireObjectImports: true })).toStrictEqual({
+        name: 'dummy-complex-pkg',
+        path,
+        packageJson: require(`${path}/package.json`)
+      });
+    }
+
+    {
+      const path = toPath(__dirname, '..', 'dummies', 'packages');
+
+      expect(getDummyPackage('root')).toStrictEqual({
+        name: 'dummy-pkg',
+        path,
+        packageJson: require(`${path}/package.json`)
+      });
+
+      expect(() => getDummyPackage('root', { requireObjectExports: true })).toThrow(
+        ErrorMessage.PackageInvalidImportExportField('exports')
+      );
+
+      expect(() => getDummyPackage('root', { requireObjectImports: true })).toThrow(
+        ErrorMessage.PackageInvalidImportExportField('imports')
+      );
     }
   });
 });
@@ -80,8 +118,29 @@ describe('pseudodecorators', () => {
       toPath(__dirname, '..', 'dummies', 'pseudodecorators', 'extensionless')
     );
 
+    expect(getDummyDecoratedPath('js')).toBe(
+      toPath(__dirname, '..', 'dummies', 'pseudodecorators', 'js.js')
+    );
+
+    expect(getDummyDecoratedPath('json')).toBe(
+      toPath(__dirname, '..', 'dummies', 'pseudodecorators', 'json.json')
+    );
+
+    expect(getDummyDecoratedPath('md')).toBe(
+      toPath(__dirname, '..', 'dummies', 'pseudodecorators', 'md.md')
+    );
+
+    expect(getDummyDecoratedPath('ts')).toBe(
+      toPath(__dirname, '..', 'dummies', 'pseudodecorators', 'ts.ts')
+    );
+
     expect(getDummyDecoratedPath('yml')).toBe(
       toPath(__dirname, '..', 'dummies', 'pseudodecorators', 'yml.yml')
+    );
+
+    // @ts-expect-error: testing non-existent id
+    expect(() => getDummyDecoratedPath('does-not-exist')).toThrow(
+      ErrorMessage.UnknownPseudodecorator('does-not-exist')
     );
   });
 });
@@ -180,5 +239,201 @@ describe('repositories', () => {
     expect(() => dummyToProjectMetadata('goodMonorepo', 'fake')).toThrow(
       /is not a valid package in dummy repository/
     );
+  });
+
+  describe('::patchReadXPackageJsonAtRoot', () => {
+    it('patches data returned by sync and async readXPackageJsonAtRoot', async () => {
+      expect.hasAssertions();
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual(repositories.goodPolyrepo.json);
+
+      patchReadXPackageJsonAtRoot({
+        [repositories.goodPolyrepo.root]: { name: 'new-name' }
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name'
+      });
+
+      expect(
+        readXPackageJsonAtRoot.sync(repositories.goodPolyrepo.root, { useCached: true })
+      ).toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name'
+      });
+    });
+
+    it('overwrites previous calls with successive calls', async () => {
+      expect.hasAssertions();
+
+      patchReadXPackageJsonAtRoot({
+        [repositories.goodPolyrepo.root]: {
+          name: 'new-name',
+          description: 'new description'
+        }
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name',
+        description: 'new description'
+      });
+
+      patchReadXPackageJsonAtRoot({
+        [repositories.goodPolyrepo.root]: { name: 'newer-name' }
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'newer-name'
+      });
+    });
+
+    it('respects multiple spec entries', async () => {
+      expect.hasAssertions();
+
+      const goodHybridrepoPackage1 =
+        repositories.goodHybridrepo.namedPackageMapData[0]![1]!;
+
+      const goodHybridrepoPackage2 =
+        repositories.goodHybridrepo.namedPackageMapData[1]![1]!;
+
+      patchReadXPackageJsonAtRoot({
+        [goodHybridrepoPackage2.root]: {
+          name: 'name-3'
+        },
+        [repositories.goodHybridrepo.root]: { name: 'name-1' },
+        [goodHybridrepoPackage1.root]: {
+          name: 'name-2'
+        }
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual(repositories.goodPolyrepo.json);
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodHybridrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...repositories.goodHybridrepo.json,
+        name: 'name-1'
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(goodHybridrepoPackage1.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...goodHybridrepoPackage1.json,
+        name: 'name-2'
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(goodHybridrepoPackage2.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...goodHybridrepoPackage2.json,
+        name: 'name-3'
+      });
+    });
+
+    it('respects wildcard spec path', async () => {
+      expect.hasAssertions();
+
+      const goodHybridrepoPackage1 =
+        repositories.goodHybridrepo.namedPackageMapData[0]![1]!;
+
+      const goodHybridrepoPackage2 =
+        repositories.goodHybridrepo.namedPackageMapData[1]![1]!;
+
+      patchReadXPackageJsonAtRoot({ ['*']: { name: 'name-x' } });
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({ ...repositories.goodPolyrepo.json, name: 'name-x' });
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodHybridrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...repositories.goodHybridrepo.json,
+        name: 'name-x'
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(goodHybridrepoPackage1.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...goodHybridrepoPackage1.json,
+        name: 'name-x'
+      });
+
+      await expect(
+        readXPackageJsonAtRoot(goodHybridrepoPackage2.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...goodHybridrepoPackage2.json,
+        name: 'name-x'
+      });
+    });
+
+    it('respects options.replace', async () => {
+      expect.hasAssertions();
+
+      patchReadXPackageJsonAtRoot(
+        {
+          [repositories.goodPolyrepo.root]: {
+            name: 'new-name',
+            description: 'new description'
+          }
+        },
+        { replace: undefined }
+      );
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name',
+        description: 'new description'
+      });
+
+      patchReadXPackageJsonAtRoot(
+        {
+          [repositories.goodPolyrepo.root]: {
+            name: 'new-name',
+            description: 'new description'
+          }
+        },
+        { replace: true }
+      );
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        name: 'new-name',
+        description: 'new description'
+      });
+
+      patchReadXPackageJsonAtRoot(
+        {
+          [repositories.goodPolyrepo.root]: {
+            name: 'new-name',
+            description: 'new description'
+          }
+        },
+        { replace: false }
+      );
+
+      await expect(
+        readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
+      ).resolves.toStrictEqual({
+        description: 'new description',
+        ...repositories.goodPolyrepo.json
+      });
+    });
   });
 });
