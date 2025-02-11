@@ -17,8 +17,11 @@ export type MockedOutputOptions = {
    */
   passthroughOutputIfDebugging?: boolean;
   /**
-   * Call {@link jest.SpyInstance.mockRestore} on one or more output functions
-   * currently being spied upon.
+   * Prevent mocking the implementation of one or more output spies, allowing
+   * output to be passed through to the original function. Said spies will
+   * remain functional.
+   *
+   * @default []
    */
   passthrough?: ('log' | 'warn' | 'error' | 'info' | 'stdout' | 'stderr')[];
 };
@@ -57,7 +60,7 @@ export async function withMockedOutput(
     // ? If we're debugging, show all outputs instead of swallowing them
     if (
       noDebugPassthrough &&
-      !passthrough.includes(name as (typeof passthrough)[number])
+      !passthrough.includes(name.slice(0, -3) as (typeof passthrough)[number])
     ) {
       if (name.startsWith('std')) {
         spy.mockImplementation(() => true);
@@ -88,6 +91,7 @@ export async function withMockedOutput(
             target[property];
 
           // ? It's what the MDN example uses, so we shall use it too
+          /* istanbul ignore next */
           // eslint-disable-next-line no-restricted-syntax
           if (value instanceof Function) {
             return function (...args: unknown[]) {
