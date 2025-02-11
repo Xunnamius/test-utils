@@ -23,6 +23,7 @@ import type { LiteralUnion, PackageJson } from 'type-fest';
 // {@symbiote/notExtraneous jest}
 
 const DUMMY_REPO_DIR = toAbsolutePath(__dirname, '..', 'dummies', 'repositories');
+const actualReadXPackageJsonAtRoot = fs.readXPackageJsonAtRoot;
 
 /**
  * A type representing the name of an available dummy repository.
@@ -192,54 +193,59 @@ export function dummyToProjectMetadata(
 }
 
 /**
- * Patch the package.json data returned by {@link fs.readXPackageJsonAtRoot} or
- * the sync version before attempting to read in package data from a dummy
- * repository.
+ * Apply one or more patches to the per-`root` ({@link AbsolutePath})
+ * `package.json` file content returned by {@link fs.readXPackageJsonAtRoot},
+ * both sync and async.
  *
- * Successive calls to this function overwrite previous calls.
+ * Note that (1) successive calls to this function overwrite previous calls and
+ * (2) patches are not cached. The real `package.json` read results _are_ cached
+ * (depending on `useCached`); however, these results are not directly visible
+ * to the caller as the patch is re-applied on every invocation, **meaning a new
+ * object is always returned**.
+ *
+ * @returns `spec`
  */
 export function patchReadXPackageJsonAtRoot(
   /**
-   * The `package.json` patches to apply per root path. When `root` is equal to
-   * `"*"`, it will be used to patch all `package.json` imports but can be
-   * overwritten by a more specific `root` string.
+   * The `package.json` patches to apply per `root` {@link AbsolutePath}. When
+   * `root` is equal to `"*"`, it will be used to patch all `package.json`
+   * imports but can be overwritten by a more specific `root` in the same
+   * `spec`.
    */
-  spec: { [root: string]: XPackageJson },
+  spec: { [root in AbsolutePath | '*']?: XPackageJson },
   /**
    * Options that influence the patching process.
    */
   options?: {
     /**
-     * Whether to merely patch the actual package.json contents (`undefined`),
-     * completely replace them (`true`), or only overwrite them if they don't
-     * already exist (`false`).
+     * Whether to add _missing_ keys from the patch to the result but not
+     * overwrite any existing keys (`false`), _completely_ replace the entire
+     * result with the patch (`true`), or `Object.assign` the patch on top of
+     * the result (`undefined`).
+     *
+     * Note that {@link XPackageJson} objects must always have a `name` property
+     * defined.
      *
      * @default undefined
      */
     replace?: boolean;
   }
-) {
-  const actualReadXPackageJsonAtRoot =
-    jest.requireActual<typeof import('@-xun/project-fs')>(
-      '@-xun/project-fs'
-    ).readXPackageJsonAtRoot;
-
-  jest
-    .spyOn(fs, 'readXPackageJsonAtRoot')
-    .mockImplementation(async (root, { useCached }) => {
-      const packageJson = await actualReadXPackageJsonAtRoot(root, { useCached });
-      return finalize(root, packageJson);
-    });
-
-  // @ts-expect-error: we're mocking do we'll do what we like
-  fs.readXPackageJsonAtRoot.sync = (root, { useCached }) => {
-    const packageJson = actualReadXPackageJsonAtRoot.sync(root, { useCached });
+): Record<string, XPackageJson | undefined> {
+  // {@symbiote/notExtraneous jest}
+  jest.spyOn(fs, 'readXPackageJsonAtRoot').mockImplementation(async (root, options) => {
+    const packageJson = await actualReadXPackageJsonAtRoot(root, options);
     return finalize(root, packageJson);
-  };
+  });
+
+  // @ts-expect-error: we're mocking so we'll do what we like
+  fs.readXPackageJsonAtRoot.sync = jest.fn((root, options) => {
+    const packageJson = actualReadXPackageJsonAtRoot.sync(root, options);
+    return finalize(root, packageJson);
+  });
 
   return spec;
 
-  function finalize(root: string, packageJson: XPackageJson): XPackageJson {
+  function finalize(root: AbsolutePath, packageJson: XPackageJson): XPackageJson {
     return options?.replace === false
       ? {
           ...spec['*'],
@@ -247,7 +253,7 @@ export function patchReadXPackageJsonAtRoot(
           ...packageJson
         }
       : {
-          ...(options?.replace ? {} : packageJson),
+          ...(options?.replace ? { name: packageJson.name } : packageJson),
           ...spec['*'],
           ...spec[root]
         };

@@ -1,3 +1,5 @@
+import assert from 'node:assert';
+
 import { toAbsolutePath, toPath, type AbsolutePath } from '@-xun/fs';
 import { TrialError } from 'named-app-errors';
 import { type Merge } from 'type-fest';
@@ -70,17 +72,17 @@ export function getDummyPackage<
   // eslint-disable-next-line unicorn/prevent-abbreviations
   const pkg = {} as DummyPackageMetadata<RequireObjectImports, RequireObjectExports>;
 
-  if (id === 'root') {
-    pkg.path = DUMMY_PACKAGE_DIR;
-    pkg.packageJson = require(`${pkg.path}/package.json`);
-  } else {
-    pkg.path = toPath(DUMMY_PACKAGE_DIR, 'node_modules', `dummy-${id}-pkg`);
-    pkg.packageJson = require(`${pkg.path}/package.json`);
-  }
+  pkg.path =
+    id === 'root'
+      ? DUMMY_PACKAGE_DIR
+      : toPath(DUMMY_PACKAGE_DIR, 'node_modules', `dummy-${id}-pkg`);
 
-  if (!pkg.packageJson.name) {
-    throw makeDummyPackageError(ErrorMessage.PackageMissingField('name'));
-  }
+  pkg.packageJson = require(`${pkg.path}/package.json`);
+
+  assert(
+    pkg.packageJson.name,
+    makeDummyPackageError(ErrorMessage.PackageMissingField('name'))
+  );
 
   pkg.name = pkg.packageJson.name;
 
