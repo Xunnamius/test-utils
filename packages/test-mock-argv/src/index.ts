@@ -50,7 +50,7 @@ export async function withMockedArgv(
  */
 export function mockArgvFactory(
   factorySimulatedArgv: typeof process.argv,
-  factoryOptions: MockedArgvOptions
+  factoryOptions?: MockedArgvOptions
 ) {
   return (
     test: () => Promisable<void>,
