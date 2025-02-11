@@ -1,7 +1,12 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import { ErrorMessage } from 'universe+test-mock-exit:error.ts';
+import { MockedExitError } from 'universe+test-mock-exit:error.ts';
 
 import type { Promisable } from 'type-fest';
+
+// {@symbiote/notExtraneous jest}
+
+export * from 'universe+test-mock-exit:error.ts';
 
 /**
  * Mock `process.exit` within the scope of `test`. Guaranteed to return
@@ -16,8 +21,8 @@ export async function withMockedExit(
   }) => Promisable<void>
 ) {
   // {@symbiote/notExtraneous jest}
-  const _exitSpy = jest.spyOn(process, 'exit').mockImplementation((code) => {
-    throw new Error(ErrorMessage.SuppressedExitAttempt(code));
+  const exitSpy_ = jest.spyOn(process, 'exit').mockImplementation((code) => {
+    throw new MockedExitError(code);
   });
 
   const oldProcessExitCode = process.exitCode;
@@ -29,7 +34,7 @@ export async function withMockedExit(
   let exitSpyWasAccessed = false;
   let getExitCodeWasUsed = false;
 
-  const exitSpyProxy = new Proxy(_exitSpy, {
+  const exitSpyProxy = new Proxy(exitSpy_, {
     get(target, property) {
       exitSpyWasAccessed = true;
 
@@ -37,7 +42,7 @@ export async function withMockedExit(
         // @ts-expect-error: TypeScript isn't smart enough to figure this out
         target[property];
 
-      // eslint-disable-next-line no-restricted-syntax
+      /* istanbul ignore next */
       if (value instanceof Function) {
         return function (...args: unknown[]) {
           // ? This is "this-recovering" code.
