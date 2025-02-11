@@ -5,11 +5,19 @@ import type { Promisable } from 'type-fest';
  */
 export type MockedEnvOptions = {
   /**
-   * By default, the `process.env` object (**except `process.env.DEBUG_COLORS`,
-   * if it exists**) is emptied and re-hydrated with `newEnv`. Setting `replace`
-   * to `false` will cause `newEnv` to be appended instead. Setting `replace` to
-   * `true` will cause `newEnv` to replace the _entire_ `process.env` object,
-   * including `process.env.DEBUG_COLORS`.
+   * By default, all environment variables in the `process.env` object are
+   * deleted before the object is re-hydrated with `newEnv`.
+   *
+   * Two environment variables, if present, are exempt from deletion:
+   * `process.env.DEBUG` and `process.env.DEBUG_COLORS`.
+   *
+   * Setting `replace` to `false` will cause `newEnv` to be merged on top of
+   * `process.env` instead of replacing it. Setting `replace` to `true` will
+   * cause `newEnv` to replace the _entire_ `process.env` object, including
+   * `process.env.DEBUG_COLORS`.
+   *
+   * Note that `process.env.DEBUG` is unaffected by this option (see
+   * {@link MockedEnvOptions.passthroughDebugEnv} instead).
    *
    * @default undefined
    */
@@ -37,31 +45,39 @@ export async function withMockedEnv(
 ) {
   const previousEnv = { ...process.env };
 
-  const clearEnv = ({ keepDebugColors }: { keepDebugColors: boolean }) => {
-    Object.getOwnPropertyNames(process.env).forEach((property) => {
-      if (keepDebugColors && property !== 'DEBUG_COLORS') {
-        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-        delete process.env[property];
-      }
-    });
-  };
-
   // ? Take care to preserve the original env object reference in memory
   if (replaceEntireEnv !== false) {
-    clearEnv({ keepDebugColors: replaceEntireEnv !== true });
+    clearEnv({
+      keepDebug: passthroughDebugEnv,
+      keepDebugColors: replaceEntireEnv !== true
+    });
   }
 
   Object.assign(process.env, simulatedEnv);
 
-  if (passthroughDebugEnv && previousEnv.DEBUG !== undefined) {
-    process.env.DEBUG = previousEnv.DEBUG;
-  }
-
   try {
     await test();
   } finally {
-    clearEnv({ keepDebugColors: false });
+    clearEnv({ keepDebug: false, keepDebugColors: false });
     Object.assign(process.env, previousEnv);
+  }
+
+  function clearEnv({
+    keepDebug,
+    keepDebugColors
+  }: {
+    keepDebug: boolean;
+    keepDebugColors: boolean;
+  }) {
+    Object.getOwnPropertyNames(process.env).forEach((property) => {
+      if (
+        (!keepDebugColors || property !== 'DEBUG_COLORS') &&
+        (!keepDebug || property !== 'DEBUG')
+      ) {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+        delete process.env[property];
+      }
+    });
   }
 }
 
@@ -74,7 +90,7 @@ export async function withMockedEnv(
  */
 export function mockEnvFactory(
   factorySimulatedEnv: Record<string, string>,
-  factoryOptions: MockedEnvOptions
+  factoryOptions?: MockedEnvOptions
 ) {
   return (
     test: () => Promisable<void>,
