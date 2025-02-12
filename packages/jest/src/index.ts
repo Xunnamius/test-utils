@@ -7,6 +7,7 @@ import { withMockedArgv } from '@-xun/test-mock-argv';
 import { withMockedEnv } from '@-xun/test-mock-env';
 import { withMockedExit } from '@-xun/test-mock-exit';
 import { withMockedOutput } from '@-xun/test-mock-output';
+import { flattenPackageJsonSubpathMap } from 'bidirectional-resolve';
 import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+jest:constant.ts';
@@ -314,34 +315,22 @@ export async function ensurePackageHasBeenBuilt(
     throw new Error(ErrorMessage.NoEntryPointsInPackageJson(packageName));
   }
 
-  const potentialEntryPoints = new Set(
-    Object.values(packageExports).map((xport) => {
-      const exportPath = Array.isArray(xport)
-        ? xport[0]!
-        : typeof xport === 'string'
-          ? xport
-          : xport && typeof xport.default === 'string' && xport.default
-            ? xport.default
-            : undefined;
-
-      if (typeof exportPath !== 'string') {
-        throw new TypeError(
-          ErrorMessage.NoDefaultConditionInPackageJsonExport(packageName)
-        );
-      }
-
-      return toPath(packageRoot, exportPath);
-    })
-  );
-
-  ensurePackageHasBeenBuiltDebugger('potentialEntryPoints: %O', potentialEntryPoints);
-
   await Promise.all(
-    potentialEntryPoints.values().map(async (packageMainPath) => {
-      if (await isNotAccessible(packageMainPath)) {
-        throw new Error(ErrorMessage.DistributablesNotBuilt());
+    flattenPackageJsonSubpathMap({ map: packageExports }).map(
+      async ({ isDeadCondition, isFallback, isFirstNonNullFallback, target }) => {
+        if (!isDeadCondition && (!isFallback || isFirstNonNullFallback) && target) {
+          const entryPoint = toPath(packageRoot, target);
+
+          ensurePackageHasBeenBuiltDebugger('checking entry point: %O', entryPoint);
+
+          if (await isNotAccessible(entryPoint)) {
+            throw new Error(ErrorMessage.DistributableNotBuilt(target));
+          }
+        } else {
+          ensurePackageHasBeenBuiltDebugger('ignored entry target: %O', target);
+        }
       }
-    })
+    )
   );
 }
 
