@@ -33,10 +33,10 @@ export function rootFixture(): RootFixture {
     name: rootFixtureName,
     description: 'creating unique dummy root directory',
     setup: async (context) => {
-      const { fs, options, root } = context;
+      const { fs, options } = context;
 
       context.root = toAbsolutePath(uniqueFilename(tmpdir(), options.identifier));
-      await fs.mkdir(toPath(root, 'src'), { recursive: true });
+      await fs.mkdir(toPath(context.root, 'src'), { recursive: true });
     },
     teardown: async ({ fs, options, root, debug }) => {
       if (options.performCleanup) {

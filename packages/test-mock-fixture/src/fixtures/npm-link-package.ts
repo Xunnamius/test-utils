@@ -78,17 +78,19 @@ export function npmLinkPackageFixture(): NpmLinkPackageFixture {
     name: npmLinkPackageFixtureName,
     description:
       'soft-linking project repo into node_modules to emulate package installation',
-    setup: async ({ fs, options }) => {
+    setup: async ({ fs, options: { packageUnderTest }, debug }) => {
       const {
-        root: packageRoot,
-        json: { name: packageName }
-      } = options.packageUnderTest;
+        root: rootUnderTest,
+        json: { name: nameUnderTest }
+      } = packageUnderTest;
 
-      if (!packageName) {
+      debug('packageUnderTest: %O', packageUnderTest);
+
+      if (!nameUnderTest) {
         throw new TypeError(ErrorMessage.PackageMissingField('name'));
       }
 
-      await fs.symlink(packageRoot, toPath('node_modules', packageName), 'junction');
+      await fs.symlink(rootUnderTest, toPath('node_modules', nameUnderTest), 'junction');
     }
   };
 }

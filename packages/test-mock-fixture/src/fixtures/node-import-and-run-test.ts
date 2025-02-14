@@ -34,16 +34,6 @@ export type NodeImportAndRunTestFixture = MockFixture<
 export type NodeImportAndRunTestFixtureOptions = Tagged<
   {
     /**
-     * Additional packages to install.
-     */
-    npmInstall?: string | string[];
-    /**
-     * If `false`, `--ignore-scripts` will be passed to NPM during installation.
-     *
-     * @default true
-     */
-    runInstallScripts?: boolean;
-    /**
      * Configure the executable used to run the index file.
      */
     runWith?: {
@@ -111,10 +101,15 @@ export function nodeImportAndRunTestFixture(): NodeImportAndRunTestFixture {
     name: nodeImportAndRunTestFixtureName,
     description: 'setting up and executing node import runtime test',
     setup: async (context) => {
-      const { root, fs, virtualFiles, options } = context;
+      const { root, fs, virtualFiles, options, debug } = context;
       const indexPath = findIndexVirtualPath(virtualFiles);
+      const indexContents = virtualFiles[indexPath] || '';
 
-      await fs.writeFile(indexPath, virtualFiles[indexPath]);
+      if (!indexContents) {
+        debug.warn('%O is empty in virtualFiles', indexContents);
+      }
+
+      await fs.writeFile(indexPath, indexContents);
 
       const {
         binary = 'node',

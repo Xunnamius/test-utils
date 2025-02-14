@@ -1,5 +1,3 @@
-import { basename } from 'node:path';
-
 import { toPath } from '@-xun/fs';
 import { run } from '@-xun/run';
 import { glob } from 'glob';
@@ -8,7 +6,6 @@ import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
 
 import type { GenericPackage } from '@-xun/project-types';
 import type { EmptyObject, Tagged } from 'type-fest';
-import type { NodeImportAndRunTestFixtureOptions } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 
 import type {
   FixtureContext,
@@ -75,7 +72,7 @@ export type NpmCopyPackageFixtureOptions = Tagged<
        * If `true`, this field will be omitted when installing
        * `packageUnderTest`'s dependencies.
        *
-       * @default false
+       * @default true
        */
       peerDependencies?: boolean;
       /**
@@ -93,7 +90,13 @@ export type NpmCopyPackageFixtureOptions = Tagged<
        */
       bundledDependencies?: boolean;
     };
-  } & Pick<NodeImportAndRunTestFixtureOptions, 'npmInstall' | 'runInstallScripts'>,
+    /**
+     * If `false`, `--ignore-scripts` will be passed to NPM during installation.
+     *
+     * @default true
+     */
+    runInstallScripts?: boolean;
+  },
   typeof npmCopyPackageFixtureName
 >;
 
@@ -121,6 +124,11 @@ export type NpmCopyPackageFixtureContext = Tagged<
  * field, into the dummy `node_modules` directory created by a fixture like
  * `dummyNpmPackage`.
  *
+ * Also unlike `npmLinkPackage`, this fixture will install all of the package
+ * under test's dependencies (with respect to
+ * {@link NpmCopyPackageFixtureOptions.ignorePackageDependencies}) into the
+ * dummy `node_modules` as well.
+ *
  * This fixture should be preferred over `npmLinkPackage` **only if the package
  * under test does _not_ have peer dependencies.** If said package _does_ have
  * peer dependencies, then using this fixture could manifest something akin to
@@ -131,18 +139,40 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
     name: npmCopyPackageFixtureName,
     description:
       'copying package.json `files` into node_modules to emulate package installation',
-    setup: async ({ root, options, fs, debug }) => {
-      const { root: packageRoot, json: packageJson } = options.packageUnderTest;
-      const { name: packageName, files: packageFiles } = packageJson;
+    setup: async ({
+      root: dummyRoot,
+      options: {
+        ignorePackageDependencies: ignorePackageDependencies_,
+        packageUnderTest,
+        runInstallScripts = true
+      },
+      fs,
+      debug
+    }) => {
+      const { root: rootUnderTest, json: jsonUnderTest } = packageUnderTest;
+      const { name: nameUnderTest, files: filesUnderTest } = jsonUnderTest;
 
-      if (!packageName) {
+      const ignorePackageDependencies = {
+        bundledDependencies: ignorePackageDependencies_?.bundledDependencies ?? false,
+        dependencies: ignorePackageDependencies_?.dependencies ?? false,
+        devDependencies: ignorePackageDependencies_?.devDependencies ?? true,
+        optionalDependencies: ignorePackageDependencies_?.optionalDependencies ?? false,
+        peerDependencies: ignorePackageDependencies_?.peerDependencies ?? true,
+        peerDependenciesMeta: ignorePackageDependencies_?.peerDependenciesMeta ?? true
+      };
+
+      debug('packageUnderTest: %O', packageUnderTest);
+      debug('runInstallScripts: %O', runInstallScripts);
+      debug('ignorePackageDependencies: %O', ignorePackageDependencies);
+
+      if (!nameUnderTest) {
         throw new TypeError(ErrorMessage.PackageMissingField('name'));
       }
 
       const sourcePaths = (
         await Promise.all(
-          (packageFiles || []).map((path) =>
-            glob(path, { cwd: root, root, absolute: true })
+          (filesUnderTest || []).map((path) =>
+            glob(path, { cwd: rootUnderTest, root: rootUnderTest, absolute: true })
           )
         )
       ).flat();
@@ -151,12 +181,13 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
         throw new TypeError(ErrorMessage.PackageMissingField('files'));
       }
 
-      const destinationPath = toPath(root, 'node_modules', packageName);
+      const destinationPath = toPath(dummyRoot, 'node_modules', nameUnderTest);
       const destinationPackageJsonPath = toPath(destinationPath, 'package.json');
 
-      debug('packageRoot: %O', packageRoot);
-      debug('packageName: %O', packageName);
-      debug('packageFiles: %O', packageFiles);
+      debug('dummyRoot: %O', dummyRoot);
+      debug('rootUnderTest: %O', rootUnderTest);
+      debug('nameUnderTest: %O', nameUnderTest);
+      debug('filesUnderTest: %O', filesUnderTest);
       debug('sourcePaths: %O', sourcePaths);
       debug('destinationPath: %O', destinationPath);
       debug('destinationPackageJsonPath: %O', destinationPackageJsonPath);
@@ -164,49 +195,32 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
       await fs.mkdir(destinationPath, { recursive: true });
       await Promise.all(
         sourcePaths.map((sourcePath) => {
-          return fs.cp(sourcePath, toPath(destinationPath, basename(sourcePath)), {
-            force: true,
-            recursive: true
-          });
+          return fs.cp(
+            sourcePath,
+            toPath(destinationPath, sourcePath.slice(rootUnderTest.length)),
+            {
+              force: true,
+              recursive: true
+            }
+          );
         })
       );
 
       const ignoredPackageJsonFields = Object.fromEntries(
-        Object.entries(options.ignorePackageDependencies || {})
-          .map(([field, isIgnored]) => (isIgnored ? [field, undefined] : undefined))
+        Object.entries(ignorePackageDependencies)
+          .map(([field, isIgnored]) =>
+            isIgnored ? ([field, undefined] as const) : undefined
+          )
           .filter((entry): entry is NonNullable<typeof entry> => !!entry)
       );
-
-      const installTargets = {
-        ...(options.ignorePackageDependencies?.dependencies
-          ? {}
-          : packageJson.dependencies),
-        ...Object.fromEntries(
-          [options.npmInstall]
-            .flat()
-            .filter((target): target is string => !!target)
-            .map((target) => {
-              const isTargetScoped = target.startsWith('@');
-              const targetSplit = (isTargetScoped ? target.slice(1) : target).split(
-                '@',
-                2
-              );
-
-              const nameAndVersion = (
-                isTargetScoped ? [`@${targetSplit[0]!}`, targetSplit[1]] : targetSplit
-              ) as [name: string, version: string];
-
-              return [nameAndVersion[0], nameAndVersion[1] || 'latest'];
-            })
-        )
-      };
-
-      debug('installTargets: %O', installTargets);
 
       await fs.writeFile(
         destinationPackageJsonPath,
         JSON.stringify(
-          { ...packageJson, ...ignoredPackageJsonFields, dependencies: installTargets },
+          {
+            ...jsonUnderTest,
+            ...ignoredPackageJsonFields
+          },
           undefined,
           2
         )
@@ -217,12 +231,11 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
         [
           'install',
           '--no-save',
-          ...(options.runInstallScripts ? [] : ['--ignore-scripts']),
+          ...(runInstallScripts ? [] : ['--ignore-scripts']),
           '--force'
         ],
         {
           cwd: destinationPath,
-          reject: true,
           env: { NODE_ENV: 'production', CI: 'true' }
         }
       );
@@ -230,13 +243,13 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
       await fs.rename('node_modules', 'node_modules_old');
 
       await fs.rename(
-        toPath('node_modules_old', packageName, 'node_modules'),
+        toPath('node_modules_old', nameUnderTest, 'node_modules'),
         'node_modules'
       );
 
       await fs.rename(
-        toPath('node_modules_old', packageName),
-        toPath('node_modules', packageName)
+        toPath('node_modules_old', nameUnderTest),
+        toPath('node_modules', nameUnderTest)
       );
 
       await fs.rm('node_modules_old', {

@@ -74,15 +74,16 @@ export function gitRepositoryFixture(): GitRepositoryFixture {
   return {
     name: gitRepositoryFixtureName,
     description: 'configuring fixture root to be a git repository',
-    setup: async ({ root, git, debug, options }) => {
-      git = simpleGit({ baseDir: root });
+    setup: async (context) => {
+      const { root, debug, options } = context;
+      context.git = simpleGit({ baseDir: root });
 
       if (options.setupGit) {
         debug('executing options.setupGit');
-        await options.setupGit(git);
+        await options.setupGit(context.git);
       } else {
         debug('no options.setupGit function found, initializing repo manually');
-        await git
+        await context.git
           .init()
           .addConfig('user.name', 'fake-user')
           .addConfig('user.email', 'fake@email')

@@ -4,7 +4,7 @@ import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
 
 import type { AbsolutePath, RelativePath } from '@-xun/fs';
 
-const indexFileRegExp = /^src\/index(\.test)?\.(((c|m)?js)|ts)x?$/;
+const indexFileRegExp = /^src\/index(\.test)?\.((c|m)?(js|ts)x?)$/;
 
 export async function getTreeOutput(root: AbsolutePath) {
   if (process.platform === 'win32') {
@@ -22,11 +22,52 @@ export async function getTreeOutput(root: AbsolutePath) {
  * Search a `virtualFiles` object for a key matching a `src/index` or
  * `src/index.test` file with a JS/TS/JSX extension.
  */
-export function findIndexVirtualPath(virtualFiles: Record<string, string>) {
+export function findIndexVirtualPath(
+  virtualFiles: Record<string, string>,
+  options?: {
+    /**
+     * @default true
+     */
+    throwIfNotFound?: true;
+  }
+): RelativePath;
+export function findIndexVirtualPath(
+  virtualFiles: Record<string, string>,
+  options: {
+    /**
+     * @default true
+     */
+    throwIfNotFound: false;
+  }
+): RelativePath | undefined;
+export function findIndexVirtualPath(
+  virtualFiles: Record<string, string>,
+  options: {
+    /**
+     * @default true
+     */
+    throwIfNotFound: boolean;
+  }
+): RelativePath | undefined;
+export function findIndexVirtualPath(
+  virtualFiles: Record<string, string>,
+  {
+    throwIfNotFound = true
+  }: {
+    /**
+     * @default true
+     */
+    throwIfNotFound?: boolean;
+  } = {}
+): RelativePath | undefined {
   const path = Object.keys(virtualFiles).find((path) => indexFileRegExp.test(path));
 
   if (!path) {
-    throw new Error(ErrorMessage.MissingVirtualFile('src/index.${validExtension}'));
+    if (throwIfNotFound) {
+      throw new Error(ErrorMessage.MissingVirtualFile('src/index.*'));
+    } else {
+      return undefined;
+    }
   }
 
   return path as RelativePath;

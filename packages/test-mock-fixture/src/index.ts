@@ -287,7 +287,7 @@ export async function withMockedFixtures<
  * filesystem structures, each used to simulate one or more runtime environments
  * for the package under test.
  */
-export function mockFixtureFactory<
+export function mockFixturesFactory<
   Fixtures extends ((...args: never[]) => GenericMockFixture)[],
   AdditionalOptions extends Record<string, unknown> = EmptyObject,
   AdditionalContext extends Record<string, unknown> = EmptyObject

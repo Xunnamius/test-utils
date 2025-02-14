@@ -143,7 +143,7 @@ export type FixtureContext<Options extends Record<string, unknown>> = {
   debug: ExtendedDebugger;
   /**
    * Context-sensitive asynchronous wrappers for `node:fs/promises` functions
-   * (excluding {@link FixtureFs.glob}) with in-build debugging and exception
+   * (excluding {@link FixtureFs.glob}) with in-built debugging and exception
    * handling.
    *
    * Note that all relative `PathLike` parameters are considered local to

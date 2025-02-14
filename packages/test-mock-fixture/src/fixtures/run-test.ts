@@ -1,7 +1,7 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
 import type { RunOptions, RunReturnType } from '@-xun/run';
-import type { RequiredDeep, Tagged } from 'type-fest';
+import type { RequiredDeep, SetRequired, Tagged } from 'type-fest';
 import type { NodeImportAndRunTestFixtureOptions } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 
 import type {
@@ -31,7 +31,12 @@ export type RunTestFixture = MockFixture<
  * @see {@link runTestFixture}
  */
 export type RunTestFixtureOptions = Tagged<
-  RequiredDeep<Pick<NodeImportAndRunTestFixtureOptions, 'runWith'>>,
+  {
+    runWith: SetRequired<
+      NonNullable<NodeImportAndRunTestFixtureOptions['runWith']>,
+      'binary'
+    >;
+  },
   typeof runTestFixtureName
 >;
 
@@ -67,11 +72,11 @@ export function runTestFixture(): RunTestFixture {
     description: 'executing runtime test',
     setup: async (context) => {
       const { root, options } = context;
-      const { binary, args, runnerOptions } = options.runWith;
+      const { binary, args = [], runnerOptions = {} } = options.runWith;
 
-      context.testResult = await runNoRejectOnBadExit(binary, args as string[], {
+      context.testResult = await runNoRejectOnBadExit(binary, [...args], {
         cwd: root,
-        ...(runnerOptions as unknown as RunOptions),
+        ...(runnerOptions as RunOptions),
         env: {
           DEBUG_COLORS: 'false',
           ...runnerOptions.env

@@ -3,6 +3,7 @@ import { run, runNoRejectOnBadExit } from '@-xun/run';
 
 import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
 
+import type { RelativePath } from '@-xun/fs';
 import type { RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
 
@@ -39,6 +40,11 @@ export type WebpackTestFixtureOptions = Tagged<
      * any tests.
      */
     webpackVersion: string;
+    /**
+     * The file output by webpack that will be executed by node at the end of
+     * the test, generating a {@link WebpackTestFixtureContext.testResult}.
+     */
+    fileUnderTest: string;
   },
   typeof webpackTestFixtureName
 >;
@@ -68,8 +74,9 @@ export type WebpackTestFixtureContext = Tagged<
 
 /**
  * This fixture initializes the dummy root directory with an index file under
- * `src` (described by `initialVirtualFiles`) and then executes Webpack. The
- * index file should import and test the package under test or otherwise trigger the desired Webpack functionality.
+ * `src` and an optional `webpack.config.mjs` file (both described by
+ * `initialVirtualFiles`), executes Webpack, and then attempts to run the
+ * resultant file (described by `fileUnderTest`).
  *
  * The index file must have a path matching the pattern `src/index${extension}`;
  * it can have any of the following extensions: `.js`, `.cjs`, `.mjs`, `.jsx`,
@@ -83,15 +90,21 @@ export function webpackTestFixture(): WebpackTestFixture {
       const { root, fs, virtualFiles, options, debug } = context;
       const indexPath = findIndexVirtualPath(virtualFiles);
       const webpackConfigPath = toRelativePath('webpack.config.mjs');
-      const webpackConfigContents = virtualFiles[indexPath];
+      const webpackConfigContents =
+        virtualFiles['webpack.config.mjs' as RelativePath] || '';
+      const indexContents = virtualFiles[indexPath] || '';
 
       if (!webpackConfigContents) {
-        debug.warn('%O is empty in virtualFiles', webpackConfigPath);
+        debug.warn('%O is empty in virtualFiles', webpackConfigContents);
+      }
+
+      if (!indexContents) {
+        debug.warn('%O is empty in virtualFiles', indexContents);
       }
 
       await Promise.all([
-        fs.writeFile(indexPath, virtualFiles[indexPath]),
-        fs.writeFile(webpackConfigPath, webpackConfigContents || '')
+        fs.writeFile(indexPath, indexContents),
+        fs.writeFile(webpackConfigPath, webpackConfigContents)
       ]);
 
       await run(
@@ -104,7 +117,7 @@ export function webpackTestFixture(): WebpackTestFixture {
 
       context.testResult = await runNoRejectOnBadExit('node', [
         '--no-warnings',
-        toPath(root, 'dist', 'index.js')
+        options.fileUnderTest
       ]);
     }
   };

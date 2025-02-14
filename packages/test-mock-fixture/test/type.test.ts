@@ -1,3 +1,9 @@
-// * These tests ensure the exported types under test functions as expected.
+// * These tests ensure the exported types under test function as expected.
 
-test.todo('this');
+import { describe, expect, it } from 'tstyche';
+
+describe('::todo', () => {
+  it('todo', async () => {
+    expect(undefined).type.toBe<undefined>();
+  });
+});

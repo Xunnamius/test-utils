@@ -1,6 +1,7 @@
 import { toPath, toRelativePath } from '@-xun/fs';
 
 import type { GenericPackage } from '@-xun/project-types';
+import { run } from '@-xun/run';
 import type { EmptyObject, Tagged } from 'type-fest';
 
 import type {
@@ -35,6 +36,26 @@ export type DummyNpmPackageFixtureOptions = Tagged<
      * The {@link GenericPackage} instance representing the package under test.
      */
     packageUnderTest?: Omit<GenericPackage, 'projectMetadata'>;
+    /**
+     * Additional packages to install.
+     *
+     * Syntax: `package-name@semver-version`
+     *
+     * @default []
+     */
+    additionalPackagesToInstall?: string | string[];
+    /**
+     * Which NPM install mode to use.
+     *
+     * @default 'install'
+     */
+    installCommand?: 'ci' | 'install';
+    /**
+     * If `false`, `--ignore-scripts` will be passed to NPM during installation.
+     *
+     * @default true
+     */
+    runInstallScripts?: boolean;
   },
   typeof dummyNpmPackageFixtureName
 >;
@@ -59,8 +80,13 @@ export type DummyNpmPackageFixtureContext = Tagged<
 
 /**
  * This fixture initializes the dummy root directory as a NPM package with a
- * package.json file (optionally described by `initialVirtualFiles`) and
- * node_modules subdirectory.
+ * `package.json` file (optionally described by `initialVirtualFiles`) and
+ * node_modules subdirectory. If said `package.json` file contains any
+ * dependencies, they will be installed courtesy of `npm install`. Additional
+ * packages can also be installed via
+ * {@link DummyNpmPackageFixtureOptions.additionalPackagesToInstall}.
+ *
+ * All packages are always installed with `--force`.
  *
  * If a `packageUnderTest` is provided, and it is namespaced (e.g.
  * "@-xun/symbiote"), an empty directory will be created using the namespace as
@@ -70,7 +96,7 @@ export function dummyNpmPackageFixture(): DummyNpmPackageFixture {
   return {
     name: dummyNpmPackageFixtureName,
     description: 'creating package.json file and node_modules subdirectory',
-    setup: async ({ fs, virtualFiles, options, debug }) => {
+    setup: async ({ root, fs, virtualFiles, options, debug }) => {
       const packageJsonPath = toRelativePath('package.json');
 
       virtualFiles[packageJsonPath] ||= JSON.stringify({
@@ -82,14 +108,31 @@ export function dummyNpmPackageFixture(): DummyNpmPackageFixture {
         fs.writeFile('package.json', virtualFiles[packageJsonPath])
       ]);
 
-      const { name: packageName } = options.packageUnderTest?.json || {};
+      const { name: nameUnderTest } = options.packageUnderTest?.json || {};
 
-      if (!packageName) {
+      if (!nameUnderTest) {
         debug.warn('packageUnderTest.json.name is undefined/empty');
       }
 
-      if (packageName?.includes('/')) {
-        await fs.mkdir(toPath('node_modules', packageName.split('/')[0]), {
+      const npmInstallArgs: string[] = [options.installCommand || 'install', '--force'];
+
+      if (options.runInstallScripts === false) {
+        npmInstallArgs.push('--ignore-scripts');
+      }
+
+      if (options.additionalPackagesToInstall) {
+        npmInstallArgs.push(...[options.additionalPackagesToInstall].flat());
+      }
+
+      debug('npmInstallArgs: %O', npmInstallArgs);
+
+      await run('npm', npmInstallArgs, {
+        cwd: root,
+        env: { NODE_ENV: 'production', CI: 'true' }
+      });
+
+      if (nameUnderTest?.includes('/')) {
+        await fs.mkdir(toPath('node_modules', nameUnderTest.split('/')[0]!), {
           recursive: true
         });
       }
