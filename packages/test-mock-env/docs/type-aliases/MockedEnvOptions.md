@@ -8,7 +8,7 @@
 
 > **MockedEnvOptions**: `object`
 
-Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/60e8c61898aab9d4fb9616284896eee5c15ac61b/packages/test-mock-env/src/index.ts#L6)
+Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/f58da4dbf02e0758e7700f67f2427126f3ccba89/packages/test-mock-env/src/index.ts#L6)
 
 ## Type declaration
 
@@ -30,11 +30,19 @@ true
 
 > `optional` **replaceEntireEnv**: `boolean`
 
-By default, the `process.env` object (**except `process.env.DEBUG_COLORS`,
-if it exists**) is emptied and re-hydrated with `newEnv`. Setting `replace`
-to `false` will cause `newEnv` to be appended instead. Setting `replace` to
-`true` will cause `newEnv` to replace the _entire_ `process.env` object,
-including `process.env.DEBUG_COLORS`.
+By default, all environment variables in the `process.env` object are
+deleted before the object is re-hydrated with `newEnv`.
+
+Two environment variables, if present, are exempt from deletion:
+`process.env.DEBUG` and `process.env.DEBUG_COLORS`.
+
+Setting `replace` to `false` will cause `newEnv` to be merged on top of
+`process.env` instead of replacing it. Setting `replace` to `true` will
+cause `newEnv` to replace the _entire_ `process.env` object, including
+`process.env.DEBUG_COLORS`.
+
+Note that `process.env.DEBUG` is unaffected by this option (see
+[MockedEnvOptions.passthroughDebugEnv](MockedEnvOptions.md#passthroughdebugenv) instead).
 
 #### Default
 
