@@ -6,6 +6,14 @@
 
 # error
 
+## Classes
+
+- [MockedExitError](classes/MockedExitError.md)
+
 ## Variables
 
-- [ErrorMessage](variables/ErrorMessage.md)
+- [ExitErrorMessage](variables/ExitErrorMessage.md)
+
+## Functions
+
+- [isMockedExitError](functions/isMockedExitError.md)

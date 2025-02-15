@@ -8,7 +8,7 @@
 
 > **withMockedExit**(`test`): `Promise`\<`void`\>
 
-Defined in: [index.ts:12](https://github.com/Xunnamius/test-utils/blob/b83f8dbdd38dd1b5810fe17cf4216e70e1efcb2d/packages/test-mock-exit/src/index.ts#L12)
+Defined in: [packages/test-mock-exit/src/index.ts:17](https://github.com/Xunnamius/test-utils/blob/f65fd174005950e77b67a3c0454cb88be4afb215/packages/test-mock-exit/src/index.ts#L17)
 
 Mock `process.exit` within the scope of `test`. Guaranteed to return
 `process.env` to its original state no matter how `test` terminates.
