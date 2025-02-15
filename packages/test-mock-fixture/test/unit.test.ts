@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // * These tests ensure the exported interfaces under test function as expected.
 
+import assert from 'node:assert';
 import * as actualFs from 'node:fs/promises';
 
 import { toAbsolutePath, toPath } from '@-xun/fs';
@@ -8,16 +9,14 @@ import { run, runNoRejectOnBadExit } from '@-xun/run';
 import { glob } from 'glob';
 import { simpleGit } from 'simple-git';
 
-import {
-  GenericMockFixture,
-  mockFixturesFactory,
-  withMockedFixtures
-} from 'universe+test-mock-fixture';
+import { mockFixturesFactory, withMockedFixtures } from 'universe+test-mock-fixture';
 import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
+
 import {
   describeRootFixture,
   describeRootFixtureName
 } from 'universe+test-mock-fixture:fixtures/describe-root.ts';
+
 import { dummyDirectoriesFixture } from 'universe+test-mock-fixture:fixtures/dummy-directories.ts';
 import { dummyFilesFixture } from 'universe+test-mock-fixture:fixtures/dummy-files.ts';
 import { dummyNpmPackageFixture } from 'universe+test-mock-fixture:fixtures/dummy-npm-package.ts';
@@ -25,17 +24,19 @@ import { gitRepositoryFixture } from 'universe+test-mock-fixture:fixtures/git-re
 import { nodeImportAndRunTestFixture } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 import { npmCopyPackageFixture } from 'universe+test-mock-fixture:fixtures/npm-copy-package.ts';
 import { npmLinkPackageFixture } from 'universe+test-mock-fixture:fixtures/npm-link-package.ts';
+
 import {
   rootFixture,
   rootFixtureName
 } from 'universe+test-mock-fixture:fixtures/root.ts';
+
 import { runTestFixture } from 'universe+test-mock-fixture:fixtures/run-test.ts';
 import { webpackTestFixture } from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 import { findIndexVirtualPath, getTreeOutput } from 'universe+test-mock-fixture:util.ts';
 
 import type { AbsolutePath, RelativePath } from '@-xun/fs';
 import type { PackageJson } from 'type-fest';
-import assert from 'node:assert';
+import type { GenericMockFixture } from 'universe+test-mock-fixture';
 
 jest.mock('@-xun/run');
 jest.mock('simple-git');
@@ -580,14 +581,134 @@ describe('::withMockedFixtures', () => {
 });
 
 describe('::mockFixturesFactory', () => {
-  it('returns a pre-configured mocking function', async () => {
+  it('returns a pre-configured mocking with curried params', async () => {
     expect.hasAssertions();
-    void mockFixturesFactory;
+
+    const withFactoryMockedFixtures = mockFixturesFactory(
+      [
+        dummyFilesFixture,
+        dummyDirectoriesFixture,
+        dummyNpmPackageFixture,
+        gitRepositoryFixture,
+        nodeImportAndRunTestFixture
+      ],
+      {
+        performCleanup: true,
+        directoryPaths: ['dir/path/1', 'dir/path/2'] as RelativePath[],
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
+      }
+    );
+
+    await withFactoryMockedFixtures(
+      async ({ root, options, git, testResult, virtualFiles }) => {
+        expect(root).toBeString();
+        expect(git).toBe(simpleGit());
+        expect(testResult.exitCode).toBe(0);
+        expect(options.directoryPaths).toStrictEqual(['dir/path/1', 'dir/path/2']);
+
+        expect(virtualFiles).toStrictEqual({
+          'package.json': '{"name":"dummy-pkg"}',
+          'src/index.js': 'console.log("success");'
+        });
+
+        await expect(actualFs.access(root)).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'dir', 'path', '1'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'dir', 'path', '2'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'node_modules'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'package.json'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'src', 'index.js'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.readFile(toPath(root, 'package.json'), 'utf8')
+        ).resolves.toBe('{"name":"dummy-pkg"}');
+
+        await expect(
+          actualFs.readFile(toPath(root, 'src', 'index.js'), 'utf8')
+        ).resolves.toBe('console.log("success");');
+      }
+    );
   });
 
   it('deep merges options rather than override', async () => {
     expect.hasAssertions();
-    void mockFixturesFactory;
+
+    const withFactoryMockedFixtures = mockFixturesFactory(
+      [
+        dummyFilesFixture,
+        dummyDirectoriesFixture,
+        dummyNpmPackageFixture,
+        gitRepositoryFixture,
+        nodeImportAndRunTestFixture
+      ],
+      {
+        performCleanup: true,
+        directoryPaths: ['dir/path/1'] as RelativePath[],
+        initialVirtualFiles: {}
+      }
+    );
+
+    await withFactoryMockedFixtures(
+      async ({ root, options, git, testResult, virtualFiles }) => {
+        expect(root).toBeString();
+        expect(git).toBe(simpleGit());
+        expect(testResult.exitCode).toBe(0);
+        expect(options.directoryPaths).toStrictEqual(['dir/path/1', 'dir/path/2']);
+
+        expect(virtualFiles).toStrictEqual({
+          'package.json': '{"name":"dummy-pkg"}',
+          'src/index.js': 'console.log("success");'
+        });
+
+        await expect(actualFs.access(root)).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'dir', 'path', '1'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'dir', 'path', '2'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'node_modules'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'package.json'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'src', 'index.js'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.readFile(toPath(root, 'package.json'), 'utf8')
+        ).resolves.toBe('{"name":"dummy-pkg"}');
+
+        await expect(
+          actualFs.readFile(toPath(root, 'src', 'index.js'), 'utf8')
+        ).resolves.toBe('console.log("success");');
+      },
+      {
+        directoryPaths: ['dir/path/1', 'dir/path/2'] as RelativePath[],
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
+      }
+    );
   });
 });
 

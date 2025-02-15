@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+import assert from 'node:assert';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 
@@ -28,7 +29,6 @@ import type {
 } from 'universe+test-mock-fixture:types/fixtures.ts';
 
 import type { FixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
-import assert from 'node:assert';
 
 const defaultTestIdentifier = 'fixtures-test';
 const alphaNumericRegExp = /^[a-z0-9-_]+$/i;
@@ -325,7 +325,7 @@ export function mockFixturesFactory<
       Parameters<
         typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
       >[2]
-    >
+    >?
   ]
 ) => ReturnType<typeof withMockedFixtures> {
   return function (test, incomingOptions) {
@@ -337,6 +337,7 @@ export function mockFixturesFactory<
   };
 }
 
+/* istanbul ignore next */
 async function isAccessible(path: PathLike, mode?: number): Promise<boolean> {
   return fs.access(path, mode).then(
     () => true,
