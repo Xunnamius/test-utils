@@ -6,11 +6,12 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`T`\>(`specifier`, `options`?): `T`
+> **isolatedImport**\<`Module`\>(`specifier`, `options`?): `Module`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:25
+Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
 
-Performs a module import as if it were being imported for the first time.
+Performs a CJS module import (via `require`) as if it were being imported for
+the first time.
 
 Note that this function breaks the "require caching" expectation of Node.js
 modules. Problems can arise, for example, when closing an app-wide database
@@ -21,7 +22,7 @@ test to hang unexpectedly, even when all tests pass.
 
 ## Type Parameters
 
-• **T**
+• **Module**
 
 ## Parameters
 
@@ -39,4 +40,4 @@ never be relative and must always use unix-style separators (i.e. `/`).
 
 ## Returns
 
-`T`
+`Module`

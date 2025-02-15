@@ -8,17 +8,18 @@
 
 > **IsolatedImportOptions**: `object`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:5
+Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:12
 
 ## Type declaration
 
-### useDefault?
+### reduceToDefault?
 
-> `optional` **useDefault**: `boolean`
+> `optional` **reduceToDefault**: `boolean`
 
-By default, if `module.__esModule === true`, the default export will be
-returned instead. Use `useDefault` to override this behavior in either
-direction.
+By default, if `module.__esModule === true` and the only other property of
+`module.exports` is `"default"`, then said `"default"` export will be
+returned instead of a module object. Use `reduceToDefault` to override this
+behavior in either direction.
 
 #### Default
 

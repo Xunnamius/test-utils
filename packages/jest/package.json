@@ -1,6 +1,6 @@
 {
   "name": "@-xun/jest",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A collection of utilities for the jest test runner",
   "keywords": [
     "utils",
@@ -66,12 +66,12 @@
   },
   "dependencies": {
     "@-xun/fs": "^1.0.0",
-    "@-xun/test-mock-argv": "^1.0.1",
-    "@-xun/test-mock-env": "^1.0.2",
-    "@-xun/test-mock-exit": "^1.0.1",
-    "@-xun/test-mock-fixture": "^1.0.1",
-    "@-xun/test-mock-import": "^1.0.2",
-    "@-xun/test-mock-output": "^1.0.1",
+    "@-xun/test-mock-argv": "^1.0.2",
+    "@-xun/test-mock-env": "^1.0.3",
+    "@-xun/test-mock-exit": "^1.0.2",
+    "@-xun/test-mock-fixture": "^1.0.2",
+    "@-xun/test-mock-import": "^1.0.3",
+    "@-xun/test-mock-output": "^1.0.2",
     "bidirectional-resolve": "^1.0.1",
     "core-js": "^3.40.0",
     "rejoinder": "^1.2.4",

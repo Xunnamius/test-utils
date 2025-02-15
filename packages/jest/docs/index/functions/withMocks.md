@@ -8,7 +8,7 @@
 
 > **withMocks**(`fn`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:261](https://github.com/Xunnamius/test-utils/blob/08c172fd86063ef2cb40963f770391649cfb8900/packages/jest/src/index.ts#L261)
+Defined in: [packages/jest/src/index.ts:266](https://github.com/Xunnamius/test-utils/blob/ce054a33ff4bdd3f0de76d4683eddd8c8b67bfb2/packages/jest/src/index.ts#L266)
 
 Wraps [withMockedArgv](withMockedArgv.md) + [withMockedEnv](withMockedEnv.md) with
 [withMockedExit](withMockedExit.md) + [withMockedOutput](withMockedOutput.md).
@@ -21,18 +21,25 @@ Wraps [withMockedArgv](withMockedArgv.md) + [withMockedEnv](withMockedEnv.md) wi
 
 ### \_\_namedParameters
 
-#### options
+#### options?
 
 \{ `passthrough`: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]; `passthroughDebugEnv`: `boolean`; `passthroughOutputIfDebugging`: `boolean`; `replaceEntireArgv`: `boolean`; `replaceEntireEnv`: `boolean`; \} = `undefined`
 
-#### options.passthrough
+#### options.passthrough?
 
 (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]
 
-Call jest.SpyInstance.mockRestore on one or more output functions
-currently being spied upon.
+Prevent mocking the implementation of one or more output spies, allowing
+output to be passed through to the original function. Said spies will
+remain functional.
 
-#### options.passthroughDebugEnv
+**Default**
+
+```ts
+[]
+```
+
+#### options.passthroughDebugEnv?
 
 `boolean`
 
@@ -46,7 +53,7 @@ as-is to the underlying environment mock even when `replaceEntireEnv` is
 true
 ```
 
-#### options.passthroughOutputIfDebugging
+#### options.passthroughOutputIfDebugging?
 
 `boolean`
 
@@ -60,7 +67,7 @@ debug output to make it to the screen.
 true
 ```
 
-#### options.replaceEntireArgv
+#### options.replaceEntireArgv?
 
 `boolean`
 
@@ -74,15 +81,23 @@ replaced.
 false
 ```
 
-#### options.replaceEntireEnv
+#### options.replaceEntireEnv?
 
 `boolean`
 
-By default, the `process.env` object (**except `process.env.DEBUG_COLORS`,
-if it exists**) is emptied and re-hydrated with `newEnv`. Setting `replace`
-to `false` will cause `newEnv` to be appended instead. Setting `replace` to
-`true` will cause `newEnv` to replace the _entire_ `process.env` object,
-including `process.env.DEBUG_COLORS`.
+By default, all environment variables in the `process.env` object are
+deleted before the object is re-hydrated with `newEnv`.
+
+Two environment variables, if present, are exempt from deletion:
+`process.env.DEBUG` and `process.env.DEBUG_COLORS`.
+
+Setting `replace` to `false` will cause `newEnv` to be merged on top of
+`process.env` instead of replacing it. Setting `replace` to `true` will
+cause `newEnv` to replace the _entire_ `process.env` object, including
+`process.env.DEBUG_COLORS`.
+
+Note that `process.env.DEBUG` is unaffected by this option (see
+[MockedEnvOptions.passthroughDebugEnv](../type-aliases/MockedEnvOptions.md#passthroughdebugenv) instead).
 
 **Default**
 
@@ -90,11 +105,11 @@ including `process.env.DEBUG_COLORS`.
 undefined
 ```
 
-#### simulatedArgv
+#### simulatedArgv?
 
 `string`[] = `[]`
 
-#### simulatedEnv
+#### simulatedEnv?
 
 `Record`\<`string`, `string`\> = `{}`
 

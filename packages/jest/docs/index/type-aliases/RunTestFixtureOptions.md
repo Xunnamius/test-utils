@@ -6,7 +6,7 @@
 
 # Type Alias: RunTestFixtureOptions
 
-> **RunTestFixtureOptions**: `Tagged`\<`RequiredDeep`\<`Pick`\<[`NodeImportAndRunTestFixtureOptions`](NodeImportAndRunTestFixtureOptions.md), `"runWith"`\>\>, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
+> **RunTestFixtureOptions**: `Tagged`\<\{ `runWith`: `SetRequired`\<`NonNullable`\<[`NodeImportAndRunTestFixtureOptions`](NodeImportAndRunTestFixtureOptions.md)\[`"runWith"`\]\>, `"binary"`\>; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/run-test.d.ts:21
 

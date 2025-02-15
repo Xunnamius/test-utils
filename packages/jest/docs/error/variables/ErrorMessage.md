@@ -8,25 +8,19 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [packages/jest/src/error.ts:5](https://github.com/Xunnamius/test-utils/blob/08c172fd86063ef2cb40963f770391649cfb8900/packages/jest/src/error.ts#L5)
+Defined in: [packages/jest/src/error.ts:5](https://github.com/Xunnamius/test-utils/blob/ce054a33ff4bdd3f0de76d4683eddd8c8b67bfb2/packages/jest/src/error.ts#L5)
 
 A collection of possible error and warning messages.
 
 ## Type declaration
 
-### DistributablesNotBuilt()
-
-#### Returns
-
-`string`
-
-### NoDefaultConditionInPackageJsonExport()
+### DistributableNotBuilt()
 
 #### Parameters
 
-##### packageName
+##### target
 
-`undefined` | `string`
+`string`
 
 #### Returns
 
