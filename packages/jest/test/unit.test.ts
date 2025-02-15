@@ -9,6 +9,7 @@ import {
   describe as originalDescribe,
   it as originalIt,
   test as originalTest
+  // {@symbiote/notInvalid @jest/globals}
 } from '@jest/globals';
 
 import {
