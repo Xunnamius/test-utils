@@ -20,10 +20,9 @@ import {
 
 import type { PathLike } from 'node:fs';
 import type { AbsolutePath } from '@-xun/fs';
-import type { ArraySlice, EmptyObject, ReadonlyDeep } from 'type-fest';
+import type { ArraySlice, EmptyObject, Promisable, ReadonlyDeep } from 'type-fest';
 
 import type {
-  FixtureAction,
   FixtureContext,
   GenericMockFixture
 } from 'universe+test-mock-fixture:types/fixtures.ts';
@@ -78,10 +77,12 @@ export async function withMockedFixtures<
    * The function responsible for interfacing with the testing framework (e.g.
    * running `expect` functions).
    */
-  test: FixtureAction<
-    FixtureContext<FixtureOptions<ReturnType<Fixtures[number]>> & AdditionalOptions> &
-      AdditionalContext
-  >,
+  test: (
+    context: FixtureContext<
+      FixtureOptions<ReturnType<Fixtures[number]>, false> & NoInfer<AdditionalOptions>
+    > &
+      NoInfer<AdditionalContext>
+  ) => Promisable<unknown>,
   /**
    * The fixtures used to construct the dummy environment. If the describeRoot
    * fixture is not included, it will be appended automatically. If the root
@@ -94,18 +95,24 @@ export async function withMockedFixtures<
   /**
    * Options seen by all fixtures.
    */
-  options: ReadonlyDeep<FixtureOptions<ReturnType<Fixtures[number]>> & AdditionalOptions>
-) {
+  options: ReadonlyDeep<
+    FixtureOptions<ReturnType<Fixtures[number]>> & NoInfer<AdditionalOptions>
+  >
+): Promise<void> {
   const $test = Symbol.for('@xunnamius/test');
 
+  const contextDebug = rootDebugger.extend(options.identifier || defaultTestIdentifier);
+
   const context = {
+    /* istanbul ignore next */
     get root(): never {
       throw new TypeError(ErrorMessage.RootAccessedTooEarly());
     },
+    /* istanbul ignore next */
     set root(updatedRoot: AbsolutePath) {
       context.root = updatedRoot;
     },
-    debug: rootDebugger.extend(options.identifier || defaultTestIdentifier),
+    debug: contextDebug,
     fixtures: fixtures.map((fixture, index) => {
       const reifiedFixture = fixture();
 
@@ -146,9 +153,11 @@ export async function withMockedFixtures<
           }
         })
         .filter((entry) => !!entry)
-        .concat(['isAccessible', wrapFsFunction(isAccessible, 1)])
+        .concat([['isAccessible', wrapFsFunction(isAccessible, 1)]])
     )
-  } as FixtureContext<FixtureOptions<ReturnType<Fixtures[number]>> & AdditionalOptions> &
+  } as FixtureContext<
+    FixtureOptions<ReturnType<Fixtures[number]>, false> & AdditionalOptions
+  > &
     AdditionalContext;
 
   if (
@@ -191,8 +200,8 @@ export async function withMockedFixtures<
     setup: () => test(context)
   });
 
-  context.debug('fixtures (final): %O', fixtures);
-  context.debug('context (final): %O', context);
+  contextDebug('fixtures (final): %O', fixtures);
+  contextDebug('context (final): %O', context);
 
   // ? We track this separately so we can run it when an error occurs
   let attemptedToRunDescribeRootFixture = false;
@@ -204,57 +213,55 @@ export async function withMockedFixtures<
         attemptedToRunDescribeRootFixture = true;
       }
 
-      const localizedContext =
-        name === $test
-          ? context
-          : // ? We replace the normal debug logger with a "setup" debug logger
-            { ...context, debug: context.debug.extend(`${name.toString()} ▲`) };
+      if (name === 'root') {
+        // @ts-expect-error: will be added back by root later
+        delete context.root;
+      }
 
-      localizedContext.debug.message(description);
+      if (name !== $test) {
+        // ? We replace the normal debug logger with a "setup" debug logger
+        context.debug = contextDebug.extend(`${name.toString()} ▲`);
+      }
+
+      context.debug.message(description);
 
       if (!setup) {
-        localizedContext.debug('fixture lacks a "setup" function');
+        context.debug('fixture lacks a "setup" function');
       }
 
       if (name !== $test && !teardown) {
-        localizedContext.debug('fixture lacks a "teardown" function');
+        context.debug('fixture lacks a "teardown" function');
       }
 
       try {
-        await setup?.(localizedContext);
+        await setup?.(context);
 
         if (teardown) {
           teardownFunctions.unshift([name.toString(), teardown]);
         }
       } catch (error) {
-        localizedContext.debug.error(error);
+        context.debug.error(error);
         throw error;
       }
     }
   } finally {
     if (!attemptedToRunDescribeRootFixture) {
       // ? We replace the normal debug logger with a "cleanup" debug logger
-      const localizedContext = {
-        ...context,
-        debug: context.debug.extend(`${describeRootFixtureName} ▲▼`)
-      };
+      context.debug = contextDebug.extend(`${describeRootFixtureName} ▲▼`);
 
       const fixture =
         context.fixtures.find(({ name }) => name === describeRootFixtureName) ||
         (describeRootFixture() as GenericMockFixture);
 
-      await fixture.setup?.(localizedContext);
+      await fixture.setup?.(context);
     }
 
     for (const [fixtureName, teardown] of teardownFunctions) {
       // ? We replace the normal debug logger with a "cleanup" debug logger
-      const localizedContext = {
-        ...context,
-        debug: context.debug.extend(`${fixtureName} ▼`)
-      };
+      context.debug = contextDebug.extend(`${fixtureName} ▼`);
 
-      await Promise.resolve(teardown(localizedContext)).catch(function (error: unknown) {
-        localizedContext.debug.error('ignored error in teardown function: %O', error);
+      await Promise.resolve(teardown(context)).catch(function (error: unknown) {
+        context.debug.error('ignored error in teardown function: %O', error);
       });
     }
   }
@@ -264,7 +271,7 @@ export async function withMockedFixtures<
     fn: (...args: any[]) => unknown,
     pathParametersCount: number
   ) {
-    const fsDebugger = context.debug.extend(
+    const fsDebugger = contextDebug.extend(
       `fs-${fn.name}-${crypto.randomBytes(2).readUInt16LE(0).toString(16)}`
     );
 
@@ -292,27 +299,29 @@ export function mockFixturesFactory<
   AdditionalOptions extends Record<string, unknown> = EmptyObject,
   AdditionalContext extends Record<string, unknown> = EmptyObject
 >(
-  ...[fixtures, options]: ArraySlice<
+  ...[factoryFixtures, factoryOptions]: ArraySlice<
     Parameters<
       typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
     >,
     1
   >
-) {
-  type WithMockedFixturesParameters = Parameters<
-    typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
-  >;
-
-  return function (
-    ...[test, incomingFixtures, incomingOptions]: [
-      WithMockedFixturesParameters[0],
-      ...Partial<ArraySlice<WithMockedFixturesParameters, 1>>
-    ]
-  ) {
+): (
+  ...args: [
+    Parameters<
+      typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
+    >[0],
+    Partial<
+      Parameters<
+        typeof withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>
+      >[2]
+    >
+  ]
+) => ReturnType<typeof withMockedFixtures> {
+  return function (test, incomingOptions) {
     return withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>(
       test,
-      incomingFixtures ?? fixtures,
-      incomingOptions ?? options
+      factoryFixtures,
+      { ...factoryOptions, ...incomingOptions }
     );
   };
 }

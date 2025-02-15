@@ -1,7 +1,8 @@
 import type fs from 'node:fs/promises';
 import type { AbsolutePath, RelativePath } from '@-xun/fs';
 import type { ExtendedDebugger } from 'rejoinder';
-import type { Promisable, ReadonlyDeep } from 'type-fest';
+import type { Promisable, ReadonlyDeep, Tagged, UnwrapTagged } from 'type-fest';
+import type { emptyObjectSymbol } from 'type-fest/source/empty-object';
 
 import type {
   DescribeRootFixtureContext,
@@ -54,12 +55,13 @@ import type {
 } from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 
 import type { GlobalFixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
+import type { ReturnVIfTExtendsU } from 'universe+test-mock-fixture:types/util.ts';
 
 /**
  * An object describing a mock or "dummy" filesystem structure used to simulate
  * one or more runtime environments for the package under test.
  */
-export type MockFixture<Name extends string, Context extends GenericFixtureContext> = {
+export type MockFixture<Name extends string, Context> = {
   /**
    * An alphanumeric (including hyphens and underscores) string used to identify
    * the fixture. This string _should_ be unique per fixture.
@@ -81,7 +83,7 @@ export type MockFixture<Name extends string, Context extends GenericFixtureConte
    * If a fixture provides neither a `setup` nor `teardown` function, it is
    * essentially a no-op.
    */
-  setup?: FixtureAction<Context>;
+  setup?: (context: Context) => Promisable<unknown>;
   /**
    * An optional function that is run after the `test` function completes.
    *
@@ -96,27 +98,13 @@ export type MockFixture<Name extends string, Context extends GenericFixtureConte
    * If a fixture provides neither a `setup` nor `teardown` function, it is
    * essentially a no-op.
    */
-  teardown?: FixtureAction<Context>;
+  teardown?: (context: Context) => Promisable<unknown>;
 };
-
-/**
- * @see {@link MockFixture}
- */
-export type GenericMockFixture = MockFixture<string, GenericFixtureContext>;
-
-/**
- * A context-aware potentially-asynchronous function used to perform some
- * standard action such as "setup" and "teardown" operations in
- * {@link MockFixture}s.
- */
-export type FixtureAction<Context extends GenericFixtureContext> = (
-  context: Context
-) => Promisable<unknown>;
 
 /**
  * The context object passed around between every {@link MockFixture}.
  */
-export type FixtureContext<Options extends Record<string, unknown>> = {
+export type FixtureContext<Options> = {
   /**
    * The {@link AbsolutePath} pointing to the dummy root directory.
    */
@@ -124,7 +112,13 @@ export type FixtureContext<Options extends Record<string, unknown>> = {
   /**
    * The options applicable to the current runtime.
    */
-  options: ReadonlyDeep<GlobalFixtureOptions & Options>;
+  options: ReadonlyDeep<GlobalFixtureOptions> &
+    ReadonlyDeep<
+      Omit<
+        Options extends Tagged<unknown, PropertyKey> ? UnwrapTagged<Options> : Options,
+        typeof emptyObjectSymbol
+      >
+    >;
   /**
    * The fixtures that comprise the current runtime.
    */
@@ -151,31 +145,47 @@ export type FixtureContext<Options extends Record<string, unknown>> = {
    * {@link AbsolutePath}s as such.
    */
   fs: FixtureFs;
-} & (Options extends DescribeRootFixtureOptions ? DescribeRootFixtureContext : unknown) &
-  (Options extends DummyDirectoriesFixtureOptions
-    ? DummyDirectoriesFixtureContext
-    : unknown) &
-  (Options extends DummyFilesFixtureOptions ? DummyFilesFixtureContext : unknown) &
-  (Options extends DummyNpmPackageFixtureOptions
-    ? DummyNpmPackageFixtureContext
-    : unknown) &
-  (Options extends GitRepositoryFixtureOptions ? GitRepositoryFixtureContext : unknown) &
-  (Options extends NodeImportAndRunTestFixtureOptions
-    ? NodeImportAndRunTestFixtureContext
-    : unknown) &
-  (Options extends RunTestFixtureOptions ? RunTestFixtureContext : unknown) &
-  (Options extends NpmCopyPackageFixtureOptions
-    ? NpmCopyPackageFixtureContext
-    : unknown) &
-  (Options extends NpmLinkPackageFixtureOptions
-    ? NpmLinkPackageFixtureContext
-    : unknown) &
-  (Options extends WebpackTestFixtureOptions ? WebpackTestFixtureContext : unknown);
+} & ReturnVIfTExtendsU<Options, DescribeRootFixtureOptions, DescribeRootFixtureContext> &
+  ReturnVIfTExtendsU<
+    Options,
+    DummyDirectoriesFixtureOptions,
+    DummyDirectoriesFixtureContext
+  > &
+  ReturnVIfTExtendsU<Options, DummyFilesFixtureOptions, DummyFilesFixtureContext> &
+  ReturnVIfTExtendsU<
+    Options,
+    DummyNpmPackageFixtureOptions,
+    DummyNpmPackageFixtureContext
+  > &
+  ReturnVIfTExtendsU<Options, GitRepositoryFixtureOptions, GitRepositoryFixtureContext> &
+  ReturnVIfTExtendsU<
+    Options,
+    NodeImportAndRunTestFixtureOptions,
+    NodeImportAndRunTestFixtureContext
+  > &
+  ReturnVIfTExtendsU<Options, RunTestFixtureOptions, RunTestFixtureContext> &
+  ReturnVIfTExtendsU<
+    Options,
+    NpmCopyPackageFixtureOptions,
+    NpmCopyPackageFixtureContext
+  > &
+  ReturnVIfTExtendsU<
+    Options,
+    NpmLinkPackageFixtureOptions,
+    NpmLinkPackageFixtureContext
+  > &
+  ReturnVIfTExtendsU<Options, WebpackTestFixtureOptions, WebpackTestFixtureContext>;
+
+/**
+ * @see {@link MockFixture}
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type GenericMockFixture = MockFixture<string, any>;
 
 /**
  * @see {@link FixtureContext}
  */
-export type GenericFixtureContext = FixtureContext<Record<string, unknown>>;
+export type GenericFixtureContext = FixtureContext<GlobalFixtureOptions>;
 
 /**
  * Context-sensitive asynchronous wrappers for `node:fs/promises` functions

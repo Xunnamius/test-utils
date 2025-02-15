@@ -1,7 +1,7 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
 import type { RunOptions, RunReturnType } from '@-xun/run';
-import type { RequiredDeep, SetRequired, Tagged } from 'type-fest';
+import type { SetRequired, Tagged } from 'type-fest';
 import type { NodeImportAndRunTestFixtureOptions } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 
 import type {

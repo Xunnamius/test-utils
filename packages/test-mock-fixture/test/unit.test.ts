@@ -21,7 +21,7 @@ import { runTestFixture } from 'universe+test-mock-fixture:fixtures/run-test.ts'
 import { webpackTestFixture } from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 import { findIndexVirtualPath, getTreeOutput } from 'universe+test-mock-fixture:util.ts';
 
-import type { AbsolutePath } from '@-xun/fs';
+import type { AbsolutePath, RelativePath } from '@-xun/fs';
 import type { PackageJson } from 'type-fest';
 
 jest.mock('@-xun/run');
@@ -66,35 +66,58 @@ beforeEach(() => {
 describe('::withMockedFixtures', () => {
   it('initializes dummy directory with respect to given fixtures', async () => {
     expect.hasAssertions();
-    void withMockedFixtures;
+
+    await withMockedFixtures(
+      ({ root, options, git, testResult }) => {
+        expect(root).toBeString();
+        expect(git).toBeString();
+        expect(testResult).toBeString();
+        expect(options.directoryPaths).toStrictEqual(['dir/path/1', 'dir/path/2']);
+      },
+      [
+        dummyFilesFixture,
+        dummyDirectoriesFixture,
+        dummyNpmPackageFixture,
+        gitRepositoryFixture,
+        nodeImportAndRunTestFixture
+      ],
+      {
+        performCleanup: true,
+        directoryPaths: ['dir/path/1', 'dir/path/2'] as RelativePath[],
+        initialVirtualFiles: {}
+      }
+    );
   });
 
   it('supports ad-hoc fixtures including setup and teardown', async () => {
     expect.hasAssertions();
-    void withMockedFixtures;
   });
 
   it('supports no-op fixtures (no setup/teardown)', async () => {
     expect.hasAssertions();
-    void withMockedFixtures;
   });
 
   it('adds root and describe-root fixtures only if they are not already properly added', async () => {
     expect.hasAssertions();
-    void withMockedFixtures;
   });
 
   it('wraps fs functions making them relative to the dummy root directory', async () => {
     expect.hasAssertions();
-    void withMockedFixtures;
   });
 
   it('supports errors in setup, ignores errors in teardown', async () => {
     expect.hasAssertions();
-    void withMockedFixtures;
   });
 
   it('does not clobber node_modules when dummyNpmPackage + npmCopyPackage/npmLinkPackage + webpackTest fixtures all install dependencies', async () => {
+    expect.hasAssertions();
+  });
+
+  it('throws if fixture name illegal', async () => {
+    expect.hasAssertions();
+  });
+
+  it('throws if identifier illegal', async () => {
     expect.hasAssertions();
   });
 });

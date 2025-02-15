@@ -1,4 +1,4 @@
-import { toPath, toRelativePath } from '@-xun/fs';
+import { toRelativePath } from '@-xun/fs';
 import { run, runNoRejectOnBadExit } from '@-xun/run';
 
 import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';

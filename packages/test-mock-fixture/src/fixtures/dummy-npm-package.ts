@@ -1,7 +1,7 @@
 import { toPath, toRelativePath } from '@-xun/fs';
+import { run } from '@-xun/run';
 
 import type { GenericPackage } from '@-xun/project-types';
-import { run } from '@-xun/run';
 import type { EmptyObject, Tagged } from 'type-fest';
 
 import type {
