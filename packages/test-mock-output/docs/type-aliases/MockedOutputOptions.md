@@ -8,7 +8,7 @@
 
 > **MockedOutputOptions**: `object`
 
-Defined in: [index.ts:10](https://github.com/Xunnamius/test-utils/blob/93cda7940afb86ec332e09c9cb61f62e1d6f6f36/packages/test-mock-output/src/index.ts#L10)
+Defined in: [index.ts:10](https://github.com/Xunnamius/test-utils/blob/b591ca253d1589175d84524fb3c26e8640639609/packages/test-mock-output/src/index.ts#L10)
 
 ## Type declaration
 
@@ -16,8 +16,15 @@ Defined in: [index.ts:10](https://github.com/Xunnamius/test-utils/blob/93cda7940
 
 > `optional` **passthrough**: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]
 
-Call jest.SpyInstance.mockRestore on one or more output functions
-currently being spied upon.
+Prevent mocking the implementation of one or more output spies, allowing
+output to be passed through to the original function. Said spies will
+remain functional.
+
+#### Default
+
+```ts
+[]
+```
 
 ### passthroughOutputIfDebugging?
 
