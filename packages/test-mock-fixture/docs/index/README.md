@@ -8,7 +8,7 @@
 
 ## Functions
 
-- [mockFixtureFactory](functions/mockFixtureFactory.md)
+- [mockFixturesFactory](functions/mockFixturesFactory.md)
 - [withMockedFixtures](functions/withMockedFixtures.md)
 
 ## References
@@ -130,12 +130,6 @@ Re-exports [dummyNpmPackageFixtureName](../fixtures/dummy-npm-package/variables/
 ### DummyNpmPackageFixtureOptions
 
 Re-exports [DummyNpmPackageFixtureOptions](../fixtures/dummy-npm-package/type-aliases/DummyNpmPackageFixtureOptions.md)
-
-***
-
-### FixtureAction
-
-Re-exports [FixtureAction](../types/fixtures/type-aliases/FixtureAction.md)
 
 ***
 

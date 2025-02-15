@@ -8,14 +8,20 @@
 
 > **npmLinkPackageFixture**(): [`NpmLinkPackageFixture`](../type-aliases/NpmLinkPackageFixture.md)
 
-Defined in: [fixtures/npm-link-package.ts:70](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L70)
+Defined in: [fixtures/npm-link-package.ts:76](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L76)
 
 This fixture is similar to `npmCopyPackage` except it makes a symbolic link
 (soft link) in the dummy root directory's `node_modules` subdirectory
 pointing to the package under test's `dist/` directory (which is typically
 created by `dummyNpmPackage`).
 
-It is very similar to `npm link` but without any of the baggage.
+It is also very similar to the `npm link` command but without any of the
+baggage.
+
+**This fixture should be preferred over `npmCopyPackage` whenever the package
+under test has peer dependencies.** Using `npmCopyPackage` with a package
+that has peer dependencies could manifest something akin to the dual package
+hazard.
 
 ## Returns
 

@@ -8,11 +8,16 @@
 
 > **dummyNpmPackageFixture**(): [`DummyNpmPackageFixture`](../type-aliases/DummyNpmPackageFixture.md)
 
-Defined in: [fixtures/dummy-npm-package.ts:69](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L69)
+Defined in: [fixtures/dummy-npm-package.ts:95](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L95)
 
 This fixture initializes the dummy root directory as a NPM package with a
-package.json file (optionally described by `initialVirtualFiles`) and
-node_modules subdirectory.
+`package.json` file (optionally described by `initialVirtualFiles`) and
+node_modules subdirectory. If said `package.json` file contains any
+dependencies, they will be installed courtesy of `npm install`. Additional
+packages can also be installed via
+DummyNpmPackageFixtureOptions.additionalPackagesToInstall.
+
+All packages are always installed with `--force`.
 
 If a `packageUnderTest` is provided, and it is namespaced (e.g.
 "@-xun/symbiote"), an empty directory will be created using the namespace as

@@ -8,9 +8,21 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [error.ts:8](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/error.ts#L8)
+Defined in: [error.ts:8](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/error.ts#L8)
 
 ## Type declaration
+
+### AggregateErrors()
+
+#### Parameters
+
+##### errors
+
+`unknown`[]
+
+#### Returns
+
+`string`
 
 ### ExpectedPathDoesNotExist()
 
@@ -19,6 +31,12 @@ Defined in: [error.ts:8](https://github.com/Xunnamius/test-utils/blob/14b8913d5f
 ##### expectedPath
 
 `string`
+
+#### Returns
+
+`string`
+
+### GuruMeditation()
 
 #### Returns
 

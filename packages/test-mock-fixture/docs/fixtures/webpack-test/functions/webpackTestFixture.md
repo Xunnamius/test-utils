@@ -8,11 +8,12 @@
 
 > **webpackTestFixture**(): [`WebpackTestFixture`](../type-aliases/WebpackTestFixture.md)
 
-Defined in: [fixtures/webpack-test.ts:77](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L77)
+Defined in: [fixtures/webpack-test.ts:85](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L85)
 
 This fixture initializes the dummy root directory with an index file under
-`src` (described by `initialVirtualFiles`) and then executes Webpack. The
-index file should import and test the package under test or otherwise trigger the desired Webpack functionality.
+`src` and an optional `webpack.config.mjs` file (both described by
+`initialVirtualFiles`), executes Webpack, and then attempts to run the
+resultant file (described by `fileUnderTest`).
 
 The index file must have a path matching the pattern `src/index${extension}`;
 it can have any of the following extensions: `.js`, `.cjs`, `.mjs`, `.jsx`,

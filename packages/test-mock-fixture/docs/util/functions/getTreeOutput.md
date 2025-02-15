@@ -8,7 +8,7 @@
 
 > **getTreeOutput**(`root`): `Promise`\<`string`\>
 
-Defined in: [util.ts:9](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/util.ts#L9)
+Defined in: [util.ts:9](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/util.ts#L9)
 
 ## Parameters
 

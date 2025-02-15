@@ -8,7 +8,7 @@
 
 > **GitRepositoryFixtureContext**: `Tagged`\<\{ `git`: `SimpleGit`; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
 
-Defined in: [fixtures/git-repository.ts:56](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/fixtures/git-repository.ts#L56)
+Defined in: [fixtures/git-repository.ts:57](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/git-repository.ts#L57)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

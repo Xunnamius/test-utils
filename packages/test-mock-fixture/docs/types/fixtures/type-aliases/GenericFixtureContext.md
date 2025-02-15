@@ -6,9 +6,9 @@
 
 # Type Alias: GenericFixtureContext
 
-> **GenericFixtureContext**: [`FixtureContext`](FixtureContext.md)\<`Record`\<`string`, `unknown`\>\>
+> **GenericFixtureContext**: [`FixtureContext`](FixtureContext.md)\<[`GlobalFixtureOptions`](../../options/type-aliases/GlobalFixtureOptions.md)\>
 
-Defined in: [types/fixtures.ts:178](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/types/fixtures.ts#L178)
+Defined in: [types/fixtures.ts:188](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/types/fixtures.ts#L188)
 
 ## See
 

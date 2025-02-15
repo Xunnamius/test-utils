@@ -6,9 +6,9 @@
 
 # Type Alias: GenericMockFixture
 
-> **GenericMockFixture**: [`MockFixture`](MockFixture.md)\<`string`, [`GenericFixtureContext`](GenericFixtureContext.md)\>
+> **GenericMockFixture**: [`MockFixture`](MockFixture.md)\<`string`, `any`\>
 
-Defined in: [types/fixtures.ts:105](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/types/fixtures.ts#L105)
+Defined in: [types/fixtures.ts:183](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/types/fixtures.ts#L183)
 
 ## See
 

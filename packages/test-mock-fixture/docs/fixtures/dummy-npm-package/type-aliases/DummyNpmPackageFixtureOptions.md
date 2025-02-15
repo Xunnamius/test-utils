@@ -6,9 +6,9 @@
 
 # Type Alias: DummyNpmPackageFixtureOptions
 
-> **DummyNpmPackageFixtureOptions**: `Tagged`\<\{ `packageUnderTest`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; \}, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
+> **DummyNpmPackageFixtureOptions**: `Tagged`\<\{ `additionalPackagesToInstall`: `string` \| `string`[]; `installCommand`: `"ci"` \| `"install"`; `packageUnderTest`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; `runInstallScripts`: `boolean`; \}, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
 
-Defined in: [fixtures/dummy-npm-package.ts:32](https://github.com/Xunnamius/test-utils/blob/14b8913d5f48373a9eb174660cf655c3dfccb324/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L32)
+Defined in: [fixtures/dummy-npm-package.ts:33](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L33)
 
 Contains any additional options properties this fixture expects or allows.
 

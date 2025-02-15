@@ -8,7 +8,6 @@
 
 ## Type Aliases
 
-- [FixtureAction](type-aliases/FixtureAction.md)
 - [FixtureContext](type-aliases/FixtureContext.md)
 - [FixtureFs](type-aliases/FixtureFs.md)
 - [GenericFixtureContext](type-aliases/GenericFixtureContext.md)

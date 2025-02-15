@@ -22,4 +22,5 @@
 - [index](index/README.md)
 - [types/fixtures](types/fixtures/README.md)
 - [types/options](types/options/README.md)
+- [types/util](types/util/README.md)
 - [util](util/README.md)
