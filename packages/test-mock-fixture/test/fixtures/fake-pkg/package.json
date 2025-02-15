@@ -1,0 +1,6 @@
+{
+  "name": "package-under-test",
+  "dependencies": {
+    "@-xun/no-hoist": "^1.0.0"
+  }
+}

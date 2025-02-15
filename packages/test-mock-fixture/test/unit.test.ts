@@ -1,14 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // * These tests ensure the exported interfaces under test function as expected.
 
-import { toPath } from '@-xun/fs';
+import * as actualFs from 'node:fs/promises';
+
+import { toAbsolutePath, toPath } from '@-xun/fs';
 import { run, runNoRejectOnBadExit } from '@-xun/run';
 import { glob } from 'glob';
 import { simpleGit } from 'simple-git';
 
-import { mockFixturesFactory, withMockedFixtures } from 'universe+test-mock-fixture';
+import {
+  GenericMockFixture,
+  mockFixturesFactory,
+  withMockedFixtures
+} from 'universe+test-mock-fixture';
 import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
-import { describeRootFixture } from 'universe+test-mock-fixture:fixtures/describe-root.ts';
+import {
+  describeRootFixture,
+  describeRootFixtureName
+} from 'universe+test-mock-fixture:fixtures/describe-root.ts';
 import { dummyDirectoriesFixture } from 'universe+test-mock-fixture:fixtures/dummy-directories.ts';
 import { dummyFilesFixture } from 'universe+test-mock-fixture:fixtures/dummy-files.ts';
 import { dummyNpmPackageFixture } from 'universe+test-mock-fixture:fixtures/dummy-npm-package.ts';
@@ -16,13 +25,17 @@ import { gitRepositoryFixture } from 'universe+test-mock-fixture:fixtures/git-re
 import { nodeImportAndRunTestFixture } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
 import { npmCopyPackageFixture } from 'universe+test-mock-fixture:fixtures/npm-copy-package.ts';
 import { npmLinkPackageFixture } from 'universe+test-mock-fixture:fixtures/npm-link-package.ts';
-import { rootFixture } from 'universe+test-mock-fixture:fixtures/root.ts';
+import {
+  rootFixture,
+  rootFixtureName
+} from 'universe+test-mock-fixture:fixtures/root.ts';
 import { runTestFixture } from 'universe+test-mock-fixture:fixtures/run-test.ts';
 import { webpackTestFixture } from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 import { findIndexVirtualPath, getTreeOutput } from 'universe+test-mock-fixture:util.ts';
 
 import type { AbsolutePath, RelativePath } from '@-xun/fs';
 import type { PackageJson } from 'type-fest';
+import assert from 'node:assert';
 
 jest.mock('@-xun/run');
 jest.mock('simple-git');
@@ -34,24 +47,22 @@ const mockGlob = jest.mocked(glob);
 const mockSimpleGit = jest.mocked(simpleGit);
 
 const fakeAbsolutePath = '/fake/root/path' as AbsolutePath;
-
 const fakeFixtureContext: any = {};
+const mockRunImpl = () => {
+  return Promise.resolve({
+    stdout: '',
+    stderr: '',
+    exitCode: 0
+  }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+};
 
 beforeEach(() => {
-  const mockRunImpl = () => {
-    return Promise.resolve({
-      stdout: '',
-      stderr: '',
-      exitCode: 0
-    }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
-  };
-
   mockRunNoRejectOnBadExit.mockImplementation(mockRunImpl);
   mockRun.mockImplementation(mockRunImpl);
   mockGlob.mockImplementation(() => Promise.resolve([]));
 
   const mockInit: any = { addConfig: jest.fn(() => mockInit) };
-  const mockGit: any = { init: jest.fn(() => mockInit) };
+  const mockGit: any = { init: jest.fn(() => mockInit), cwd: jest.fn() };
 
   mockSimpleGit.mockImplementation(() => mockGit);
 
@@ -68,11 +79,46 @@ describe('::withMockedFixtures', () => {
     expect.hasAssertions();
 
     await withMockedFixtures(
-      ({ root, options, git, testResult }) => {
+      async ({ root, options, git, testResult, virtualFiles }) => {
         expect(root).toBeString();
-        expect(git).toBeString();
-        expect(testResult).toBeString();
+        expect(git).toBe(simpleGit());
+        expect(testResult.exitCode).toBe(0);
         expect(options.directoryPaths).toStrictEqual(['dir/path/1', 'dir/path/2']);
+
+        expect(virtualFiles).toStrictEqual({
+          'package.json': '{"name":"dummy-pkg"}',
+          'src/index.js': 'console.log("success");'
+        });
+
+        await expect(actualFs.access(root)).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'dir', 'path', '1'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'dir', 'path', '2'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'node_modules'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'package.json'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(root, 'src', 'index.js'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.readFile(toPath(root, 'package.json'), 'utf8')
+        ).resolves.toBe('{"name":"dummy-pkg"}');
+
+        await expect(
+          actualFs.readFile(toPath(root, 'src', 'index.js'), 'utf8')
+        ).resolves.toBe('console.log("success");');
       },
       [
         dummyFilesFixture,
@@ -84,41 +130,452 @@ describe('::withMockedFixtures', () => {
       {
         performCleanup: true,
         directoryPaths: ['dir/path/1', 'dir/path/2'] as RelativePath[],
-        initialVirtualFiles: {}
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
       }
     );
   });
 
   it('supports ad-hoc fixtures including setup and teardown', async () => {
     expect.hasAssertions();
+
+    let callCount = 0;
+
+    await withMockedFixtures<
+      ((...args: never[]) => GenericMockFixture)[],
+      { customOption: boolean },
+      { customContext: boolean }
+    >(
+      async ({ options, virtualFiles, customContext }) => {
+        expect(virtualFiles['src/index.js' as RelativePath]).toBe(
+          'console.log("success");'
+        );
+
+        expect(options.customOption).toBeTrue();
+        expect(customContext).toBeTrue();
+      },
+      [
+        () => {
+          return {
+            name: 'adhoc-fixture',
+            description: 'doing some custom stuff',
+            setup(context) {
+              callCount += 1;
+              context.customContext = true;
+            },
+            teardown() {
+              callCount += 1;
+            }
+          };
+        }
+      ],
+      {
+        performCleanup: true,
+        customOption: true,
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
+      }
+    );
+
+    expect(callCount).toBe(2);
   });
 
   it('supports no-op fixtures (no setup/teardown)', async () => {
     expect.hasAssertions();
+
+    await withMockedFixtures(
+      async ({ virtualFiles }) => {
+        expect(virtualFiles['src/index.js' as RelativePath]).toBe(
+          'console.log("success");'
+        );
+      },
+      [
+        () => {
+          return {
+            name: 'adhoc-fixture',
+            description: 'doing some custom stuff'
+          };
+        }
+      ],
+      {
+        performCleanup: true,
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
+      }
+    );
   });
 
   it('adds root and describe-root fixtures only if they are not already properly added', async () => {
     expect.hasAssertions();
+
+    await withMockedFixtures(
+      async ({ fixtures }) => {
+        expect(fixtures).toHaveLength(3);
+      },
+      [
+        () => {
+          return {
+            name: rootFixtureName,
+            description: 'custom root fixture'
+          };
+        },
+        () => {
+          return {
+            name: rootFixtureName,
+            description: 'erroneously duplicated root fixture'
+          };
+        },
+        () => {
+          return {
+            name: describeRootFixtureName,
+            description: 'custom describe-root fixture'
+          };
+        }
+      ],
+      { performCleanup: true }
+    );
   });
 
   it('wraps fs functions making them relative to the dummy root directory', async () => {
     expect.hasAssertions();
+
+    await withMockedFixtures(
+      async ({ root, fs }) => {
+        await fs.writeFile('fake.js', 'console.log("hi");');
+        await expect(fs.readFile('fake.js', 'utf8')).resolves.toBe('console.log("hi");');
+        await expect(actualFs.readFile(toPath(root, 'fake.js'), 'utf8')).resolves.toBe(
+          'console.log("hi");'
+        );
+      },
+      [
+        dummyFilesFixture,
+        dummyDirectoriesFixture,
+        dummyNpmPackageFixture,
+        gitRepositoryFixture,
+        nodeImportAndRunTestFixture
+      ],
+      {
+        performCleanup: true,
+        directoryPaths: ['dir/path/1', 'dir/path/2'] as RelativePath[],
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
+      }
+    );
   });
 
   it('supports errors in setup, ignores errors in teardown', async () => {
     expect.hasAssertions();
+
+    {
+      let callCount = 0;
+
+      await expect(
+        withMockedFixtures(
+          async () => {
+            expect('should not be called').toBeFalse();
+          },
+          [
+            () => {
+              return {
+                name: rootFixtureName,
+                description: 'custom root fixture',
+                setup() {
+                  callCount += 1;
+                  throw new Error('badness');
+                }
+              };
+            },
+            () => {
+              return {
+                name: 'custom-1',
+                description: 'custom',
+                setup() {
+                  callCount += 1;
+                }
+              };
+            },
+            () => {
+              return {
+                name: 'custom-2',
+                description: 'custom',
+                setup() {
+                  callCount += 1;
+                }
+              };
+            }
+          ],
+          { performCleanup: true }
+        )
+      ).rejects.toMatchObject({
+        message: ErrorMessage.AggregateErrors(['Error: badness']),
+        errors: [expect.objectContaining({ message: 'badness' })]
+      });
+
+      expect(callCount).toBe(1);
+    }
+
+    {
+      let callCount = 0;
+
+      await expect(
+        withMockedFixtures(
+          async () => {
+            callCount += 1;
+          },
+          [
+            () => {
+              return {
+                name: rootFixtureName,
+                description: 'custom root fixture',
+                teardown() {
+                  callCount += 1;
+                  throw new Error('badness-1');
+                }
+              };
+            },
+            () => {
+              return {
+                name: 'custom-1',
+                description: 'custom',
+                teardown() {
+                  callCount += 1;
+                  throw new Error('badness-2');
+                }
+              };
+            },
+            () => {
+              return {
+                name: 'custom-2',
+                description: 'custom',
+                teardown() {
+                  callCount += 1;
+                  throw new Error('badness-3');
+                }
+              };
+            }
+          ],
+          { performCleanup: true }
+        )
+      ).rejects.toMatchObject({
+        message: ErrorMessage.AggregateErrors([
+          'Error: badness-3',
+          'Error: badness-2',
+          'Error: badness-1'
+        ]),
+        errors: [
+          expect.objectContaining({ message: 'badness-3' }),
+          expect.objectContaining({ message: 'badness-2' }),
+          expect.objectContaining({ message: 'badness-1' })
+        ]
+      });
+
+      expect(callCount).toBe(4);
+    }
   });
 
-  it('does not clobber node_modules when dummyNpmPackage + npmCopyPackage/npmLinkPackage + webpackTest fixtures all install dependencies', async () => {
+  it('does not clobber node_modules when dummyNpmPackage + npmCopyPackage + webpackTest fixtures all install dependencies', async () => {
     expect.hasAssertions();
+
+    let counter = 0;
+
+    mockGlob.mockImplementation(jest.requireActual<typeof import('glob')>('glob').glob);
+    mockRun.mockImplementation(async (...args) => {
+      if (args[1]?.includes('install')) {
+        const targets = args[1].filter(
+          (arg) => arg !== 'install' && !arg.startsWith('-')
+        );
+
+        if (!targets.length) {
+          targets.push(`@-xun/no-hoist-${++counter}`);
+        }
+
+        await Promise.all(
+          targets.map(async (target) => {
+            assert(args[2]?.cwd);
+            const targetPath = toPath(String(args[2].cwd), 'node_modules', target);
+
+            await actualFs.mkdir(targetPath, { recursive: true });
+            await actualFs.writeFile(
+              toPath(targetPath, 'package.json'),
+              JSON.stringify({ name: target })
+            );
+          })
+        );
+      }
+
+      return mockRunImpl();
+    });
+
+    await withMockedFixtures(
+      async ({ root, testResult }) => {
+        expect(testResult.exitCode).toBe(0);
+
+        const nodeModulesPath = toPath(root, 'node_modules');
+        const subNodeModulesPath = toPath(
+          root,
+          'node_modules',
+          'package-under-test',
+          'node_modules'
+        );
+
+        await expect(
+          actualFs.access(toPath(nodeModulesPath, '@-xun', 'no-hoist-1'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(nodeModulesPath, 'package-under-test'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(subNodeModulesPath, '@-xun', 'no-hoist-2'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(nodeModulesPath, 'webpack-cli'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          // ? Not a valid package name, but it'll do our intents and purposes
+          actualFs.access(toPath(nodeModulesPath, 'webpack@latest'))
+        ).resolves.toBeUndefined();
+      },
+      [dummyNpmPackageFixture, npmCopyPackageFixture, webpackTestFixture],
+      {
+        performCleanup: true,
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' },
+        packageUnderTest: {
+          root: toPath(toAbsolutePath(__dirname), 'fixtures', 'fake-pkg'),
+          attributes: { cjs: true },
+          json: { name: 'package-under-test', files: ['index.js'] }
+        },
+        webpackVersion: 'latest',
+        fileUnderTest: 'output.js'
+      }
+    );
+  });
+
+  it('does not clobber node_modules when dummyNpmPackage + npmLinkPackage + webpackTest fixtures all install dependencies', async () => {
+    expect.hasAssertions();
+
+    let counter = 0;
+
+    mockGlob.mockImplementation(jest.requireActual<typeof import('glob')>('glob').glob);
+    mockRun.mockImplementation(async (...args) => {
+      if (args[1]?.includes('install')) {
+        const targets = args[1].filter(
+          (arg) => arg !== 'install' && !arg.startsWith('-')
+        );
+
+        if (!targets.length) {
+          targets.push(`@-xun/no-hoist-${++counter}`);
+        }
+
+        await Promise.all(
+          targets.map(async (target) => {
+            assert(args[2]?.cwd);
+            const targetPath = toPath(String(args[2].cwd), 'node_modules', target);
+
+            await actualFs.mkdir(targetPath, { recursive: true });
+            await actualFs.writeFile(
+              toPath(targetPath, 'package.json'),
+              JSON.stringify({ name: target })
+            );
+          })
+        );
+      }
+
+      return mockRunImpl();
+    });
+
+    await withMockedFixtures(
+      async ({ root, testResult }) => {
+        expect(testResult.exitCode).toBe(0);
+
+        const nodeModulesPath = toPath(root, 'node_modules');
+        const subNodeModulesPath = toPath(
+          root,
+          'node_modules',
+          'package-under-test',
+          'node_modules'
+        );
+
+        await expect(
+          actualFs.access(toPath(nodeModulesPath, '@-xun', 'no-hoist-1'))
+        ).resolves.toBeUndefined();
+
+        expect(
+          (
+            await actualFs.lstat(toPath(nodeModulesPath, 'package-under-test'))
+          ).isSymbolicLink()
+        ).toBeTrue();
+
+        await expect(
+          actualFs.access(toPath(subNodeModulesPath, '@-xun', 'no-hoist-2'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          actualFs.access(toPath(nodeModulesPath, 'webpack-cli'))
+        ).resolves.toBeUndefined();
+
+        await expect(
+          // ? Not a valid package name, but it'll do our intents and purposes
+          actualFs.access(toPath(nodeModulesPath, 'webpack@latest'))
+        ).resolves.toBeUndefined();
+      },
+      [dummyNpmPackageFixture, npmLinkPackageFixture, webpackTestFixture],
+      {
+        performCleanup: true,
+        initialVirtualFiles: { 'src/index.js': 'console.log("success");' },
+        packageUnderTest: {
+          root: toPath(toAbsolutePath(__dirname), 'fixtures', 'fake-pkg'),
+          attributes: { cjs: true },
+          json: { name: 'package-under-test', files: ['index.js'] }
+        },
+        webpackVersion: 'latest',
+        fileUnderTest: 'output.js'
+      }
+    );
   });
 
   it('throws if fixture name illegal', async () => {
     expect.hasAssertions();
+
+    await expect(
+      withMockedFixtures(
+        async () => expect('should never be called').toBeFalse(),
+        [
+          () => {
+            return {
+              name: 'illegal name',
+              description: 'doing some custom stuff'
+            };
+          }
+        ],
+        { performCleanup: true }
+      )
+    ).rejects.toMatchObject({
+      message: ErrorMessage.NonAlphaNumericIdentifier('fixtures[0].name', 'illegal name')
+    });
   });
 
   it('throws if identifier illegal', async () => {
     expect.hasAssertions();
+
+    await expect(
+      withMockedFixtures(
+        async () => expect('should never be called').toBeFalse(),
+        [
+          () => {
+            return {
+              name: 'legal-name',
+              description: 'doing some custom stuff'
+            };
+          }
+        ],
+        { performCleanup: true, identifier: 'illegal identifier' }
+      )
+    ).rejects.toMatchObject({
+      message: ErrorMessage.NonAlphaNumericIdentifier(
+        'options.identifier',
+        'illegal identifier'
+      )
+    });
   });
 });
 
@@ -272,13 +729,13 @@ describe('<fixtures>', () => {
   describe('::dummyFiles', () => {
     const mockedMkdir = jest.fn();
     const mockedWriteFile = jest.fn();
-    const mockedIsAccessible = jest.fn(() => false);
+    const mockedIsAccessible = jest.fn();
 
     beforeEach(() => {
       fakeFixtureContext.fs = {
         mkdir: mockedMkdir,
         writeFile: mockedWriteFile,
-        isAccessible: mockedIsAccessible
+        isAccessible: mockedIsAccessible.mockImplementation(() => false)
       };
     });
 
@@ -687,8 +1144,6 @@ describe('<fixtures>', () => {
     const mockedMkdir = jest.fn();
     const mockedCp = jest.fn();
     const mockedWriteFile = jest.fn();
-    const mockedRename = jest.fn();
-    const mockedRm = jest.fn();
 
     let destinationPath: AbsolutePath;
 
@@ -719,9 +1174,7 @@ describe('<fixtures>', () => {
       fakeFixtureContext.fs = {
         mkdir: mockedMkdir,
         cp: mockedCp,
-        writeFile: mockedWriteFile,
-        rename: mockedRename,
-        rm: mockedRm
+        writeFile: mockedWriteFile
       };
 
       destinationPath = toPath(

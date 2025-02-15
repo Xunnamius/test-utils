@@ -239,25 +239,6 @@ export function npmCopyPackageFixture(): NpmCopyPackageFixture {
           env: { NODE_ENV: 'production', CI: 'true' }
         }
       );
-
-      await fs.rename('node_modules', 'node_modules_old');
-
-      await fs.rename(
-        toPath('node_modules_old', nameUnderTest, 'node_modules'),
-        'node_modules'
-      );
-
-      await fs.rename(
-        toPath('node_modules_old', nameUnderTest),
-        toPath('node_modules', nameUnderTest)
-      );
-
-      await fs.rm('node_modules_old', {
-        force: true,
-        recursive: true,
-        maxRetries: 10,
-        retryDelay: 250
-      });
     }
   };
 }

@@ -9,8 +9,19 @@ export const ErrorMessage = {
   RootAccessedTooEarly() {
     return `fixture "${rootFixtureName}" has not set context.root yet`;
   },
+  AggregateErrors(errors: unknown[]) {
+    const hasMultipleErrors = errors.length > 1;
+    return `${
+      hasMultipleErrors ? 'one or more errors' : 'an error'
+    } occurred during fixture execution:${hasMultipleErrors ? '\n\n' : ' '}${errors
+      .map((error, index) => `${hasMultipleErrors ? `${index}. ` : ''}${String(error)}`)
+      .join('\n')}`;
+  },
   ExpectedPathDoesNotExist(expectedPath: string) {
     return `expected "${expectedPath}" to exist and be accessible but it is not`;
+  },
+  GuruMeditation() {
+    return 'an impossible scenario occurred';
   },
   MissingVirtualFile(key: string) {
     return `could not find virtual file: ${key}`;

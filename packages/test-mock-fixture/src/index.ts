@@ -28,6 +28,7 @@ import type {
 } from 'universe+test-mock-fixture:types/fixtures.ts';
 
 import type { FixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
+import assert from 'node:assert';
 
 const defaultTestIdentifier = 'fixtures-test';
 const alphaNumericRegExp = /^[a-z0-9-_]+$/i;
@@ -174,7 +175,7 @@ export async function withMockedFixtures<
 
   let sawDescribeRootFixture = false;
 
-  for (const [index, fixture] of context.fixtures.entries()) {
+  for (const [index, fixture] of context.fixtures.entries().toArray()) {
     if (fixture.name === describeRootFixtureName) {
       sawDescribeRootFixture = true;
     }
@@ -189,7 +190,7 @@ export async function withMockedFixtures<
   }
 
   if (!sawDescribeRootFixture) {
-    context.fixtures.push(describeRootFixture() as GenericMockFixture);
+    context.fixtures.push(describeRootFixture());
   }
 
   // ? A pseudo-fixture responsible for running the test function is technically
@@ -205,6 +206,8 @@ export async function withMockedFixtures<
 
   // ? We track this separately so we can run it when an error occurs
   let attemptedToRunDescribeRootFixture = false;
+  // ? Track setup function error and teardown errors and report them all
+  const errors: unknown[] = [];
   const teardownFunctions: [string, NonNullable<GenericMockFixture['teardown']>][] = [];
 
   try {
@@ -244,15 +247,18 @@ export async function withMockedFixtures<
         throw error;
       }
     }
+  } catch (error) {
+    errors.push(error);
   } finally {
     if (!attemptedToRunDescribeRootFixture) {
       // ? We replace the normal debug logger with a "cleanup" debug logger
       context.debug = contextDebug.extend(`${describeRootFixtureName} ▲▼`);
 
-      const fixture =
-        context.fixtures.find(({ name }) => name === describeRootFixtureName) ||
-        (describeRootFixture() as GenericMockFixture);
+      const fixture = context.fixtures.find(
+        ({ name }) => name === describeRootFixtureName
+      );
 
+      assert(fixture, ErrorMessage.GuruMeditation());
       await fixture.setup?.(context);
     }
 
@@ -260,10 +266,15 @@ export async function withMockedFixtures<
       // ? We replace the normal debug logger with a "cleanup" debug logger
       context.debug = contextDebug.extend(`${fixtureName} ▼`);
 
-      await Promise.resolve(teardown(context)).catch(function (error: unknown) {
+      await (async () => teardown(context))().catch(function (error: unknown) {
+        errors.push(error);
         context.debug.error('ignored error in teardown function: %O', error);
       });
     }
+  }
+
+  if (errors.length) {
+    throw new AggregateError(errors, ErrorMessage.AggregateErrors(errors));
   }
 
   function wrapFsFunction(
