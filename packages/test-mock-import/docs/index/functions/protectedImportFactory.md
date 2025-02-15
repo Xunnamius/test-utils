@@ -6,41 +6,45 @@
 
 # Function: protectedImportFactory()
 
-> **protectedImportFactory**\<`T`\>(`path`): (`factoryOptions`?) => `Promise`\<`T`\>
+> **protectedImportFactory**\<`Module`\>(...`__namedParameters`): \<`LocalModule`\>(`__namedParameters`) => `Promise`\<`LocalModule`\>
 
-Defined in: [index.ts:83](https://github.com/Xunnamius/test-utils/blob/9033e9ea3146afb87c480e2950dbcd9de7baa843/packages/test-mock-import/src/index.ts#L83)
+Defined in: [index.ts:99](https://github.com/Xunnamius/test-utils/blob/8acdc11ae9e10a8615a49f1627984159c2f4cfc9/packages/test-mock-import/src/index.ts#L99)
 
-Returns a function that, when invoked, performs a module import as if it were
-being imported for the first time.
+Returns a function that, when invoked, performs a CJS module import (via
+`require`) as if it were being imported for the first time. Also awaits the
+import result and protects the caller from any calls to `process.exit` from
+the imported module.
 
 Use `expectedExitCode` when the import is expected to terminate with a
 specific exit code.
 
 ## Type Parameters
 
-• **T**
+• **Module**
 
 ## Parameters
 
-### path
+### \_\_namedParameters
 
-`string`
+...\[`string` \| `AbsolutePath`, [`IsolatedImportOptions`](../type-aliases/IsolatedImportOptions.md)\]
 
 ## Returns
 
 `Function`
 
+### Type Parameters
+
+• **LocalModule** = `Module`
+
 ### Parameters
 
-#### factoryOptions?
+#### \_\_namedParameters
 
-##### expectedExitCode
-
-`number`
+[`IsolatedImportOptions`](../type-aliases/IsolatedImportOptions.md) & `object` = `{}`
 
 ### Returns
 
-`Promise`\<`T`\>
+`Promise`\<`LocalModule`\>
 
 ## See
 

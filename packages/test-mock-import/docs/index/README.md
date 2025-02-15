@@ -8,6 +8,7 @@
 
 ## Type Aliases
 
+- [AsDefault](type-aliases/AsDefault.md)
 - [IsolatedImportOptions](type-aliases/IsolatedImportOptions.md)
 
 ## Functions
