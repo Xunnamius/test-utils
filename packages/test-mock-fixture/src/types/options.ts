@@ -1,4 +1,5 @@
 import type { RelativePath } from '@-xun/fs';
+import type { IfAny } from 'type-fest';
 
 import type {
   DescribeRootFixture,
@@ -102,58 +103,67 @@ export type FixtureOptions<
   MockFixture,
   ShouldUnwrap extends boolean = true
 > = GlobalFixtureOptions &
-  ReturnVIfTExtendsU<
-    DescribeRootFixture,
+  IfAny<
     MockFixture,
-    DescribeRootFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    DummyDirectoriesFixture,
-    MockFixture,
-    DummyDirectoriesFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    DummyFilesFixture,
-    MockFixture,
-    DummyFilesFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    DummyNpmPackageFixture,
-    MockFixture,
-    DummyNpmPackageFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    GitRepositoryFixture,
-    MockFixture,
-    GitRepositoryFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    NodeImportAndRunTestFixture,
-    MockFixture,
-    NodeImportAndRunTestFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<RunTestFixture, MockFixture, RunTestFixtureOptions, ShouldUnwrap> &
-  ReturnVIfTExtendsU<
-    NpmCopyPackageFixture,
-    MockFixture,
-    NpmCopyPackageFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    NpmLinkPackageFixture,
-    MockFixture,
-    NpmLinkPackageFixtureOptions,
-    ShouldUnwrap
-  > &
-  ReturnVIfTExtendsU<
-    WebpackTestFixture,
-    MockFixture,
-    WebpackTestFixtureOptions,
-    ShouldUnwrap
+    unknown,
+    ReturnVIfTExtendsU<
+      DescribeRootFixture,
+      MockFixture,
+      DescribeRootFixtureOptions,
+      ShouldUnwrap
+    > &
+      ReturnVIfTExtendsU<
+        DummyDirectoriesFixture,
+        MockFixture,
+        DummyDirectoriesFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        DummyFilesFixture,
+        MockFixture,
+        DummyFilesFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        DummyNpmPackageFixture,
+        MockFixture,
+        DummyNpmPackageFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        GitRepositoryFixture,
+        MockFixture,
+        GitRepositoryFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        NodeImportAndRunTestFixture,
+        MockFixture,
+        NodeImportAndRunTestFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        RunTestFixture,
+        MockFixture,
+        RunTestFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        NpmCopyPackageFixture,
+        MockFixture,
+        NpmCopyPackageFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        NpmLinkPackageFixture,
+        MockFixture,
+        NpmLinkPackageFixtureOptions,
+        ShouldUnwrap
+      > &
+      ReturnVIfTExtendsU<
+        WebpackTestFixture,
+        MockFixture,
+        WebpackTestFixtureOptions,
+        ShouldUnwrap
+      >
   >;
