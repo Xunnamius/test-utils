@@ -46,6 +46,7 @@ export type WebpackTestFixtureOptions = Tagged<
      */
     fileUnderTest: string;
   },
+  // TODO: & Pick<NodeImportAndRunTestFixtureOptions, 'runWith'>,
   typeof webpackTestFixtureName
 >;
 
@@ -76,7 +77,10 @@ export type WebpackTestFixtureContext = Tagged<
  * This fixture initializes the dummy root directory with an index file under
  * `src` and an optional `webpack.config.mjs` file (both described by
  * `initialVirtualFiles`), executes Webpack, and then attempts to run the
- * resultant file (described by `fileUnderTest`).
+ * resultant file (described by `fileUnderTest`) using Node.js.
+ *
+ * Node.js is invoked with the `NODE_NO_WARNINGS=1`, `NO_COLOR=true`, and
+ * `DEBUG_COLORS=false` environment variables.
  *
  * The index file must have a path matching the pattern `src/index${extension}`;
  * it can have any of the following extensions: `.js`, `.cjs`, `.mjs`, `.jsx`,
@@ -115,10 +119,14 @@ export function webpackTestFixture(): WebpackTestFixture {
 
       await run('npx', ['webpack'], { cwd: root });
 
-      context.testResult = await runNoRejectOnBadExit('node', [
-        '--no-warnings',
-        options.fileUnderTest
-      ]);
+      context.testResult = await runNoRejectOnBadExit(
+        'node',
+        ['--no-warnings', options.fileUnderTest],
+        {
+          cwd: root,
+          env: { NO_COLOR: 'true', DEBUG_COLORS: 'false', NODE_NO_WARNINGS: '1' }
+        }
+      );
     }
   };
 }

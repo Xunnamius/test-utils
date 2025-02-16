@@ -31,7 +31,9 @@ export type RunTestFixture = MockFixture<
  * @see {@link runTestFixture}
  */
 export type RunTestFixtureOptions = Tagged<
-  {
+  // ? We do it this way to preserve the intellisense comments while modifying
+  // ? the type
+  Pick<NodeImportAndRunTestFixtureOptions, 'runWith'> & {
     runWith: SetRequired<
       NonNullable<NodeImportAndRunTestFixtureOptions['runWith']>,
       'binary'
@@ -78,7 +80,9 @@ export function runTestFixture(): RunTestFixture {
         cwd: root,
         ...(runnerOptions as RunOptions),
         env: {
+          NO_COLOR: 'true',
           DEBUG_COLORS: 'false',
+          NODE_NO_WARNINGS: '1',
           ...runnerOptions.env
         }
       });

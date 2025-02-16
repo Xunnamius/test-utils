@@ -1662,7 +1662,11 @@ describe('<fixtures>', () => {
       ]);
 
       expect(mockRunNoRejectOnBadExit.mock.calls).toStrictEqual([
-        ['node', expect.arrayContaining([fakeFixtureContext.options.fileUnderTest])]
+        [
+          'node',
+          expect.arrayContaining([fakeFixtureContext.options.fileUnderTest]),
+          expect.anything()
+        ]
       ]);
     });
 

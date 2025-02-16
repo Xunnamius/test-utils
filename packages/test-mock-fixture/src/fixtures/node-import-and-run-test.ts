@@ -56,6 +56,10 @@ export type NodeImportAndRunTestFixtureOptions = Tagged<
       /**
        * The options passed to `@-xun/run`'s {@link runNoRejectOnBadExit}
        * function.
+       *
+       * By default, the runner is invoked with the `NODE_NO_WARNINGS=1`,
+       * `NO_COLOR=true`, and `DEBUG_COLORS=false` environment variables, among
+       * other options.
        */
       runnerOptions?: RunOptions;
     };
@@ -125,7 +129,9 @@ export function nodeImportAndRunTestFixture(): NodeImportAndRunTestFixture {
         cwd: root,
         ...(runnerOptions as RunOptions),
         env: {
+          NO_COLOR: 'true',
           DEBUG_COLORS: 'false',
+          NODE_NO_WARNINGS: '1',
           ...runnerOptions?.env
         }
       });
