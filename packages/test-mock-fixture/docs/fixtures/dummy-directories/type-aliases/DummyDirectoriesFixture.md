@@ -8,7 +8,7 @@
 
 > **DummyDirectoriesFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`DummyDirectoriesFixtureOptions`](DummyDirectoriesFixtureOptions.md)\>\>
 
-Defined in: [fixtures/dummy-directories.ts:16](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L16)
+Defined in: [fixtures/dummy-directories.ts:16](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L16)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

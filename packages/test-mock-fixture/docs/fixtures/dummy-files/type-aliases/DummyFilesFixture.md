@@ -8,7 +8,7 @@
 
 > **DummyFilesFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`dummyFilesFixtureName`](../variables/dummyFilesFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`DummyFilesFixtureOptions`](DummyFilesFixtureOptions.md)\>\>
 
-Defined in: [fixtures/dummy-files.ts:19](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L19)
+Defined in: [fixtures/dummy-files.ts:19](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L19)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

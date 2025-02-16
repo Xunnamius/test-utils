@@ -8,7 +8,7 @@
 
 > **DummyNpmPackageFixtureOptions**: `Tagged`\<\{ `additionalPackagesToInstall`: `string` \| `string`[]; `installCommand`: `"ci"` \| `"install"`; `packageUnderTest`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; `runInstallScripts`: `boolean`; \}, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
 
-Defined in: [fixtures/dummy-npm-package.ts:33](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L33)
+Defined in: [fixtures/dummy-npm-package.ts:33](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L33)
 
 Contains any additional options properties this fixture expects or allows.
 

@@ -8,4 +8,4 @@
 
 > `const` **dummyDirectoriesFixtureName**: `"dummy-directories"` = `'dummy-directories'`
 
-Defined in: [fixtures/dummy-directories.ts:9](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L9)
+Defined in: [fixtures/dummy-directories.ts:9](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L9)
