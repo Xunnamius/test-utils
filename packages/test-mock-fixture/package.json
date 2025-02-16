@@ -80,16 +80,9 @@
     "core-js": "^3.40.0",
     "glob": "^11.0.1",
     "rejoinder": "^1.2.4",
+    "simple-git": "^3.27.0",
     "type-fest": "^4.34.1",
     "unique-filename": "^4.0.0"
-  },
-  "peerDependencies": {
-    "simple-git": "^3.27.0"
-  },
-  "peerDependenciesMeta": {
-    "simple-git": {
-      "optional": true
-    }
   },
   "engines": {
     "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
