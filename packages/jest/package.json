@@ -69,7 +69,7 @@
     "@-xun/test-mock-argv": "^1.0.2",
     "@-xun/test-mock-env": "^1.0.3",
     "@-xun/test-mock-exit": "^1.0.2",
-    "@-xun/test-mock-fixture": "^1.0.2",
+    "@-xun/test-mock-fixture": "^1.1.2",
     "@-xun/test-mock-import": "^1.0.3",
     "@-xun/test-mock-output": "^1.0.2",
     "bidirectional-resolve": "^1.0.1",
