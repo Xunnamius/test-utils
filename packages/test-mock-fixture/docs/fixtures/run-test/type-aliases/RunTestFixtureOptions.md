@@ -6,9 +6,9 @@
 
 # Type Alias: RunTestFixtureOptions
 
-> **RunTestFixtureOptions**: `Tagged`\<`Pick`\<[`NodeImportAndRunTestFixtureOptions`](../../node-import-and-run-test/type-aliases/NodeImportAndRunTestFixtureOptions.md), `"runWith"`\> & `object`, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
+> **RunTestFixtureOptions**: `Tagged`\<\{ `runWith`: \{ `args`: `string`[]; `binary`: `string`; `runnerOptions`: `RunOptions`; \}; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
 
-Defined in: [fixtures/run-test.ts:33](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/run-test.ts#L33)
+Defined in: [fixtures/run-test.ts:32](https://github.com/Xunnamius/test-utils/blob/e96d066a8d31079cb061bc2dac285562fbf7b708/packages/test-mock-fixture/src/fixtures/run-test.ts#L32)
 
 Contains any additional options properties this fixture expects or allows.
 

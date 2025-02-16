@@ -8,4 +8,4 @@
 
 > `const` **runTestFixtureName**: `"run-test"` = `'run-test'`
 
-Defined in: [fixtures/run-test.ts:12](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/run-test.ts#L12)
+Defined in: [fixtures/run-test.ts:11](https://github.com/Xunnamius/test-utils/blob/e96d066a8d31079cb061bc2dac285562fbf7b708/packages/test-mock-fixture/src/fixtures/run-test.ts#L11)
