@@ -31,7 +31,15 @@ export type DummyFilesFixture = MockFixture<
  * @see {@link dummyFilesFixture}
  */
 export type DummyFilesFixtureOptions = Tagged<
-  Required<Pick<GlobalFixtureOptions, 'initialVirtualFiles'>>,
+  Required<Pick<GlobalFixtureOptions, 'initialVirtualFiles'>> & {
+    /**
+     * If `true` and an entry in `initialVirtualFiles` is already accessible (it
+     * already exists) when this fixture is executed, it will be overwritten.
+     *
+     * @default false
+     */
+    overwriteExisting?: boolean;
+  },
   typeof dummyFilesFixtureName
 >;
 
@@ -63,10 +71,15 @@ export function dummyFilesFixture(): DummyFilesFixture {
   return {
     name: dummyFilesFixtureName,
     description: 'creating dummy files under fixture root',
-    setup: async ({ fs, virtualFiles, debug }) => {
+    setup: async ({
+      fs,
+      virtualFiles,
+      debug,
+      options: { overwriteExisting = false }
+    }) => {
       await Promise.all(
         Object.entries(virtualFiles).map(async ([path, contents]) => {
-          if (await fs.isAccessible(path)) {
+          if (!overwriteExisting && (await fs.isAccessible(path))) {
             debug('skipped creating dummy file since it already exists: %O', path);
           } else {
             await fs.mkdir(toDirname(path), { recursive: true });

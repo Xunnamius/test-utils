@@ -886,7 +886,7 @@ describe('<fixtures>', () => {
       ]);
     });
 
-    it('does not create dummy file if it already exists', async () => {
+    it('does not overwrite dummy file if it already exists by default', async () => {
       expect.hasAssertions();
 
       mockedIsAccessible.mockImplementationOnce(() => true);
@@ -908,6 +908,35 @@ describe('<fixtures>', () => {
       ]);
 
       expect(mockedWriteFile.mock.calls).toStrictEqual([
+        ['path-2/sub/path.jsx', 'contents-2']
+      ]);
+    });
+
+    it('overwrites existing dummy file if overwriteExisting is true', async () => {
+      expect.hasAssertions();
+
+      mockedIsAccessible.mockImplementationOnce(() => true);
+      fakeFixtureContext.options.overwriteExisting = true;
+
+      await expect(
+        dummyFilesFixture().setup?.({
+          ...fakeFixtureContext,
+          virtualFiles: {
+            'path-1/2/3/4.js': 'contents-1',
+            'path-2/sub/path.jsx': 'contents-2'
+          }
+        })
+      ).resolves.toBeUndefined();
+
+      expect(mockedIsAccessible).not.toHaveBeenCalled();
+
+      expect(mockedMkdir.mock.calls).toStrictEqual([
+        ['path-1/2/3', { recursive: true }],
+        ['path-2/sub', { recursive: true }]
+      ]);
+
+      expect(mockedWriteFile.mock.calls).toStrictEqual([
+        ['path-1/2/3/4.js', 'contents-1'],
         ['path-2/sub/path.jsx', 'contents-2']
       ]);
     });
