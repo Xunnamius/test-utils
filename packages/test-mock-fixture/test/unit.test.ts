@@ -328,7 +328,7 @@ describe('::withMockedFixtures', () => {
           { performCleanup: true }
         )
       ).rejects.toMatchObject({
-        message: ErrorMessage.AggregateErrors(['Error: badness']),
+        message: ErrorMessage.AggregateErrors(['Error: badness'], undefined),
         errors: [expect.objectContaining({ message: 'badness' })]
       });
 
@@ -378,11 +378,10 @@ describe('::withMockedFixtures', () => {
           { performCleanup: true }
         )
       ).rejects.toMatchObject({
-        message: ErrorMessage.AggregateErrors([
-          'Error: badness-3',
-          'Error: badness-2',
-          'Error: badness-1'
-        ]),
+        message: ErrorMessage.AggregateErrors(
+          ['Error: badness-3', 'Error: badness-2', 'Error: badness-1'],
+          undefined
+        ),
         errors: [
           expect.objectContaining({ message: 'badness-3' }),
           expect.objectContaining({ message: 'badness-2' }),
@@ -391,6 +390,44 @@ describe('::withMockedFixtures', () => {
       });
 
       expect(callCount).toBe(4);
+    }
+  });
+
+  it('reports setup errors with root path only if performCleanup is false', async () => {
+    expect.hasAssertions();
+
+    let innerRoot: string | undefined = undefined;
+
+    {
+      const result = await withMockedFixtures(
+        async ({ root }) => {
+          innerRoot = root;
+          throw new Error('badness');
+        },
+        [],
+        { performCleanup: true }
+      ).catch((error: unknown) => error);
+
+      expect(result).toMatchObject({
+        message: ErrorMessage.AggregateErrors(['Error: badness'], undefined),
+        errors: [expect.objectContaining({ message: 'badness' })]
+      });
+    }
+
+    {
+      const result = await withMockedFixtures(
+        async ({ root }) => {
+          innerRoot = root;
+          throw new Error('badness');
+        },
+        [],
+        { performCleanup: false }
+      ).catch((error: unknown) => error);
+
+      expect(result).toMatchObject({
+        message: ErrorMessage.AggregateErrors(['Error: badness'], innerRoot),
+        errors: [expect.objectContaining({ message: 'badness' })]
+      });
     }
   });
 

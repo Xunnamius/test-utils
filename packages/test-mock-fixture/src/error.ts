@@ -9,11 +9,11 @@ export const ErrorMessage = {
   RootAccessedTooEarly() {
     return `fixture "${rootFixtureName}" has not set context.root yet`;
   },
-  AggregateErrors(errors: unknown[]) {
+  AggregateErrors(errors: unknown[], dummyRoot: string | undefined) {
     const hasMultipleErrors = errors.length > 1;
     return `${
       hasMultipleErrors ? 'one or more errors' : 'an error'
-    } occurred during fixture execution:${hasMultipleErrors ? '\n\n' : ' '}${errors
+    } occurred during fixture execution${dummyRoot ? ` (at ${dummyRoot})` : ''}:${hasMultipleErrors ? '\n\n' : ' '}${errors
       .map((error, index) => `${hasMultipleErrors ? `${index}. ` : ''}${String(error)}`)
       .join('\n')}`;
   },

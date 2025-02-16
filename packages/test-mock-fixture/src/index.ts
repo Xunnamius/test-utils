@@ -275,7 +275,13 @@ export async function withMockedFixtures<
   }
 
   if (errors.length) {
-    throw new AggregateError(errors, ErrorMessage.AggregateErrors(errors));
+    throw new AggregateError(
+      errors,
+      ErrorMessage.AggregateErrors(
+        errors,
+        context.options.performCleanup ? undefined : context.root
+      )
+    );
   }
 
   function wrapFsFunction(
