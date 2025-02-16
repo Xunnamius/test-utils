@@ -1,8 +1,7 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
 import type { RunOptions, RunReturnType } from '@-xun/run';
-import type { SetRequired, Tagged } from 'type-fest';
-import type { NodeImportAndRunTestFixtureOptions } from 'universe+test-mock-fixture:fixtures/node-import-and-run-test.ts';
+import type { Tagged } from 'type-fest';
 
 import type {
   FixtureContext,
@@ -31,13 +30,31 @@ export type RunTestFixture = MockFixture<
  * @see {@link runTestFixture}
  */
 export type RunTestFixtureOptions = Tagged<
-  // ? We do it this way to preserve the intellisense comments while modifying
-  // ? the type
-  Pick<NodeImportAndRunTestFixtureOptions, 'runWith'> & {
-    runWith: SetRequired<
-      NonNullable<NodeImportAndRunTestFixtureOptions['runWith']>,
-      'binary'
-    >;
+  {
+    /**
+     * Configure the executable used to run the test.
+     */
+    runWith: {
+      /**
+       * The binary that is executed.
+       */
+      binary: string;
+      /**
+       * The arguments passed to the binary that is executed.
+       *
+       * @default []
+       */
+      args?: string[];
+      /**
+       * The options passed to `@-xun/run`'s {@link runNoRejectOnBadExit}
+       * function.
+       *
+       * By default, the runner is invoked with the `FORCE_COLOR=false`,
+       * `NO_COLOR=true`, and `DEBUG_COLORS=false` environment variables among
+       * other options.
+       */
+      runnerOptions?: RunOptions;
+    };
   },
   typeof runTestFixtureName
 >;
@@ -80,9 +97,9 @@ export function runTestFixture(): RunTestFixture {
         cwd: root,
         ...(runnerOptions as RunOptions),
         env: {
+          FORCE_COLOR: 'false',
           NO_COLOR: 'true',
           DEBUG_COLORS: 'false',
-          NODE_NO_WARNINGS: '1',
           ...runnerOptions.env
         }
       });

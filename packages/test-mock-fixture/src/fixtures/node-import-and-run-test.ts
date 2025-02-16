@@ -57,8 +57,8 @@ export type NodeImportAndRunTestFixtureOptions = Tagged<
        * The options passed to `@-xun/run`'s {@link runNoRejectOnBadExit}
        * function.
        *
-       * By default, the runner is invoked with the `NODE_NO_WARNINGS=1`,
-       * `NO_COLOR=true`, and `DEBUG_COLORS=false` environment variables, among
+       * By default, the runner is invoked with the `FORCE_COLOR=false`,
+       * `NO_COLOR=true`, and `DEBUG_COLORS=false` environment variables among
        * other options.
        */
       runnerOptions?: RunOptions;
@@ -93,8 +93,8 @@ export type NodeImportAndRunTestFixtureContext = Tagged<
 /**
  * This fixture initializes the dummy root directory with an index file under
  * `src` (described by `initialVirtualFiles`) and then executes it using node
- * (by default). It is expected that this file import and test the package under
- * test.
+ * (by default). It is expected that this file imports and tests the package
+ * under test.
  *
  * The index file must have a path matching the pattern `src/index${extension}`
  * or `src/index.test${extension}`; it can have any of the following extensions:
@@ -129,9 +129,9 @@ export function nodeImportAndRunTestFixture(): NodeImportAndRunTestFixture {
         cwd: root,
         ...(runnerOptions as RunOptions),
         env: {
+          FORCE_COLOR: 'false',
           NO_COLOR: 'true',
           DEBUG_COLORS: 'false',
-          NODE_NO_WARNINGS: '1',
           ...runnerOptions?.env
         }
       });

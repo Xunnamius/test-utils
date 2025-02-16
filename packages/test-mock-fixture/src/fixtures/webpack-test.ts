@@ -45,8 +45,9 @@ export type WebpackTestFixtureOptions = Tagged<
      * the test, generating a {@link WebpackTestFixtureContext.testResult}.
      */
     fileUnderTest: string;
+    // TODO: add "runWith" options from run-test/node-import-and-run-test and
+    // TODO: update the `webpackTestFixture` comment (move invoke talk up here)
   },
-  // TODO: & Pick<NodeImportAndRunTestFixtureOptions, 'runWith'>,
   typeof webpackTestFixtureName
 >;
 
@@ -79,8 +80,10 @@ export type WebpackTestFixtureContext = Tagged<
  * `initialVirtualFiles`), executes Webpack, and then attempts to run the
  * resultant file (described by `fileUnderTest`) using Node.js.
  *
- * Node.js is invoked with the `NODE_NO_WARNINGS=1`, `NO_COLOR=true`, and
- * `DEBUG_COLORS=false` environment variables.
+ * Node.js is invoked with the `FORCE_COLOR=false`, `NO_COLOR=true`, and
+ * `DEBUG_COLORS=false` environment variables (among other options) as well as
+ * the `--no-warnings`, `--experimental-json-modules`, and
+ * `--experimental-vm-modules` flags.
  *
  * The index file must have a path matching the pattern `src/index${extension}`;
  * it can have any of the following extensions: `.js`, `.cjs`, `.mjs`, `.jsx`,
@@ -121,10 +124,19 @@ export function webpackTestFixture(): WebpackTestFixture {
 
       context.testResult = await runNoRejectOnBadExit(
         'node',
-        ['--no-warnings', options.fileUnderTest],
+        [
+          '--no-warnings',
+          '--experimental-json-modules',
+          '--experimental-vm-modules',
+          options.fileUnderTest
+        ],
         {
           cwd: root,
-          env: { NO_COLOR: 'true', DEBUG_COLORS: 'false', NODE_NO_WARNINGS: '1' }
+          env: {
+            FORCE_COLOR: 'false',
+            NO_COLOR: 'true',
+            DEBUG_COLORS: 'false'
+          }
         }
       );
     }
