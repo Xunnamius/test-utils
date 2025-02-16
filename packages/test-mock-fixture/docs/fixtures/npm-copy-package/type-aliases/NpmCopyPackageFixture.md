@@ -8,7 +8,7 @@
 
 > **NpmCopyPackageFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`npmCopyPackageFixtureName`](../variables/npmCopyPackageFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`NpmCopyPackageFixtureOptions`](NpmCopyPackageFixtureOptions.md)\>\>
 
-Defined in: [fixtures/npm-copy-package.ts:22](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L22)
+Defined in: [fixtures/npm-copy-package.ts:22](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L22)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

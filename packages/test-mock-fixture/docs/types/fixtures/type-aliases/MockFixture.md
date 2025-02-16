@@ -8,7 +8,7 @@
 
 > **MockFixture**\<`Name`, `Context`\>: `object`
 
-Defined in: [types/fixtures.ts:64](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/types/fixtures.ts#L64)
+Defined in: [types/fixtures.ts:64](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/types/fixtures.ts#L64)
 
 An object describing a mock or "dummy" filesystem structure used to simulate
 one or more runtime environments for the package under test.

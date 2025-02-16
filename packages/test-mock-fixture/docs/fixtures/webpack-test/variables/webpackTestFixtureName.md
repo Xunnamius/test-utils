@@ -8,4 +8,4 @@
 
 > `const` **webpackTestFixtureName**: `"webpack-test"` = `'webpack-test'`
 
-Defined in: [fixtures/webpack-test.ts:15](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L15)
+Defined in: [fixtures/webpack-test.ts:15](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L15)

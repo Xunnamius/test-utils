@@ -8,7 +8,7 @@
 
 > **npmCopyPackageFixture**(): [`NpmCopyPackageFixture`](../type-aliases/NpmCopyPackageFixture.md)
 
-Defined in: [fixtures/npm-copy-package.ts:137](https://github.com/Xunnamius/test-utils/blob/4d9800c324b9a83f9e55d66c6e4ccd83762bef71/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L137)
+Defined in: [fixtures/npm-copy-package.ts:137](https://github.com/Xunnamius/test-utils/blob/ba2bb54f0f2d41708034e4076c72856c63c5167a/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L137)
 
 This fixture is similar to `npmLinkPackage` except it copies all of the
 distributables, identified by the package under test's `package.json` `files`
