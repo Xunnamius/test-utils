@@ -8,7 +8,7 @@
 
 > **ReturnVIfTExtendsU**\<`T`, `U`, `V`, `ShouldUnwrap`\>: `T` *extends* `U` ? `MaybeUnwrap`\<`V`, `ShouldUnwrap`\> : `unknown`
 
-Defined in: [types/util.ts:3](https://github.com/Xunnamius/test-utils/blob/e96d066a8d31079cb061bc2dac285562fbf7b708/packages/test-mock-fixture/src/types/util.ts#L3)
+Defined in: [types/util.ts:3](https://github.com/Xunnamius/test-utils/blob/beb85e0df50e813590ae799295cdbfb96ea92ab4/packages/test-mock-fixture/src/types/util.ts#L3)
 
 ## Type Parameters
 

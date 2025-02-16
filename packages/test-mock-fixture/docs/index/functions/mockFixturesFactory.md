@@ -8,7 +8,7 @@
 
 > **mockFixturesFactory**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(...`__namedParameters`): (...`args`) => `Promise`\<`void`\>
 
-Defined in: [index.ts:309](https://github.com/Xunnamius/test-utils/blob/e96d066a8d31079cb061bc2dac285562fbf7b708/packages/test-mock-fixture/src/index.ts#L309)
+Defined in: [index.ts:315](https://github.com/Xunnamius/test-utils/blob/beb85e0df50e813590ae799295cdbfb96ea92ab4/packages/test-mock-fixture/src/index.ts#L315)
 
 Returns a function allowing for the creation of many mock (or "dummy")
 filesystem structures, each used to simulate one or more runtime environments
