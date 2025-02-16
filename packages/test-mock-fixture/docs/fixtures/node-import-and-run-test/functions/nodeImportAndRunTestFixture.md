@@ -8,7 +8,7 @@
 
 > **nodeImportAndRunTestFixture**(): [`NodeImportAndRunTestFixture`](../type-aliases/NodeImportAndRunTestFixture.md)
 
-Defined in: [fixtures/node-import-and-run-test.ts:99](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L99)
+Defined in: [fixtures/node-import-and-run-test.ts:103](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L103)
 
 This fixture initializes the dummy root directory with an index file under
 `src` (described by `initialVirtualFiles`) and then executes it using node

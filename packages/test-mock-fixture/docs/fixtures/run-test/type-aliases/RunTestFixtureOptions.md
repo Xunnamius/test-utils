@@ -6,9 +6,9 @@
 
 # Type Alias: RunTestFixtureOptions
 
-> **RunTestFixtureOptions**: `Tagged`\<\{ `runWith`: `SetRequired`\<`NonNullable`\<[`NodeImportAndRunTestFixtureOptions`](../../node-import-and-run-test/type-aliases/NodeImportAndRunTestFixtureOptions.md)\[`"runWith"`\]\>, `"binary"`\>; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
+> **RunTestFixtureOptions**: `Tagged`\<`Pick`\<[`NodeImportAndRunTestFixtureOptions`](../../node-import-and-run-test/type-aliases/NodeImportAndRunTestFixtureOptions.md), `"runWith"`\> & `object`, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
 
-Defined in: [fixtures/run-test.ts:33](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/run-test.ts#L33)
+Defined in: [fixtures/run-test.ts:33](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/run-test.ts#L33)
 
 Contains any additional options properties this fixture expects or allows.
 

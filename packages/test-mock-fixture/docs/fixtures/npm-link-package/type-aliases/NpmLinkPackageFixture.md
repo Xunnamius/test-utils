@@ -8,7 +8,7 @@
 
 > **NpmLinkPackageFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`npmLinkPackageFixtureName`](../variables/npmLinkPackageFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`NpmLinkPackageFixtureOptions`](NpmLinkPackageFixtureOptions.md)\>\>
 
-Defined in: [fixtures/npm-link-package.ts:20](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L20)
+Defined in: [fixtures/npm-link-package.ts:20](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L20)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

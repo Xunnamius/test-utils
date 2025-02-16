@@ -8,7 +8,7 @@
 
 > **dummyDirectoriesFixture**(): [`DummyDirectoriesFixture`](../type-aliases/DummyDirectoriesFixture.md)
 
-Defined in: [fixtures/dummy-directories.ts:66](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L66)
+Defined in: [fixtures/dummy-directories.ts:66](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L66)
 
 This fixture writes out the directories described by `initialDirectories` to
 the filesystem. Subdirectory paths of any depth are allowed, any non-existent

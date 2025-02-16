@@ -8,7 +8,7 @@
 
 > **WebpackTestFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`webpackTestFixtureName`](../variables/webpackTestFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`WebpackTestFixtureOptions`](WebpackTestFixtureOptions.md)\>\>
 
-Defined in: [fixtures/webpack-test.ts:22](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L22)
+Defined in: [fixtures/webpack-test.ts:22](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L22)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

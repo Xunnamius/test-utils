@@ -8,7 +8,7 @@
 
 > **DummyFilesFixtureContext**: `Tagged`\<`EmptyObject`, *typeof* [`dummyFilesFixtureName`](../variables/dummyFilesFixtureName.md)\>
 
-Defined in: [fixtures/dummy-files.ts:59](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L59)
+Defined in: [fixtures/dummy-files.ts:59](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L59)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

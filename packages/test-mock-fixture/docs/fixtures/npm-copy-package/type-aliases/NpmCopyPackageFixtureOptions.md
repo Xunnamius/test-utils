@@ -8,7 +8,7 @@
 
 > **NpmCopyPackageFixtureOptions**: `Tagged`\<\{ `ignorePackageDependencies`: \{ `bundledDependencies`: `boolean`; `dependencies`: `boolean`; `devDependencies`: `boolean`; `optionalDependencies`: `boolean`; `peerDependencies`: `boolean`; `peerDependenciesMeta`: `boolean`; \}; `packageUnderTest`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; `runInstallScripts`: `boolean`; \}, *typeof* [`npmCopyPackageFixtureName`](../variables/npmCopyPackageFixtureName.md)\>
 
-Defined in: [fixtures/npm-copy-package.ts:36](https://github.com/Xunnamius/test-utils/blob/5def0ad49a4eadefc61d6daed0a34b59fa75efb7/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L36)
+Defined in: [fixtures/npm-copy-package.ts:36](https://github.com/Xunnamius/test-utils/blob/c1219168b725e263abb557d96549b7b98bdb4b4c/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L36)
 
 Contains any additional options properties this fixture expects or allows.
 
