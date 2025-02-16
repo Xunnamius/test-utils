@@ -4,7 +4,7 @@
 import assert from 'node:assert';
 import * as actualFs from 'node:fs/promises';
 
-import { toAbsolutePath, toPath } from '@-xun/fs';
+import { toAbsolutePath, toPath, toRelativePath } from '@-xun/fs';
 import { run, runNoRejectOnBadExit } from '@-xun/run';
 import { glob } from 'glob';
 import { simpleGit } from 'simple-git';
@@ -177,6 +177,30 @@ describe('::withMockedFixtures', () => {
     );
 
     expect(callCount).toBe(2);
+  });
+
+  it('spreads initialVirtualFiles into virtualFiles', async () => {
+    expect.hasAssertions();
+
+    await withMockedFixtures<((...args: never[]) => GenericMockFixture)[]>(
+      async ({ virtualFiles }) => {
+        expect(virtualFiles[toRelativePath('custom.js')]).toBe(
+          'console.log("gotcha!");'
+        );
+      },
+      [
+        () => {
+          return {
+            name: 'adhoc-fixture',
+            description: 'doing some custom stuff'
+          };
+        }
+      ],
+      {
+        performCleanup: true,
+        initialVirtualFiles: { 'custom.js': 'console.log("gotcha!");' }
+      }
+    );
   });
 
   it('supports no-op fixtures (no setup/teardown)', async () => {
@@ -658,7 +682,7 @@ describe('::mockFixturesFactory', () => {
       {
         performCleanup: true,
         directoryPaths: ['dir/path/1'] as RelativePath[],
-        initialVirtualFiles: {}
+        initialVirtualFiles: { 'custom.js': 'console.log("hello!");' }
       }
     );
 
@@ -670,6 +694,7 @@ describe('::mockFixturesFactory', () => {
         expect(options.directoryPaths).toStrictEqual(['dir/path/1', 'dir/path/2']);
 
         expect(virtualFiles).toStrictEqual({
+          'custom.js': 'console.log("hello!");',
           'package.json': '{"name":"dummy-pkg"}',
           'src/index.js': 'console.log("success");'
         });
@@ -705,7 +730,7 @@ describe('::mockFixturesFactory', () => {
         ).resolves.toBe('console.log("success");');
       },
       {
-        directoryPaths: ['dir/path/1', 'dir/path/2'] as RelativePath[],
+        directoryPaths: ['dir/path/2'] as RelativePath[],
         initialVirtualFiles: { 'src/index.js': 'console.log("success");' }
       }
     );

@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 
 import { toAbsolutePath } from '@-xun/fs';
+import deepMerge from 'lodash.mergewith';
 import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+test-mock-fixture:constant.ts';
@@ -332,7 +333,7 @@ export function mockFixturesFactory<
     return withMockedFixtures<Fixtures, AdditionalOptions, AdditionalContext>(
       test,
       factoryFixtures,
-      { ...factoryOptions, ...incomingOptions }
+      deepMerge({}, factoryOptions, incomingOptions, mergeCustomizer)
     );
   };
 }
@@ -343,4 +344,30 @@ async function isAccessible(path: PathLike, mode?: number): Promise<boolean> {
     () => true,
     () => false
   );
+}
+
+/**
+ * Custom lodash merge customizer that causes source arrays to be concatenated
+ * and successive `undefined` values to unset (delete) the property if it
+ * exists.
+ *
+ * Take from babel-plugin-tester's source.
+ *
+ * @see https://lodash.com/docs/4.17.15#mergeWith
+ */
+function mergeCustomizer(
+  objValue: unknown,
+  srcValue: unknown,
+  key: string,
+  object: Record<string, unknown>,
+  source: Record<string, unknown>
+) {
+  if (srcValue === undefined && key in source) {
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+    delete object[key];
+  } else if (Array.isArray(objValue)) {
+    return objValue.concat(srcValue);
+  }
+
+  return undefined;
 }
