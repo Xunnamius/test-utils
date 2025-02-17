@@ -69,13 +69,13 @@
     "@-xun/test-mock-argv": "^1.0.2",
     "@-xun/test-mock-env": "^1.0.3",
     "@-xun/test-mock-exit": "^1.0.2",
-    "@-xun/test-mock-fixture": "^1.1.2",
+    "@-xun/test-mock-fixture": "^1.2.0",
     "@-xun/test-mock-import": "^1.0.3",
     "@-xun/test-mock-output": "^1.0.2",
     "bidirectional-resolve": "^1.0.1",
     "core-js": "^3.40.0",
     "rejoinder": "^1.2.4",
-    "type-fest": "^4.34.1"
+    "type-fest": "^4.35.0"
   },
   "peerDependencies": {
     "jest": ">=29 || >=30.0.0-alpha.1"
