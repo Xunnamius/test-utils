@@ -8,4 +8,4 @@
 
 > `const` **runTestFixtureName**: `"run-test"` = `"run-test"`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/run-test.d.ts:5
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/run-test.d.ts:4
