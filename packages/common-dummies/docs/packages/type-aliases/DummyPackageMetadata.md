@@ -8,7 +8,7 @@
 
 > **DummyPackageMetadata**\<`RequireObjectImports`, `RequireObjectExports`\>: `object`
 
-Defined in: [packages.ts:29](https://github.com/Xunnamius/test-utils/blob/caac67a1d6e0c5e1aeb45c401e1a8b6bf34e8e5b/packages/common-dummies/src/packages.ts#L29)
+Defined in: [packages.ts:29](https://github.com/Xunnamius/test-utils/blob/b33fea8db53369e4e821d273ed05fd0d4c91b749/packages/common-dummies/src/packages.ts#L29)
 
 Represents the dummy package metadata returned by the `getDummyPackage`
 function.
