@@ -1,6 +1,6 @@
 {
   "name": "@-xun/test-mock-output",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A generic testing utility that captures console and stdout/stderr output before it reaches the terminal",
   "keywords": [
     "utils",
