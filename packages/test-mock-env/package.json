@@ -1,6 +1,6 @@
 {
   "name": "@-xun/test-mock-env",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A generic testing utility that mocks process.env",
   "keywords": [
     "utils",
