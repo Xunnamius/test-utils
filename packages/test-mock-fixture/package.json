@@ -75,7 +75,7 @@
   },
   "dependencies": {
     "@-xun/fs": "^1.0.0",
-    "@-xun/project-types": "^1.0.1",
+    "@-xun/project-types": "^1.0.2",
     "@-xun/run": "^1.0.1",
     "core-js": "^3.40.0",
     "glob": "^11.0.1",
