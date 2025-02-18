@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { access } from 'node:fs/promises';
+import { glob } from 'node:fs/promises';
 
 import { toPath } from '@-xun/fs';
 import { withMockedArgv } from '@-xun/test-mock-argv';
@@ -320,10 +320,12 @@ export async function ensurePackageHasBeenBuilt(
       async ({ isDeadCondition, isFallback, isFirstNonNullFallback, target }) => {
         if (!isDeadCondition && (!isFallback || isFirstNonNullFallback) && target) {
           const entryPoint = toPath(packageRoot, target);
-
           ensurePackageHasBeenBuiltDebugger('checking entry point: %O', entryPoint);
 
-          if (await isNotAccessible(entryPoint)) {
+          const { length: fileCount } = await Array.fromAsync(glob(entryPoint));
+          ensurePackageHasBeenBuiltDebugger('matching files (count): %O', fileCount);
+
+          if (fileCount <= 0) {
             throw new Error(ErrorMessage.DistributableNotBuilt(target));
           }
         } else {
@@ -331,12 +333,5 @@ export async function ensurePackageHasBeenBuilt(
         }
       }
     )
-  );
-}
-
-async function isNotAccessible(packageMainPath: AbsolutePath) {
-  return access(packageMainPath).then(
-    () => false,
-    () => true
   );
 }
