@@ -85,7 +85,7 @@ export type NodeImportAndRunTestFixtureContext = Tagged<
     /**
      * The test result returned by `@-xun/run`.
      */
-    testResult: RunReturnType;
+    testResult: RunReturnType<RunOptions>;
   },
   typeof nodeImportAndRunTestFixtureName
 >;

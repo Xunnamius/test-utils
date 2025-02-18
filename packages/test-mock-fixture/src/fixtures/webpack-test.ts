@@ -4,7 +4,7 @@ import { run, runNoRejectOnBadExit } from '@-xun/run';
 import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
 
 import type { RelativePath } from '@-xun/fs';
-import type { RunReturnType } from '@-xun/run';
+import type { RunOptions, RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
 
 import type {
@@ -69,7 +69,7 @@ export type WebpackTestFixtureContext = Tagged<
     /**
      * The test result returned by `@-xun/run`.
      */
-    testResult: RunReturnType;
+    testResult: RunReturnType<RunOptions>;
   },
   typeof webpackTestFixtureName
 >;

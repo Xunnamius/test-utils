@@ -77,7 +77,7 @@ export type RunTestFixtureContext = Tagged<
     /**
      * The test result returned by `@-xun/run`.
      */
-    testResult: RunReturnType;
+    testResult: RunReturnType<RunOptions>;
   },
   typeof runTestFixtureName
 >;
