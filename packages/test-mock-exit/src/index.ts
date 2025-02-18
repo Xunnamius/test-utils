@@ -12,7 +12,8 @@ export * from 'universe+test-mock-exit:error.ts';
  * Mock `process.exit` within the scope of `test`. Guaranteed to return
  * `process.env` to its original state no matter how `test` terminates.
  *
- * It is not safe to run this function concurrently (e.g. with `Promise.all`).
+ * **WARNING: it is not safe to run this function concurrently (e.g. with
+ * `Promise.all`).**
  */
 export async function withMockedExit(
   test: (spies: {
@@ -43,7 +44,7 @@ export async function withMockedExit(
         target[property];
 
       /* istanbul ignore next */
-      if (value instanceof Function) {
+      if (typeof value === 'function') {
         return function (...args: unknown[]) {
           // ? This is "this-recovering" code.
           return value.apply(target, args);

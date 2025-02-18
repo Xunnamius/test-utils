@@ -31,7 +31,8 @@ export type MockedOutputOptions = {
  * return terminal output functions to their original state no matter how `test`
  * terminates.
  *
- * It is not safe to run this function concurrently (e.g. with `Promise.all`).
+ * **WARNING: it is not safe to run this function concurrently (e.g. with
+ * `Promise.all`).**
  */
 export async function withMockedOutput(
   test: (spies: {
@@ -92,8 +93,7 @@ export async function withMockedOutput(
 
           // ? It's what the MDN example uses, so we shall use it too
           /* istanbul ignore next */
-          // eslint-disable-next-line no-restricted-syntax
-          if (value instanceof Function) {
+          if (typeof value === 'function') {
             return function (...args: unknown[]) {
               // ? "this-recovering" code
               return value.apply(target, args);

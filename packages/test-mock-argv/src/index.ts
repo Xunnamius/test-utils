@@ -18,7 +18,8 @@ export type MockedArgvOptions = {
  * Mock `process.argv` within the scope of `test`. Guaranteed to return
  * `process.argv` to its original state no matter how `test` terminates.
  *
- * It is not safe to run this function concurrently (e.g. with `Promise.all`).
+ * **WARNING: it is not safe to run this function concurrently (e.g. with
+ * `Promise.all`).**
  */
 export async function withMockedArgv(
   test: () => Promisable<void>,

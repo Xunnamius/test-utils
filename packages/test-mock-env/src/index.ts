@@ -36,7 +36,8 @@ export type MockedEnvOptions = {
  * Mock `process.env` within the scope of `test`. Guaranteed to return
  * `process.env` to its original state no matter how `test` terminates.
  *
- * It is not safe to run this function concurrently (e.g. with `Promise.all`).
+ * **WARNING: it is not safe to run this function concurrently (e.g. with
+ * `Promise.all`).**
  */
 export async function withMockedEnv(
   test: () => Promisable<void>,
