@@ -8,7 +8,7 @@
 
 > **DescribeRootFixtureContext**: `Tagged`\<`EmptyObject`, *typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md)\>
 
-Defined in: [fixtures/describe-root.ts:49](https://github.com/Xunnamius/test-utils/blob/dbb834b908e8912c3a68cb58c5f6cf45d3aa53eb/packages/test-mock-fixture/src/fixtures/describe-root.ts#L49)
+Defined in: [fixtures/describe-root.ts:49](https://github.com/Xunnamius/test-utils/blob/8adc4cb1f8839cdbfc73127a9281eecce47527fb/packages/test-mock-fixture/src/fixtures/describe-root.ts#L49)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

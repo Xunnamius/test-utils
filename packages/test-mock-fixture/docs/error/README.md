@@ -9,3 +9,7 @@
 ## Variables
 
 - [ErrorMessage](variables/ErrorMessage.md)
+
+## Functions
+
+- [capitalize](functions/capitalize.md)
