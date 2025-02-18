@@ -302,10 +302,10 @@ describe('repositories', () => {
       expect.hasAssertions();
 
       const goodHybridrepoPackage1 =
-        repositories.goodHybridrepo.namedPackageMapData[0]![1]!;
+        repositories.goodHybridrepo.namedPackageMapData[0]![1];
 
       const goodHybridrepoPackage2 =
-        repositories.goodHybridrepo.namedPackageMapData[1]![1]!;
+        repositories.goodHybridrepo.namedPackageMapData[1]![1];
 
       patchReadXPackageJsonAtRoot({
         [goodHybridrepoPackage2.root]: {
@@ -347,10 +347,10 @@ describe('repositories', () => {
       expect.hasAssertions();
 
       const goodHybridrepoPackage1 =
-        repositories.goodHybridrepo.namedPackageMapData[0]![1]!;
+        repositories.goodHybridrepo.namedPackageMapData[0]![1];
 
       const goodHybridrepoPackage2 =
-        repositories.goodHybridrepo.namedPackageMapData[1]![1]!;
+        repositories.goodHybridrepo.namedPackageMapData[1]![1];
 
       patchReadXPackageJsonAtRoot({ ['*']: { name: 'name-x' } });
 
