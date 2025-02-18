@@ -40,6 +40,7 @@
 - [MockedArgvOptions](type-aliases/MockedArgvOptions.md)
 - [MockedEnvOptions](type-aliases/MockedEnvOptions.md)
 - [MockedOutputOptions](type-aliases/MockedOutputOptions.md)
+- [MockedOutputSpies](type-aliases/MockedOutputSpies.md)
 - [MockFixture](type-aliases/MockFixture.md)
 - [NodeImportAndRunTestFixture](type-aliases/NodeImportAndRunTestFixture.md)
 - [NodeImportAndRunTestFixtureContext](type-aliases/NodeImportAndRunTestFixtureContext.md)
