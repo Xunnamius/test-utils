@@ -71,6 +71,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
+    "core-js": "^3.40.0",
     "type-fest": "^4.35.0"
   },
   "peerDependencies": {
