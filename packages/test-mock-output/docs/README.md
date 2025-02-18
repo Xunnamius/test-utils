@@ -7,6 +7,7 @@
 ## Type Aliases
 
 - [MockedOutputOptions](type-aliases/MockedOutputOptions.md)
+- [MockedOutputSpies](type-aliases/MockedOutputSpies.md)
 
 ## Functions
 
