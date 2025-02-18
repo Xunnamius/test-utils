@@ -366,7 +366,7 @@ describe('::withMockedFixtures', () => {
           { performCleanup: true }
         )
       ).rejects.toMatchObject({
-        message: ErrorMessage.AggregateErrors(['Error: badness'], undefined),
+        message: ErrorMessage.AggregateErrors(['badness'], undefined),
         errors: [expect.objectContaining({ message: 'badness' })]
       });
 
@@ -417,7 +417,7 @@ describe('::withMockedFixtures', () => {
         )
       ).rejects.toMatchObject({
         message: ErrorMessage.AggregateErrors(
-          ['Error: badness-3', 'Error: badness-2', 'Error: badness-1'],
+          ['badness-3', 'badness-2', 'badness-1'],
           undefined
         ),
         errors: [
@@ -447,7 +447,7 @@ describe('::withMockedFixtures', () => {
       ).catch((error: unknown) => error);
 
       expect(result).toMatchObject({
-        message: ErrorMessage.AggregateErrors(['Error: badness'], undefined),
+        message: ErrorMessage.AggregateErrors(['badness'], undefined),
         errors: [expect.objectContaining({ message: 'badness' })]
       });
     }
@@ -463,8 +463,14 @@ describe('::withMockedFixtures', () => {
       ).catch((error: unknown) => error);
 
       expect(result).toMatchObject({
-        message: ErrorMessage.AggregateErrors(['Error: badness'], innerRoot),
-        errors: [expect.objectContaining({ message: 'badness' })]
+        message: ErrorMessage.AggregateErrors(
+          ['badness', ErrorMessage.CleanupNotPerformed()],
+          innerRoot
+        ),
+        errors: [
+          expect.objectContaining({ message: 'badness' }),
+          expect.objectContaining({ message: ErrorMessage.CleanupNotPerformed() })
+        ]
       });
     }
   });
@@ -1669,7 +1675,7 @@ describe('<fixtures>', () => {
       );
     });
 
-    it('cleans up dummy root wrt performCleanup', async () => {
+    it('cleans up dummy root or throws depending on performCleanup', async () => {
       expect.hasAssertions();
 
       const mockRm = jest.fn();
@@ -1679,9 +1685,9 @@ describe('<fixtures>', () => {
       fakeFixtureContext.debug.warn = jest.fn();
       fakeFixtureContext.debug.message = jest.fn();
 
-      await expect(
-        rootFixture().teardown?.(fakeFixtureContext)
-      ).resolves.toBeUndefined();
+      await expect(rootFixture().teardown?.(fakeFixtureContext)).rejects.toMatchObject({
+        message: ErrorMessage.CleanupNotPerformed()
+      });
 
       expect(mockRm).not.toHaveBeenCalled();
 

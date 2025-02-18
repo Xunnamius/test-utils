@@ -3,6 +3,10 @@ import { tmpdir } from 'node:os';
 import { toAbsolutePath, toPath } from '@-xun/fs';
 import uniqueFilename from 'unique-filename';
 
+// ? We'll allow it since ErrorMessage is accessed lazily
+// eslint-disable-next-line import/no-cycle
+import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
+
 import type {
   GenericFixtureContext,
   MockFixture
@@ -48,7 +52,7 @@ export function rootFixture(): RootFixture {
           retryDelay: 250
         });
       } else {
-        debug.warn('did not delete dummy root directory: %O', root);
+        throw new Error(ErrorMessage.CleanupNotPerformed());
       }
     }
   };

@@ -362,6 +362,7 @@ async function isAccessible(path: PathLike, mode?: number): Promise<boolean> {
  *
  * @see https://lodash.com/docs/4.17.15#mergeWith
  */
+/* istanbul ignore next */
 function mergeCustomizer(
   objValue: unknown,
   srcValue: unknown,
