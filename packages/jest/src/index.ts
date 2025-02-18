@@ -228,10 +228,12 @@ export function reconfigureJestGlobalsToSkipTestsInThisFileIfRequested(
 
     if (replaceTest) {
       globalThis.test = globalThis.test.skip;
+      globalThis.test.todo = test_.todo;
     }
 
     if (replaceIt) {
       globalThis.it = globalThis.it.skip;
+      globalThis.it.todo = it_.todo;
     }
 
     debug(

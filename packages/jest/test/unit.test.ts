@@ -60,7 +60,7 @@ describe('::reconfigureJestGlobalsToSkipTestsInThisFileIfRequested', () => {
     expect(globalThis.test.noskip).toBe(originalTest);
   });
 
-  it('replaces global describe with skip function wrt process.env', async () => {
+  it('replaces global describe with skip function with respect to process.env', async () => {
     expect.hasAssertions();
 
     process.env.SYMBIOTE_TEST_JEST_SKIP_SLOW_TESTS = '0';
@@ -78,7 +78,7 @@ describe('::reconfigureJestGlobalsToSkipTestsInThisFileIfRequested', () => {
     expect(globalThis.test).toBe(originalTest);
   });
 
-  it('replaces globals with skip functions with respect to targets option wrt process.env', async () => {
+  it('replaces globals with skip functions with respect to targets option and process.env', async () => {
     expect.hasAssertions();
 
     process.env.SYMBIOTE_TEST_JEST_SKIP_SLOW_TESTS = '0';
@@ -102,6 +102,21 @@ describe('::reconfigureJestGlobalsToSkipTestsInThisFileIfRequested', () => {
     expect(globalThis.describe).toBe(originalDescribe);
     expect(globalThis.it).toBe(originalIt.skip);
     expect(globalThis.test).toBe(originalTest.skip);
+  });
+
+  it('adds ::todo to replaced globals', async () => {
+    expect.hasAssertions();
+
+    process.env.SYMBIOTE_TEST_JEST_SKIP_SLOW_TESTS = '1';
+    reconfigureJestGlobalsToSkipTestsInThisFileIfRequested({
+      describe: false,
+      it: true,
+      test: true
+    });
+
+    expect(globalThis.describe).toBe(originalDescribe);
+    expect(globalThis.it.todo).toBe(originalIt.todo);
+    expect(globalThis.test.todo).toBe(originalTest.todo);
   });
 
   it('respects process.env.SYMBIOTE_TEST_JEST_SKIP_SLOW_TESTS > 1', async () => {
