@@ -51,6 +51,7 @@ import type {
   WebpackTestFixtureOptions
 } from 'universe+test-mock-fixture:fixtures/webpack-test.ts';
 
+import type { GenericMockFixture } from 'universe+test-mock-fixture:types/fixtures.ts';
 import type { ReturnVIfTExtendsU } from 'universe+test-mock-fixture:types/util.ts';
 
 /**
@@ -103,67 +104,69 @@ export type FixtureOptions<
   MockFixture,
   ShouldUnwrap extends boolean = true
 > = GlobalFixtureOptions &
-  IfAny<
-    MockFixture,
-    unknown,
-    ReturnVIfTExtendsU<
-      DescribeRootFixture,
-      MockFixture,
-      DescribeRootFixtureOptions,
-      ShouldUnwrap
-    > &
-      ReturnVIfTExtendsU<
-        DummyDirectoriesFixture,
+  (GenericMockFixture extends MockFixture
+    ? unknown
+    : IfAny<
         MockFixture,
-        DummyDirectoriesFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        DummyFilesFixture,
-        MockFixture,
-        DummyFilesFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        DummyNpmPackageFixture,
-        MockFixture,
-        DummyNpmPackageFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        GitRepositoryFixture,
-        MockFixture,
-        GitRepositoryFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        NodeImportAndRunTestFixture,
-        MockFixture,
-        NodeImportAndRunTestFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        RunTestFixture,
-        MockFixture,
-        RunTestFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        NpmCopyPackageFixture,
-        MockFixture,
-        NpmCopyPackageFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        NpmLinkPackageFixture,
-        MockFixture,
-        NpmLinkPackageFixtureOptions,
-        ShouldUnwrap
-      > &
-      ReturnVIfTExtendsU<
-        WebpackTestFixture,
-        MockFixture,
-        WebpackTestFixtureOptions,
-        ShouldUnwrap
-      >
-  >;
+        unknown,
+        ReturnVIfTExtendsU<
+          DescribeRootFixture,
+          MockFixture,
+          DescribeRootFixtureOptions,
+          ShouldUnwrap
+        > &
+          ReturnVIfTExtendsU<
+            DummyDirectoriesFixture,
+            MockFixture,
+            DummyDirectoriesFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            DummyFilesFixture,
+            MockFixture,
+            DummyFilesFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            DummyNpmPackageFixture,
+            MockFixture,
+            DummyNpmPackageFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            GitRepositoryFixture,
+            MockFixture,
+            GitRepositoryFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            NodeImportAndRunTestFixture,
+            MockFixture,
+            NodeImportAndRunTestFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            RunTestFixture,
+            MockFixture,
+            RunTestFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            NpmCopyPackageFixture,
+            MockFixture,
+            NpmCopyPackageFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            NpmLinkPackageFixture,
+            MockFixture,
+            NpmLinkPackageFixtureOptions,
+            ShouldUnwrap
+          > &
+          ReturnVIfTExtendsU<
+            WebpackTestFixture,
+            MockFixture,
+            WebpackTestFixtureOptions,
+            ShouldUnwrap
+          >
+      >);

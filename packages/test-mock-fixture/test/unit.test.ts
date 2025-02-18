@@ -35,8 +35,13 @@ import { webpackTestFixture } from 'universe+test-mock-fixture:fixtures/webpack-
 import { findIndexVirtualPath, getTreeOutput } from 'universe+test-mock-fixture:util.ts';
 
 import type { AbsolutePath, RelativePath } from '@-xun/fs';
-import type { PackageJson } from 'type-fest';
-import type { GenericMockFixture } from 'universe+test-mock-fixture';
+import type { EmptyObject, PackageJson } from 'type-fest';
+
+import type {
+  FixtureContext,
+  GenericMockFixtureFunctions,
+  GitRepositoryFixtureOptions
+} from 'universe+test-mock-fixture';
 
 jest.mock('@-xun/run');
 jest.mock('simple-git');
@@ -142,7 +147,7 @@ describe('::withMockedFixtures', () => {
     let callCount = 0;
 
     await withMockedFixtures<
-      ((...args: never[]) => GenericMockFixture)[],
+      GenericMockFixtureFunctions,
       { customOption: boolean },
       { customContext: boolean }
     >(
@@ -179,10 +184,43 @@ describe('::withMockedFixtures', () => {
     expect(callCount).toBe(2);
   });
 
+  it('supports mixing ad-hoc and predefined fixtures', async () => {
+    expect.hasAssertions();
+
+    type AdditionalContext = {
+      customContextFunction: (arg: boolean) => number;
+    };
+
+    const fixtures = [
+      dummyNpmPackageFixture,
+      gitRepositoryFixture,
+      () => {
+        return {
+          name: 'adhoc-fixture',
+          description: 'doing some custom stuff',
+          setup(
+            context: FixtureContext<GitRepositoryFixtureOptions> & AdditionalContext
+          ) {
+            context.customContextFunction = (arg) => (arg ? 1 : 2);
+          }
+        };
+      }
+    ] satisfies GenericMockFixtureFunctions;
+
+    await withMockedFixtures<typeof fixtures, EmptyObject, AdditionalContext>(
+      async ({ customContextFunction, git }) => {
+        expect(customContextFunction(false)).toBe(2);
+        expect(git).toBe(simpleGit());
+      },
+      fixtures,
+      { performCleanup: true }
+    );
+  });
+
   it('spreads initialVirtualFiles into virtualFiles', async () => {
     expect.hasAssertions();
 
-    await withMockedFixtures<((...args: never[]) => GenericMockFixture)[]>(
+    await withMockedFixtures<GenericMockFixtureFunctions>(
       async ({ virtualFiles }) => {
         expect(virtualFiles[toRelativePath('custom.js')]).toBe(
           'console.log("gotcha!");'

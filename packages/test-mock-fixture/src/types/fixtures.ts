@@ -183,6 +183,17 @@ export type FixtureContext<Options> = {
 export type GenericMockFixture = MockFixture<string, any>;
 
 /**
+ * @see {@link GenericMockFixture}
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type GenericMockFixtureFunction = (...args: any[]) => GenericMockFixture;
+
+/**
+ * @see {@link GenericMockFixtureFunction}
+ */
+export type GenericMockFixtureFunctions = readonly GenericMockFixtureFunction[];
+
+/**
  * @see {@link FixtureContext}
  */
 export type GenericFixtureContext = FixtureContext<GlobalFixtureOptions>;

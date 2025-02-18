@@ -26,7 +26,8 @@ import type { ArraySlice, EmptyObject, Promisable, ReadonlyDeep } from 'type-fes
 
 import type {
   FixtureContext,
-  GenericMockFixture
+  GenericMockFixture,
+  GenericMockFixtureFunctions
 } from 'universe+test-mock-fixture:types/fixtures.ts';
 
 import type { FixtureOptions } from 'universe+test-mock-fixture:types/options.ts';
@@ -71,7 +72,7 @@ export type * from 'universe+test-mock-fixture:types/options.ts';
  * any additional options and context where necessary.
  */
 export async function withMockedFixtures<
-  Fixtures extends ((...args: never[]) => GenericMockFixture)[],
+  Fixtures extends GenericMockFixtureFunctions,
   AdditionalOptions extends Record<string, unknown> = EmptyObject,
   AdditionalContext extends Record<string, unknown> = EmptyObject
 >(
@@ -313,7 +314,7 @@ export async function withMockedFixtures<
  * for the package under test.
  */
 export function mockFixturesFactory<
-  Fixtures extends ((...args: never[]) => GenericMockFixture)[],
+  Fixtures extends GenericMockFixtureFunctions,
   AdditionalOptions extends Record<string, unknown> = EmptyObject,
   AdditionalContext extends Record<string, unknown> = EmptyObject
 >(
