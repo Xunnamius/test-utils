@@ -12,4 +12,6 @@
 - [FixtureFs](type-aliases/FixtureFs.md)
 - [GenericFixtureContext](type-aliases/GenericFixtureContext.md)
 - [GenericMockFixture](type-aliases/GenericMockFixture.md)
+- [GenericMockFixtureFunction](type-aliases/GenericMockFixtureFunction.md)
+- [GenericMockFixtureFunctions](type-aliases/GenericMockFixtureFunctions.md)
 - [MockFixture](type-aliases/MockFixture.md)

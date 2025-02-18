@@ -8,4 +8,4 @@
 
 > `const` **npmCopyPackageFixtureName**: `"npm-copy-package"` = `'npm-copy-package'`
 
-Defined in: [fixtures/npm-copy-package.ts:15](https://github.com/Xunnamius/test-utils/blob/43516fe131cd8b7116ce91a3b07930504b016979/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L15)
+Defined in: [fixtures/npm-copy-package.ts:15](https://github.com/Xunnamius/test-utils/blob/dbb834b908e8912c3a68cb58c5f6cf45d3aa53eb/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L15)

@@ -163,6 +163,18 @@ Re-exports [GenericMockFixture](../types/fixtures/type-aliases/GenericMockFixtur
 
 ***
 
+### GenericMockFixtureFunction
+
+Re-exports [GenericMockFixtureFunction](../types/fixtures/type-aliases/GenericMockFixtureFunction.md)
+
+***
+
+### GenericMockFixtureFunctions
+
+Re-exports [GenericMockFixtureFunctions](../types/fixtures/type-aliases/GenericMockFixtureFunctions.md)
+
+***
+
 ### gitRepositoryFixture
 
 Re-exports [gitRepositoryFixture](../fixtures/git-repository/functions/gitRepositoryFixture.md)

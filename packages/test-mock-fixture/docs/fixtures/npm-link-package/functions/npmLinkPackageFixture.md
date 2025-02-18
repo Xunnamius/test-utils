@@ -8,7 +8,7 @@
 
 > **npmLinkPackageFixture**(): [`NpmLinkPackageFixture`](../type-aliases/NpmLinkPackageFixture.md)
 
-Defined in: [fixtures/npm-link-package.ts:76](https://github.com/Xunnamius/test-utils/blob/43516fe131cd8b7116ce91a3b07930504b016979/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L76)
+Defined in: [fixtures/npm-link-package.ts:76](https://github.com/Xunnamius/test-utils/blob/dbb834b908e8912c3a68cb58c5f6cf45d3aa53eb/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L76)
 
 This fixture is similar to `npmCopyPackage` except it makes a symbolic link
 (soft link) in the dummy root directory's `node_modules` subdirectory

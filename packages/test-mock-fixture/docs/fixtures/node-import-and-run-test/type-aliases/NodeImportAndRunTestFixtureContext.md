@@ -6,9 +6,9 @@
 
 # Type Alias: NodeImportAndRunTestFixtureContext
 
-> **NodeImportAndRunTestFixtureContext**: `Tagged`\<\{ `testResult`: `RunReturnType`; \}, *typeof* [`nodeImportAndRunTestFixtureName`](../variables/nodeImportAndRunTestFixtureName.md)\>
+> **NodeImportAndRunTestFixtureContext**: `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`nodeImportAndRunTestFixtureName`](../variables/nodeImportAndRunTestFixtureName.md)\>
 
-Defined in: [fixtures/node-import-and-run-test.ts:83](https://github.com/Xunnamius/test-utils/blob/43516fe131cd8b7116ce91a3b07930504b016979/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L83)
+Defined in: [fixtures/node-import-and-run-test.ts:83](https://github.com/Xunnamius/test-utils/blob/dbb834b908e8912c3a68cb58c5f6cf45d3aa53eb/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L83)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.
