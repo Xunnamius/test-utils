@@ -8,7 +8,7 @@
 
 > **mockArgvFactory**(`factorySimulatedArgv`, `factoryOptions`?): (`test`, `simulatedArgv`?, `options`?) => `Promise`\<`void`\>
 
-Defined in: [index.ts:51](https://github.com/Xunnamius/test-utils/blob/a891c5dff656869542f90269460b07b6b8641681/packages/test-mock-argv/src/index.ts#L51)
+Defined in: [index.ts:52](https://github.com/Xunnamius/test-utils/blob/941115a1f5cdafccdc5f1c4647f20c07138cbe3f/packages/test-mock-argv/src/index.ts#L52)
 
 Return a function that, when invoked, returns a pre-configured
 [withMockedArgv](withMockedArgv.md) function.
