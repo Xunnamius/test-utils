@@ -1,4 +1,5 @@
 import assert from 'node:assert';
+import nodeConsole from 'node:console';
 
 import type { Promisable } from 'type-fest';
 
@@ -27,6 +28,52 @@ export type MockedOutputOptions = {
 };
 
 /**
+ * @see {@link withMockedOutput}
+ */
+export type MockedOutputSpies = {
+  /**
+   * Spies on `globalThis.console.log`.
+   */
+  logSpy: jest.SpyInstance;
+  /**
+   * Spies on `globalThis.console.warn`.
+   */
+  warnSpy: jest.SpyInstance;
+  /**
+   * Spies on `globalThis.console.error`.
+   */
+  errorSpy: jest.SpyInstance;
+  /**
+   * Spies on `globalThis.console.info`.
+   */
+  infoSpy: jest.SpyInstance;
+  /**
+   * Spies on `require('node:console').log`.
+   */
+  nodeLogSpy: jest.SpyInstance;
+  /**
+   * Spies on `require('node:console').warn`.
+   */
+  nodeWarnSpy: jest.SpyInstance;
+  /**
+   * Spies on `require('node:console').error`.
+   */
+  nodeErrorSpy: jest.SpyInstance;
+  /**
+   * Spies on `require('node:console').info`.
+   */
+  nodeInfoSpy: jest.SpyInstance;
+  /**
+   * Spies on `process.stdout.write`.
+   */
+  stdoutSpy: jest.SpyInstance;
+  /**
+   * Spies on `process.stderr.write`.
+   */
+  stderrSpy: jest.SpyInstance;
+};
+
+/**
  * Mock terminal output functions within the scope of `test`. Guaranteed to
  * return terminal output functions to their original state no matter how `test`
  * terminates.
@@ -35,21 +82,18 @@ export type MockedOutputOptions = {
  * `Promise.all`).**
  */
 export async function withMockedOutput(
-  test: (spies: {
-    logSpy: jest.SpyInstance;
-    warnSpy: jest.SpyInstance;
-    errorSpy: jest.SpyInstance;
-    infoSpy: jest.SpyInstance;
-    stdoutSpy: jest.SpyInstance;
-    stderrSpy: jest.SpyInstance;
-  }) => Promisable<unknown>,
+  test: (spies: MockedOutputSpies) => Promisable<unknown>,
   { passthrough = [], passthroughOutputIfDebugging = true }: MockedOutputOptions = {}
 ) {
-  const spies = {
+  const spies: MockedOutputSpies = {
     logSpy: jest.spyOn(console, 'log'),
     warnSpy: jest.spyOn(console, 'warn'),
     errorSpy: jest.spyOn(console, 'error'),
     infoSpy: jest.spyOn(console, 'info'),
+    nodeLogSpy: jest.spyOn(nodeConsole, 'log'),
+    nodeWarnSpy: jest.spyOn(nodeConsole, 'warn'),
+    nodeErrorSpy: jest.spyOn(nodeConsole, 'error'),
+    nodeInfoSpy: jest.spyOn(nodeConsole, 'info'),
     stdoutSpy: jest.spyOn(process.stdout, 'write'),
     stderrSpy: jest.spyOn(process.stderr, 'write')
   };
@@ -66,7 +110,6 @@ export async function withMockedOutput(
       if (name.startsWith('std')) {
         spy.mockImplementation(() => true);
       } else {
-        // @ts-expect-error: TypeScript isn't smart enough to figure this out
         spy.mockImplementation(() => undefined);
       }
     }
@@ -76,7 +119,7 @@ export async function withMockedOutput(
     // ? this, we expect that our spies have not been called at all UNLESS the
     // ? caller of withMockedOutput uses the spy (accesses a property).
     let wasAccessed = false;
-    // @ts-expect-error: TypeScript isn't smart enough to figure this out
+
     spies[name as keyof typeof spies] =
       //
       new Proxy(spy, {
@@ -129,11 +172,6 @@ export async function withMockedOutput(
       }
     }
   } finally {
-    spies.logSpy.mockRestore();
-    spies.warnSpy.mockRestore();
-    spies.errorSpy.mockRestore();
-    spies.infoSpy.mockRestore();
-    spies.stdoutSpy.mockRestore();
-    spies.stderrSpy.mockRestore();
+    Object.values(spies).forEach((spy) => spy.mockRestore());
   }
 }

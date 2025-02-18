@@ -1,6 +1,13 @@
 /* eslint-disable no-console */
 // * These tests ensure the exported interface under test functions as expected.
 
+import {
+  error as nodeError,
+  info as nodeInfo,
+  log as nodeLog,
+  warn as nodeWarn
+} from 'node:console';
+
 import { withMockedOutput } from 'universe+test-mock-output';
 
 describe('::withMockedOutput', () => {
@@ -8,7 +15,18 @@ describe('::withMockedOutput', () => {
     expect.hasAssertions();
 
     await withMockedOutput(
-      ({ errorSpy, infoSpy, logSpy, stderrSpy, stdoutSpy, warnSpy }) => {
+      ({
+        errorSpy,
+        infoSpy,
+        logSpy,
+        stderrSpy,
+        stdoutSpy,
+        warnSpy,
+        nodeErrorSpy,
+        nodeInfoSpy,
+        nodeLogSpy,
+        nodeWarnSpy
+      }) => {
         console.error(1);
         console.info(2);
         console.log(3);
@@ -17,12 +35,21 @@ describe('::withMockedOutput', () => {
         process.stderr.write('5');
         process.stdout.write('6');
 
+        nodeError(7);
+        nodeInfo(8);
+        nodeLog(9);
+        nodeWarn(10);
+
         expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
         expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
         expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
         expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
         expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
         expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+        expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+        expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+        expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+        expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
       }
     );
   });
@@ -145,6 +172,11 @@ describe('::withMockedOutput', () => {
 
         process.stderr.write('5');
         process.stdout.write('6');
+
+        nodeError(7);
+        nodeInfo(8);
+        nodeLog(9);
+        nodeWarn(10);
       })
     ).rejects.toMatchObject({
       message: expect.stringMatching(
@@ -153,21 +185,42 @@ describe('::withMockedOutput', () => {
     });
 
     await expect(
-      withMockedOutput(async ({ infoSpy, errorSpy, stderrSpy, stdoutSpy, warnSpy }) => {
-        console.error(1);
-        console.info(2);
-        console.log(3);
-        console.warn(4);
+      withMockedOutput(
+        ({
+          infoSpy,
+          errorSpy,
+          stderrSpy,
+          stdoutSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
 
-        process.stderr.write('5');
-        process.stdout.write('6');
+          process.stderr.write('5');
+          process.stdout.write('6');
 
-        expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
-        expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
-        expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
-        expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
-        expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
-      })
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
     ).rejects.toMatchObject({
       message: expect.stringMatching(
         /"failing-spy": "logSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?3,/
@@ -175,21 +228,42 @@ describe('::withMockedOutput', () => {
     });
 
     await expect(
-      withMockedOutput(async ({ infoSpy, logSpy, stderrSpy, stdoutSpy, warnSpy }) => {
-        console.error(1);
-        console.info(2);
-        console.log(3);
-        console.warn(4);
+      withMockedOutput(
+        ({
+          infoSpy,
+          logSpy,
+          stderrSpy,
+          stdoutSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
 
-        process.stderr.write('5');
-        process.stdout.write('6');
+          process.stderr.write('5');
+          process.stdout.write('6');
 
-        expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
-        expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
-        expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
-        expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
-        expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
-      })
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
     ).rejects.toMatchObject({
       message: expect.stringMatching(
         /"failing-spy": "errorSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?1,/
@@ -197,21 +271,42 @@ describe('::withMockedOutput', () => {
     });
 
     await expect(
-      withMockedOutput(async ({ errorSpy, logSpy, stderrSpy, stdoutSpy, warnSpy }) => {
-        console.error(1);
-        console.info(2);
-        console.log(3);
-        console.warn(4);
+      withMockedOutput(
+        ({
+          errorSpy,
+          logSpy,
+          stderrSpy,
+          stdoutSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
 
-        process.stderr.write('5');
-        process.stdout.write('6');
+          process.stderr.write('5');
+          process.stdout.write('6');
 
-        expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
-        expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
-        expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
-        expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
-        expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
-      })
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
     ).rejects.toMatchObject({
       message: expect.stringMatching(
         /"failing-spy": "infoSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?2,/
@@ -219,21 +314,42 @@ describe('::withMockedOutput', () => {
     });
 
     await expect(
-      withMockedOutput(async ({ errorSpy, infoSpy, logSpy, stderrSpy, stdoutSpy }) => {
-        console.error(1);
-        console.info(2);
-        console.log(3);
-        console.warn(4);
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stderrSpy,
+          stdoutSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
 
-        process.stderr.write('5');
-        process.stdout.write('6');
+          process.stderr.write('5');
+          process.stdout.write('6');
 
-        expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
-        expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
-        expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
-        expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
-        expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
-      })
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
     ).rejects.toMatchObject({
       message: expect.stringMatching(
         /"failing-spy": "warnSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?4,/
@@ -241,21 +357,42 @@ describe('::withMockedOutput', () => {
     });
 
     await expect(
-      withMockedOutput(async ({ errorSpy, infoSpy, logSpy, stdoutSpy, warnSpy }) => {
-        console.error(1);
-        console.info(2);
-        console.log(3);
-        console.warn(4);
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stdoutSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
 
-        process.stderr.write('5');
-        process.stdout.write('6');
+          process.stderr.write('5');
+          process.stdout.write('6');
 
-        expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
-        expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
-        expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
-        expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
-        expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
-      })
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
     ).rejects.toMatchObject({
       message: expect.stringMatching(
         /"failing-spy": "stderrSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?"5",/
@@ -263,24 +400,217 @@ describe('::withMockedOutput', () => {
     });
 
     await expect(
-      withMockedOutput(async ({ errorSpy, infoSpy, logSpy, stderrSpy, warnSpy }) => {
-        console.error(1);
-        console.info(2);
-        console.log(3);
-        console.warn(4);
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stderrSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
 
-        process.stderr.write('5');
-        process.stdout.write('6');
+          process.stderr.write('5');
+          process.stdout.write('6');
 
-        expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
-        expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
-        expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
-        expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
-        expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
-      })
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
     ).rejects.toMatchObject({
       message: expect.stringMatching(
         /"failing-spy": "stdoutSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?"6",/
+      )
+    });
+
+    await expect(
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stdoutSpy,
+          stderrSpy,
+          warnSpy,
+          nodeInfoSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
+
+          process.stderr.write('5');
+          process.stdout.write('6');
+
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
+    ).rejects.toMatchObject({
+      message: expect.stringMatching(
+        /"failing-spy": "nodeErrorSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?7,/
+      )
+    });
+
+    await expect(
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stdoutSpy,
+          stderrSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeLogSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
+
+          process.stderr.write('5');
+          process.stdout.write('6');
+
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
+    ).rejects.toMatchObject({
+      message: expect.stringMatching(
+        /"failing-spy": "nodeInfoSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?8,/
+      )
+    });
+
+    await expect(
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stdoutSpy,
+          stderrSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeWarnSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
+
+          process.stderr.write('5');
+          process.stdout.write('6');
+
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeWarnSpy).toHaveBeenCalledExactlyOnceWith(10);
+        }
+      )
+    ).rejects.toMatchObject({
+      message: expect.stringMatching(
+        /"failing-spy": "nodeLogSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?9,/
+      )
+    });
+
+    await expect(
+      withMockedOutput(
+        ({
+          errorSpy,
+          infoSpy,
+          logSpy,
+          stdoutSpy,
+          stderrSpy,
+          warnSpy,
+          nodeErrorSpy,
+          nodeInfoSpy,
+          nodeLogSpy
+        }) => {
+          console.error(1);
+          console.info(2);
+          console.log(3);
+          console.warn(4);
+
+          process.stderr.write('5');
+          process.stdout.write('6');
+
+          nodeError(7);
+          nodeInfo(8);
+          nodeLog(9);
+          nodeWarn(10);
+
+          expect(errorSpy).toHaveBeenCalledExactlyOnceWith(1);
+          expect(infoSpy).toHaveBeenCalledExactlyOnceWith(2);
+          expect(logSpy).toHaveBeenCalledExactlyOnceWith(3);
+          expect(warnSpy).toHaveBeenCalledExactlyOnceWith(4);
+          expect(stderrSpy).toHaveBeenCalledExactlyOnceWith('5');
+          expect(stdoutSpy).toHaveBeenCalledExactlyOnceWith('6');
+          expect(nodeErrorSpy).toHaveBeenCalledExactlyOnceWith(7);
+          expect(nodeInfoSpy).toHaveBeenCalledExactlyOnceWith(8);
+          expect(nodeLogSpy).toHaveBeenCalledExactlyOnceWith(9);
+        }
+      )
+    ).rejects.toMatchObject({
+      message: expect.stringMatching(
+        /"failing-spy": "nodeWarnSpy",(.|\n)*?"unexpected-output": Array \[(.|\n)*?Array \[(.|\n)*?10,/
       )
     });
   });
