@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import { MockedExitError } from 'universe+test-mock-exit:error.ts';
 
