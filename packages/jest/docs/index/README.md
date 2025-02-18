@@ -30,6 +30,8 @@
 - [FixtureOptions](type-aliases/FixtureOptions.md)
 - [GenericFixtureContext](type-aliases/GenericFixtureContext.md)
 - [GenericMockFixture](type-aliases/GenericMockFixture.md)
+- [GenericMockFixtureFunction](type-aliases/GenericMockFixtureFunction.md)
+- [GenericMockFixtureFunctions](type-aliases/GenericMockFixtureFunctions.md)
 - [GitRepositoryFixture](type-aliases/GitRepositoryFixture.md)
 - [GitRepositoryFixtureContext](type-aliases/GitRepositoryFixtureContext.md)
 - [GitRepositoryFixtureOptions](type-aliases/GitRepositoryFixtureOptions.md)

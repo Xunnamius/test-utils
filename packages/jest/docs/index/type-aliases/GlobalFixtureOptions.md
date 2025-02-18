@@ -8,7 +8,7 @@
 
 > **GlobalFixtureOptions**: `object`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:17
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:18
 
 The options available to every fixture.
 
