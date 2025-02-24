@@ -20,4 +20,4 @@
 ## Functions
 
 - [dummyToProjectMetadata](functions/dummyToProjectMetadata.md)
-- [patchReadXPackageJsonAtRoot](functions/patchReadXPackageJsonAtRoot.md)
+- [patchJsonObjectReaders](functions/patchJsonObjectReaders.md)
