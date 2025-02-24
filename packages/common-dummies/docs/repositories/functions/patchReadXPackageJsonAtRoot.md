@@ -8,7 +8,7 @@
 
 > **patchReadXPackageJsonAtRoot**(`spec`, `options`?): `Record`\<`string`, `undefined` \| `XPackageJson`\>
 
-Defined in: [repositories.ts:210](https://github.com/Xunnamius/test-utils/blob/b33fea8db53369e4e821d273ed05fd0d4c91b749/packages/common-dummies/src/repositories.ts#L210)
+Defined in: [repositories.ts:211](https://github.com/Xunnamius/test-utils/blob/a81934d0157921b7a8f294e8a816544125dfa250/packages/common-dummies/src/repositories.ts#L211)
 
 Apply one or more patches to the per-`root` (AbsolutePath)
 `package.json` file content returned by fs.readXPackageJsonAtRoot,

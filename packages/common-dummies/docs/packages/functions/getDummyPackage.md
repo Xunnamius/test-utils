@@ -8,7 +8,7 @@
 
 > **getDummyPackage**\<`RequireObjectImports`, `RequireObjectExports`\>(`id`, `options`): [`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<`RequireObjectImports`, `RequireObjectExports`\>
 
-Defined in: [packages.ts:51](https://github.com/Xunnamius/test-utils/blob/b33fea8db53369e4e821d273ed05fd0d4c91b749/packages/common-dummies/src/packages.ts#L51)
+Defined in: [packages.ts:51](https://github.com/Xunnamius/test-utils/blob/a81934d0157921b7a8f294e8a816544125dfa250/packages/common-dummies/src/packages.ts#L51)
 
 Return metadata about an available dummy package.
 
