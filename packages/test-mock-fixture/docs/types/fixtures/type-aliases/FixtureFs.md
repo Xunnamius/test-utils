@@ -8,7 +8,7 @@
 
 > **FixtureFs**: `object` & `Omit`\<*typeof* `fs`, `"constants"` \| `"glob"`\>
 
-Defined in: [types/fixtures.ts:209](https://github.com/Xunnamius/test-utils/blob/8adc4cb1f8839cdbfc73127a9281eecce47527fb/packages/test-mock-fixture/src/types/fixtures.ts#L209)
+Defined in: [types/fixtures.ts:209](https://github.com/Xunnamius/test-utils/blob/00edde0e2bf95c365dcb6b1757d59a8b79b87194/packages/test-mock-fixture/src/types/fixtures.ts#L209)
 
 Context-sensitive asynchronous wrappers for `node:fs/promises` functions
 (excluding fs.glob) with in-build debugging and exception handling.

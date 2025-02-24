@@ -8,7 +8,7 @@
 
 > **dummyNpmPackageFixture**(): [`DummyNpmPackageFixture`](../type-aliases/DummyNpmPackageFixture.md)
 
-Defined in: [fixtures/dummy-npm-package.ts:95](https://github.com/Xunnamius/test-utils/blob/8adc4cb1f8839cdbfc73127a9281eecce47527fb/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L95)
+Defined in: [fixtures/dummy-npm-package.ts:95](https://github.com/Xunnamius/test-utils/blob/00edde0e2bf95c365dcb6b1757d59a8b79b87194/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L95)
 
 This fixture initializes the dummy root directory as a NPM package with a
 `package.json` file (optionally described by `initialVirtualFiles`) and
