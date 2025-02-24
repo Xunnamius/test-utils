@@ -1,7 +1,7 @@
 // * These tests ensure the exported interface under test functions as expected.
 
 import { toPath } from '@-xun/fs';
-import { readXPackageJsonAtRoot } from '@-xun/project-fs';
+import { readJson, readJsonc, readXPackageJsonAtRoot } from '@-xun/project-fs';
 
 import { ErrorMessage } from 'universe+common-dummies:error.ts';
 import { getDummyImportPath } from 'universe+common-dummies:imports.ts';
@@ -11,7 +11,7 @@ import { getDummyDecoratedPath } from 'universe+common-dummies:pseudodecorators.
 
 import {
   dummyToProjectMetadata,
-  patchReadXPackageJsonAtRoot,
+  patchJsonObjectReaders,
   repositories
 } from 'universe+common-dummies:repositories.ts';
 
@@ -241,7 +241,7 @@ describe('repositories', () => {
     );
   });
 
-  describe('::patchReadXPackageJsonAtRoot', () => {
+  describe('::patchJsonObjectReaders', () => {
     it('patches data returned by sync and async readXPackageJsonAtRoot', async () => {
       expect.hasAssertions();
 
@@ -249,8 +249,8 @@ describe('repositories', () => {
         readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
       ).resolves.toStrictEqual(repositories.goodPolyrepo.json);
 
-      patchReadXPackageJsonAtRoot({
-        [repositories.goodPolyrepo.root]: { name: 'new-name' }
+      patchJsonObjectReaders({
+        [toPath(repositories.goodPolyrepo.root, 'package.json')]: { name: 'new-name' }
       });
 
       await expect(
@@ -268,11 +268,59 @@ describe('repositories', () => {
       });
     });
 
+    it('patches data returned by sync and async readJson', async () => {
+      expect.hasAssertions();
+
+      const path = toPath(repositories.goodPolyrepo.root, 'package.json');
+
+      await expect(readJson(path, { useCached: true })).resolves.toStrictEqual(
+        repositories.goodPolyrepo.json
+      );
+
+      patchJsonObjectReaders({
+        [path]: { name: 'new-name' }
+      });
+
+      await expect(readJson(path, { useCached: true })).resolves.toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name'
+      });
+
+      expect(readJson.sync(path, { useCached: true })).toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name'
+      });
+    });
+
+    it('patches data returned by sync and async readJsonc', async () => {
+      expect.hasAssertions();
+
+      const path = toPath(repositories.goodPolyrepo.root, 'package.json');
+
+      await expect(readJsonc(path, { useCached: true })).resolves.toStrictEqual(
+        repositories.goodPolyrepo.json
+      );
+
+      patchJsonObjectReaders({
+        [path]: { name: 'new-name' }
+      });
+
+      await expect(readJsonc(path, { useCached: true })).resolves.toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name'
+      });
+
+      expect(readJsonc.sync(path, { useCached: true })).toStrictEqual({
+        ...repositories.goodPolyrepo.json,
+        name: 'new-name'
+      });
+    });
+
     it('overwrites previous calls with successive calls', async () => {
       expect.hasAssertions();
 
-      patchReadXPackageJsonAtRoot({
-        [repositories.goodPolyrepo.root]: {
+      patchJsonObjectReaders({
+        [toPath(repositories.goodPolyrepo.root, 'package.json')]: {
           name: 'new-name',
           description: 'new description'
         }
@@ -286,8 +334,8 @@ describe('repositories', () => {
         description: 'new description'
       });
 
-      patchReadXPackageJsonAtRoot({
-        [repositories.goodPolyrepo.root]: { name: 'newer-name' }
+      patchJsonObjectReaders({
+        [toPath(repositories.goodPolyrepo.root, 'package.json')]: { name: 'newer-name' }
       });
 
       await expect(
@@ -307,12 +355,12 @@ describe('repositories', () => {
       const goodHybridrepoPackage2 =
         repositories.goodHybridrepo.namedPackageMapData[1]![1];
 
-      patchReadXPackageJsonAtRoot({
-        [goodHybridrepoPackage2.root]: {
+      patchJsonObjectReaders({
+        [toPath(goodHybridrepoPackage2.root, 'package.json')]: {
           name: 'name-3'
         },
-        [repositories.goodHybridrepo.root]: { name: 'name-1' },
-        [goodHybridrepoPackage1.root]: {
+        [toPath(repositories.goodHybridrepo.root, 'package.json')]: { name: 'name-1' },
+        [toPath(goodHybridrepoPackage1.root, 'package.json')]: {
           name: 'name-2'
         }
       });
@@ -352,7 +400,7 @@ describe('repositories', () => {
       const goodHybridrepoPackage2 =
         repositories.goodHybridrepo.namedPackageMapData[1]![1];
 
-      patchReadXPackageJsonAtRoot({ ['*']: { name: 'name-x' } });
+      patchJsonObjectReaders({ ['*']: { name: 'name-x' } });
 
       await expect(
         readXPackageJsonAtRoot(repositories.goodPolyrepo.root, { useCached: true })
@@ -383,9 +431,9 @@ describe('repositories', () => {
     it('respects options.replace', async () => {
       expect.hasAssertions();
 
-      patchReadXPackageJsonAtRoot(
+      patchJsonObjectReaders(
         {
-          [repositories.goodPolyrepo.root]: {
+          [toPath(repositories.goodPolyrepo.root, 'package.json')]: {
             name: 'new-name',
             description: 'new description'
           }
@@ -401,9 +449,9 @@ describe('repositories', () => {
         description: 'new description'
       });
 
-      patchReadXPackageJsonAtRoot(
+      patchJsonObjectReaders(
         {
-          [repositories.goodPolyrepo.root]: {
+          [toPath(repositories.goodPolyrepo.root, 'package.json')]: {
             name: 'new-name',
             description: 'new description'
           }
@@ -418,9 +466,9 @@ describe('repositories', () => {
         description: 'new description'
       });
 
-      patchReadXPackageJsonAtRoot(
+      patchJsonObjectReaders(
         {
-          [repositories.goodPolyrepo.root]: {
+          [toPath(repositories.goodPolyrepo.root, 'package.json')]: {
             name: 'new-name',
             description: 'new description'
           }
