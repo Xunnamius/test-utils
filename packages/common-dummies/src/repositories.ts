@@ -47,6 +47,7 @@ export type RepositoryName =
   | 'badPolyrepoBadType'
   | 'badPolyrepoConflictingAttributes'
   | 'badPolyrepoEmptyMdFiles'
+  | 'badPolyrepoEmptyPackageJson'
   | 'badPolyrepoImporter'
   | 'badPolyrepoNextjsProject'
   | 'badPolyrepoNonPackageDir'
@@ -396,6 +397,12 @@ createDummyRepository({
 createDummyRepository({
   repositoryName: 'badPolyrepoEmptyMdFiles',
   prototypeRoot: 'bad-polyrepo-empty-md-files',
+  attributes: { cjs: true, polyrepo: true }
+});
+
+createDummyRepository({
+  repositoryName: 'badPolyrepoEmptyPackageJson',
+  prototypeRoot: 'bad-polyrepo-empty-package-json',
   attributes: { cjs: true, polyrepo: true }
 });
 
