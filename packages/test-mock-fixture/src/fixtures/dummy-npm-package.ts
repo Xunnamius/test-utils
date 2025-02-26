@@ -91,6 +91,9 @@ export type DummyNpmPackageFixtureContext = Tagged<
  * If a `packageUnderTest` is provided, and it is namespaced (e.g.
  * "@-xun/symbiote"), an empty directory will be created using the namespace as
  * its name (e.g. `node_modules/@-xun`).
+ *
+ * Note that the `packageUnderTest` is not the same thing as the dummy root NPM
+ * package; the latter typically imports/tests the former.
  */
 export function dummyNpmPackageFixture(): DummyNpmPackageFixture {
   return {

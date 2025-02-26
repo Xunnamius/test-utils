@@ -35,6 +35,9 @@ export type NpmLinkPackageFixtureOptions = Tagged<
   {
     /**
      * The {@link GenericPackage} instance representing the package under test.
+     *
+     * Note that the `packageUnderTest` is not the same thing as the dummy root
+     * NPM package; the latter typically imports/tests the former.
      */
     packageUnderTest: Omit<GenericPackage, 'projectMetadata'>;
   },
