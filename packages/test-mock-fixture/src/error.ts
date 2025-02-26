@@ -32,7 +32,7 @@ export const ErrorMessage = {
     return `expected "${expectedPath}" to exist and be accessible but it is not`;
   },
   CleanupNotPerformed() {
-    return 'the test succeeded! However, performCleanup is currently set to "false". This is a reminder to set it back to "true" 🙃';
+    return 'performCleanup is currently set to "false". This is a reminder to set it back to "true" 🙃';
   },
   GuruMeditation() {
     return 'an impossible scenario occurred';
