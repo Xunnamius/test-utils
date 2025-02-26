@@ -26,7 +26,7 @@ export const ErrorMessage = {
             isNativeError(error) ? error.message : String(error)
           )}`
       )
-      .join('\n')}`;
+      .join('\n\n')}`;
   },
   ExpectedPathDoesNotExist(expectedPath: string) {
     return `expected "${expectedPath}" to exist and be accessible but it is not`;
