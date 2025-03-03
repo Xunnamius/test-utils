@@ -8,7 +8,7 @@
 
 > **getDummyImportPath**(`id`): `AbsolutePath`
 
-Defined in: [imports.ts:16](https://github.com/Xunnamius/test-utils/blob/fcb57846bd155af8f31af388dca019cd245ef5db/packages/common-dummies/src/imports.ts#L16)
+Defined in: [imports.ts:16](https://github.com/Xunnamius/test-utils/blob/039995fa2351ba5c0c6c5e9ddfd8589da9142bad/packages/common-dummies/src/imports.ts#L16)
 
 Return a path to an importable dummy file.
 

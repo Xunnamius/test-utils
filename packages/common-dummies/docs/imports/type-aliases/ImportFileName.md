@@ -8,7 +8,7 @@
 
 > **ImportFileName**: `"cjs"` \| `"cts"` \| `"js"` \| `"jsx"` \| `"mjs"` \| `"mts"` \| `"ts"` \| `"tsx"`
 
-Defined in: [imports.ts:11](https://github.com/Xunnamius/test-utils/blob/fcb57846bd155af8f31af388dca019cd245ef5db/packages/common-dummies/src/imports.ts#L11)
+Defined in: [imports.ts:11](https://github.com/Xunnamius/test-utils/blob/039995fa2351ba5c0c6c5e9ddfd8589da9142bad/packages/common-dummies/src/imports.ts#L11)
 
 A type representing the name of an available dummy file containing various
 imports.
