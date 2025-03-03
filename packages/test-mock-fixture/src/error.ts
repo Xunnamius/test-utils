@@ -54,5 +54,6 @@ export const ErrorMessage = {
  * Taken from Black Flag.
  */
 export function capitalize(str: string) {
+  /* istanbul ignore next */
   return (str.at(0)?.toUpperCase() || '') + str.slice(1);
 }

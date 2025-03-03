@@ -3,9 +3,21 @@ import { runNoRejectOnBadExit } from '@-xun/run';
 import { ErrorMessage } from 'universe+test-mock-fixture:error.ts';
 
 import type { AbsolutePath, RelativePath } from '@-xun/fs';
+import type { RunOptions, RunReturnType } from '@-xun/run';
+import type { Promisable } from 'type-fest';
 
 const indexFileRegExp = /^src\/index(\.test)?\.((c|m)?(js|ts)x?)$/;
 
+const nodejsDebugStrings = [
+  'Debugger attached.\n',
+  'Waiting for the debugger to disconnect...'
+];
+
+/**
+ * Get the `tree` output of a directory and all its sub-directories. If the
+ * `tree` command is not available for whatever reason, a string is returned
+ * containing a helpful error message.
+ */
 export async function getTreeOutput(root: AbsolutePath) {
   if (process.platform === 'win32') {
     return '(this platform does not support the `tree` command)';
@@ -71,4 +83,33 @@ export function findIndexVirtualPath(
   }
 
   return path as RelativePath;
+}
+
+/**
+ * Remove those pesky strings Node outputs to stderr when running with
+ * `--inspect`.
+ *
+ * Only works with string-type data.
+ */
+export async function withoutNodeDebuggerStderrOutput<
+  T extends RunReturnType<RunOptions>
+>(runResult: Promisable<T>): Promise<T> {
+  const awaitedRunResult = await runResult;
+
+  if (typeof awaitedRunResult.stderr === 'string') {
+    let { stderr } = awaitedRunResult;
+
+    nodejsDebugStrings.forEach((deletionTarget) => {
+      stderr = stderr.replaceAll(deletionTarget, '');
+    });
+
+    awaitedRunResult.stderr = stderr;
+  } else if (Array.isArray(awaitedRunResult.stderr)) {
+    const trimmedNodejsDebugStrings = nodejsDebugStrings.map((str) => str.trim());
+    awaitedRunResult.stderr = awaitedRunResult.stderr.filter((filterTarget) => {
+      return !trimmedNodejsDebugStrings.includes(String(filterTarget));
+    });
+  }
+
+  return awaitedRunResult;
 }

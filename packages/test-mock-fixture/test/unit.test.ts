@@ -1292,8 +1292,6 @@ describe('<fixtures>', () => {
         expect.objectContaining({ cwd: fakeFixtureContext.root })
       );
 
-      mockRunNoRejectOnBadExit.mockReset();
-
       fakeFixtureContext.options.runWith = {
         binary: 'binary',
         args: ['args'],
@@ -1304,11 +1302,14 @@ describe('<fixtures>', () => {
         nodeImportAndRunTestFixture().setup?.(fakeFixtureContext)
       ).resolves.toBeUndefined();
 
-      expect(mockRunNoRejectOnBadExit).toHaveBeenCalledExactlyOnceWith(
-        'binary',
-        ['args', 'src/index.ts'],
-        expect.objectContaining({ option: true })
-      );
+      expect(mockRunNoRejectOnBadExit.mock.calls).toStrictEqual([
+        [
+          'node',
+          expect.any(Array),
+          expect.objectContaining({ cwd: fakeFixtureContext.root })
+        ],
+        ['binary', ['args', 'src/index.ts'], expect.objectContaining({ option: true })]
+      ]);
     });
 
     it('throws if src/index path cannot be found', async () => {
@@ -1347,6 +1348,44 @@ describe('<fixtures>', () => {
 
       expect(fakeFixtureContext.testResult).toBeDefined();
     });
+
+    it('removes nodejs inspector "debug" output from stderr when present', async () => {
+      expect.hasAssertions();
+
+      fakeFixtureContext.virtualFiles = { 'src/index.ts': 'content' };
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '1',
+          stderr: `Debugger attached.
+Waiting for the debugger to disconnect...`,
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        nodeImportAndRunTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('1');
+      expect(fakeFixtureContext.testResult.stderr).toBeEmpty();
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '2',
+          stderr: `Debugger attached.
+Waiting for the debugger to disconnect...`,
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        nodeImportAndRunTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('2');
+      expect(fakeFixtureContext.testResult.stderr).toBeEmpty();
+    });
   });
 
   describe('::runTest', () => {
@@ -1371,18 +1410,16 @@ describe('<fixtures>', () => {
         expect.objectContaining({ option: true })
       );
 
-      mockRunNoRejectOnBadExit.mockReset();
       fakeFixtureContext.options.runWith = { binary: 'binary' };
 
       await expect(
         runTestFixture().setup?.(fakeFixtureContext)
       ).resolves.toBeUndefined();
 
-      expect(mockRunNoRejectOnBadExit).toHaveBeenCalledExactlyOnceWith(
-        'binary',
-        [],
-        expect.anything()
-      );
+      expect(mockRunNoRejectOnBadExit.mock.calls).toStrictEqual([
+        ['binary', ['args'], expect.objectContaining({ option: true })],
+        ['binary', [], expect.anything()]
+      ]);
     });
 
     it('adds "testResult" to context', async () => {
@@ -1393,6 +1430,42 @@ describe('<fixtures>', () => {
       ).resolves.toBeUndefined();
 
       expect(fakeFixtureContext.testResult).toBeDefined();
+    });
+
+    it('removes nodejs inspector "debug" output from stderr when present', async () => {
+      expect.hasAssertions();
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '1',
+          stderr: `Debugger attached.
+Waiting for the debugger to disconnect...`,
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        runTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('1');
+      expect(fakeFixtureContext.testResult.stderr).toBeEmpty();
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '2',
+          stderr: `Debugger attached.
+Waiting for the debugger to disconnect...`,
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        runTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('2');
+      expect(fakeFixtureContext.testResult.stderr).toBeEmpty();
     });
   });
 
@@ -1806,6 +1879,73 @@ describe('<fixtures>', () => {
       ).resolves.toBeUndefined();
 
       expect(fakeFixtureContext.testResult).toBeDefined();
+    });
+
+    it('removes nodejs inspector "debug" output from stderr when present', async () => {
+      expect.hasAssertions();
+
+      fakeFixtureContext.virtualFiles = { 'src/index.ts': 'content' };
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '1',
+          stderr: ['Debugger attached.', 'Waiting for the debugger to disconnect...'],
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        webpackTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('1');
+      expect(fakeFixtureContext.testResult.stderr).toBeEmpty();
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '2',
+          stderr: ['Debugger attached.', 'Waiting for the debugger to disconnect...'],
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        webpackTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('2');
+      expect(fakeFixtureContext.testResult.stderr).toBeEmpty();
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '3',
+          stderr: [Buffer.from([])],
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        webpackTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('3');
+      expect(fakeFixtureContext.testResult.stderr).toBeArray();
+      expect(fakeFixtureContext.testResult.stderr).toHaveLength(1);
+
+      mockRunNoRejectOnBadExit.mockImplementation(() => {
+        return Promise.resolve({
+          stdout: '4',
+          stderr: undefined,
+          exitCode: 0
+        }) as ReturnType<typeof mockRunNoRejectOnBadExit>;
+      });
+
+      await expect(
+        webpackTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(fakeFixtureContext.testResult.stdout).toBe('4');
+      expect(fakeFixtureContext.testResult.stderr).toBeUndefined();
     });
   });
 });

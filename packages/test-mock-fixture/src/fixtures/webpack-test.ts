@@ -1,7 +1,10 @@
 import { toRelativePath } from '@-xun/fs';
 import { run, runNoRejectOnBadExit } from '@-xun/run';
 
-import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
+import {
+  findIndexVirtualPath,
+  withoutNodeDebuggerStderrOutput
+} from 'universe+test-mock-fixture:util.ts';
 
 import type { RelativePath } from '@-xun/fs';
 import type { RunOptions, RunReturnType } from '@-xun/run';
@@ -122,22 +125,24 @@ export function webpackTestFixture(): WebpackTestFixture {
 
       await run('npx', ['webpack'], { cwd: root });
 
-      context.testResult = await runNoRejectOnBadExit(
-        'node',
-        [
-          '--no-warnings',
-          '--experimental-json-modules',
-          '--experimental-vm-modules',
-          options.fileUnderTest
-        ],
-        {
-          cwd: root,
-          env: {
-            FORCE_COLOR: 'false',
-            NO_COLOR: 'true',
-            DEBUG_COLORS: 'false'
+      context.testResult = await withoutNodeDebuggerStderrOutput(
+        runNoRejectOnBadExit(
+          'node',
+          [
+            '--no-warnings',
+            '--experimental-json-modules',
+            '--experimental-vm-modules',
+            options.fileUnderTest
+          ],
+          {
+            cwd: root,
+            env: {
+              FORCE_COLOR: 'false',
+              NO_COLOR: 'true',
+              DEBUG_COLORS: 'false'
+            }
           }
-        }
+        )
       );
     }
   };
