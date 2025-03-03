@@ -8,7 +8,7 @@
 
 > **withMocks**(`fn`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:268](https://github.com/Xunnamius/test-utils/blob/06c59a575136e9790144c57757b867e2ba2e3975/packages/jest/src/index.ts#L268)
+Defined in: [packages/jest/src/index.ts:268](https://github.com/Xunnamius/test-utils/blob/cdc50cdddcd45701e67837154978473c5e5e219a/packages/jest/src/index.ts#L268)
 
 Wraps [withMockedArgv](withMockedArgv.md) + [withMockedEnv](withMockedEnv.md) with
 [withMockedExit](withMockedExit.md) + [withMockedOutput](withMockedOutput.md).
