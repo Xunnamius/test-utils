@@ -8,4 +8,4 @@
 
 > `const` **dummyFilesFixtureName**: `"dummy-files"` = `'dummy-files'`
 
-Defined in: [fixtures/dummy-files.ts:12](https://github.com/Xunnamius/test-utils/blob/00edde0e2bf95c365dcb6b1757d59a8b79b87194/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L12)
+Defined in: [packages/test-mock-fixture/src/fixtures/dummy-files.ts:12](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L12)

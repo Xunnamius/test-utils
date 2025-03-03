@@ -8,7 +8,7 @@
 
 > **NpmCopyPackageFixtureContext**: `Tagged`\<`EmptyObject`, *typeof* [`npmCopyPackageFixtureName`](../variables/npmCopyPackageFixtureName.md)\>
 
-Defined in: [fixtures/npm-copy-package.ts:116](https://github.com/Xunnamius/test-utils/blob/00edde0e2bf95c365dcb6b1757d59a8b79b87194/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L116)
+Defined in: [packages/test-mock-fixture/src/fixtures/npm-copy-package.ts:119](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/npm-copy-package.ts#L119)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

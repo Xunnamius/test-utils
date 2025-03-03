@@ -8,7 +8,7 @@
 
 > **DummyNpmPackageFixtureContext**: `Tagged`\<`EmptyObject`, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
 
-Defined in: [fixtures/dummy-npm-package.ts:76](https://github.com/Xunnamius/test-utils/blob/00edde0e2bf95c365dcb6b1757d59a8b79b87194/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L76)
+Defined in: [packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts:76](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L76)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

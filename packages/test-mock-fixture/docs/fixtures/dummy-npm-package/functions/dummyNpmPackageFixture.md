@@ -8,7 +8,7 @@
 
 > **dummyNpmPackageFixture**(): [`DummyNpmPackageFixture`](../type-aliases/DummyNpmPackageFixture.md)
 
-Defined in: [fixtures/dummy-npm-package.ts:95](https://github.com/Xunnamius/test-utils/blob/00edde0e2bf95c365dcb6b1757d59a8b79b87194/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L95)
+Defined in: [packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts:98](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L98)
 
 This fixture initializes the dummy root directory as a NPM package with a
 `package.json` file (optionally described by `initialVirtualFiles`) and
@@ -22,6 +22,9 @@ All packages are always installed with `--force`.
 If a `packageUnderTest` is provided, and it is namespaced (e.g.
 "@-xun/symbiote"), an empty directory will be created using the namespace as
 its name (e.g. `node_modules/@-xun`).
+
+Note that the `packageUnderTest` is not the same thing as the dummy root NPM
+package; the latter typically imports/tests the former.
 
 ## Returns
 
