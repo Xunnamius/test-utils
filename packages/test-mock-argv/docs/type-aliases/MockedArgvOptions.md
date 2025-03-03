@@ -8,7 +8,7 @@
 
 > **MockedArgvOptions**: `object`
 
-Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/941115a1f5cdafccdc5f1c4647f20c07138cbe3f/packages/test-mock-argv/src/index.ts#L6)
+Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/9657878b37178a0c745e33dba50f92a8cb1665be/packages/test-mock-argv/src/index.ts#L6)
 
 ## Type declaration
 
