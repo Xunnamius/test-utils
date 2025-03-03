@@ -1,6 +1,6 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
-import { withoutNodeDebuggerStderrOutput } from 'multiverse+test-mock-fixture:util.ts';
+import { withoutNodeDebuggerStderrOutput } from 'universe+test-mock-fixture:util.ts';
 
 import type { RunOptions, RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
