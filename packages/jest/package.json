@@ -73,7 +73,7 @@
     "@-xun/test-mock-import": "^1.0.4",
     "@-xun/test-mock-output": "^1.1.0",
     "bidirectional-resolve": "^1.0.2",
-    "core-js": "^3.40.0",
+    "core-js": "^3.41.0",
     "rejoinder": "^1.2.5",
     "type-fest": "^4.36.0"
   },
