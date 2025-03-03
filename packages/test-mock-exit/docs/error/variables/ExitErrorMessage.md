@@ -8,7 +8,7 @@
 
 > `const` **ExitErrorMessage**: `object`
 
-Defined in: [packages/test-mock-exit/src/error.ts:55](https://github.com/Xunnamius/test-utils/blob/4c951219ae7239c0e8acc53f91991fdd4d1d8500/packages/test-mock-exit/src/error.ts#L55)
+Defined in: [packages/test-mock-exit/src/error.ts:55](https://github.com/Xunnamius/test-utils/blob/e0d4b97bf7015ace9249287f4e65c17da796e247/packages/test-mock-exit/src/error.ts#L55)
 
 A collection of possible error and warning messages.
 
