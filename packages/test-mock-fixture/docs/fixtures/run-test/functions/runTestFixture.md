@@ -8,7 +8,7 @@
 
 > **runTestFixture**(): [`RunTestFixture`](../type-aliases/RunTestFixture.md)
 
-Defined in: [packages/test-mock-fixture/src/fixtures/run-test.ts:90](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/run-test.ts#L90)
+Defined in: [fixtures/run-test.ts:88](https://github.com/Xunnamius/test-utils/blob/7cac8a0c2ee6379fd29b30afe9fe8d736cfa81bd/packages/test-mock-fixture/src/fixtures/run-test.ts#L88)
 
 This fixture executes a binary with the specified arguments.
 

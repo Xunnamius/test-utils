@@ -8,4 +8,4 @@
 
 > `const` **nodeImportAndRunTestFixtureName**: `"node-import-and-run-test"` = `'node-import-and-run-test'`
 
-Defined in: [packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts:16](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L16)
+Defined in: [fixtures/node-import-and-run-test.ts:13](https://github.com/Xunnamius/test-utils/blob/7cac8a0c2ee6379fd29b30afe9fe8d736cfa81bd/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L13)

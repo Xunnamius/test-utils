@@ -10,4 +10,3 @@
 
 - [findIndexVirtualPath](functions/findIndexVirtualPath.md)
 - [getTreeOutput](functions/getTreeOutput.md)
-- [withoutNodeDebuggerStderrOutput](functions/withoutNodeDebuggerStderrOutput.md)

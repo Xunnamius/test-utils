@@ -8,4 +8,4 @@
 
 > `const` **npmLinkPackageFixtureName**: `"npm-link-package"` = `'npm-link-package'`
 
-Defined in: [packages/test-mock-fixture/src/fixtures/npm-link-package.ts:13](https://github.com/Xunnamius/test-utils/blob/fbb0e2e25a6b2830b1b2ac319e054df42247cc53/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L13)
+Defined in: [fixtures/npm-link-package.ts:13](https://github.com/Xunnamius/test-utils/blob/7cac8a0c2ee6379fd29b30afe9fe8d736cfa81bd/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L13)
