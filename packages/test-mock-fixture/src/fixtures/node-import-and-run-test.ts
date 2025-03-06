@@ -1,9 +1,6 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
-import {
-  findIndexVirtualPath,
-  withoutNodeDebuggerStderrOutput
-} from 'universe+test-mock-fixture:util.ts';
+import { findIndexVirtualPath } from 'universe+test-mock-fixture:util.ts';
 
 import type { RunOptions, RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
@@ -128,18 +125,16 @@ export function nodeImportAndRunTestFixture(): NodeImportAndRunTestFixture {
         runnerOptions
       } = options.runWith || {};
 
-      context.testResult = await withoutNodeDebuggerStderrOutput(
-        runNoRejectOnBadExit(binary, [...args, indexPath], {
-          cwd: root,
-          ...(runnerOptions as RunOptions),
-          env: {
-            FORCE_COLOR: 'false',
-            NO_COLOR: 'true',
-            DEBUG_COLORS: 'false',
-            ...runnerOptions?.env
-          }
-        })
-      );
+      context.testResult = await runNoRejectOnBadExit(binary, [...args, indexPath], {
+        cwd: root,
+        ...(runnerOptions as RunOptions),
+        env: {
+          FORCE_COLOR: 'false',
+          NO_COLOR: 'true',
+          DEBUG_COLORS: 'false',
+          ...runnerOptions?.env
+        }
+      });
     }
   };
 }

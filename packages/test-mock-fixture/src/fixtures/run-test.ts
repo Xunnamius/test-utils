@@ -1,7 +1,5 @@
 import { runNoRejectOnBadExit } from '@-xun/run';
 
-import { withoutNodeDebuggerStderrOutput } from 'universe+test-mock-fixture:util.ts';
-
 import type { RunOptions, RunReturnType } from '@-xun/run';
 import type { Tagged } from 'type-fest';
 
@@ -95,18 +93,16 @@ export function runTestFixture(): RunTestFixture {
       const { root, options } = context;
       const { binary, args = [], runnerOptions = {} } = options.runWith;
 
-      context.testResult = await withoutNodeDebuggerStderrOutput(
-        runNoRejectOnBadExit(binary, [...args], {
-          cwd: root,
-          ...(runnerOptions as RunOptions),
-          env: {
-            FORCE_COLOR: 'false',
-            NO_COLOR: 'true',
-            DEBUG_COLORS: 'false',
-            ...runnerOptions.env
-          }
-        })
-      );
+      context.testResult = await runNoRejectOnBadExit(binary, [...args], {
+        cwd: root,
+        ...(runnerOptions as RunOptions),
+        env: {
+          FORCE_COLOR: 'false',
+          NO_COLOR: 'true',
+          DEBUG_COLORS: 'false',
+          ...runnerOptions.env
+        }
+      });
     }
   };
 }
