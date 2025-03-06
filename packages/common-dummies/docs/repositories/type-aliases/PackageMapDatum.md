@@ -8,7 +8,7 @@
 
 > **PackageMapDatum**: `object`
 
-Defined in: [repositories.ts:103](https://github.com/Xunnamius/test-utils/blob/039995fa2351ba5c0c6c5e9ddfd8589da9142bad/packages/common-dummies/src/repositories.ts#L103)
+Defined in: [repositories.ts:103](https://github.com/Xunnamius/test-utils/blob/11f98199f9fbc8df663d33cd2be8dfcd0eac52c4/packages/common-dummies/src/repositories.ts#L103)
 
 A type represents an object that will be expanded into a
 [PackageMapEntry](PackageMapEntry.md).
