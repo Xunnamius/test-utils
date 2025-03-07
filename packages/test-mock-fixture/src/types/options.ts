@@ -79,10 +79,15 @@ export type GlobalFixtureOptions = {
    * non-existent {@link RelativePath}s and their theoretical (immutable)
    * contents. These paths are relative to the dummy root directory.
    *
-   * Some fixtures use the `initialVirtualFiles` option to lookup certain
-   * values, such as picking out keys from a virtual `package.json` file.
+   * Non-string contents will be stringified via `JSON.stringify(entry,
+   * undefined, 2)`.
    *
-   * **These virtual files are not created on the filesystem automatically!**
+   * Note that some fixtures use the `initialVirtualFiles` option to lookup
+   * certain values, such as picking out keys from a virtual `package.json`
+   * file.
+   *
+   * Also note that **these virtual files are not created on the filesystem
+   * automatically!**
    *
    * To have the virtual files described in `initialVirtualFiles` actually
    * written out to the filesystem (relative to the dummy root directory), you
@@ -91,7 +96,7 @@ export type GlobalFixtureOptions = {
    * Consider also `dummyDirectoriesFixture` for writing out directories to the
    * filesystem using the `initialDirectories` option.
    */
-  initialVirtualFiles?: { [filePath: RelativePath | string]: string };
+  initialVirtualFiles?: { [filePath: RelativePath | string]: unknown };
 };
 
 /**

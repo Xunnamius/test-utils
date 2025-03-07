@@ -138,7 +138,12 @@ export async function withMockedFixtures<
       initialVirtualFiles: {},
       ...options
     },
-    virtualFiles: { ...options.initialVirtualFiles },
+    virtualFiles: Object.fromEntries(
+      Object.entries(options.initialVirtualFiles || {}).map(([file, contents]) => [
+        file,
+        typeof contents === 'string' ? contents : JSON.stringify(contents, undefined, 2)
+      ])
+    ),
     fs: Object.fromEntries(
       Object.entries(fs)
         .map(function ([name, fn]) {

@@ -225,6 +225,14 @@ describe('::withMockedFixtures', () => {
         expect(virtualFiles[toRelativePath('custom.js')]).toBe(
           'console.log("gotcha!");'
         );
+
+        expect(virtualFiles[toRelativePath('some/file.json')]).toBe(
+          JSON.stringify({ a: 1, b: 2, c: { three: true }, d: 'four' }, undefined, 2)
+        );
+
+        expect(virtualFiles[toRelativePath('something')]).toBe(
+          JSON.stringify(5, undefined, 2)
+        );
       },
       [
         () => {
@@ -236,7 +244,11 @@ describe('::withMockedFixtures', () => {
       ],
       {
         performCleanup: true,
-        initialVirtualFiles: { 'custom.js': 'console.log("gotcha!");' }
+        initialVirtualFiles: {
+          'custom.js': 'console.log("gotcha!");',
+          'some/file.json': { a: 1, b: 2, c: { three: true }, d: 'four' },
+          something: 5
+        }
       }
     );
   });
