@@ -8,7 +8,7 @@
 
 > **GenericFixtureContext**: [`FixtureContext`](FixtureContext.md)\<[`GlobalFixtureOptions`](../../options/type-aliases/GlobalFixtureOptions.md)\>
 
-Defined in: [types/fixtures.ts:199](https://github.com/Xunnamius/test-utils/blob/7cac8a0c2ee6379fd29b30afe9fe8d736cfa81bd/packages/test-mock-fixture/src/types/fixtures.ts#L199)
+Defined in: [types/fixtures.ts:199](https://github.com/Xunnamius/test-utils/blob/a9b840fe53d5a76c20197dcb52c5564e63e661b4/packages/test-mock-fixture/src/types/fixtures.ts#L199)
 
 ## See
 

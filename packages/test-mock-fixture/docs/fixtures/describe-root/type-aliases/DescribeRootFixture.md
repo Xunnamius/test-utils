@@ -8,7 +8,7 @@
 
 > **DescribeRootFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`DescribeRootFixtureOptions`](DescribeRootFixtureOptions.md)\>\>
 
-Defined in: [fixtures/describe-root.ts:17](https://github.com/Xunnamius/test-utils/blob/7cac8a0c2ee6379fd29b30afe9fe8d736cfa81bd/packages/test-mock-fixture/src/fixtures/describe-root.ts#L17)
+Defined in: [fixtures/describe-root.ts:17](https://github.com/Xunnamius/test-utils/blob/a9b840fe53d5a76c20197dcb52c5564e63e661b4/packages/test-mock-fixture/src/fixtures/describe-root.ts#L17)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 
