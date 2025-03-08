@@ -8,7 +8,7 @@
 
 > **reconfigureJestGlobalsToSkipTestsInThisFileIfRequested**(`targets`?): `object`
 
-Defined in: [packages/jest/src/index.ts:189](https://github.com/Xunnamius/test-utils/blob/ecf0a791c005fee4beee1e1b04773e552ccadc4f/packages/jest/src/index.ts#L189)
+Defined in: [packages/jest/src/index.ts:188](https://github.com/Xunnamius/test-utils/blob/6bb3654e33d49a0e6dabf5bef93ea43493de76d7/packages/jest/src/index.ts#L188)
 
 This function replaces Jest's `describe`, `test`, and `it` functions in the
 current file with `describe.skip`, `test.skip`, and `it.skip` if
