@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { glob } from 'node:fs/promises';
-
 import { toPath } from '@-xun/fs';
 import { withMockedArgv } from '@-xun/test-mock-argv';
 import { withMockedEnv } from '@-xun/test-mock-env';
 import { withMockedExit } from '@-xun/test-mock-exit';
 import { withMockedOutput } from '@-xun/test-mock-output';
 import { flattenPackageJsonSubpathMap } from 'bidirectional-resolve';
+import { glob } from 'glob';
 import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+jest:constant.ts';
@@ -324,7 +323,7 @@ export async function ensurePackageHasBeenBuilt(
           const entryPoint = toPath(packageRoot, target);
           ensurePackageHasBeenBuiltDebugger('checking entry point: %O', entryPoint);
 
-          const { length: fileCount } = await Array.fromAsync(glob(entryPoint));
+          const { length: fileCount } = await glob(entryPoint);
           ensurePackageHasBeenBuiltDebugger('matching files (count): %O', fileCount);
 
           if (fileCount <= 0) {
