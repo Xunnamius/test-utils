@@ -1,0 +1,21 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "bin": {
+    "executable": "./dist/1.js"
+  },
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hybridrepo-owner/repo-name.git"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}

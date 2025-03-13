@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "type": "commonjs",
+  "private": true,
+  "exports": {
+    ".": "./dist/1.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}

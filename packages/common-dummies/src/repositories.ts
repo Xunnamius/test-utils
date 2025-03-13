@@ -55,6 +55,7 @@ export type RepositoryName =
   | 'badPolyrepoNonPackageDir'
   | 'badPolyrepoTsbuildinfo'
   | 'goodHybridrepo'
+  | 'goodHybridrepoComplexIgnore'
   | 'goodHybridrepoNotPrivate'
   | 'goodHybridrepoMultiversal'
   | 'goodHybridrepoSelfRef'
@@ -490,6 +491,42 @@ createDummyRepository({
       name: 'webpack',
       root: 'packages/webpack',
       attributes: { cjs: true, webpack: true }
+    }
+  ],
+  unnamedPackageMapData: [
+    {
+      name: 'unnamed-cjs',
+      root: 'packages/unnamed-cjs',
+      attributes: { cjs: true, private: true }
+    },
+    {
+      name: 'unnamed-esm',
+      root: 'packages/unnamed-esm',
+      attributes: { esm: true }
+    }
+  ]
+});
+
+createDummyRepository({
+  repositoryName: 'goodHybridrepoComplexIgnore',
+  prototypeRoot: 'good-hybridrepo-complex-ignore',
+  attributes: {
+    cjs: true,
+    monorepo: true,
+    hybridrepo: true,
+    cli: true
+  },
+  namedPackageMapData: [
+    { name: 'cli', root: 'packages/cli', attributes: { cjs: true, cli: true } },
+    {
+      name: 'private',
+      root: 'packages/private',
+      attributes: { cjs: true, private: true }
+    },
+    {
+      name: 'webpack',
+      root: 'packages/webpack',
+      attributes: { cjs: true }
     }
   ],
   unnamedPackageMapData: [

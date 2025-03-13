@@ -1,0 +1,19 @@
+{
+  "name": "good-hybridrepo-complex-ignore",
+  "version": "1.0.0-hybridrepo",
+  "description": "good-hybridrepo-complex-ignore-description",
+  "type": "commonjs",
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hybridrepo-owner/repo-name"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
