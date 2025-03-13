@@ -8,7 +8,7 @@
 
 > **PackageMapEntry**: \[`string`, `WorkspacePackage`\]
 
-Defined in: [repositories.ts:121](https://github.com/Xunnamius/test-utils/blob/11f98199f9fbc8df663d33cd2be8dfcd0eac52c4/packages/common-dummies/src/repositories.ts#L121)
+Defined in: [repositories.ts:122](https://github.com/Xunnamius/test-utils/blob/25cc06edbd1eb70099f3eebf1d0070499362b637/packages/common-dummies/src/repositories.ts#L122)
 
 A type represents a single entry of a packages map.
 

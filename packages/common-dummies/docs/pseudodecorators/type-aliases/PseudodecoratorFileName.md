@@ -8,7 +8,7 @@
 
 > **PseudodecoratorFileName**: `"extensionless"` \| `"js"` \| `"json"` \| `"md"` \| `"ts"` \| `"yml"`
 
-Defined in: [pseudodecorators.ts:18](https://github.com/Xunnamius/test-utils/blob/11f98199f9fbc8df663d33cd2be8dfcd0eac52c4/packages/common-dummies/src/pseudodecorators.ts#L18)
+Defined in: [pseudodecorators.ts:18](https://github.com/Xunnamius/test-utils/blob/25cc06edbd1eb70099f3eebf1d0070499362b637/packages/common-dummies/src/pseudodecorators.ts#L18)
 
 A type representing the name of an available dummy file containing
 pseudodecorators.
