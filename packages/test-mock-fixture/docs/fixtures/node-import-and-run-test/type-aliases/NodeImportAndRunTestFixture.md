@@ -8,7 +8,7 @@
 
 > **NodeImportAndRunTestFixture**: [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`nodeImportAndRunTestFixtureName`](../variables/nodeImportAndRunTestFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`NodeImportAndRunTestFixtureOptions`](NodeImportAndRunTestFixtureOptions.md)\>\>
 
-Defined in: [fixtures/node-import-and-run-test.ts:20](https://github.com/Xunnamius/test-utils/blob/a9b840fe53d5a76c20197dcb52c5564e63e661b4/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L20)
+Defined in: [fixtures/node-import-and-run-test.ts:20](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.ts#L20)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

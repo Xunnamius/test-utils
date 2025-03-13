@@ -10,7 +10,7 @@
 
 > **findIndexVirtualPath**(`virtualFiles`, `options`?): `RelativePath`
 
-Defined in: [util.ts:30](https://github.com/Xunnamius/test-utils/blob/a9b840fe53d5a76c20197dcb52c5564e63e661b4/packages/test-mock-fixture/src/util.ts#L30)
+Defined in: [util.ts:30](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/util.ts#L30)
 
 Search a `virtualFiles` object for a key matching a `src/index` or
 `src/index.test` file with a JS/TS/JSX extension.
@@ -41,7 +41,7 @@ true
 
 > **findIndexVirtualPath**(`virtualFiles`, `options`): `undefined` \| `RelativePath`
 
-Defined in: [util.ts:39](https://github.com/Xunnamius/test-utils/blob/a9b840fe53d5a76c20197dcb52c5564e63e661b4/packages/test-mock-fixture/src/util.ts#L39)
+Defined in: [util.ts:39](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/util.ts#L39)
 
 Search a `virtualFiles` object for a key matching a `src/index` or
 `src/index.test` file with a JS/TS/JSX extension.
@@ -72,7 +72,7 @@ true
 
 > **findIndexVirtualPath**(`virtualFiles`, `options`): `undefined` \| `RelativePath`
 
-Defined in: [util.ts:48](https://github.com/Xunnamius/test-utils/blob/a9b840fe53d5a76c20197dcb52c5564e63e661b4/packages/test-mock-fixture/src/util.ts#L48)
+Defined in: [util.ts:48](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/util.ts#L48)
 
 Search a `virtualFiles` object for a key matching a `src/index` or
 `src/index.test` file with a JS/TS/JSX extension.
