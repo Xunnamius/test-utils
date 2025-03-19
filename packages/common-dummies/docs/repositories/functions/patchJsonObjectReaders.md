@@ -8,7 +8,7 @@
 
 > **patchJsonObjectReaders**(`spec`, `options`?): `Record`\<`string`, `undefined` \| `JsonObject`\>
 
-Defined in: [repositories.ts:220](https://github.com/Xunnamius/test-utils/blob/25cc06edbd1eb70099f3eebf1d0070499362b637/packages/common-dummies/src/repositories.ts#L220)
+Defined in: [repositories.ts:220](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/repositories.ts#L220)
 
 Apply one or more patches to the per-`filePath` (AbsolutePath) JSON
 file content returned by the sync and async forms of

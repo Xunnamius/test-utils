@@ -6,29 +6,43 @@
 
 # Type Alias: DummyPackageMetadata\<RequireObjectImports, RequireObjectExports\>
 
-> **DummyPackageMetadata**\<`RequireObjectImports`, `RequireObjectExports`\>: `object`
+> **DummyPackageMetadata**\<`RequireObjectImports`, `RequireObjectExports`\> = `object`
 
-Defined in: [packages.ts:29](https://github.com/Xunnamius/test-utils/blob/25cc06edbd1eb70099f3eebf1d0070499362b637/packages/common-dummies/src/packages.ts#L29)
+Defined in: [packages.ts:29](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/packages.ts#L29)
 
 Represents the dummy package metadata returned by the `getDummyPackage`
 function.
 
 ## Type Parameters
 
-• **RequireObjectImports** *extends* `boolean` = `false`
+### RequireObjectImports
 
-• **RequireObjectExports** *extends* `boolean` = `false`
+`RequireObjectImports` *extends* `boolean` = `false`
 
-## Type declaration
+### RequireObjectExports
+
+`RequireObjectExports` *extends* `boolean` = `false`
+
+## Properties
 
 ### name
 
 > **name**: `string`
 
+Defined in: [packages.ts:34](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/packages.ts#L34)
+
+***
+
 ### packageJson
 
 > **packageJson**: `Merge`\<`XPackageJson`, \{ `exports`: `RequireObjectExports` *extends* `true` ? `Exclude`\<`XPackageJson`\[`"exports"`\], `string` \| `undefined` \| `null` \| `unknown`[]\> : `XPackageJson`\[`"exports"`\] \| `undefined`; `imports`: `RequireObjectImports` *extends* `true` ? `Exclude`\<`XPackageJson`\[`"imports"`\], `string` \| `undefined` \| `null` \| `unknown`[]\> : `XPackageJson`\[`"imports"`\] \| `undefined`; \}\>
 
+Defined in: [packages.ts:35](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/packages.ts#L35)
+
+***
+
 ### path
 
 > **path**: `AbsolutePath`
+
+Defined in: [packages.ts:33](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/packages.ts#L33)
