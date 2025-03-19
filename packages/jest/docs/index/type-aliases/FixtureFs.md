@@ -6,7 +6,7 @@
 
 # Type Alias: FixtureFs
 
-> **FixtureFs**: `object` & `Omit`\<*typeof* `fs`, `"constants"` \| `"glob"`\>
+> **FixtureFs** = `object` & `Omit`\<*typeof* `fs`, `"constants"` \| `"glob"`\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:126
 

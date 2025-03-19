@@ -6,7 +6,7 @@
 
 # Type Alias: DummyDirectoriesFixtureContext
 
-> **DummyDirectoriesFixtureContext**: `Tagged`\<`EmptyObject`, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
+> **DummyDirectoriesFixtureContext** = `Tagged`\<`EmptyObject`, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-directories.d.ts:40
 

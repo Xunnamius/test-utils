@@ -19,7 +19,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 ### new MockedExitError()
 
-> **new MockedExitError**(`code`): [`MockedExitError`](MockedExitError.md)
+> **new MockedExitError**(`code`): `MockedExitError`
 
 Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:13
 
@@ -34,7 +34,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 #### Returns
 
-[`MockedExitError`](MockedExitError.md)
+`MockedExitError`
 
 #### Overrides
 
@@ -42,7 +42,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 ### new MockedExitError()
 
-> **new MockedExitError**(`code`, `message`, `superOptions`): [`MockedExitError`](MockedExitError.md)
+> **new MockedExitError**(`code`, `message`, `superOptions`): `MockedExitError`
 
 Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:18
 
@@ -65,7 +65,7 @@ via `super`.
 
 #### Returns
 
-[`MockedExitError`](MockedExitError.md)
+`MockedExitError`
 
 #### Overrides
 

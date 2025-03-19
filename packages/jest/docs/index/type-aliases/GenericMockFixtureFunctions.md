@@ -6,7 +6,7 @@
 
 # Type Alias: GenericMockFixtureFunctions
 
-> **GenericMockFixtureFunctions**: readonly [`GenericMockFixtureFunction`](GenericMockFixtureFunction.md)[]
+> **GenericMockFixtureFunctions** = readonly [`GenericMockFixtureFunction`](GenericMockFixtureFunction.md)[]
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:113
 

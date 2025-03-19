@@ -6,7 +6,7 @@
 
 # Type Alias: DescribeRootFixtureOptions
 
-> **DescribeRootFixtureOptions**: `Tagged`\<`EmptyObject`, *typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md)\>
+> **DescribeRootFixtureOptions** = `Tagged`\<`EmptyObject`, *typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:19
 

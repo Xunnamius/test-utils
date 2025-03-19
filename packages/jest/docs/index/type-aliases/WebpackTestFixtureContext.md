@@ -6,7 +6,7 @@
 
 # Type Alias: WebpackTestFixtureContext
 
-> **WebpackTestFixtureContext**: `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`webpackTestFixtureName`](../variables/webpackTestFixtureName.md)\>
+> **WebpackTestFixtureContext** = `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`webpackTestFixtureName`](../variables/webpackTestFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/webpack-test.d.ts:45
 

@@ -6,7 +6,7 @@
 
 # Type Alias: DummyDirectoriesFixture
 
-> **DummyDirectoriesFixture**: [`MockFixture`](MockFixture.md)\<*typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`DummyDirectoriesFixtureOptions`](DummyDirectoriesFixtureOptions.md)\>\>
+> **DummyDirectoriesFixture** = [`MockFixture`](MockFixture.md)\<*typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`DummyDirectoriesFixtureOptions`](DummyDirectoriesFixtureOptions.md)\>\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-directories.d.ts:10
 

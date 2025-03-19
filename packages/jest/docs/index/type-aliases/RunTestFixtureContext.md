@@ -6,7 +6,7 @@
 
 # Type Alias: RunTestFixtureContext
 
-> **RunTestFixtureContext**: `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
+> **RunTestFixtureContext** = `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/run-test.d.ts:59
 

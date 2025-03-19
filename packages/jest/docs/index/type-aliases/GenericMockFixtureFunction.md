@@ -6,7 +6,7 @@
 
 # Type Alias: GenericMockFixtureFunction()
 
-> **GenericMockFixtureFunction**: (...`args`) => [`GenericMockFixture`](GenericMockFixture.md)
+> **GenericMockFixtureFunction** = (...`args`) => [`GenericMockFixture`](GenericMockFixture.md)
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:109
 

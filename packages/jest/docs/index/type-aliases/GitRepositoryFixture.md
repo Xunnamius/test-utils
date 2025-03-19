@@ -6,7 +6,7 @@
 
 # Type Alias: GitRepositoryFixture
 
-> **GitRepositoryFixture**: [`MockFixture`](MockFixture.md)\<*typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`GitRepositoryFixtureOptions`](GitRepositoryFixtureOptions.md)\>\>
+> **GitRepositoryFixture** = [`MockFixture`](MockFixture.md)\<*typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`GitRepositoryFixtureOptions`](GitRepositoryFixtureOptions.md)\>\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:10
 

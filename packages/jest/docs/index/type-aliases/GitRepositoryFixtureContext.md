@@ -6,7 +6,7 @@
 
 # Type Alias: GitRepositoryFixtureContext
 
-> **GitRepositoryFixtureContext**: `Tagged`\<\{ `git`: `SimpleGit`; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
+> **GitRepositoryFixtureContext** = `Tagged`\<\{ `git`: `SimpleGit`; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:41
 

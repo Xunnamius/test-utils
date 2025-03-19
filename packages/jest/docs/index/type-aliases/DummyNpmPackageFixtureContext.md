@@ -6,7 +6,7 @@
 
 # Type Alias: DummyNpmPackageFixtureContext
 
-> **DummyNpmPackageFixtureContext**: `Tagged`\<`EmptyObject`, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
+> **DummyNpmPackageFixtureContext** = `Tagged`\<`EmptyObject`, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-npm-package.d.ts:59
 

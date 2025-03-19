@@ -6,7 +6,7 @@
 
 # Type Alias: GitRepositoryFixtureOptions
 
-> **GitRepositoryFixtureOptions**: `Tagged`\<\{ `setupGit`: (`git`) => `Promisable`\<`void`\>; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
+> **GitRepositoryFixtureOptions** = `Tagged`\<\{ `setupGit`: (`git`) => `Promisable`\<`void`\>; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:20
 

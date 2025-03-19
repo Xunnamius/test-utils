@@ -6,7 +6,7 @@
 
 # Type Alias: DummyDirectoriesFixtureOptions
 
-> **DummyDirectoriesFixtureOptions**: `Tagged`\<\{ `directoryPaths`: `RelativePath`[]; \}, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
+> **DummyDirectoriesFixtureOptions** = `Tagged`\<\{ `directoryPaths`: `RelativePath`[]; \}, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
 
 Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-directories.d.ts:20
 
