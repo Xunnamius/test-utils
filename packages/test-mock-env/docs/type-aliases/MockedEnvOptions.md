@@ -6,15 +6,21 @@
 
 # Type Alias: MockedEnvOptions
 
-> **MockedEnvOptions**: `object`
+> **MockedEnvOptions** = `object`
 
-Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/f0d49d32f24274dfca55c0e4a0106a0696437cbe/packages/test-mock-env/src/index.ts#L6)
+Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/3bc7407cc3c3229341c117c19c75fa8731e95bd2/packages/test-mock-env/src/index.ts#L6)
 
-## Type declaration
+## See
+
+[withMockedEnv](../functions/withMockedEnv.md)
+
+## Properties
 
 ### passthroughDebugEnv?
 
 > `optional` **passthroughDebugEnv**: `boolean`
+
+Defined in: [index.ts:32](https://github.com/Xunnamius/test-utils/blob/3bc7407cc3c3229341c117c19c75fa8731e95bd2/packages/test-mock-env/src/index.ts#L32)
 
 If `true`, whenever `process.env.DEBUG` is present, it will be forwarded
 as-is to the underlying environment mock even when `replaceEntireEnv` is
@@ -26,9 +32,13 @@ as-is to the underlying environment mock even when `replaceEntireEnv` is
 true
 ```
 
+***
+
 ### replaceEntireEnv?
 
 > `optional` **replaceEntireEnv**: `boolean`
+
+Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/3bc7407cc3c3229341c117c19c75fa8731e95bd2/packages/test-mock-env/src/index.ts#L24)
 
 By default, all environment variables in the `process.env` object are
 deleted before the object is re-hydrated with `newEnv`.
@@ -42,14 +52,10 @@ cause `newEnv` to replace the _entire_ `process.env` object, including
 `process.env.DEBUG_COLORS`.
 
 Note that `process.env.DEBUG` is unaffected by this option (see
-[MockedEnvOptions.passthroughDebugEnv](MockedEnvOptions.md#passthroughdebugenv) instead).
+[MockedEnvOptions.passthroughDebugEnv](#passthroughdebugenv) instead).
 
 #### Default
 
 ```ts
 undefined
 ```
-
-## See
-
-[withMockedEnv](../functions/withMockedEnv.md)
