@@ -72,7 +72,7 @@
     "@-xun/test-mock-fixture": "^1.5.2",
     "@-xun/test-mock-import": "^1.0.5",
     "@-xun/test-mock-output": "^1.1.3",
-    "bidirectional-resolve": "^1.0.3",
+    "bidirectional-resolve": "^1.0.4",
     "core-js": "^3.41.0",
     "glob": "^11.0.1",
     "rejoinder": "^1.2.5",
