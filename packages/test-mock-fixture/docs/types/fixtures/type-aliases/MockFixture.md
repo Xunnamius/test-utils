@@ -6,40 +6,54 @@
 
 # Type Alias: MockFixture\<Name, Context\>
 
-> **MockFixture**\<`Name`, `Context`\>: `object`
+> **MockFixture**\<`Name`, `Context`\> = `object`
 
-Defined in: [types/fixtures.ts:64](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/types/fixtures.ts#L64)
+Defined in: [types/fixtures.ts:64](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/types/fixtures.ts#L64)
 
 An object describing a mock or "dummy" filesystem structure used to simulate
 one or more runtime environments for the package under test.
 
 ## Type Parameters
 
-• **Name** *extends* `string`
+### Name
 
-• **Context**
+`Name` *extends* `string`
 
-## Type declaration
+### Context
+
+`Context`
+
+## Properties
 
 ### description
 
 > **description**: `string`
 
+Defined in: [types/fixtures.ts:76](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/types/fixtures.ts#L76)
+
 A short string output during debugging that describes what the fixture is
 doing.
+
+***
 
 ### name
 
 > **name**: `Name` \| `symbol`
+
+Defined in: [types/fixtures.ts:71](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/types/fixtures.ts#L71)
 
 An alphanumeric (including hyphens and underscores) string used to identify
 the fixture. This string _should_ be unique per fixture.
 
 Including invalid characters in the fixture name will cause an error.
 
+***
+
 ### setup()?
 
 > `optional` **setup**: (`context`) => `Promisable`\<`unknown`\>
+
+Defined in: [types/fixtures.ts:86](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/types/fixtures.ts#L86)
 
 An optional function that is run before the `test` function is invoked.
 
@@ -59,9 +73,13 @@ essentially a no-op.
 
 `Promisable`\<`unknown`\>
 
+***
+
 ### teardown()?
 
 > `optional` **teardown**: (`context`) => `Promisable`\<`unknown`\>
+
+Defined in: [types/fixtures.ts:101](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/types/fixtures.ts#L101)
 
 An optional function that is run after the `test` function completes.
 

@@ -8,7 +8,7 @@
 
 > **mockFixturesFactory**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(...`__namedParameters`): (...`args`) => `Promise`\<`void`\>
 
-Defined in: [index.ts:321](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/index.ts#L321)
+Defined in: [index.ts:321](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/index.ts#L321)
 
 Returns a function allowing for the creation of many mock (or "dummy")
 filesystem structures, each used to simulate one or more runtime environments
@@ -16,11 +16,17 @@ for the package under test.
 
 ## Type Parameters
 
-• **Fixtures** *extends* [`GenericMockFixtureFunctions`](../../types/fixtures/type-aliases/GenericMockFixtureFunctions.md)
+### Fixtures
 
-• **AdditionalOptions** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+`Fixtures` *extends* [`GenericMockFixtureFunctions`](../../types/fixtures/type-aliases/GenericMockFixtureFunctions.md)
 
-• **AdditionalContext** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+### AdditionalOptions
+
+`AdditionalOptions` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+
+### AdditionalContext
+
+`AdditionalContext` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
 
 ## Parameters
 

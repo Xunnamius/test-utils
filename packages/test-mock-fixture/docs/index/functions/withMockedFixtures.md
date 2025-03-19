@@ -8,7 +8,7 @@
 
 > **withMockedFixtures**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(`test`, `fixtures`, `options`): `Promise`\<`void`\>
 
-Defined in: [index.ts:74](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/index.ts#L74)
+Defined in: [index.ts:74](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/index.ts#L74)
 
 Create a mock or "dummy" filesystem structure used to simulate one or more
 runtime environments for the package under test.
@@ -19,11 +19,17 @@ any additional options and context where necessary.
 
 ## Type Parameters
 
-• **Fixtures** *extends* [`GenericMockFixtureFunctions`](../../types/fixtures/type-aliases/GenericMockFixtureFunctions.md)
+### Fixtures
 
-• **AdditionalOptions** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+`Fixtures` *extends* [`GenericMockFixtureFunctions`](../../types/fixtures/type-aliases/GenericMockFixtureFunctions.md)
 
-• **AdditionalContext** *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+### AdditionalOptions
+
+`AdditionalOptions` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
+
+### AdditionalContext
+
+`AdditionalContext` *extends* `Record`\<`string`, `unknown`\> = `EmptyObject`
 
 ## Parameters
 

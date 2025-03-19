@@ -6,9 +6,9 @@
 
 # Type Alias: RunTestFixtureContext
 
-> **RunTestFixtureContext**: `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
+> **RunTestFixtureContext** = `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
 
-Defined in: [fixtures/run-test.ts:75](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/fixtures/run-test.ts#L75)
+Defined in: [fixtures/run-test.ts:75](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/fixtures/run-test.ts#L75)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.

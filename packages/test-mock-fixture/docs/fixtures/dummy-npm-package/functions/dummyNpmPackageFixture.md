@@ -8,14 +8,14 @@
 
 > **dummyNpmPackageFixture**(): [`DummyNpmPackageFixture`](../type-aliases/DummyNpmPackageFixture.md)
 
-Defined in: [fixtures/dummy-npm-package.ts:98](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L98)
+Defined in: [fixtures/dummy-npm-package.ts:98](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L98)
 
 This fixture initializes the dummy root directory as a NPM package with a
 `package.json` file (optionally described by `initialVirtualFiles`) and
 node_modules subdirectory. If said `package.json` file contains any
 dependencies, they will be installed courtesy of `npm install`. Additional
 packages can also be installed via
-DummyNpmPackageFixtureOptions.additionalPackagesToInstall.
+[DummyNpmPackageFixtureOptions.additionalPackagesToInstall](../type-aliases/DummyNpmPackageFixtureOptions.md).
 
 All packages are always installed with `--force`.
 

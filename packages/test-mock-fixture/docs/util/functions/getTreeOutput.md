@@ -8,7 +8,7 @@
 
 > **getTreeOutput**(`root`): `Promise`\<`string`\>
 
-Defined in: [util.ts:14](https://github.com/Xunnamius/test-utils/blob/d96a64d2a590f310ff9665ced169fcb337fa2189/packages/test-mock-fixture/src/util.ts#L14)
+Defined in: [util.ts:14](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/util.ts#L14)
 
 Get the `tree` output of a directory and all its sub-directories. If the
 `tree` command is not available for whatever reason, a string is returned
