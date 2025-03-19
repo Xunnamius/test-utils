@@ -6,7 +6,7 @@
 
 # Class: MockedExitError
 
-Defined in: [packages/test-mock-exit/src/error.ts:23](https://github.com/Xunnamius/test-utils/blob/634c14de1d2902e0c5a86295b179616334da1419/packages/test-mock-exit/src/error.ts#L23)
+Defined in: [packages/test-mock-exit/src/error.ts:23](https://github.com/Xunnamius/test-utils/blob/aca1c65e766ae1705a0218e28b11b9388554309d/packages/test-mock-exit/src/error.ts#L23)
 
 Represents a call to `process.exit` when said function was mocked by
 `withMockedExit`.
@@ -19,9 +19,9 @@ Represents a call to `process.exit` when said function was mocked by
 
 ### new MockedExitError()
 
-> **new MockedExitError**(`code`): [`MockedExitError`](MockedExitError.md)
+> **new MockedExitError**(`code`): `MockedExitError`
 
-Defined in: [packages/test-mock-exit/src/error.ts:30](https://github.com/Xunnamius/test-utils/blob/634c14de1d2902e0c5a86295b179616334da1419/packages/test-mock-exit/src/error.ts#L30)
+Defined in: [packages/test-mock-exit/src/error.ts:30](https://github.com/Xunnamius/test-utils/blob/aca1c65e766ae1705a0218e28b11b9388554309d/packages/test-mock-exit/src/error.ts#L30)
 
 Represents a call to `process.exit` when said function was mocked by
 `withMockedExit`.
@@ -34,7 +34,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 #### Returns
 
-[`MockedExitError`](MockedExitError.md)
+`MockedExitError`
 
 #### Overrides
 
@@ -42,9 +42,9 @@ Represents a call to `process.exit` when said function was mocked by
 
 ### new MockedExitError()
 
-> **new MockedExitError**(`code`, `message`, `superOptions`): [`MockedExitError`](MockedExitError.md)
+> **new MockedExitError**(`code`, `message`, `superOptions`): `MockedExitError`
 
-Defined in: [packages/test-mock-exit/src/error.ts:35](https://github.com/Xunnamius/test-utils/blob/634c14de1d2902e0c5a86295b179616334da1419/packages/test-mock-exit/src/error.ts#L35)
+Defined in: [packages/test-mock-exit/src/error.ts:35](https://github.com/Xunnamius/test-utils/blob/aca1c65e766ae1705a0218e28b11b9388554309d/packages/test-mock-exit/src/error.ts#L35)
 
 This constructor syntax is used by subclasses when calling this constructor
 via `super`.
@@ -65,7 +65,7 @@ via `super`.
 
 #### Returns
 
-[`MockedExitError`](MockedExitError.md)
+`MockedExitError`
 
 #### Overrides
 
@@ -77,7 +77,7 @@ via `super`.
 
 > **\[$type\]**: `symbol`[]
 
-Defined in: [packages/test-mock-exit/src/error.ts:25](https://github.com/Xunnamius/test-utils/blob/634c14de1d2902e0c5a86295b179616334da1419/packages/test-mock-exit/src/error.ts#L25)
+Defined in: [packages/test-mock-exit/src/error.ts:25](https://github.com/Xunnamius/test-utils/blob/aca1c65e766ae1705a0218e28b11b9388554309d/packages/test-mock-exit/src/error.ts#L25)
 
 ***
 
