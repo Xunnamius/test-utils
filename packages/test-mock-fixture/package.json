@@ -82,7 +82,7 @@
     "lodash.mergewith": "^4.6.2",
     "rejoinder": "^1.2.5",
     "simple-git": "^3.27.0",
-    "type-fest": "^4.37.0",
+    "type-fest": "^4.38.0",
     "unique-filename": "^4.0.0"
   },
   "engines": {
