@@ -70,7 +70,7 @@
   "dependencies": {
     "core-js": "^3.41.0",
     "named-app-errors": "^4.0.2",
-    "type-fest": "^4.37.0"
+    "type-fest": "^4.40.1"
   },
   "peerDependencies": {
     "jest": ">=29 || >=30.0.0-alpha.1"
