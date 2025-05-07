@@ -76,7 +76,7 @@
     "core-js": "^3.41.0",
     "glob": "^11.0.1",
     "rejoinder": "^1.2.5",
-    "type-fest": "^4.37.0"
+    "type-fest": "^4.41.0"
   },
   "peerDependencies": {
     "jest": ">=29 || >=30.0.0-alpha.1"
