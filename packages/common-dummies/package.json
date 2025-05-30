@@ -99,7 +99,7 @@
   "dependencies": {
     "@-xun/fs": "^1.0.0",
     "@-xun/project-fs": "^2.0.0",
-    "@-xun/project-types": "^1.0.4",
+    "@-xun/project-types": "^2.0.0",
     "core-js": "^3.41.0",
     "named-app-errors": "^4.0.2",
     "rejoinder": "^1.2.5",
