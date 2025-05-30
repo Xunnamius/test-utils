@@ -27,17 +27,13 @@ export async function withMockedArgv(
   { replaceEntireArgv = false }: MockedArgvOptions = {}
 ) {
   // ? Take care to preserve the original argv array reference in memory
-  const previousArgv = process.argv.splice(
-    replaceEntireArgv ? 0 : 2,
-    process.argv.length
-  );
-
+  const previousArgv = process.argv.splice(replaceEntireArgv ? 0 : 2);
   process.argv.push(...simulatedArgv);
 
   try {
     await test();
   } finally {
-    process.argv.splice(replaceEntireArgv ? 0 : 2, process.argv.length);
+    process.argv.splice(replaceEntireArgv ? 0 : 2);
     process.argv.push(...previousArgv);
   }
 }
