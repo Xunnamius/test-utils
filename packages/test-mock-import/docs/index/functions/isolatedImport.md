@@ -6,9 +6,9 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`Module`\>(`specifier`, `options`?): `Module`
+> **isolatedImport**\<`Module`\>(`specifier`, `options?`): `Module`
 
-Defined in: [index.ts:44](https://github.com/Xunnamius/test-utils/blob/1df65121d10d402c0b61b1fd2d7f30e0ea836dbe/packages/test-mock-import/src/index.ts#L44)
+Defined in: [index.ts:44](https://github.com/Xunnamius/test-utils/blob/0c376d4e553bb471a993ec435fc80b8a718069ca/packages/test-mock-import/src/index.ts#L44)
 
 Performs a CJS module import (via `require`) as if it were being imported for
 the first time.
@@ -22,7 +22,9 @@ test to hang unexpectedly, even when all tests pass.
 
 ## Type Parameters
 
-• **Module**
+### Module
+
+`Module`
 
 ## Parameters
 
