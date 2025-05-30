@@ -49,15 +49,6 @@ function getBabelAliases() {
       './packages/test-mock-import/src/index.js',
     '^multiverse\\+test\\x2dmock\\x2doutput$':
       './packages/test-mock-output/src/index.js',
-    '^rootverse\\+common\\x2ddummies:(.+)$': './packages/common-dummies/$1',
-    '^rootverse\\+jest:(.+)$': './packages/jest/$1',
-    '^rootverse\\+test\\x2dmock\\x2dargv:(.+)$': './packages/test-mock-argv/$1',
-    '^rootverse\\+test\\x2dmock\\x2denv:(.+)$': './packages/test-mock-env/$1',
-    '^rootverse\\+test\\x2dmock\\x2dexit:(.+)$': './packages/test-mock-exit/$1',
-    '^rootverse\\+test\\x2dmock\\x2dfixture:(.+)$': './packages/test-mock-fixture/$1',
-    '^rootverse\\+test\\x2dmock\\x2dimport:(.+)$': './packages/test-mock-import/$1',
-    '^rootverse\\+test\\x2dmock\\x2doutput:(.+)$': './packages/test-mock-output/$1',
-    '^rootverse:(.+)$': './$1',
     '^universe\\+common\\x2ddummies:(.+)$': './packages/common-dummies/src/$1',
     '^universe\\+jest:(.+)$': './packages/jest/src/$1',
     '^universe\\+test\\x2dmock\\x2dargv:(.+)$': './packages/test-mock-argv/src/$1',
@@ -87,6 +78,15 @@ function getBabelAliases() {
     '^testverse\\+test\\x2dmock\\x2dimport:(.+)$': './packages/test-mock-import/test/$1',
     '^testverse\\+test\\x2dmock\\x2doutput:(.+)$': './packages/test-mock-output/test/$1',
     '^testverse:(.+)$': './test/$1',
-    '^typeverse:(.+)$': './types/$1'
+    '^typeverse:(.+)$': './types/$1',
+    '^rootverse\\+common\\x2ddummies:(.+)$': './packages/common-dummies/$1',
+    '^rootverse\\+jest:(.+)$': './packages/jest/$1',
+    '^rootverse\\+test\\x2dmock\\x2dargv:(.+)$': './packages/test-mock-argv/$1',
+    '^rootverse\\+test\\x2dmock\\x2denv:(.+)$': './packages/test-mock-env/$1',
+    '^rootverse\\+test\\x2dmock\\x2dexit:(.+)$': './packages/test-mock-exit/$1',
+    '^rootverse\\+test\\x2dmock\\x2dfixture:(.+)$': './packages/test-mock-fixture/$1',
+    '^rootverse\\+test\\x2dmock\\x2dimport:(.+)$': './packages/test-mock-import/$1',
+    '^rootverse\\+test\\x2dmock\\x2doutput:(.+)$': './packages/test-mock-output/$1',
+    '^rootverse:(.+)$': './$1'
   };
 }
