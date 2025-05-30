@@ -6,9 +6,9 @@
 
 # Function: patchJsonObjectReaders()
 
-> **patchJsonObjectReaders**(`spec`, `options`?): `Record`\<`string`, `undefined` \| `JsonObject`\>
+> **patchJsonObjectReaders**(`spec`, `options?`): `Record`\<`string`, `JsonObject` \| `undefined`\>
 
-Defined in: [repositories.ts:220](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/repositories.ts#L220)
+Defined in: [repositories.ts:220](https://github.com/Xunnamius/test-utils/blob/76db16a94dd56a29b0c1a19132c758588e83c235/packages/common-dummies/src/repositories.ts#L220)
 
 Apply one or more patches to the per-`filePath` (AbsolutePath) JSON
 file content returned by the sync and async forms of
@@ -63,6 +63,6 @@ undefined
 
 ## Returns
 
-`Record`\<`string`, `undefined` \| `JsonObject`\>
+`Record`\<`string`, `JsonObject` \| `undefined`\>
 
 `spec`

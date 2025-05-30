@@ -8,13 +8,15 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [error.ts:5](https://github.com/Xunnamius/test-utils/blob/ad80774f51f13da047823e0cd993cdd1866f77d9/packages/common-dummies/src/error.ts#L5)
+Defined in: [error.ts:5](https://github.com/Xunnamius/test-utils/blob/76db16a94dd56a29b0c1a19132c758588e83c235/packages/common-dummies/src/error.ts#L5)
 
 A collection of possible error and warning messages.
 
 ## Type declaration
 
 ### PackageInvalid()
+
+> **PackageInvalid**(`packageName`, `repositoryName`): `string`
 
 #### Parameters
 
@@ -32,6 +34,8 @@ A collection of possible error and warning messages.
 
 ### PackageInvalidImportExportField()
 
+> **PackageInvalidImportExportField**(`field`): `string`
+
 #### Parameters
 
 ##### field
@@ -44,6 +48,8 @@ A collection of possible error and warning messages.
 
 ### PackageMissingField()
 
+> **PackageMissingField**(`field`): `string`
+
 #### Parameters
 
 ##### field
@@ -55,6 +61,8 @@ A collection of possible error and warning messages.
 `string`
 
 ### PackageUnresolvable()
+
+> **PackageUnresolvable**(`id`, `error`): `string`
 
 #### Parameters
 
@@ -72,6 +80,8 @@ A collection of possible error and warning messages.
 
 ### UnknownLoader()
 
+> **UnknownLoader**(`id`): `string`
+
 #### Parameters
 
 ##### id
@@ -83,6 +93,8 @@ A collection of possible error and warning messages.
 `string`
 
 ### UnknownPseudodecorator()
+
+> **UnknownPseudodecorator**(`id`): `string`
 
 #### Parameters
 
