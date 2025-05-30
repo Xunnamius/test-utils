@@ -8,7 +8,7 @@
 
 > **withMockedFixtures**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(`test`, `fixtures`, `options`): `Promise`\<`void`\>
 
-Defined in: [index.ts:74](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/index.ts#L74)
+Defined in: [index.ts:74](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/index.ts#L74)
 
 Create a mock or "dummy" filesystem structure used to simulate one or more
 runtime environments for the package under test.

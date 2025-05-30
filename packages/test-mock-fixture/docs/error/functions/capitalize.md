@@ -8,7 +8,7 @@
 
 > **capitalize**(`str`): `string`
 
-Defined in: [error.ts:56](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/error.ts#L56)
+Defined in: [error.ts:56](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/error.ts#L56)
 
 Capitalize the first character in a string.
 

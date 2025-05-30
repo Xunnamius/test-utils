@@ -8,7 +8,7 @@
 
 > **rootFixture**(): [`RootFixture`](../type-aliases/RootFixture.md)
 
-Defined in: [fixtures/root.ts:35](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/fixtures/root.ts#L35)
+Defined in: [fixtures/root.ts:35](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/fixtures/root.ts#L35)
 
 This fixture creates the dummy root directory as well as the `src/`
 subdirectory. It is perhaps the most important fixture.

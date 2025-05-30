@@ -8,4 +8,4 @@
 
 > `const` **dummyNpmPackageFixtureName**: `"dummy-npm-package"` = `'dummy-npm-package'`
 
-Defined in: [fixtures/dummy-npm-package.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L12)
+Defined in: [fixtures/dummy-npm-package.ts:12](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L12)

@@ -6,9 +6,9 @@
 
 # Type Alias: DummyNpmPackageFixtureOptions
 
-> **DummyNpmPackageFixtureOptions** = `Tagged`\<\{ `additionalPackagesToInstall`: `string` \| `string`[]; `installCommand`: `"ci"` \| `"install"`; `packageUnderTest`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; `runInstallScripts`: `boolean`; \}, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
+> **DummyNpmPackageFixtureOptions** = `Tagged`\<\{ `additionalPackagesToInstall?`: `string` \| `string`[]; `installCommand?`: `"ci"` \| `"install"`; `packageUnderTest?`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; `runInstallScripts?`: `boolean`; \}, *typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md)\>
 
-Defined in: [fixtures/dummy-npm-package.ts:33](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L33)
+Defined in: [fixtures/dummy-npm-package.ts:33](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L33)
 
 Contains any additional options properties this fixture expects or allows.
 

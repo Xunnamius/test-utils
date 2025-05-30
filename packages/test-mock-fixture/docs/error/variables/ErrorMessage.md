@@ -8,11 +8,13 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/error.ts#L12)
+Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/error.ts#L12)
 
 ## Type declaration
 
 ### AggregateErrors()
+
+> **AggregateErrors**(`errors`, `dummyRoot`): `string`
 
 #### Parameters
 
@@ -30,11 +32,15 @@ Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c5
 
 ### CleanupNotPerformed()
 
+> **CleanupNotPerformed**(): `string`
+
 #### Returns
 
 `string`
 
 ### ExpectedPathDoesNotExist()
+
+> **ExpectedPathDoesNotExist**(`expectedPath`): `string`
 
 #### Parameters
 
@@ -48,11 +54,15 @@ Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c5
 
 ### GuruMeditation()
 
+> **GuruMeditation**(): `string`
+
 #### Returns
 
 `string`
 
 ### MissingVirtualFile()
+
+> **MissingVirtualFile**(`key`): `string`
 
 #### Parameters
 
@@ -65,6 +75,8 @@ Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c5
 `string`
 
 ### NonAlphaNumericIdentifier()
+
+> **NonAlphaNumericIdentifier**(`key`, `invalidValue`): `string`
 
 #### Parameters
 
@@ -82,6 +94,8 @@ Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c5
 
 ### PackageMissingField()
 
+> **PackageMissingField**(`field`): `string`
+
 #### Parameters
 
 ##### field
@@ -93,6 +107,8 @@ Defined in: [error.ts:12](https://github.com/Xunnamius/test-utils/blob/42ca751c5
 `string`
 
 ### RootAccessedTooEarly()
+
+> **RootAccessedTooEarly**(): `string`
 
 #### Returns
 

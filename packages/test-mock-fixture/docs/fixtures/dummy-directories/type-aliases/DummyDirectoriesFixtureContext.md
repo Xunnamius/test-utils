@@ -8,7 +8,7 @@
 
 > **DummyDirectoriesFixtureContext** = `Tagged`\<`EmptyObject`, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
 
-Defined in: [fixtures/dummy-directories.ts:54](https://github.com/Xunnamius/test-utils/blob/42ca751c587603f2d187a75074f79266154d176a/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L54)
+Defined in: [fixtures/dummy-directories.ts:54](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L54)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.
