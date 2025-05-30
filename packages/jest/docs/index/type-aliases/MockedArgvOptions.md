@@ -8,7 +8,7 @@
 
 > **MockedArgvOptions** = `object`
 
-Defined in: packages/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:5
+Defined in: packages/jest/node\_modules/@-xun/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:5
 
 ## See
 
@@ -20,7 +20,7 @@ Defined in: packages/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:
 
 > `optional` **replaceEntireArgv**: `boolean`
 
-Defined in: packages/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:13
+Defined in: packages/jest/node\_modules/@-xun/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:13
 
 By default, the first two elements in `process.argv` are preserved. Setting
 `replace` to `true` will cause the entire process.argv array to be

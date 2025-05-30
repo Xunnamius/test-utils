@@ -6,9 +6,9 @@
 
 # Function: isolatedImport()
 
-> **isolatedImport**\<`Module`\>(`specifier`, `options`?): `Module`
+> **isolatedImport**\<`Module`\>(`specifier`, `options?`): `Module`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
+Defined in: packages/jest/node\_modules/@-xun/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
 
 Performs a CJS module import (via `require`) as if it were being imported for
 the first time.

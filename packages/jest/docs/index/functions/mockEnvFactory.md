@@ -6,9 +6,9 @@
 
 # Function: mockEnvFactory()
 
-> **mockEnvFactory**(`factorySimulatedEnv`, `factoryOptions`?): (`test`, `simulatedEnv`?, `options`?) => `Promise`\<`void`\>
+> **mockEnvFactory**(`factorySimulatedEnv`, `factoryOptions?`): (`test`, `simulatedEnv?`, `options?`) => `Promise`\<`void`\>
 
-Defined in: packages/test-mock-env/dist/packages/test-mock-env/src/index.d.ts:51
+Defined in: packages/jest/node\_modules/@-xun/test-mock-env/dist/packages/test-mock-env/src/index.d.ts:51
 
 Return a function that, when invoked, returns a pre-configured
 [withMockedEnv](withMockedEnv.md) function.
@@ -28,7 +28,7 @@ duplicating configuration across [withMockedEnv](withMockedEnv.md) calls.
 
 ## Returns
 
-`Function`
+> (`test`, `simulatedEnv?`, `options?`): `Promise`\<`void`\>
 
 ### Parameters
 

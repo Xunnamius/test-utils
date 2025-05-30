@@ -8,7 +8,7 @@
 
 > **DummyFilesFixture** = [`MockFixture`](MockFixture.md)\<*typeof* [`dummyFilesFixtureName`](../variables/dummyFilesFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`DummyFilesFixtureOptions`](DummyFilesFixtureOptions.md)\>\>
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-files.d.ts:10
+Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-files.d.ts:10
 
 A [MockFixture](MockFixture.md) instantiation of this fixture.
 

@@ -6,9 +6,9 @@
 
 # Function: withMockedOutput()
 
-> **withMockedOutput**(`test`, `__namedParameters`?): `Promise`\<`void`\>
+> **withMockedOutput**(`test`, `__namedParameters?`): `Promise`\<`void`\>
 
-Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:76
+Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:76
 
 Mock terminal output functions within the scope of `test`. Guaranteed to
 return terminal output functions to their original state no matter how `test`

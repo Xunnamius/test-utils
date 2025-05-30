@@ -6,9 +6,9 @@
 
 # Type Alias: RunTestFixtureOptions
 
-> **RunTestFixtureOptions** = `Tagged`\<\{ `runWith`: \{ `args`: `string`[]; `binary`: `string`; `runnerOptions`: `RunOptions`; \}; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
+> **RunTestFixtureOptions** = `Tagged`\<\{ `runWith`: \{ `args?`: `string`[]; `binary`: `string`; `runnerOptions?`: `RunOptions`; \}; \}, *typeof* [`runTestFixtureName`](../variables/runTestFixtureName.md)\>
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/run-test.d.ts:20
+Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/run-test.d.ts:20
 
 Contains any additional options properties this fixture expects or allows.
 

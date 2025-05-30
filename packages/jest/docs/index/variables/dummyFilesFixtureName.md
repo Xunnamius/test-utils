@@ -8,4 +8,4 @@
 
 > `const` **dummyFilesFixtureName**: `"dummy-files"` = `"dummy-files"`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-files.d.ts:4
+Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-files.d.ts:4

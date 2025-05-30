@@ -6,9 +6,9 @@
 
 # Function: mockArgvFactory()
 
-> **mockArgvFactory**(`factorySimulatedArgv`, `factoryOptions`?): (`test`, `simulatedArgv`?, `options`?) => `Promise`\<`void`\>
+> **mockArgvFactory**(`factorySimulatedArgv`, `factoryOptions?`): (`test`, `simulatedArgv?`, `options?`) => `Promise`\<`void`\>
 
-Defined in: packages/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:32
+Defined in: packages/jest/node\_modules/@-xun/test-mock-argv/dist/packages/test-mock-argv/src/index.d.ts:32
 
 Return a function that, when invoked, returns a pre-configured
 [withMockedArgv](withMockedArgv.md) function.
@@ -28,7 +28,7 @@ duplicating configuration across [withMockedArgv](withMockedArgv.md) calls.
 
 ## Returns
 
-`Function`
+> (`test`, `simulatedArgv?`, `options?`): `Promise`\<`void`\>
 
 ### Parameters
 

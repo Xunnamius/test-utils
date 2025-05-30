@@ -8,7 +8,7 @@
 
 > **withMocks**(`fn`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:267](https://github.com/Xunnamius/test-utils/blob/79030764c958f0281e952bc5753ca3f46c18e691/packages/jest/src/index.ts#L267)
+Defined in: [packages/jest/src/index.ts:267](https://github.com/Xunnamius/test-utils/blob/57459b26ed02cd14e42f07abe5e9e679c5f7e843/packages/jest/src/index.ts#L267)
 
 Wraps [withMockedArgv](withMockedArgv.md) + [withMockedEnv](withMockedEnv.md) with
 [withMockedExit](withMockedExit.md) + [withMockedOutput](withMockedOutput.md).
@@ -23,7 +23,7 @@ Wraps [withMockedArgv](withMockedArgv.md) + [withMockedEnv](withMockedEnv.md) wi
 
 #### options?
 
-\{ `passthrough`: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]; `passthroughDebugEnv`: `boolean`; `passthroughOutputIfDebugging`: `boolean`; `replaceEntireArgv`: `boolean`; `replaceEntireEnv`: `boolean`; \} = `undefined`
+\{ `passthrough?`: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]; `passthroughDebugEnv?`: `boolean`; `passthroughOutputIfDebugging?`: `boolean`; `replaceEntireArgv?`: `boolean`; `replaceEntireEnv?`: `boolean`; \} = `undefined`
 
 #### options.passthrough?
 

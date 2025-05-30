@@ -8,7 +8,7 @@
 
 > **GenericFixtureContext** = [`FixtureContext`](FixtureContext.md)\<[`GlobalFixtureOptions`](GlobalFixtureOptions.md)\>
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:117
+Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:117
 
 ## See
 

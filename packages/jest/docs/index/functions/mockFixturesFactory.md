@@ -8,7 +8,7 @@
 
 > **mockFixturesFactory**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(...`__namedParameters`): (...`args`) => `Promise`\<`void`\>
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:49
+Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:49
 
 Returns a function allowing for the creation of many mock (or "dummy")
 filesystem structures, each used to simulate one or more runtime environments
@@ -36,7 +36,7 @@ for the package under test.
 
 ## Returns
 
-`Function`
+> (...`args`): `Promise`\<`void`\>
 
 ### Parameters
 
