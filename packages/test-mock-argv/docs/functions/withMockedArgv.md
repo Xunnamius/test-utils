@@ -8,7 +8,7 @@
 
 > **withMockedArgv**(`test`, `simulatedArgv`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/9dac5bf967a72179cdc81057fc472da0efa492df/packages/test-mock-argv/src/index.ts#L24)
+Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/f5e7dc6d28c690d9df0a0ac1ffaa4d27248da991/packages/test-mock-argv/src/index.ts#L24)
 
 Mock `process.argv` within the scope of `test`. Guaranteed to return
 `process.argv` to its original state no matter how `test` terminates.

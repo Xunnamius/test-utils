@@ -6,9 +6,9 @@
 
 # Function: mockArgvFactory()
 
-> **mockArgvFactory**(`factorySimulatedArgv`, `factoryOptions`?): (`test`, `simulatedArgv`?, `options`?) => `Promise`\<`void`\>
+> **mockArgvFactory**(`factorySimulatedArgv`, `factoryOptions?`): (`test`, `simulatedArgv?`, `options?`) => `Promise`\<`void`\>
 
-Defined in: [index.ts:52](https://github.com/Xunnamius/test-utils/blob/9dac5bf967a72179cdc81057fc472da0efa492df/packages/test-mock-argv/src/index.ts#L52)
+Defined in: [index.ts:48](https://github.com/Xunnamius/test-utils/blob/f5e7dc6d28c690d9df0a0ac1ffaa4d27248da991/packages/test-mock-argv/src/index.ts#L48)
 
 Return a function that, when invoked, returns a pre-configured
 [withMockedArgv](withMockedArgv.md) function.
@@ -28,7 +28,7 @@ duplicating configuration across [withMockedArgv](withMockedArgv.md) calls.
 
 ## Returns
 
-`Function`
+> (`test`, `simulatedArgv?`, `options?`): `Promise`\<`void`\>
 
 ### Parameters
 
