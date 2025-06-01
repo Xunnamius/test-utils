@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import assert from 'node:assert';
+import { isPromise } from 'node:util/types';
+
 import { toPath } from '@-xun/fs';
 import { withMockedArgv } from '@-xun/test-mock-argv';
 import { withMockedEnv } from '@-xun/test-mock-env';
@@ -16,7 +19,7 @@ import type { AbsolutePath } from '@-xun/fs';
 import type { MockedArgvOptions } from '@-xun/test-mock-argv';
 import type { MockedEnvOptions } from '@-xun/test-mock-env';
 import type { MockedOutputOptions } from '@-xun/test-mock-output';
-import type { Merge, PackageJson } from 'type-fest';
+import type { Merge, PackageJson, Promisable } from 'type-fest';
 
 // {@symbiote/notExtraneous jest}
 
@@ -334,5 +337,71 @@ export async function ensurePackageHasBeenBuilt(
         }
       }
     )
+  );
+}
+
+/**
+ * The mock Date.now() value returned after calling `useMockDateNow`.
+ */
+export const mockDateNowMs = Date.now();
+
+/**
+ * Sets up a Jest spy on the `Date` object's `now` method such that it returns
+ * `mockNow` or `mockDateNowMs` (default) rather than the actual date. If you
+ * want to restore the mock, you will have to do so manually (or use Jest
+ * configuration to do so automatically).
+ *
+ * This is useful when testing against dummy data containing values derived from
+ * the current time (i.e. unix epoch).
+ */
+export function useMockDateNow(options?: { mockNow?: number }) {
+  beforeEach(() => {
+    jest.spyOn(Date, 'now').mockImplementation(() => options?.mockNow || mockDateNowMs);
+  });
+}
+
+/**
+ * Maps each element of the `spec` array into a Jest expectation asserting that
+ * `errorFn` either throws an error or rejects. If an assertion fails, a
+ * helpful error message is thrown.
+ *
+ * Example:
+ *
+ * ```js
+ * await expectExceptionsWithMatchingErrors([
+ *  [[param1, param2], 'expected error message 1'],
+ *  [[1, 2, 3], 'expected error message 2']
+ * ],
+ * () => {
+ *   // ...
+ * });
+ * ```
+ */
+export async function expectExceptionsWithMatchingErrors<
+  T extends [params: unknown[], errorMessage: string][]
+>(spec: T, errorFn: (params: T[number][0], index: number) => Promisable<unknown>) {
+  await Promise.all(
+    spec.map(async ([params, message], index) => {
+      let result = undefined;
+      let error = undefined;
+      let errored = false;
+
+      try {
+        result = errorFn(params, index);
+        if (isPromise(result)) {
+          result = await result;
+        }
+      } catch (error_) {
+        errored = true;
+        error = error_;
+      }
+
+      assert(errored, ErrorMessage.ExceptionDidNotOccur(index, message));
+
+      expect({ index, params, error }).toMatchObject({
+        index,
+        error: { message }
+      });
+    })
   );
 }
