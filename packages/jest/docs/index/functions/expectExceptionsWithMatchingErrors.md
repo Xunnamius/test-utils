@@ -8,7 +8,7 @@
 
 > **expectExceptionsWithMatchingErrors**\<`T`\>(`spec`, `errorFn`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:380](https://github.com/Xunnamius/test-utils/blob/2ccc557f06a972368f1c0ac5e731d29e6ddc828c/packages/jest/src/index.ts#L380)
+Defined in: [packages/jest/src/index.ts:380](https://github.com/Xunnamius/test-utils/blob/92fd6a9e3933fc0913144742396a7dd3fcc48ac8/packages/jest/src/index.ts#L380)
 
 Maps each element of the `spec` array into a Jest expectation asserting that
 `errorFn` either throws an error or rejects. If an assertion fails, a
