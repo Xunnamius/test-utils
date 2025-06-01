@@ -8,7 +8,7 @@
 
 > **DummyFilesFixtureOptions** = `Tagged`\<`Required`\<`Pick`\<[`GlobalFixtureOptions`](../../../types/options/type-aliases/GlobalFixtureOptions.md), `"initialVirtualFiles"`\>\> & `object`, *typeof* [`dummyFilesFixtureName`](../variables/dummyFilesFixtureName.md)\>
 
-Defined in: [fixtures/dummy-files.ts:33](https://github.com/Xunnamius/test-utils/blob/f98e631c6c1119fbde0ae47dd357cfe62eae579b/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L33)
+Defined in: [fixtures/dummy-files.ts:33](https://github.com/Xunnamius/test-utils/blob/31a76f0cd6821f5674299c745920b2ed3527f07b/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L33)
 
 Contains any additional options properties this fixture expects or allows.
 
