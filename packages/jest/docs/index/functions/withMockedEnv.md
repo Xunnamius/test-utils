@@ -8,7 +8,7 @@
 
 > **withMockedEnv**(`test`, `simulatedEnv`, `__namedParameters?`): `Promise`\<`void`\>
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-env/dist/packages/test-mock-env/src/index.d.ts:40
+Defined in: packages/test-mock-env/dist/packages/test-mock-env/src/index.d.ts:40
 
 Mock `process.env` within the scope of `test`. Guaranteed to return
 `process.env` to its original state no matter how `test` terminates.

@@ -8,7 +8,7 @@
 
 > **withMockedFixtures**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(`test`, `fixtures`, `options`): `Promise`\<`void`\>
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:25
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/index.d.ts:25
 
 Create a mock or "dummy" filesystem structure used to simulate one or more
 runtime environments for the package under test.

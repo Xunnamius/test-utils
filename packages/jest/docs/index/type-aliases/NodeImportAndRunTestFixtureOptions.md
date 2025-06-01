@@ -8,7 +8,7 @@
 
 > **NodeImportAndRunTestFixtureOptions** = `Tagged`\<\{ `runWith?`: \{ `args?`: `string`[]; `binary?`: `string`; `runnerOptions?`: `RunOptions`; \}; \}, *typeof* [`nodeImportAndRunTestFixtureName`](../variables/nodeImportAndRunTestFixtureName.md)\>
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.d.ts:20
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/node-import-and-run-test.d.ts:20
 
 Contains any additional options properties this fixture expects or allows.
 

@@ -8,7 +8,7 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [packages/jest/src/error.ts:5](https://github.com/Xunnamius/test-utils/blob/57459b26ed02cd14e42f07abe5e9e679c5f7e843/packages/jest/src/error.ts#L5)
+Defined in: [packages/jest/src/error.ts:6](https://github.com/Xunnamius/test-utils/blob/2ccc557f06a972368f1c0ac5e731d29e6ddc828c/packages/jest/src/error.ts#L6)
 
 A collection of possible error and warning messages.
 
@@ -21,6 +21,24 @@ A collection of possible error and warning messages.
 #### Parameters
 
 ##### target
+
+`string`
+
+#### Returns
+
+`string`
+
+### ExceptionDidNotOccur()
+
+> **ExceptionDidNotOccur**(`index`, `message`): `string`
+
+#### Parameters
+
+##### index
+
+`number`
+
+##### message
 
 `string`
 

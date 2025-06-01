@@ -8,7 +8,7 @@
 
 > **MockFixture**\<`Name`, `Context`\> = `object`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:22
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:22
 
 An object describing a mock or "dummy" filesystem structure used to simulate
 one or more runtime environments for the package under test.
@@ -29,7 +29,7 @@ one or more runtime environments for the package under test.
 
 > **description**: `string`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:34
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:34
 
 A short string output during debugging that describes what the fixture is
 doing.
@@ -40,7 +40,7 @@ doing.
 
 > **name**: `Name` \| `symbol`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:29
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:29
 
 An alphanumeric (including hyphens and underscores) string used to identify
 the fixture. This string _should_ be unique per fixture.
@@ -53,7 +53,7 @@ Including invalid characters in the fixture name will cause an error.
 
 > `optional` **setup**: (`context`) => `Promisable`\<`unknown`\>
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:44
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:44
 
 An optional function that is run before the `test` function is invoked.
 
@@ -79,7 +79,7 @@ essentially a no-op.
 
 > `optional` **teardown**: (`context`) => `Promisable`\<`unknown`\>
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:59
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:59
 
 An optional function that is run after the `test` function completes.
 

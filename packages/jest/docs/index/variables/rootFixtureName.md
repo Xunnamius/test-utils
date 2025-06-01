@@ -8,4 +8,4 @@
 
 > `const` **rootFixtureName**: `"root"` = `"root"`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/root.d.ts:2
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/root.d.ts:2

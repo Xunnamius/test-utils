@@ -8,4 +8,4 @@
 
 > `const` **gitRepositoryFixtureName**: `"git-repository"` = `"git-repository"`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:4
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/git-repository.d.ts:4

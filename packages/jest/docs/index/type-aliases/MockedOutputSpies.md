@@ -8,7 +8,7 @@
 
 > **MockedOutputSpies** = `object`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:26
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:26
 
 ## See
 
@@ -20,7 +20,7 @@ Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/tes
 
 > **errorSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:38
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:38
 
 Spies on `globalThis.console.error`.
 
@@ -30,7 +30,7 @@ Spies on `globalThis.console.error`.
 
 > **infoSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:42
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:42
 
 Spies on `globalThis.console.info`.
 
@@ -40,7 +40,7 @@ Spies on `globalThis.console.info`.
 
 > **logSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:30
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:30
 
 Spies on `globalThis.console.log`.
 
@@ -50,7 +50,7 @@ Spies on `globalThis.console.log`.
 
 > **nodeErrorSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:54
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:54
 
 Spies on `require('node:console').error`.
 
@@ -60,7 +60,7 @@ Spies on `require('node:console').error`.
 
 > **nodeInfoSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:58
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:58
 
 Spies on `require('node:console').info`.
 
@@ -70,7 +70,7 @@ Spies on `require('node:console').info`.
 
 > **nodeLogSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:46
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:46
 
 Spies on `require('node:console').log`.
 
@@ -80,7 +80,7 @@ Spies on `require('node:console').log`.
 
 > **nodeWarnSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:50
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:50
 
 Spies on `require('node:console').warn`.
 
@@ -90,7 +90,7 @@ Spies on `require('node:console').warn`.
 
 > **stderrSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:66
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:66
 
 Spies on `process.stderr.write`.
 
@@ -100,7 +100,7 @@ Spies on `process.stderr.write`.
 
 > **stdoutSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:62
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:62
 
 Spies on `process.stdout.write`.
 
@@ -110,6 +110,6 @@ Spies on `process.stdout.write`.
 
 > **warnSpy**: `jest.SpyInstance`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:34
+Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:34
 
 Spies on `globalThis.console.warn`.

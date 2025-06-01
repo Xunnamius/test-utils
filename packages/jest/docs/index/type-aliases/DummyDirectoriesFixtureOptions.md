@@ -8,7 +8,7 @@
 
 > **DummyDirectoriesFixtureOptions** = `Tagged`\<\{ `directoryPaths`: `RelativePath`[]; \}, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-directories.d.ts:20
+Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-directories.d.ts:20
 
 Contains any additional options properties this fixture expects or allows.
 

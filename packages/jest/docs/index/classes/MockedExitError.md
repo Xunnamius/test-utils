@@ -6,7 +6,7 @@
 
 # Class: MockedExitError
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:7
+Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:7
 
 Represents a call to `process.exit` when said function was mocked by
 `withMockedExit`.
@@ -21,7 +21,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 > **new MockedExitError**(`code`): `MockedExitError`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:13
+Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:13
 
 Represents a call to `process.exit` when said function was mocked by
 `withMockedExit`.
@@ -44,7 +44,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 > **new MockedExitError**(`code`, `message`, `superOptions`): `MockedExitError`
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:18
+Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:18
 
 This constructor syntax is used by subclasses when calling this constructor
 via `super`.
@@ -77,7 +77,7 @@ via `super`.
 
 > **\[$type\]**: `symbol`[]
 
-Defined in: packages/jest/node\_modules/@-xun/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:8
+Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:8
 
 ***
 
