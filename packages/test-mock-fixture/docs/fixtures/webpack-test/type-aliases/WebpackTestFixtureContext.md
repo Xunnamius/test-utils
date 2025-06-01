@@ -8,7 +8,7 @@
 
 > **WebpackTestFixtureContext** = `Tagged`\<\{ `testResult`: `RunReturnType`\<`RunOptions`\>; \}, *typeof* [`webpackTestFixtureName`](../variables/webpackTestFixtureName.md)\>
 
-Defined in: [fixtures/webpack-test.ts:67](https://github.com/Xunnamius/test-utils/blob/31a76f0cd6821f5674299c745920b2ed3527f07b/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L67)
+Defined in: [fixtures/webpack-test.ts:67](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L67)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.
