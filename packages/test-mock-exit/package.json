@@ -1,6 +1,6 @@
 {
   "name": "@-xun/test-mock-exit",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A generic testing utility that mocks process.exit",
   "keywords": [
     "utils",
@@ -73,7 +73,7 @@
     "type-fest": "^4.41.0"
   },
   "peerDependencies": {
-    "jest": ">=30 || >=30.0.0-alpha.7 || 30.0.0-beta.5"
+    "jest": ">=30 || 30.0.0-beta.5 || >=30.0.0-alpha.7 "
   },
   "engines": {
     "node": "^20.18.0 || ^22.12.0 || >=23.3.0"
