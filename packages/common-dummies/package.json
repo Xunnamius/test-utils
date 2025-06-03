@@ -110,7 +110,7 @@
     "glob": "^11.0.2"
   },
   "peerDependencies": {
-    "jest": ">=29 || >=30.0.0-alpha.1"
+    "jest": ">=30 || >=30.0.0-alpha.7 || 30.0.0-beta.5"
   },
   "peerDependenciesMeta": {
     "jest": {
