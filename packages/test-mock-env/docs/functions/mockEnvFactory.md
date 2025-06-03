@@ -8,7 +8,7 @@
 
 > **mockEnvFactory**(`factorySimulatedEnv`, `factoryOptions?`): (`test`, `simulatedEnv`, `options?`) => `Promise`\<`void`\>
 
-Defined in: [index.ts:92](https://github.com/Xunnamius/test-utils/blob/078b37591dfd5e7c4a772eccddae11db166f3313/packages/test-mock-env/src/index.ts#L92)
+Defined in: [index.ts:92](https://github.com/Xunnamius/test-utils/blob/877eee6d3ca3ce1ccd0cfa588867e4b66e7b9e42/packages/test-mock-env/src/index.ts#L92)
 
 Return a function that, when invoked, returns a pre-configured
 [withMockedEnv](withMockedEnv.md) function.
