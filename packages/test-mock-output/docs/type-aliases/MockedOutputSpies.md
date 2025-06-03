@@ -8,7 +8,7 @@
 
 > **MockedOutputSpies** = `object`
 
-Defined in: [index.ts:33](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L33)
+Defined in: [index.ts:33](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L33)
 
 ## See
 
@@ -20,7 +20,7 @@ Defined in: [index.ts:33](https://github.com/Xunnamius/test-utils/blob/2615168e5
 
 > **errorSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:45](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L45)
+Defined in: [index.ts:45](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L45)
 
 Spies on `globalThis.console.error`.
 
@@ -30,7 +30,7 @@ Spies on `globalThis.console.error`.
 
 > **infoSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:49](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L49)
+Defined in: [index.ts:49](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L49)
 
 Spies on `globalThis.console.info`.
 
@@ -40,7 +40,7 @@ Spies on `globalThis.console.info`.
 
 > **logSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:37](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L37)
+Defined in: [index.ts:37](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L37)
 
 Spies on `globalThis.console.log`.
 
@@ -50,7 +50,7 @@ Spies on `globalThis.console.log`.
 
 > **nodeErrorSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:61](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L61)
+Defined in: [index.ts:61](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L61)
 
 Spies on `require('node:console').error`.
 
@@ -60,7 +60,7 @@ Spies on `require('node:console').error`.
 
 > **nodeInfoSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:65](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L65)
+Defined in: [index.ts:65](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L65)
 
 Spies on `require('node:console').info`.
 
@@ -70,7 +70,7 @@ Spies on `require('node:console').info`.
 
 > **nodeLogSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:53](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L53)
+Defined in: [index.ts:53](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L53)
 
 Spies on `require('node:console').log`.
 
@@ -80,7 +80,7 @@ Spies on `require('node:console').log`.
 
 > **nodeWarnSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:57](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L57)
+Defined in: [index.ts:57](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L57)
 
 Spies on `require('node:console').warn`.
 
@@ -90,7 +90,7 @@ Spies on `require('node:console').warn`.
 
 > **stderrSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:73](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L73)
+Defined in: [index.ts:73](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L73)
 
 Spies on `process.stderr.write`.
 
@@ -100,7 +100,7 @@ Spies on `process.stderr.write`.
 
 > **stdoutSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:69](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L69)
+Defined in: [index.ts:69](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L69)
 
 Spies on `process.stdout.write`.
 
@@ -110,6 +110,6 @@ Spies on `process.stdout.write`.
 
 > **warnSpy**: `jest.SpyInstance`
 
-Defined in: [index.ts:41](https://github.com/Xunnamius/test-utils/blob/2615168e588d92b2e8ef54076f2cfebd50048866/packages/test-mock-output/src/index.ts#L41)
+Defined in: [index.ts:41](https://github.com/Xunnamius/test-utils/blob/0726807aaf8f5802345b9b8e4be7f11f9e5bf456/packages/test-mock-output/src/index.ts#L41)
 
 Spies on `globalThis.console.warn`.
