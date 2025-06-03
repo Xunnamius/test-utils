@@ -10,7 +10,7 @@
 
 > **asMocked**\<`T`\>(`options?`): `MaybeMockedDeep`\<`T`\>
 
-Defined in: [packages/jest/src/index.ts:75](https://github.com/Xunnamius/test-utils/blob/92fd6a9e3933fc0913144742396a7dd3fcc48ac8/packages/jest/src/index.ts#L75)
+Defined in: [packages/jest/src/index.ts:75](https://github.com/Xunnamius/test-utils/blob/9c792fa3803dc3e4362dd1fcbe700b9af2aab13f/packages/jest/src/index.ts#L75)
 
 Return a function representing `T` but wrapped with Jest mock definitions.
 Pass `{shallow: true}` as the only parameter to disable the deep mocking of
@@ -52,7 +52,7 @@ expect(mockRepresentingMyFunctionType.mock.calls[0][0]).toBe(42);
 
 > **asMocked**\<`T`\>(`options`): `MaybeMocked`\<`T`\>
 
-Defined in: [packages/jest/src/index.ts:94](https://github.com/Xunnamius/test-utils/blob/92fd6a9e3933fc0913144742396a7dd3fcc48ac8/packages/jest/src/index.ts#L94)
+Defined in: [packages/jest/src/index.ts:94](https://github.com/Xunnamius/test-utils/blob/9c792fa3803dc3e4362dd1fcbe700b9af2aab13f/packages/jest/src/index.ts#L94)
 
 Return a function representing `T` but wrapped (shallowly) with Jest mock
 definitions.
@@ -93,7 +93,7 @@ expect(mockRepresentingMyFunctionType.mock.calls[0][0]).toBe(42);
 
 > **asMocked**\<`T`\>(`source`, `options?`): `MaybeMockedDeep`\<`T`\>
 
-Defined in: [packages/jest/src/index.ts:111](https://github.com/Xunnamius/test-utils/blob/92fd6a9e3933fc0913144742396a7dd3fcc48ac8/packages/jest/src/index.ts#L111)
+Defined in: [packages/jest/src/index.ts:111](https://github.com/Xunnamius/test-utils/blob/9c792fa3803dc3e4362dd1fcbe700b9af2aab13f/packages/jest/src/index.ts#L111)
 
 Wrap the non-nullish `source` with Jest mock definitions. Pass `{shallow:
 true}` as the second parameter to disable the default deep mocking behavior.
@@ -136,7 +136,7 @@ expect(mockMyFunction.mock.calls[0][0]).toBe(42);
 
 > **asMocked**\<`T`\>(`source`, `options`): `MaybeMocked`\<`T`\>
 
-Defined in: [packages/jest/src/index.ts:128](https://github.com/Xunnamius/test-utils/blob/92fd6a9e3933fc0913144742396a7dd3fcc48ac8/packages/jest/src/index.ts#L128)
+Defined in: [packages/jest/src/index.ts:128](https://github.com/Xunnamius/test-utils/blob/9c792fa3803dc3e4362dd1fcbe700b9af2aab13f/packages/jest/src/index.ts#L128)
 
 Shallowly wrap the non-nullish `source` with Jest mock definitions.
 
@@ -178,7 +178,7 @@ expect(mockMyFunction.mock.calls[0][0]).toBe(42);
 
 > **asMocked**\<`T`\>(...`args`): `MaybeMockedDeep`\<`T`\> \| `MaybeMocked`\<`T`\>
 
-Defined in: [packages/jest/src/index.ts:146](https://github.com/Xunnamius/test-utils/blob/92fd6a9e3933fc0913144742396a7dd3fcc48ac8/packages/jest/src/index.ts#L146)
+Defined in: [packages/jest/src/index.ts:146](https://github.com/Xunnamius/test-utils/blob/9c792fa3803dc3e4362dd1fcbe700b9af2aab13f/packages/jest/src/index.ts#L146)
 
 Wrap the non-nullish `source` (or `T` itself is `source` is omitted) with
 Jest mock definitions.
