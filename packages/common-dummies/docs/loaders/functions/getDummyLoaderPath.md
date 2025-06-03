@@ -8,7 +8,7 @@
 
 > **getDummyLoaderPath**(`id`): `AbsolutePath`
 
-Defined in: [loaders.ts:18](https://github.com/Xunnamius/test-utils/blob/a6940723f903a76847f30627882e739f3d60ca52/packages/common-dummies/src/loaders.ts#L18)
+Defined in: [loaders.ts:18](https://github.com/Xunnamius/test-utils/blob/744bae6b5a761c07554a3658e09e94ec188c22ce/packages/common-dummies/src/loaders.ts#L18)
 
 Return a path to Node.js-compatible loader file.
 
