@@ -8,7 +8,7 @@
 
 > **NpmLinkPackageFixtureOptions** = `Tagged`\<\{ `packageUnderTest`: `Omit`\<`GenericPackage`, `"projectMetadata"`\>; \}, *typeof* [`npmLinkPackageFixtureName`](../variables/npmLinkPackageFixtureName.md)\>
 
-Defined in: [fixtures/npm-link-package.ts:34](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L34)
+Defined in: [fixtures/npm-link-package.ts:34](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L34)
 
 Contains any additional options properties this fixture expects or allows.
 

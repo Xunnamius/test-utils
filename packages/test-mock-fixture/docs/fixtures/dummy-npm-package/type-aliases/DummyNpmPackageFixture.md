@@ -8,7 +8,7 @@
 
 > **DummyNpmPackageFixture** = [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`dummyNpmPackageFixtureName`](../variables/dummyNpmPackageFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`DummyNpmPackageFixtureOptions`](DummyNpmPackageFixtureOptions.md)\>\>
 
-Defined in: [fixtures/dummy-npm-package.ts:19](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L19)
+Defined in: [fixtures/dummy-npm-package.ts:19](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/fixtures/dummy-npm-package.ts#L19)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

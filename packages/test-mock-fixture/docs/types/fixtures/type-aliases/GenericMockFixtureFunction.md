@@ -8,7 +8,7 @@
 
 > **GenericMockFixtureFunction** = (...`args`) => [`GenericMockFixture`](GenericMockFixture.md)
 
-Defined in: [types/fixtures.ts:189](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/types/fixtures.ts#L189)
+Defined in: [types/fixtures.ts:189](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/types/fixtures.ts#L189)
 
 ## Parameters
 

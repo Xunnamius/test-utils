@@ -8,7 +8,7 @@
 
 > **GitRepositoryFixture** = [`MockFixture`](../../../types/fixtures/type-aliases/MockFixture.md)\<*typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md), [`FixtureContext`](../../../types/fixtures/type-aliases/FixtureContext.md)\<[`GitRepositoryFixtureOptions`](GitRepositoryFixtureOptions.md)\>\>
 
-Defined in: [fixtures/git-repository.ts:18](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/fixtures/git-repository.ts#L18)
+Defined in: [fixtures/git-repository.ts:18](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/fixtures/git-repository.ts#L18)
 
 A [MockFixture](../../../types/fixtures/type-aliases/MockFixture.md) instantiation of this fixture.
 

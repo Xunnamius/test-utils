@@ -8,7 +8,7 @@
 
 > **GlobalFixtureOptions** = `object`
 
-Defined in: [types/options.ts:60](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/types/options.ts#L60)
+Defined in: [types/options.ts:60](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/types/options.ts#L60)
 
 The options available to every fixture.
 
@@ -18,7 +18,7 @@ The options available to every fixture.
 
 > `optional` **identifier**: `string`
 
-Defined in: [types/options.ts:70](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/types/options.ts#L70)
+Defined in: [types/options.ts:70](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/types/options.ts#L70)
 
 The identifier used in various places, including when creating the dummy
 root directory and when describing the test environment in output text.
@@ -38,7 +38,7 @@ other character will be replaced with a hyphen.
 
 > `optional` **initialVirtualFiles**: `object`
 
-Defined in: [types/options.ts:99](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/types/options.ts#L99)
+Defined in: [types/options.ts:99](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/types/options.ts#L99)
 
 An object describing "virtual files" represented by mappings between
 non-existent RelativePaths and their theoretical (immutable)
@@ -71,7 +71,7 @@ filesystem using the `initialDirectories` option.
 
 > **performCleanup**: `boolean`
 
-Defined in: [types/options.ts:76](https://github.com/Xunnamius/test-utils/blob/99c8b308dc0d050ece89ef0ebf19be4e45b535dc/packages/test-mock-fixture/src/types/options.ts#L76)
+Defined in: [types/options.ts:76](https://github.com/Xunnamius/test-utils/blob/c057e473267fff5b12c97e91a9dbe9329c9f76d1/packages/test-mock-fixture/src/types/options.ts#L76)
 
 When `true`, the dummy root directory will be deleted after the test
 complete (regardless of the outcome). Set `performCleanup` to `false` to
