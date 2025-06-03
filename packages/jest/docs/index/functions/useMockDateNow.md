@@ -8,7 +8,7 @@
 
 > **useMockDateNow**(`options?`): `void`
 
-Defined in: [packages/jest/src/index.ts:357](https://github.com/Xunnamius/test-utils/blob/9c792fa3803dc3e4362dd1fcbe700b9af2aab13f/packages/jest/src/index.ts#L357)
+Defined in: [packages/jest/src/index.ts:357](https://github.com/Xunnamius/test-utils/blob/470c2e71a5bee5da5b86f22aa216d456373614c0/packages/jest/src/index.ts#L357)
 
 Sets up a Jest spy on the `Date` object's `now` method such that it returns
 `mockNow` or `mockDateNowMs` (default) rather than the actual date. If you
