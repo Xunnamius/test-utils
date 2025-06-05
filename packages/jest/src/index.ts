@@ -380,6 +380,7 @@ export function useMockDateNow(options?: { mockNow?: number }) {
  *   { singleParameter: true }
  * );
  * ```
+ *
  * @see `spec` from {@link expectExceptionsWithMatchingErrors}
  */
 export type ExpectExceptionsWithMatchingErrorsSpec<
@@ -429,7 +430,7 @@ export type ExpectExceptionsWithMatchingErrorsFunction<
  * `errorFn` either throws an error or rejects. If an assertion fails, a helpful
  * error message is thrown.
  *
- * Example:
+ * Example 1:
  *
  * ```typescript
  * await expectExceptionsWithMatchingErrors([
@@ -439,6 +440,22 @@ export type ExpectExceptionsWithMatchingErrorsFunction<
  * () => {
  *   // ...
  * });
+ * ```
+ *
+ * Example 2:
+ *
+ * ```typescript
+ * const errors = [
+ *   [{ something: 1 }, 'expected error #1'],
+ *   [{ something: 2 }, 'expected error #2'],
+ *   [{ something: 3 }, 'expected error #3'],
+ * ] as Spec<[{ something: number }], 'single-parameter'>;
+ *
+ * await expectExceptionsWithMatchingErrors(
+ *   errors,
+ *   (params) => fn(...params),
+ *   { singleParameter: true }
+ * );
  * ```
  *
  * Note: if you're getting a type error about no matching overloads and/or an
