@@ -272,3 +272,7 @@ describe('::ensurePackageHasBeenBuilt', () => {
     });
   });
 });
+
+describe('::expectExceptionsWithMatchingErrors', () => {
+  it.todo('this');
+});

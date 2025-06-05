@@ -12,5 +12,8 @@ export const ErrorMessage = {
   },
   ExceptionDidNotOccur(index: number, message: string) {
     return `an exception did not occur for spec element at index #${index}\n\nExpected error message: ${message}`;
+  },
+  ExceptionDidOccur() {
+    return `SUCCESS! An exception DID occur as expected! This error is thrown to remind you to disable \`runOnly\` in the wake of your success :)`;
   }
 };

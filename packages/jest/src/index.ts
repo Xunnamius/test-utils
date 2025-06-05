@@ -19,7 +19,7 @@ import type { AbsolutePath } from '@-xun/fs';
 import type { MockedArgvOptions } from '@-xun/test-mock-argv';
 import type { MockedEnvOptions } from '@-xun/test-mock-env';
 import type { MockedOutputOptions } from '@-xun/test-mock-output';
-import type { Merge, PackageJson, Promisable } from 'type-fest';
+import type { Merge, PackageJson, Promisable, Tagged } from 'type-fest';
 
 // {@symbiote/notExtraneous jest}
 
@@ -361,13 +361,80 @@ export function useMockDateNow(options?: { mockNow?: number }) {
 }
 
 /**
- * Maps each element of the `spec` array into a Jest expectation asserting that
- * `errorFn` either throws an error or rejects. If an assertion fails, a
- * helpful error message is thrown.
+ * This type can be used to construct the error spec required by
+ * {@link expectExceptionsWithMatchingErrors} without having to call said
+ * function.
  *
  * Example:
  *
- * ```js
+ * ```typescript
+ * const errors = [
+ *   [{ something: 1 }, 'expected error #1'],
+ *   [{ something: 2 }, 'expected error #2'],
+ *   [{ something: 3 }, 'expected error #3'],
+ * ] as Spec<[{ something: number }], 'single-parameter'>;
+ *
+ * await expectExceptionsWithMatchingErrors(
+ *   errors,
+ *   (params) => fn(...params),
+ *   { singleParameter: true }
+ * );
+ * ```
+ * @see `spec` from {@link expectExceptionsWithMatchingErrors}
+ */
+export type ExpectExceptionsWithMatchingErrorsSpec<
+  Params extends readonly unknown[],
+  SingleParameter extends 'single-parameter' | 'multi-parameter' = 'multi-parameter'
+> = Tagged<
+  [
+    params: 'single-parameter' extends SingleParameter ? Params[0] : Params,
+    errorMessage: string
+  ][],
+  SingleParameter
+>;
+
+/**
+ * @see {@link expectExceptionsWithMatchingErrors}
+ */
+export type ExpectExceptionsWithMatchingErrorsOptions = {
+  /**
+   * If present, only the given indices (zero-based) will be run. The others
+   * will be skipped.
+   *
+   * @default undefined
+   */
+  runOnly?: number[];
+  /**
+   * If `true`, the first element of each `spec` tuple will be considered a
+   * lone parameter (as if it were wrapped in an array).
+   *
+   * This is to make adoption of this function by legacy code bases, which
+   * used the old single-parameter style, easier and should otherwise be
+   * left as `false`.
+   *
+   * @default false
+   */
+  singleParameter?: boolean;
+};
+
+/**
+ * @see `errorFn` from {@link expectExceptionsWithMatchingErrors}
+ */
+export type ExpectExceptionsWithMatchingErrorsFunction<
+  Params extends readonly unknown[]
+> = (
+  params: ExpectExceptionsWithMatchingErrorsSpec<Params>[number][0],
+  index: number
+) => Promisable<unknown>;
+
+/**
+ * Maps each element of the `spec` array into a Jest expectation asserting that
+ * `errorFn` either throws an error or rejects. If an assertion fails, a helpful
+ * error message is thrown.
+ *
+ * Example:
+ *
+ * ```typescript
  * await expectExceptionsWithMatchingErrors([
  *  [[param1, param2], 'expected error message 1'],
  *  [[1, 2, 3], 'expected error message 2']
@@ -376,12 +443,53 @@ export function useMockDateNow(options?: { mockNow?: number }) {
  *   // ...
  * });
  * ```
+ *
+ * Note: if you're getting a type error about no matching overloads, make sure
+ * you've set `options.singleParameter` to `true` if you're passing in a
+ * {@link ExpectExceptionsWithMatchingErrorsSpec} typed with
+ * `'single-parameter'` as its second type parameter.
  */
-export async function expectExceptionsWithMatchingErrors<
-  T extends [params: unknown[], errorMessage: string][]
->(spec: T, errorFn: (params: T[number][0], index: number) => Promisable<unknown>) {
+export async function expectExceptionsWithMatchingErrors<Params>(
+  spec: ExpectExceptionsWithMatchingErrorsSpec<[Params], 'single-parameter'>,
+  errorFn: ExpectExceptionsWithMatchingErrorsFunction<[Params]>,
+  options: ExpectExceptionsWithMatchingErrorsOptions & { singleParameter: true }
+): Promise<void>;
+export async function expectExceptionsWithMatchingErrors<Params extends unknown[]>(
+  spec: ExpectExceptionsWithMatchingErrorsSpec<Params>,
+  errorFn: ExpectExceptionsWithMatchingErrorsFunction<Params>,
+  options?: ExpectExceptionsWithMatchingErrorsOptions
+): Promise<void>;
+export async function expectExceptionsWithMatchingErrors(
+  spec_:
+    | ExpectExceptionsWithMatchingErrorsSpec<[unknown], 'single-parameter'>
+    | ExpectExceptionsWithMatchingErrorsSpec<unknown[]>,
+  errorFn_:
+    | ExpectExceptionsWithMatchingErrorsFunction<[unknown]>
+    | ExpectExceptionsWithMatchingErrorsFunction<unknown[]>,
+  { runOnly, singleParameter = false }: ExpectExceptionsWithMatchingErrorsOptions = {}
+): Promise<void> {
+  const debug = globalDebug.extend('match-errors');
+
+  debug('runOnly: %O', runOnly);
+  debug('singleParameter: %O', singleParameter);
+
+  const spec = singleParameter
+    ? (
+        spec_ as ExpectExceptionsWithMatchingErrorsSpec<[unknown], 'single-parameter'>
+      ).map(([param, error]) => [[param], error] as const)
+    : (spec_ as ExpectExceptionsWithMatchingErrorsSpec<unknown[]>);
+
+  const errorFn = errorFn_ as ExpectExceptionsWithMatchingErrorsFunction<
+    readonly unknown[]
+  >;
+
   await Promise.all(
     spec.map(async ([params, message], index) => {
+      if (runOnly && !runOnly.includes(index)) {
+        debug('skipped running index #%O', index);
+        return undefined;
+      }
+
       let result = undefined;
       let error = undefined;
       let errored = false;
@@ -404,4 +512,6 @@ export async function expectExceptionsWithMatchingErrors<
       });
     })
   );
+
+  assert(!runOnly, ErrorMessage.ExceptionDidOccur());
 }
