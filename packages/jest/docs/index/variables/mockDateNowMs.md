@@ -8,6 +8,6 @@
 
 > `const` **mockDateNowMs**: `number`
 
-Defined in: [packages/jest/src/index.ts:346](https://github.com/Xunnamius/test-utils/blob/dc3c2c9cf0d49938e10c5803e629f9457c84f104/packages/jest/src/index.ts#L346)
+Defined in: [packages/jest/src/index.ts:346](https://github.com/Xunnamius/test-utils/blob/ddc98d6724564c6aa1b8c427a63c41e54d5d77d6/packages/jest/src/index.ts#L346)
 
 The mock Date.now() value returned after calling `useMockDateNow`.
