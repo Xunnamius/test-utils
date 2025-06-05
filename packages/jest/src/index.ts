@@ -19,7 +19,7 @@ import type { AbsolutePath } from '@-xun/fs';
 import type { MockedArgvOptions } from '@-xun/test-mock-argv';
 import type { MockedEnvOptions } from '@-xun/test-mock-env';
 import type { MockedOutputOptions } from '@-xun/test-mock-output';
-import type { Merge, PackageJson, Promisable, Tagged } from 'type-fest';
+import type { Merge, PackageJson, Promisable } from 'type-fest';
 
 // {@symbiote/notExtraneous jest}
 
@@ -385,13 +385,10 @@ export function useMockDateNow(options?: { mockNow?: number }) {
 export type ExpectExceptionsWithMatchingErrorsSpec<
   Params extends readonly unknown[],
   SingleParameter extends 'single-parameter' | 'multi-parameter' = 'multi-parameter'
-> = Tagged<
-  [
-    params: 'single-parameter' extends SingleParameter ? Params[0] : Params,
-    errorMessage: string
-  ][],
-  SingleParameter
->;
+> = [
+  params: 'single-parameter' extends SingleParameter ? Params[0] : Params,
+  errorMessage: string
+][];
 
 /**
  * @see {@link expectExceptionsWithMatchingErrors}
@@ -444,10 +441,9 @@ export type ExpectExceptionsWithMatchingErrorsFunction<
  * });
  * ```
  *
- * Note: if you're getting a type error about no matching overloads, make sure
- * you've set `options.singleParameter` to `true` if you're passing in a
- * {@link ExpectExceptionsWithMatchingErrorsSpec} typed with
- * `'single-parameter'` as its second type parameter.
+ * Note: if you're getting a type error about no matching overloads and/or an
+ * untyped `errorFn`, make sure you've set `options.singleParameter`
+ * accordingly.
  */
 export async function expectExceptionsWithMatchingErrors<Params>(
   spec: ExpectExceptionsWithMatchingErrorsSpec<[Params], 'single-parameter'>,
