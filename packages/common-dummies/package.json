@@ -107,7 +107,7 @@
     "type-fest": "^4.41.0"
   },
   "devDependencies": {
-    "glob": "^11.0.2"
+    "glob": "^11.0.3"
   },
   "peerDependencies": {
     "jest": ">=30 || >=30.0.0-beta.5 || >=30.0.0-alpha.7"
