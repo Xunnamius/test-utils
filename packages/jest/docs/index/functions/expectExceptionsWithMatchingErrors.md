@@ -10,13 +10,13 @@
 
 > **expectExceptionsWithMatchingErrors**\<`Params`\>(`spec`, `errorFn`, `options`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:448](https://github.com/Xunnamius/test-utils/blob/ddc98d6724564c6aa1b8c427a63c41e54d5d77d6/packages/jest/src/index.ts#L448)
+Defined in: [packages/jest/src/index.ts:465](https://github.com/Xunnamius/test-utils/blob/9d28127150a9f75578854dbbc875f408b5cad0a3/packages/jest/src/index.ts#L465)
 
 Maps each element of the `spec` array into a Jest expectation asserting that
 `errorFn` either throws an error or rejects. If an assertion fails, a helpful
 error message is thrown.
 
-Example:
+Example 1:
 
 ```typescript
 await expectExceptionsWithMatchingErrors([
@@ -26,6 +26,22 @@ await expectExceptionsWithMatchingErrors([
 () => {
   // ...
 });
+```
+
+Example 2:
+
+```typescript
+const errors = [
+  [{ something: 1 }, 'expected error #1'],
+  [{ something: 2 }, 'expected error #2'],
+  [{ something: 3 }, 'expected error #3'],
+] as Spec<[{ something: number }], 'single-parameter'>;
+
+await expectExceptionsWithMatchingErrors(
+  errors,
+  (params) => fn(...params),
+  { singleParameter: true }
+);
 ```
 
 Note: if you're getting a type error about no matching overloads and/or an
@@ -60,13 +76,13 @@ accordingly.
 
 > **expectExceptionsWithMatchingErrors**\<`Params`\>(`spec`, `errorFn`, `options?`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:453](https://github.com/Xunnamius/test-utils/blob/ddc98d6724564c6aa1b8c427a63c41e54d5d77d6/packages/jest/src/index.ts#L453)
+Defined in: [packages/jest/src/index.ts:470](https://github.com/Xunnamius/test-utils/blob/9d28127150a9f75578854dbbc875f408b5cad0a3/packages/jest/src/index.ts#L470)
 
 Maps each element of the `spec` array into a Jest expectation asserting that
 `errorFn` either throws an error or rejects. If an assertion fails, a helpful
 error message is thrown.
 
-Example:
+Example 1:
 
 ```typescript
 await expectExceptionsWithMatchingErrors([
@@ -76,6 +92,22 @@ await expectExceptionsWithMatchingErrors([
 () => {
   // ...
 });
+```
+
+Example 2:
+
+```typescript
+const errors = [
+  [{ something: 1 }, 'expected error #1'],
+  [{ something: 2 }, 'expected error #2'],
+  [{ something: 3 }, 'expected error #3'],
+] as Spec<[{ something: number }], 'single-parameter'>;
+
+await expectExceptionsWithMatchingErrors(
+  errors,
+  (params) => fn(...params),
+  { singleParameter: true }
+);
 ```
 
 Note: if you're getting a type error about no matching overloads and/or an
