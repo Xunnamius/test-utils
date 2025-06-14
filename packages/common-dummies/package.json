@@ -1,6 +1,6 @@
 {
   "name": "@-xun/common-dummies",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A collection of dummy projects, packages, and other testable structures",
   "keywords": [
     "utils",

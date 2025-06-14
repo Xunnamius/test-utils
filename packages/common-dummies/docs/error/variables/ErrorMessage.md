@@ -8,7 +8,7 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [error.ts:5](https://github.com/Xunnamius/test-utils/blob/cf24eecfb0e20d6810918ea70f1447a7048a814c/packages/common-dummies/src/error.ts#L5)
+Defined in: [error.ts:5](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/error.ts#L5)
 
 A collection of possible error and warning messages.
 
