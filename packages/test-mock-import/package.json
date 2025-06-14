@@ -69,7 +69,7 @@
   "dependencies": {
     "@-xun/fs": "^2.0.0",
     "@-xun/test-mock-exit": "^2.0.3",
-    "rejoinder": "^2.0.0"
+    "rejoinder": "^2.0.1"
   },
   "peerDependencies": {
     "jest": ">=30 || >=30.0.0-beta.5 || >=30.0.0-alpha.7"
