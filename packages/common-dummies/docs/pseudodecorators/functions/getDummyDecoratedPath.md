@@ -8,7 +8,7 @@
 
 > **getDummyDecoratedPath**(`id`): `AbsolutePath`
 
-Defined in: [pseudodecorators.ts:29](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/pseudodecorators.ts#L29)
+Defined in: [pseudodecorators.ts:29](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/pseudodecorators.ts#L29)
 
 Return a path to an analyzable file containing one or more pseudodecorators.
 

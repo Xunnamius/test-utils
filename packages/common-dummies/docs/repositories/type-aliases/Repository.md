@@ -8,7 +8,7 @@
 
 > **Repository** = `object`
 
-Defined in: [repositories.ts:91](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L91)
+Defined in: [repositories.ts:91](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L91)
 
 A type representing a dummy monorepo or polyrepo project's metadata.
 
@@ -18,7 +18,7 @@ A type representing a dummy monorepo or polyrepo project's metadata.
 
 > **attributes**: `RootPackage`\[`"attributes"`\]
 
-Defined in: [repositories.ts:94](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L94)
+Defined in: [repositories.ts:94](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L94)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [repositories.ts:94](https://github.com/Xunnamius/test-utils/blob/22
 
 > **brokenPackageRoots**: `AbsolutePath`[]
 
-Defined in: [repositories.ts:97](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L97)
+Defined in: [repositories.ts:97](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L97)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [repositories.ts:97](https://github.com/Xunnamius/test-utils/blob/22
 
 > **json**: `XPackageJson`
 
-Defined in: [repositories.ts:93](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L93)
+Defined in: [repositories.ts:93](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L93)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [repositories.ts:93](https://github.com/Xunnamius/test-utils/blob/22
 
 > **namedPackageMapData**: [`PackageMapEntry`](PackageMapEntry.md)[]
 
-Defined in: [repositories.ts:95](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L95)
+Defined in: [repositories.ts:95](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L95)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [repositories.ts:95](https://github.com/Xunnamius/test-utils/blob/22
 
 > **root**: `AbsolutePath`
 
-Defined in: [repositories.ts:92](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L92)
+Defined in: [repositories.ts:92](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L92)
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: [repositories.ts:92](https://github.com/Xunnamius/test-utils/blob/22
 
 > **unnamedPackageMapData**: [`PackageMapEntry`](PackageMapEntry.md)[]
 
-Defined in: [repositories.ts:96](https://github.com/Xunnamius/test-utils/blob/22581cfc5e5d8631e4f7db402aefa2e14fa59432/packages/common-dummies/src/repositories.ts#L96)
+Defined in: [repositories.ts:96](https://github.com/Xunnamius/test-utils/blob/27307f4c6ac10e7904921f29f478c424bc1f6ff1/packages/common-dummies/src/repositories.ts#L96)
