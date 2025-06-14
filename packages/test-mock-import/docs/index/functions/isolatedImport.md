@@ -8,7 +8,7 @@
 
 > **isolatedImport**\<`Module`\>(`specifier`, `options?`): `Module`
 
-Defined in: [index.ts:44](https://github.com/Xunnamius/test-utils/blob/13e37825a4624663a1341dbbe6ec91404257bd4d/packages/test-mock-import/src/index.ts#L44)
+Defined in: [index.ts:44](https://github.com/Xunnamius/test-utils/blob/f4a59566b9602bdd57cd611af8799bea4c468777/packages/test-mock-import/src/index.ts#L44)
 
 Performs a CJS module import (via `require`) as if it were being imported for
 the first time.
