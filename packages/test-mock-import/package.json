@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@-xun/fs": "^2.0.0",
-    "@-xun/test-mock-exit": "^2.0.2",
+    "@-xun/test-mock-exit": "^2.0.3",
     "rejoinder": "^2.0.0"
   },
   "peerDependencies": {
