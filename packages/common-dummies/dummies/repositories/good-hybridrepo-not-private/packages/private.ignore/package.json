@@ -1,0 +1,12 @@
+{
+  "name": "private",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "private": true,
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo 'it works!'"
+  }
+}
