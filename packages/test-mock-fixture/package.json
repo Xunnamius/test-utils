@@ -81,7 +81,7 @@
     "glob": "^11.0.3",
     "lodash.mergewith": "^4.6.2",
     "rejoinder": "^2.0.0",
-    "simple-git": "^3.27.0",
+    "simple-git": "^3.28.0",
     "type-fest": "^4.41.0",
     "unique-filename": "^4.0.0"
   },
