@@ -1,6 +1,6 @@
 {
   "name": "@-xun/test-mock-fixture",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A generic testing utility that creates mock fixtures simulating a variety of runtime environments",
   "keywords": [
     "utils",
