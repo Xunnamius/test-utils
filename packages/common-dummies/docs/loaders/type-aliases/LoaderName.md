@@ -8,6 +8,6 @@
 
 > **LoaderName** = `"reflective"`
 
-Defined in: [loaders.ts:13](https://github.com/Xunnamius/test-utils/blob/de9965351aa6d4d052b49deb0c1a9747dc8792db/packages/common-dummies/src/loaders.ts#L13)
+Defined in: [loaders.ts:13](https://github.com/Xunnamius/test-utils/blob/7e12a1b163b21c43113c8108e46e449220763ab5/packages/common-dummies/src/loaders.ts#L13)
 
 A type representing the name of an available dummy loader.
