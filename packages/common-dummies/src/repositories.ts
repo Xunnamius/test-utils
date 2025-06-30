@@ -63,6 +63,7 @@ export type RepositoryName =
   | 'goodHybridrepoTopologicalPrivate'
   | 'goodHybridrepoTopologicalSelfRef'
   | 'goodMonorepo'
+  | 'goodMonorepoSimilarIds'
   | 'goodMonorepoNegatedPaths'
   | 'goodMonorepoNextjsProject'
   | 'goodMonorepoSimplePaths'
@@ -635,6 +636,24 @@ createDummyRepository({
   unnamedPackageMapData: [
     { name: 'unnamed-pkg-1', root: 'packages/unnamed-pkg-1', attributes: { cjs: true } },
     { name: 'unnamed-pkg-2', root: 'packages/unnamed-pkg-2', attributes: { cjs: true } }
+  ]
+});
+
+createDummyRepository({
+  repositoryName: 'goodMonorepoSimilarIds',
+  prototypeRoot: 'good-monorepo-similar-ids',
+  attributes: { cjs: true, monorepo: true, private: true },
+  namedPackageMapData: [
+    { name: 'a', root: 'packages/a', attributes: { cjs: true, cli: true } },
+    {
+      name: 'aaa',
+      root: 'packages/aaa',
+      attributes: { cjs: true, cli: true }
+    }
+  ],
+  unnamedPackageMapData: [
+    { name: 'a-unnamed', root: 'packages/a-unnamed', attributes: { cjs: true } },
+    { name: 'aaa-unnamed', root: 'packages/aaa-unnamed', attributes: { cjs: true } }
   ]
 });
 
