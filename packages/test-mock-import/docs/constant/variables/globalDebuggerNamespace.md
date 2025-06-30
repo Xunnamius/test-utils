@@ -8,6 +8,6 @@
 
 > `const` **globalDebuggerNamespace**: `"xmockImport"` = `'xmockImport'`
 
-Defined in: [constant.ts:4](https://github.com/Xunnamius/test-utils/blob/7e162266a0f26703e4583d657ba1044b02958b08/packages/test-mock-import/src/constant.ts#L4)
+Defined in: [constant.ts:4](https://github.com/Xunnamius/test-utils/blob/ae1a725342a1b9ee7efbb87984ffbe8c7467e14d/packages/test-mock-import/src/constant.ts#L4)
 
 The project-wide namespace that appears in debugger output.
