@@ -6,7 +6,7 @@
 
 # Class: MockedExitError
 
-Defined in: [packages/test-mock-exit/src/error.ts:23](https://github.com/Xunnamius/test-utils/blob/b4fb0bab66c3d29e17ca8c1ff0e80158ff568acc/packages/test-mock-exit/src/error.ts#L23)
+Defined in: [packages/test-mock-exit/src/error.ts:23](https://github.com/Xunnamius/test-utils/blob/5fdb9eb7dff672b03b96569bf67d2bcbcba06f5b/packages/test-mock-exit/src/error.ts#L23)
 
 Represents a call to `process.exit` when said function was mocked by
 `withMockedExit`.
@@ -21,7 +21,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 > **new MockedExitError**(`code`): `MockedExitError`
 
-Defined in: [packages/test-mock-exit/src/error.ts:30](https://github.com/Xunnamius/test-utils/blob/b4fb0bab66c3d29e17ca8c1ff0e80158ff568acc/packages/test-mock-exit/src/error.ts#L30)
+Defined in: [packages/test-mock-exit/src/error.ts:30](https://github.com/Xunnamius/test-utils/blob/5fdb9eb7dff672b03b96569bf67d2bcbcba06f5b/packages/test-mock-exit/src/error.ts#L30)
 
 Represents a call to `process.exit` when said function was mocked by
 `withMockedExit`.
@@ -44,7 +44,7 @@ Represents a call to `process.exit` when said function was mocked by
 
 > **new MockedExitError**(`code`, `message`, `superOptions`): `MockedExitError`
 
-Defined in: [packages/test-mock-exit/src/error.ts:35](https://github.com/Xunnamius/test-utils/blob/b4fb0bab66c3d29e17ca8c1ff0e80158ff568acc/packages/test-mock-exit/src/error.ts#L35)
+Defined in: [packages/test-mock-exit/src/error.ts:35](https://github.com/Xunnamius/test-utils/blob/5fdb9eb7dff672b03b96569bf67d2bcbcba06f5b/packages/test-mock-exit/src/error.ts#L35)
 
 This constructor syntax is used by subclasses when calling this constructor
 via `super`.
@@ -77,7 +77,7 @@ via `super`.
 
 > **\[$type\]**: `symbol`[]
 
-Defined in: [packages/test-mock-exit/src/error.ts:25](https://github.com/Xunnamius/test-utils/blob/b4fb0bab66c3d29e17ca8c1ff0e80158ff568acc/packages/test-mock-exit/src/error.ts#L25)
+Defined in: [packages/test-mock-exit/src/error.ts:25](https://github.com/Xunnamius/test-utils/blob/5fdb9eb7dff672b03b96569bf67d2bcbcba06f5b/packages/test-mock-exit/src/error.ts#L25)
 
 ***
 
