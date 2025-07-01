@@ -48,7 +48,7 @@
     "test:topological": "symbiote project topology --run test --env NODE_NO_WARNINGS=1"
   },
   "devDependencies": {
-    "@-xun/symbiote": "^4.5.6"
+    "@-xun/symbiote": "^4.6.1"
   },
   "engines": {
     "node": "^20.18.0 || ^22.12.0 || >=23.3.0"
