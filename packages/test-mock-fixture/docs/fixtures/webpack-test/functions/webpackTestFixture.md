@@ -8,7 +8,7 @@
 
 > **webpackTestFixture**(): [`WebpackTestFixture`](../type-aliases/WebpackTestFixture.md)
 
-Defined in: [fixtures/webpack-test.ts:92](https://github.com/Xunnamius/test-utils/blob/47f33d69abeb32464a6a4e66b6c89c313568151a/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L92)
+Defined in: [fixtures/webpack-test.ts:92](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/fixtures/webpack-test.ts#L92)
 
 This fixture initializes the dummy root directory with an index file under
 `src` and an optional `webpack.config.mjs` file (both described by

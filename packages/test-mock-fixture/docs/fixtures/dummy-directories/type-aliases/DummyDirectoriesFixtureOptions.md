@@ -8,7 +8,7 @@
 
 > **DummyDirectoriesFixtureOptions** = `Tagged`\<\{ `directoryPaths`: `RelativePath`[]; \}, *typeof* [`dummyDirectoriesFixtureName`](../variables/dummyDirectoriesFixtureName.md)\>
 
-Defined in: [fixtures/dummy-directories.ts:30](https://github.com/Xunnamius/test-utils/blob/47f33d69abeb32464a6a4e66b6c89c313568151a/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L30)
+Defined in: [fixtures/dummy-directories.ts:30](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/fixtures/dummy-directories.ts#L30)
 
 Contains any additional options properties this fixture expects or allows.
 
