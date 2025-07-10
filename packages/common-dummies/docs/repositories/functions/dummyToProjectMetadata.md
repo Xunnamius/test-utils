@@ -8,7 +8,7 @@
 
 > **dummyToProjectMetadata**(`repositoryName`, `cwdPackageName?`): `GenericProjectMetadata`
 
-Defined in: [repositories.ts:128](https://github.com/Xunnamius/test-utils/blob/7e12a1b163b21c43113c8108e46e449220763ab5/packages/common-dummies/src/repositories.ts#L128)
+Defined in: [repositories.ts:128](https://github.com/Xunnamius/test-utils/blob/072a29182b2d1e59efc0afb784fe4e6ee9b39e4f/packages/common-dummies/src/repositories.ts#L128)
 
 Return a ProjectMetadata instance from an existing dummy repository.
 
