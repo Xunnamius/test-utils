@@ -8,7 +8,7 @@
 
 > **PackageMapDatum** = `object`
 
-Defined in: [repositories.ts:105](https://github.com/Xunnamius/test-utils/blob/072a29182b2d1e59efc0afb784fe4e6ee9b39e4f/packages/common-dummies/src/repositories.ts#L105)
+Defined in: [repositories.ts:105](https://github.com/Xunnamius/test-utils/blob/a4ee90aa294e616b12b163fa377e904968cde627/packages/common-dummies/src/repositories.ts#L105)
 
 A type represents an object that will be expanded into a
 [PackageMapEntry](PackageMapEntry.md).
@@ -19,7 +19,7 @@ A type represents an object that will be expanded into a
 
 > **attributes**: `WorkspacePackage`\[`"attributes"`\]
 
-Defined in: [repositories.ts:114](https://github.com/Xunnamius/test-utils/blob/072a29182b2d1e59efc0afb784fe4e6ee9b39e4f/packages/common-dummies/src/repositories.ts#L114)
+Defined in: [repositories.ts:114](https://github.com/Xunnamius/test-utils/blob/a4ee90aa294e616b12b163fa377e904968cde627/packages/common-dummies/src/repositories.ts#L114)
 
 ***
 
@@ -27,7 +27,7 @@ Defined in: [repositories.ts:114](https://github.com/Xunnamius/test-utils/blob/0
 
 > **name**: `string`
 
-Defined in: [repositories.ts:109](https://github.com/Xunnamius/test-utils/blob/072a29182b2d1e59efc0afb784fe4e6ee9b39e4f/packages/common-dummies/src/repositories.ts#L109)
+Defined in: [repositories.ts:109](https://github.com/Xunnamius/test-utils/blob/a4ee90aa294e616b12b163fa377e904968cde627/packages/common-dummies/src/repositories.ts#L109)
 
 A package's name (for named packages) or its id (for unnamed packages).
 
@@ -37,6 +37,6 @@ A package's name (for named packages) or its id (for unnamed packages).
 
 > **root**: `RelativePath` \| `string`
 
-Defined in: [repositories.ts:113](https://github.com/Xunnamius/test-utils/blob/072a29182b2d1e59efc0afb784fe4e6ee9b39e4f/packages/common-dummies/src/repositories.ts#L113)
+Defined in: [repositories.ts:113](https://github.com/Xunnamius/test-utils/blob/a4ee90aa294e616b12b163fa377e904968cde627/packages/common-dummies/src/repositories.ts#L113)
 
 A **relative** path to a dummy project root (will be made absolute later).
