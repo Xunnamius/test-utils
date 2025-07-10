@@ -1,7 +1,6 @@
 import assert from 'node:assert';
 
 import { toAbsolutePath, toPath } from '@-xun/fs';
-import { TrialError } from 'named-app-errors';
 
 import { ErrorMessage } from 'universe+common-dummies:error.ts';
 
@@ -108,6 +107,6 @@ export function getDummyPackage<
   return pkg;
 
   function makeDummyPackageError(error: string) {
-    return new TrialError(ErrorMessage.PackageUnresolvable(id, error));
+    return new Error(ErrorMessage.PackageUnresolvable(id, error));
   }
 }

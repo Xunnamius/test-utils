@@ -68,6 +68,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
+    "@-xun/error": "^1.1.4",
     "core-js": "^3.43.0",
     "type-fest": "^4.41.0"
   },
