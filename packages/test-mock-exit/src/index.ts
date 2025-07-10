@@ -7,6 +7,8 @@ import type { Promisable } from 'type-fest';
 
 export * from 'universe+test-mock-exit:error.ts';
 
+export const { isError: isMockedExitError } = MockedExitError;
+
 /**
  * Mock `process.exit` within the scope of `test`. Guaranteed to return
  * `process.env` to its original state no matter how `test` terminates.
