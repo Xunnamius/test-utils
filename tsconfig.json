@@ -112,6 +112,8 @@
   ],
   "exclude": [
     "**/dist/**/*",
+    "**/.next/**/*",
+    "**/.wrangler/**/*",
     "**/node_modules/**/*",
     "**/*.ignore",
     "**/*.ignore.*/**/*",

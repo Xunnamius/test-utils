@@ -5,40 +5,38 @@
 # ! See https://git-scm.com/docs/gitignore#_pattern_format
 
 # Ignore temporary files in any subdir by giving them a special name
-/*.ignore
-/packages/*/*.ignore
-/*.ignore.*
-/packages/*/*.ignore.*
-/ignore.*
-/packages/*/ignore.*
-/tmp
-/packages/*/tmp
+*.ignore
+*.ignore.*
+ignore.*
+tmp
 
 # Ignore sensitive files in any subdir
-/.env
-/packages/*/.env
-/.npmrc
-/packages/*/.npmrc
-/*.local
-/packages/*/*.local
+.env
+.dev.vars
+.dev.vars.*
+.npmrc
+*.local
 
 # Ignore transpiled source in any subdir (used for advanced debugging)
-/.transpiled
-/packages/.transpiled
+.transpiled
 
 # Ignore packaged files that probably shouldn't be committed
 *.tgz
 *.tar.gz
 
 # Ignore relevant build artifacts in any subdir (with exceptions)
-/*.tsbuildinfo
-/packages/*/*.tsbuildinfo
-/build
-/packages/*/build
-/dist
-/packages/*/dist
-/coverage
-/packages/*/coverage
+*.tsbuildinfo
+dist
+coverage
+lib-cov
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+.vercel
+.next
+.wrangler
+.turbo
 
 # Ignore cloned GitHub wiki (do not regard it as a so-called "submodule")
 # ? Note that this complex path is relative to this file
@@ -51,9 +49,56 @@
 !/.vscode/*.example.json
 
 # Ignore relevant NPM and JSPM artifacts in any subdir
-/.npm
-/packages/*/.npm
-/node_modules
-/packages/*/node_modules
-/jspm_packages
-/packages/*/jspm_packages
+.npm
+node_modules
+jspm_packages
+
+# Ignore logs in any subdir
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore random nothingness in any subdir
+.eslintcache
+.node_repl_history
+.yarn-integrity
+*.DS_Store
+.AppleDouble
+.LSOverride
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+pids
+*.pid
+*.seed
+*.pid.lock
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+_book
+CertificateAuthorityCertificate.pem
+
+# Custom
