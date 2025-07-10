@@ -8,7 +8,7 @@
 
 > **IsolatedImportOptions** = `object`
 
-Defined in: [index.ts:20](https://github.com/Xunnamius/test-utils/blob/ae1a725342a1b9ee7efbb87984ffbe8c7467e14d/packages/test-mock-import/src/index.ts#L20)
+Defined in: [index.ts:20](https://github.com/Xunnamius/test-utils/blob/ca836aa33b227c1e3394f2c9c8306000b3bc7396/packages/test-mock-import/src/index.ts#L20)
 
 ## See
 
@@ -20,7 +20,7 @@ Defined in: [index.ts:20](https://github.com/Xunnamius/test-utils/blob/ae1a72534
 
 > `optional` **reduceToDefault**: `boolean`
 
-Defined in: [index.ts:29](https://github.com/Xunnamius/test-utils/blob/ae1a725342a1b9ee7efbb87984ffbe8c7467e14d/packages/test-mock-import/src/index.ts#L29)
+Defined in: [index.ts:29](https://github.com/Xunnamius/test-utils/blob/ca836aa33b227c1e3394f2c9c8306000b3bc7396/packages/test-mock-import/src/index.ts#L29)
 
 By default, if `module.__esModule === true` and the only other property of
 `module.exports` is `"default"`, then said `"default"` export will be
