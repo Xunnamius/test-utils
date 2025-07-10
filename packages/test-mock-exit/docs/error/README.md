@@ -6,14 +6,11 @@
 
 # error
 
-## Classes
+## Type Aliases
 
-- [MockedExitError](classes/MockedExitError.md)
+- [MockedExitError](type-aliases/MockedExitError.md)
 
 ## Variables
 
 - [ExitErrorMessage](variables/ExitErrorMessage.md)
-
-## Functions
-
-- [isMockedExitError](functions/isMockedExitError.md)
+- [MockedExitError](variables/MockedExitError.md)
