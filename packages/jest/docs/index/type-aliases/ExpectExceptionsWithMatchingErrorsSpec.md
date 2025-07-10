@@ -8,7 +8,7 @@
 
 > **ExpectExceptionsWithMatchingErrorsSpec**\<`Params`, `SingleParameter`\> = \[`"single-parameter"` *extends* `SingleParameter` ? `Params`\[`0`\] : `Params`, `string`\][]
 
-Defined in: [packages/jest/src/index.ts:386](https://github.com/Xunnamius/test-utils/blob/93209bf30ac49b608ecb825a1df1f2681544f2e3/packages/jest/src/index.ts#L386)
+Defined in: [packages/jest/src/index.ts:386](https://github.com/Xunnamius/test-utils/blob/4fc2dc9b5529a12a6f15193a82e6144613d89845/packages/jest/src/index.ts#L386)
 
 This type can be used to construct the error spec required by
 [expectExceptionsWithMatchingErrors](../functions/expectExceptionsWithMatchingErrors.md) without having to call said
