@@ -8,7 +8,7 @@
 
 > `const` **ExitErrorMessage**: `object`
 
-Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:23
+Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:20
 
 A collection of possible error and warning messages.
 
