@@ -8,7 +8,7 @@
 
 > **withMockedOutput**(`test`, `__namedParameters`): `Promise`\<`void`\>
 
-Defined in: [index.ts:84](https://github.com/Xunnamius/test-utils/blob/1a4e6183cbaff517f5d0f16ed3d0672656982dd1/packages/test-mock-output/src/index.ts#L84)
+Defined in: [index.ts:84](https://github.com/Xunnamius/test-utils/blob/763c49bcbbddd57babc64d23a6b5f47814cda5b6/packages/test-mock-output/src/index.ts#L84)
 
 Mock terminal output functions within the scope of `test`. Guaranteed to
 return terminal output functions to their original state no matter how `test`
