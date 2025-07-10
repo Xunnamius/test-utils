@@ -26,8 +26,8 @@
   "sideEffects": false,
   "type": "commonjs",
   "workspaces": [
-    "packages/*",
-    "!packages/*.ignore*"
+    "!packages/*.ignore*",
+    "packages/*"
   ],
   "scripts": {
     "build:topological": "symbiote project topology --run build --env NODE_NO_WARNINGS=1",
