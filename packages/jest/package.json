@@ -75,7 +75,7 @@
     "bidirectional-resolve": "^2.0.2",
     "core-js": "^3.44.0",
     "glob": "^11.0.3",
-    "rejoinder": "^2.0.1",
+    "rejoinder": "^2.0.2",
     "type-fest": "^4.41.0"
   },
   "peerDependencies": {
