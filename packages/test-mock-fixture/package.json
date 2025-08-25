@@ -80,7 +80,7 @@
     "core-js": "^3.44.0",
     "glob": "^11.0.3",
     "lodash.mergewith": "^4.6.2",
-    "rejoinder": "^2.0.2",
+    "rejoinder": "^2.0.3",
     "simple-git": "^3.28.0",
     "type-fest": "^4.41.0",
     "unique-filename": "^4.0.0"
