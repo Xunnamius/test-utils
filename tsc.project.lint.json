@@ -18,8 +18,11 @@
     "**/test/fixtures/**/*",
     "**/node_modules/**/*",
     "**/*.ignore",
-    "**/*.ignore.*/**/*",
+    "**/*.ignore/**/*",
     "**/ignore.*",
+    "**/ignore.*/**/*",
+    "**/*.ignore.*",
+    "**/*.ignore.*/**/*",
     "packages/common-dummies/dummies/**/*"
   ]
 }

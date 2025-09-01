@@ -3,16 +3,6 @@
   "version": "0.0.0-monorepo",
   "private": true,
   "description": "Monorepo for the test-utils project",
-  "keywords": [
-    "test",
-    "testing",
-    "utilities",
-    "jest",
-    "mock",
-    "argv",
-    "env",
-    "fixture"
-  ],
   "homepage": "https://github.com/Xunnamius/test-utils#readme",
   "bugs": {
     "url": "https://github.com/Xunnamius/test-utils/issues"
@@ -26,8 +16,9 @@
   "sideEffects": false,
   "type": "commonjs",
   "workspaces": [
+    "packages/*",
     "!packages/*.ignore*",
-    "packages/*"
+    "!packages/ignore.*"
   ],
   "scripts": {
     "build:topological": "symbiote project topology --run build --env NODE_NO_WARNINGS=1",
@@ -51,6 +42,6 @@
     "@-xun/symbiote": "^4.14.5"
   },
   "engines": {
-    "node": "^20.18.0 || ^22.12.0 || >=23.3.0"
+    "node": "^20.18.0 || >=22.12.0"
   }
 }
