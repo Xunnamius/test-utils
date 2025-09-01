@@ -12,7 +12,7 @@ Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types
 
 The context object passed around between every [MockFixture](MockFixture.md).
 
-## Type declaration
+## Type Declaration
 
 ### debug
 

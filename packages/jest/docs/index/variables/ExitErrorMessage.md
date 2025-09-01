@@ -12,7 +12,7 @@ Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:
 
 A collection of possible error and warning messages.
 
-## Type declaration
+## Type Declaration
 
 ### SuppressedExitAttempt()
 

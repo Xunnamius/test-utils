@@ -10,7 +10,7 @@
 
 > **expectExceptionsWithMatchingErrors**\<`Params`\>(`spec`, `errorFn`, `options`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:465](https://github.com/Xunnamius/test-utils/blob/4fc2dc9b5529a12a6f15193a82e6144613d89845/packages/jest/src/index.ts#L465)
+Defined in: [packages/jest/src/index.ts:465](https://github.com/Xunnamius/test-utils/blob/7b732a33cd472e83f55aefb75597a44f5c55f01d/packages/jest/src/index.ts#L465)
 
 Maps each element of the `spec` array into a Jest expectation asserting that
 `errorFn` either throws an error or rejects. If an assertion fails, a helpful
@@ -76,7 +76,7 @@ accordingly.
 
 > **expectExceptionsWithMatchingErrors**\<`Params`\>(`spec`, `errorFn`, `options?`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:470](https://github.com/Xunnamius/test-utils/blob/4fc2dc9b5529a12a6f15193a82e6144613d89845/packages/jest/src/index.ts#L470)
+Defined in: [packages/jest/src/index.ts:470](https://github.com/Xunnamius/test-utils/blob/7b732a33cd472e83f55aefb75597a44f5c55f01d/packages/jest/src/index.ts#L470)
 
 Maps each element of the `spec` array into a Jest expectation asserting that
 `errorFn` either throws an error or rejects. If an assertion fails, a helpful
