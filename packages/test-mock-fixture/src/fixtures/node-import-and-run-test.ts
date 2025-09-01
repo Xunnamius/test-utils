@@ -38,17 +38,6 @@ export type NodeImportAndRunTestFixtureOptions = Tagged<
      */
     runWith?: {
       /**
-       * If `true`, `initialVirtualFiles` must include a `src/index.*` file
-       * path. This "index path" will be written out to disk and the path
-       * appended to `runWith.args`.
-       *
-       * If `false`, `initialVirtualFiles` will be ignored and no appending will
-       * occur.
-       *
-       * @default true
-       */
-      useIndexPath: boolean;
-      /**
        * The binary that is executed.
        *
        * @default 'node'
@@ -73,6 +62,17 @@ export type NodeImportAndRunTestFixtureOptions = Tagged<
        * other options.
        */
       runnerOptions?: RunOptions;
+      /**
+       * If `true`, `initialVirtualFiles` must include a `src/index.*` file
+       * path. This "index path" will be written out to disk and the path
+       * appended to `runWith.args`.
+       *
+       * If `false`, `initialVirtualFiles` will be ignored and no appending will
+       * occur.
+       *
+       * @default true
+       */
+      useIndexPath?: boolean;
     };
   },
   typeof nodeImportAndRunTestFixtureName
