@@ -2,8 +2,6 @@
  * A collection of possible error and warning messages.
  */
 
-import { isNativeError } from 'node:util/types';
-
 // ? We'll allow it since rootFixtureName is accessed lazily
 // eslint-disable-next-line import/no-cycle
 import { rootFixtureName } from 'universe+test-mock-fixture:fixtures/root.ts';
@@ -23,7 +21,7 @@ export const ErrorMessage = {
       .map(
         (error, index) =>
           `${hasMultipleErrors ? `${index + 1}. ` : ''}${capitalize(
-            isNativeError(error) ? error.message : String(error)
+            Error.isError(error) ? error.message : String(error)
           )}`
       )
       .join('\n\n')}`;

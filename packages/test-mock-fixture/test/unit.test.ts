@@ -1351,6 +1351,40 @@ describe('<fixtures>', () => {
       expect(mockedWriteFile).toHaveBeenCalled();
     });
 
+    it('does not throw or append src/index path if useIndexPath is false', async () => {
+      expect.hasAssertions();
+
+      await expect(
+        nodeImportAndRunTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(mockRunNoRejectOnBadExit).toHaveBeenCalledExactlyOnceWith(
+        'node',
+        expect.any(Array),
+        expect.objectContaining({ cwd: fakeFixtureContext.root })
+      );
+
+      fakeFixtureContext.options.runWith = {
+        useIndexPath: false,
+        binary: 'binary',
+        args: ['args'],
+        runnerOptions: { option: true }
+      };
+
+      await expect(
+        nodeImportAndRunTestFixture().setup?.(fakeFixtureContext)
+      ).resolves.toBeUndefined();
+
+      expect(mockRunNoRejectOnBadExit.mock.calls).toStrictEqual([
+        [
+          'node',
+          expect.any(Array),
+          expect.objectContaining({ cwd: fakeFixtureContext.root })
+        ],
+        ['binary', ['args'], expect.objectContaining({ option: true })]
+      ]);
+    });
+
     it('adds "testResult" to context', async () => {
       expect.hasAssertions();
 
