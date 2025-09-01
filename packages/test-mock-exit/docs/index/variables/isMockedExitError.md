@@ -8,7 +8,7 @@
 
 > **isMockedExitError**: (`parameter`) => `parameter is Error & MockedExitError`
 
-Defined in: [packages/test-mock-exit/src/index.ts:10](https://github.com/Xunnamius/test-utils/blob/cdaba14aaa0c59c409a7af3aa16cea9c7f60e992/packages/test-mock-exit/src/index.ts#L10)
+Defined in: [packages/test-mock-exit/src/index.ts:10](https://github.com/Xunnamius/test-utils/blob/b07227778d4ebbb892164f91fde6172df826bbe8/packages/test-mock-exit/src/index.ts#L10)
 
 ## Parameters
 
