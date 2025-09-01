@@ -8,7 +8,7 @@
 
 > **MockFixture**\<`Name`, `Context`\> = `object`
 
-Defined in: [types/fixtures.ts:64](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/types/fixtures.ts#L64)
+Defined in: [types/fixtures.ts:64](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/types/fixtures.ts#L64)
 
 An object describing a mock or "dummy" filesystem structure used to simulate
 one or more runtime environments for the package under test.
@@ -29,7 +29,7 @@ one or more runtime environments for the package under test.
 
 > **description**: `string`
 
-Defined in: [types/fixtures.ts:76](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/types/fixtures.ts#L76)
+Defined in: [types/fixtures.ts:76](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/types/fixtures.ts#L76)
 
 A short string output during debugging that describes what the fixture is
 doing.
@@ -40,7 +40,7 @@ doing.
 
 > **name**: `Name` \| `symbol`
 
-Defined in: [types/fixtures.ts:71](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/types/fixtures.ts#L71)
+Defined in: [types/fixtures.ts:71](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/types/fixtures.ts#L71)
 
 An alphanumeric (including hyphens and underscores) string used to identify
 the fixture. This string _should_ be unique per fixture.
@@ -53,7 +53,7 @@ Including invalid characters in the fixture name will cause an error.
 
 > `optional` **setup**: (`context`) => `Promisable`\<`unknown`\>
 
-Defined in: [types/fixtures.ts:86](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/types/fixtures.ts#L86)
+Defined in: [types/fixtures.ts:86](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/types/fixtures.ts#L86)
 
 An optional function that is run before the `test` function is invoked.
 
@@ -79,7 +79,7 @@ essentially a no-op.
 
 > `optional` **teardown**: (`context`) => `Promisable`\<`unknown`\>
 
-Defined in: [types/fixtures.ts:101](https://github.com/Xunnamius/test-utils/blob/4d43cc0c19fc37167d33e672c88c9d1391d7bdfe/packages/test-mock-fixture/src/types/fixtures.ts#L101)
+Defined in: [types/fixtures.ts:101](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/types/fixtures.ts#L101)
 
 An optional function that is run after the `test` function completes.
 
