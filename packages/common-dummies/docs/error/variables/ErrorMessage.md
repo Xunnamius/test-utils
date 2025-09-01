@@ -8,11 +8,11 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [error.ts:5](https://github.com/Xunnamius/test-utils/blob/a4ee90aa294e616b12b163fa377e904968cde627/packages/common-dummies/src/error.ts#L5)
+Defined in: [error.ts:5](https://github.com/Xunnamius/test-utils/blob/3b435a2b1221c04401a80fa8bae8755ff8a9fcb3/packages/common-dummies/src/error.ts#L5)
 
 A collection of possible error and warning messages.
 
-## Type declaration
+## Type Declaration
 
 ### PackageInvalid()
 
