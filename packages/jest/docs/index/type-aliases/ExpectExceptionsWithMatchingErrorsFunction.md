@@ -8,7 +8,7 @@
 
 > **ExpectExceptionsWithMatchingErrorsFunction**\<`Params`\> = (`params`, `index`) => `Promisable`\<`unknown`\>
 
-Defined in: [packages/jest/src/index.ts:421](https://github.com/Xunnamius/test-utils/blob/7b732a33cd472e83f55aefb75597a44f5c55f01d/packages/jest/src/index.ts#L421)
+Defined in: [packages/jest/src/index.ts:421](https://github.com/Xunnamius/test-utils/blob/222bee1f31e620fb1ced6fb601c15b3b378df287/packages/jest/src/index.ts#L421)
 
 ## Type Parameters
 
