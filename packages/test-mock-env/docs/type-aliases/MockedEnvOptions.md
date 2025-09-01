@@ -8,7 +8,7 @@
 
 > **MockedEnvOptions** = `object`
 
-Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/8d3fa611b2ab0b44dbc418bb2b1ae7e73693696a/packages/test-mock-env/src/index.ts#L6)
+Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/4d0355cf399007b23c64351a2f5aae5d806510f0/packages/test-mock-env/src/index.ts#L6)
 
 ## See
 
@@ -20,7 +20,7 @@ Defined in: [index.ts:6](https://github.com/Xunnamius/test-utils/blob/8d3fa611b2
 
 > `optional` **passthroughDebugEnv**: `boolean`
 
-Defined in: [index.ts:32](https://github.com/Xunnamius/test-utils/blob/8d3fa611b2ab0b44dbc418bb2b1ae7e73693696a/packages/test-mock-env/src/index.ts#L32)
+Defined in: [index.ts:32](https://github.com/Xunnamius/test-utils/blob/4d0355cf399007b23c64351a2f5aae5d806510f0/packages/test-mock-env/src/index.ts#L32)
 
 If `true`, whenever `process.env.DEBUG` is present, it will be forwarded
 as-is to the underlying environment mock even when `replaceEntireEnv` is
@@ -38,7 +38,7 @@ true
 
 > `optional` **replaceEntireEnv**: `boolean`
 
-Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/8d3fa611b2ab0b44dbc418bb2b1ae7e73693696a/packages/test-mock-env/src/index.ts#L24)
+Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/4d0355cf399007b23c64351a2f5aae5d806510f0/packages/test-mock-env/src/index.ts#L24)
 
 By default, all environment variables in the `process.env` object are
 deleted before the object is re-hydrated with `newEnv`.
