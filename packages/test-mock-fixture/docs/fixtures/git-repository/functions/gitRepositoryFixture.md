@@ -8,7 +8,7 @@
 
 > **gitRepositoryFixture**(): [`GitRepositoryFixture`](../type-aliases/GitRepositoryFixture.md)
 
-Defined in: [fixtures/git-repository.ts:73](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/fixtures/git-repository.ts#L73)
+Defined in: [fixtures/git-repository.ts:73](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/fixtures/git-repository.ts#L73)
 
 This fixture initializes the dummy root directory as a git repository.
 

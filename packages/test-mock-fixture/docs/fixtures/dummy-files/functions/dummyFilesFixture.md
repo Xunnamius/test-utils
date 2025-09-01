@@ -8,7 +8,7 @@
 
 > **dummyFilesFixture**(): [`DummyFilesFixture`](../type-aliases/DummyFilesFixture.md)
 
-Defined in: [fixtures/dummy-files.ts:70](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L70)
+Defined in: [fixtures/dummy-files.ts:70](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/fixtures/dummy-files.ts#L70)
 
 This fixture writes out the files described by `initialVirtualFiles` to the
 filesystem. Paths of any depth are allowed, any non-existent path components

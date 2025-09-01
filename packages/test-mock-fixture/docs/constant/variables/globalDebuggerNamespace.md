@@ -8,6 +8,6 @@
 
 > `const` **globalDebuggerNamespace**: `"xmockFixture"` = `'xmockFixture'`
 
-Defined in: [constant.ts:4](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/constant.ts#L4)
+Defined in: [constant.ts:4](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/constant.ts#L4)
 
 The project-wide namespace that appears in debugger output.

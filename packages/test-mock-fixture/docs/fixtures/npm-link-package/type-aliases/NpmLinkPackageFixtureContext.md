@@ -8,7 +8,7 @@
 
 > **NpmLinkPackageFixtureContext** = `Tagged`\<`EmptyObject`, *typeof* [`npmLinkPackageFixtureName`](../variables/npmLinkPackageFixtureName.md)\>
 
-Defined in: [fixtures/npm-link-package.ts:60](https://github.com/Xunnamius/test-utils/blob/3c079421bf89bc52feb9a33221326ac6f32a13b7/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L60)
+Defined in: [fixtures/npm-link-package.ts:60](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/fixtures/npm-link-package.ts#L60)
 
 Contains any additional context properties this fixture makes available by
 the time its `setup` function has successfully executed.
