@@ -8,7 +8,7 @@
 
 > **protectedImportFactory**\<`Module`\>(...`__namedParameters`): \<`LocalModule`\>(`__namedParameters`) => `Promise`\<`LocalModule`\>
 
-Defined in: [index.ts:99](https://github.com/Xunnamius/test-utils/blob/9024c56057c79230764d60ad560b31947bf59aed/packages/test-mock-import/src/index.ts#L99)
+Defined in: [index.ts:99](https://github.com/Xunnamius/test-utils/blob/549b45d4c7d708c080a3d87452de38df664abdfc/packages/test-mock-import/src/index.ts#L99)
 
 Returns a function that, when invoked, performs a CJS module import (via
 `require`) as if it were being imported for the first time. Also awaits the
@@ -32,23 +32,7 @@ specific exit code.
 
 ## Returns
 
-> \<`LocalModule`\>(`__namedParameters`): `Promise`\<`LocalModule`\>
-
-### Type Parameters
-
-#### LocalModule
-
-`LocalModule` = `Module`
-
-### Parameters
-
-#### \_\_namedParameters
-
-[`IsolatedImportOptions`](../type-aliases/IsolatedImportOptions.md) & `object` = `{}`
-
-### Returns
-
-`Promise`\<`LocalModule`\>
+\<`LocalModule`\>(`__namedParameters`) => `Promise`\<`LocalModule`\>
 
 ## See
 

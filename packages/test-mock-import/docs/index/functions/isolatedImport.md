@@ -8,7 +8,7 @@
 
 > **isolatedImport**\<`Module`\>(`specifier`, `options?`): `Module`
 
-Defined in: [index.ts:44](https://github.com/Xunnamius/test-utils/blob/9024c56057c79230764d60ad560b31947bf59aed/packages/test-mock-import/src/index.ts#L44)
+Defined in: [index.ts:44](https://github.com/Xunnamius/test-utils/blob/549b45d4c7d708c080a3d87452de38df664abdfc/packages/test-mock-import/src/index.ts#L44)
 
 Performs a CJS module import (via `require`) as if it were being imported for
 the first time.
@@ -30,11 +30,11 @@ test to hang unexpectedly, even when all tests pass.
 
 ### specifier
 
+`string` \| `AbsolutePath`
+
 Specifier or absolute path to the module under test. Module resolution is
 handled by `require`, therefore the specifier, if a filesystem path, should
 never be relative and must always use unix-style separators (i.e. `/`).
-
-`string` | `AbsolutePath`
 
 ### options?
 
