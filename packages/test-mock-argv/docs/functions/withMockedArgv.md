@@ -6,9 +6,9 @@
 
 # Function: withMockedArgv()
 
-> **withMockedArgv**(`test`, `simulatedArgv`, `__namedParameters`): `Promise`\<`void`\>
+> **withMockedArgv**(`test`, `simulatedArgv`, `__namedParameters?`): `Promise`\<`void`\>
 
-Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/6c24780559986005c862cb831a14997f8bb32c2e/packages/test-mock-argv/src/index.ts#L24)
+Defined in: [index.ts:24](https://github.com/Xunnamius/test-utils/blob/3132a1df876d3cd40609ec4368105e65af0e9172/packages/test-mock-argv/src/index.ts#L24)
 
 Mock `process.argv` within the scope of `test`. Guaranteed to return
 `process.argv` to its original state no matter how `test` terminates.
@@ -26,7 +26,7 @@ Mock `process.argv` within the scope of `test`. Guaranteed to return
 
 `string`[]
 
-### \_\_namedParameters
+### \_\_namedParameters?
 
 [`MockedArgvOptions`](../type-aliases/MockedArgvOptions.md) = `{}`
 
