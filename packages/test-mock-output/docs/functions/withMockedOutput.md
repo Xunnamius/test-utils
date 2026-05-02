@@ -6,9 +6,9 @@
 
 # Function: withMockedOutput()
 
-> **withMockedOutput**(`test`, `__namedParameters`): `Promise`\<`void`\>
+> **withMockedOutput**(`test`, `__namedParameters?`): `Promise`\<`void`\>
 
-Defined in: [index.ts:84](https://github.com/Xunnamius/test-utils/blob/c24bbd5fb3d7b31e4710dd31f72c51fe59f9c7bb/packages/test-mock-output/src/index.ts#L84)
+Defined in: [index.ts:84](https://github.com/Xunnamius/test-utils/blob/c73fea058f31119b33ced2b9d3df73f99dc9a950/packages/test-mock-output/src/index.ts#L84)
 
 Mock terminal output functions within the scope of `test`. Guaranteed to
 return terminal output functions to their original state no matter how `test`
@@ -23,7 +23,7 @@ terminates.
 
 (`spies`) => `unknown`
 
-### \_\_namedParameters
+### \_\_namedParameters?
 
 [`MockedOutputOptions`](../type-aliases/MockedOutputOptions.md) = `{}`
 
