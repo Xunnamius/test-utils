@@ -68,7 +68,6 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
-    "core-js": "^3.49.0",
     "type-fest": "^5.6.0"
   },
   "engines": {
