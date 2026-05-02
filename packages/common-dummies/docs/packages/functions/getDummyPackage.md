@@ -6,9 +6,9 @@
 
 # Function: getDummyPackage()
 
-> **getDummyPackage**\<`RequireObjectImports`, `RequireObjectExports`\>(`id`, `options`): [`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<`RequireObjectImports`, `RequireObjectExports`\>
+> **getDummyPackage**\<`RequireObjectImports`, `RequireObjectExports`\>(`id`, `options?`): [`DummyPackageMetadata`](../type-aliases/DummyPackageMetadata.md)\<`RequireObjectImports`, `RequireObjectExports`\>
 
-Defined in: [packages.ts:50](https://github.com/Xunnamius/test-utils/blob/3b435a2b1221c04401a80fa8bae8755ff8a9fcb3/packages/common-dummies/src/packages.ts#L50)
+Defined in: [packages.ts:50](https://github.com/Xunnamius/test-utils/blob/985123c45ab648cd3e7a4494b8c15a03bf0b7b40/packages/common-dummies/src/packages.ts#L50)
 
 Return metadata about an available dummy package.
 
@@ -28,7 +28,7 @@ Return metadata about an available dummy package.
 
 [`PackageName`](../type-aliases/PackageName.md)
 
-### options
+### options?
 
 #### requireObjectExports?
 
