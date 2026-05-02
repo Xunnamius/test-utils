@@ -8,7 +8,7 @@
 
 > **FixtureFs** = `object` & `Omit`\<*typeof* `fs`, `"constants"` \| `"glob"`\>
 
-Defined in: [types/fixtures.ts:209](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/types/fixtures.ts#L209)
+Defined in: [types/fixtures.ts:209](https://github.com/Xunnamius/test-utils/blob/bf9d3eb6ac5a6277f078e479716d2ea5a3a003ae/packages/test-mock-fixture/src/types/fixtures.ts#L209)
 
 Context-sensitive asynchronous wrappers for `node:fs/promises` functions
 (excluding fs.glob) with in-build debugging and exception handling.
@@ -19,7 +19,7 @@ AbsolutePaths as such.
 
 ## Type Declaration
 
-### isAccessible()
+### isAccessible
 
 > **isAccessible**: (...`args`) => `Promise`\<`boolean`\>
 

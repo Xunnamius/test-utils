@@ -8,7 +8,7 @@
 
 > **GitRepositoryFixtureOptions** = `Tagged`\<\{ `setupGit?`: (`git`) => `Promisable`\<`void`\>; \}, *typeof* [`gitRepositoryFixtureName`](../variables/gitRepositoryFixtureName.md)\>
 
-Defined in: [fixtures/git-repository.ts:32](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/fixtures/git-repository.ts#L32)
+Defined in: [fixtures/git-repository.ts:32](https://github.com/Xunnamius/test-utils/blob/bf9d3eb6ac5a6277f078e479716d2ea5a3a003ae/packages/test-mock-fixture/src/fixtures/git-repository.ts#L32)
 
 Contains any additional options properties this fixture expects or allows.
 

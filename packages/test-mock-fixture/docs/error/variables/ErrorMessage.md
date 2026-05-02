@@ -8,7 +8,7 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [error.ts:10](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/error.ts#L10)
+Defined in: [error.ts:10](https://github.com/Xunnamius/test-utils/blob/bf9d3eb6ac5a6277f078e479716d2ea5a3a003ae/packages/test-mock-fixture/src/error.ts#L10)
 
 ## Type Declaration
 
@@ -24,7 +24,7 @@ Defined in: [error.ts:10](https://github.com/Xunnamius/test-utils/blob/092a311cd
 
 ##### dummyRoot
 
-`undefined` | `string`
+`string` \| `undefined`
 
 #### Returns
 

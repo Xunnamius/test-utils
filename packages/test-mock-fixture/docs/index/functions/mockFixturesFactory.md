@@ -8,7 +8,7 @@
 
 > **mockFixturesFactory**\<`Fixtures`, `AdditionalOptions`, `AdditionalContext`\>(...`__namedParameters`): (...`args`) => `Promise`\<`void`\>
 
-Defined in: [index.ts:321](https://github.com/Xunnamius/test-utils/blob/092a311cd9c7e00a7eedfbb90eacd9e7f2fb0150/packages/test-mock-fixture/src/index.ts#L321)
+Defined in: [index.ts:321](https://github.com/Xunnamius/test-utils/blob/bf9d3eb6ac5a6277f078e479716d2ea5a3a003ae/packages/test-mock-fixture/src/index.ts#L321)
 
 Returns a function allowing for the creation of many mock (or "dummy")
 filesystem structures, each used to simulate one or more runtime environments
@@ -36,14 +36,4 @@ for the package under test.
 
 ## Returns
 
-> (...`args`): `Promise`\<`void`\>
-
-### Parameters
-
-#### args
-
-...\[(`context`) => `unknown`, `Partial`\<`ReadonlyDeep`\<[`GlobalFixtureOptions`](../../types/options/type-aliases/GlobalFixtureOptions.md) & [`GenericMockFixture`](../../types/fixtures/type-aliases/GenericMockFixture.md) *extends* `ReturnType`\<`Fixtures`\[`number`\]\> ? `unknown` : `IfAny`\<`ReturnType`\<`Fixtures`\[`number`\]\>, `unknown`, [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`DescribeRootFixture`](../../fixtures/describe-root/type-aliases/DescribeRootFixture.md), `ReturnType`\<...\>, [`DescribeRootFixtureOptions`](../../fixtures/describe-root/type-aliases/DescribeRootFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`DummyDirectoriesFixture`](../../fixtures/dummy-directories/type-aliases/DummyDirectoriesFixture.md), `ReturnType`\<...\>, [`DummyDirectoriesFixtureOptions`](../../fixtures/dummy-directories/type-aliases/DummyDirectoriesFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`DummyFilesFixture`](../../fixtures/dummy-files/type-aliases/DummyFilesFixture.md), `ReturnType`\<...\>, [`DummyFilesFixtureOptions`](../../fixtures/dummy-files/type-aliases/DummyFilesFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`DummyNpmPackageFixture`](../../fixtures/dummy-npm-package/type-aliases/DummyNpmPackageFixture.md), `ReturnType`\<...\>, [`DummyNpmPackageFixtureOptions`](../../fixtures/dummy-npm-package/type-aliases/DummyNpmPackageFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`GitRepositoryFixture`](../../fixtures/git-repository/type-aliases/GitRepositoryFixture.md), `ReturnType`\<...\>, [`GitRepositoryFixtureOptions`](../../fixtures/git-repository/type-aliases/GitRepositoryFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`NodeImportAndRunTestFixture`](../../fixtures/node-import-and-run-test/type-aliases/NodeImportAndRunTestFixture.md), `ReturnType`\<...\>, [`NodeImportAndRunTestFixtureOptions`](../../fixtures/node-import-and-run-test/type-aliases/NodeImportAndRunTestFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`RunTestFixture`](../../fixtures/run-test/type-aliases/RunTestFixture.md), `ReturnType`\<...\>, [`RunTestFixtureOptions`](../../fixtures/run-test/type-aliases/RunTestFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`NpmCopyPackageFixture`](../../fixtures/npm-copy-package/type-aliases/NpmCopyPackageFixture.md), `ReturnType`\<...\>, [`NpmCopyPackageFixtureOptions`](../../fixtures/npm-copy-package/type-aliases/NpmCopyPackageFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`NpmLinkPackageFixture`](../../fixtures/npm-link-package/type-aliases/NpmLinkPackageFixture.md), `ReturnType`\<...\>, [`NpmLinkPackageFixtureOptions`](../../fixtures/npm-link-package/type-aliases/NpmLinkPackageFixtureOptions.md), `true`\> & [`ReturnVIfTExtendsU`](../../types/util/type-aliases/ReturnVIfTExtendsU.md)\<[`WebpackTestFixture`](../../fixtures/webpack-test/type-aliases/WebpackTestFixture.md), `ReturnType`\<...\>, [`WebpackTestFixtureOptions`](../../fixtures/webpack-test/type-aliases/WebpackTestFixtureOptions.md), `true`\>\> & `NoInfer`\<`AdditionalOptions`\>\>\>?\]
-
-### Returns
-
-`Promise`\<`void`\>
+(...`args`) => `Promise`\<`void`\>
