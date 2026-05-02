@@ -8,7 +8,7 @@
 
 > `const` **ExitErrorMessage**: `object`
 
-Defined in: [packages/test-mock-exit/src/error.ts:41](https://github.com/Xunnamius/test-utils/blob/b07227778d4ebbb892164f91fde6172df826bbe8/packages/test-mock-exit/src/error.ts#L41)
+Defined in: [error.ts:41](https://github.com/Xunnamius/test-utils/blob/7d57cd5546eb16efeb089b54af88313b0c928ae5/packages/test-mock-exit/src/error.ts#L41)
 
 A collection of possible error and warning messages.
 
@@ -22,7 +22,7 @@ A collection of possible error and warning messages.
 
 ##### code
 
-`undefined` | `null` | `string` | `number`
+`string` \| `number` \| `null` \| `undefined`
 
 #### Returns
 
