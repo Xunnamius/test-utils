@@ -8,7 +8,7 @@
 
 > **mockEnvFactory**(`factorySimulatedEnv`, `factoryOptions?`): (`test`, `simulatedEnv`, `options?`) => `Promise`\<`void`\>
 
-Defined in: [index.ts:92](https://github.com/Xunnamius/test-utils/blob/4d0355cf399007b23c64351a2f5aae5d806510f0/packages/test-mock-env/src/index.ts#L92)
+Defined in: [index.ts:92](https://github.com/Xunnamius/test-utils/blob/30473b0dfdcdc6c8e714a403bf388f6c84418cb4/packages/test-mock-env/src/index.ts#L92)
 
 Return a function that, when invoked, returns a pre-configured
 [withMockedEnv](withMockedEnv.md) function.
@@ -28,22 +28,4 @@ duplicating configuration across [withMockedEnv](withMockedEnv.md) calls.
 
 ## Returns
 
-> (`test`, `simulatedEnv`, `options?`): `Promise`\<`void`\>
-
-### Parameters
-
-#### test
-
-() => `Promisable`\<`void`\>
-
-#### simulatedEnv
-
-`Record`\<`string`, `string`\> = `{}`
-
-#### options?
-
-[`MockedEnvOptions`](../type-aliases/MockedEnvOptions.md)
-
-### Returns
-
-`Promise`\<`void`\>
+(`test`, `simulatedEnv`, `options?`) => `Promise`\<`void`\>
