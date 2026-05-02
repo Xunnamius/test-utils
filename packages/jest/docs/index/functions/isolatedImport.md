@@ -8,7 +8,7 @@
 
 > **isolatedImport**\<`Module`\>(`specifier`, `options?`): `Module`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
+Defined in: test-mock-import/dist/packages/test-mock-import/src/index.d.ts:34
 
 Performs a CJS module import (via `require`) as if it were being imported for
 the first time.
@@ -30,11 +30,11 @@ test to hang unexpectedly, even when all tests pass.
 
 ### specifier
 
+`string` \| `AbsolutePath`
+
 Specifier or absolute path to the module under test. Module resolution is
 handled by `require`, therefore the specifier, if a filesystem path, should
 never be relative and must always use unix-style separators (i.e. `/`).
-
-`string` | `AbsolutePath`
 
 ### options?
 

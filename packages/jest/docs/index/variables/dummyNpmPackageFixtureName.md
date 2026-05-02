@@ -8,4 +8,4 @@
 
 > `const` **dummyNpmPackageFixtureName**: `"dummy-npm-package"` = `"dummy-npm-package"`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-npm-package.d.ts:4
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/dummy-npm-package.d.ts:4

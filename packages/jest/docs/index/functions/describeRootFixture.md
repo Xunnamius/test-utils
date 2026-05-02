@@ -8,7 +8,7 @@
 
 > **describeRootFixture**(): [`DescribeRootFixture`](../type-aliases/DescribeRootFixture.md)
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:46
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:46
 
 This fixture outputs debug information describing the runtime environment.
 

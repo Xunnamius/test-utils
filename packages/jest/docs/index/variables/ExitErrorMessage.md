@@ -8,7 +8,7 @@
 
 > `const` **ExitErrorMessage**: `object`
 
-Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:20
+Defined in: test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:20
 
 A collection of possible error and warning messages.
 
@@ -22,7 +22,7 @@ A collection of possible error and warning messages.
 
 ##### code
 
-`undefined` | `null` | `string` | `number`
+`string` \| `number` \| `null` \| `undefined`
 
 #### Returns
 

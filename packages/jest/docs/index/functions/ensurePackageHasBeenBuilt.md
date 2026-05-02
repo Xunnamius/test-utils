@@ -8,7 +8,7 @@
 
 > **ensurePackageHasBeenBuilt**(`packageRoot`, `packageName`, `packageExports`): `Promise`\<`void`\>
 
-Defined in: [packages/jest/src/index.ts:313](https://github.com/Xunnamius/test-utils/blob/222bee1f31e620fb1ced6fb601c15b3b378df287/packages/jest/src/index.ts#L313)
+Defined in: [jest/src/index.ts:313](https://github.com/Xunnamius/test-utils/blob/7e68f478394f141080eb757f07682b7a0fe411dd/packages/jest/src/index.ts#L313)
 
 This function will throw if at least one of `packageName`'s entry points
 (relative to `packageRoot` and as defined in `packageExports`, are
@@ -23,11 +23,11 @@ no-op.
 
 ### packageName
 
-`undefined` | `string`
+`string` \| `undefined`
 
 ### packageExports
 
-`undefined` | `Exports`
+`Exports` \| `undefined`
 
 ## Returns
 

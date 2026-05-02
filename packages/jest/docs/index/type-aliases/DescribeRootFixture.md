@@ -8,7 +8,7 @@
 
 > **DescribeRootFixture** = [`MockFixture`](MockFixture.md)\<*typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md), [`FixtureContext`](FixtureContext.md)\<[`DescribeRootFixtureOptions`](DescribeRootFixtureOptions.md)\>\>
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:9
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:9
 
 A [MockFixture](MockFixture.md) instantiation of this fixture.
 

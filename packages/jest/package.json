@@ -1,6 +1,6 @@
 {
   "name": "@-xun/jest",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "description": "A collection of utilities for the jest test runner",
   "keywords": [
     "utils",

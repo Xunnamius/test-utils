@@ -8,7 +8,7 @@
 
 > **GenericMockFixtureFunctions** = readonly [`GenericMockFixtureFunction`](GenericMockFixtureFunction.md)[]
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:113
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/types/fixtures.d.ts:113
 
 ## See
 

@@ -8,4 +8,4 @@
 
 > `const` **describeRootFixtureName**: `"describe-root"` = `"describe-root"`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:3
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:3

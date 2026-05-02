@@ -8,7 +8,7 @@
 
 > **MockedOutputOptions** = `object`
 
-Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:5
+Defined in: test-mock-output/dist/packages/test-mock-output/src/index.d.ts:5
 
 ## See
 
@@ -18,9 +18,9 @@ Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d
 
 ### passthrough?
 
-> `optional` **passthrough**: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]
+> `optional` **passthrough?**: (`"log"` \| `"warn"` \| `"error"` \| `"info"` \| `"stdout"` \| `"stderr"`)[]
 
-Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:21
+Defined in: test-mock-output/dist/packages/test-mock-output/src/index.d.ts:21
 
 Prevent mocking the implementation of one or more output spies, allowing
 output to be passed through to the original function. Said spies will
@@ -36,9 +36,9 @@ remain functional.
 
 ### passthroughOutputIfDebugging?
 
-> `optional` **passthroughOutputIfDebugging**: `boolean`
+> `optional` **passthroughOutputIfDebugging?**: `boolean`
 
-Defined in: packages/test-mock-output/dist/packages/test-mock-output/src/index.d.ts:13
+Defined in: test-mock-output/dist/packages/test-mock-output/src/index.d.ts:13
 
 If `true`, whenever `process.env.DEBUG` is present, output functions will
 still be spied on but their implementations will not be mocked, allowing

@@ -8,4 +8,4 @@
 
 > `const` **MockedExitError**: `SpecificErrorClassConstructor` & `NamedErrorConstructorStaticProperties`
 
-Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:1
+Defined in: test-mock-exit/dist/packages/test-mock-exit/src/error.d.ts:1

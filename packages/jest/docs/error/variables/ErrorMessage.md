@@ -8,7 +8,7 @@
 
 > `const` **ErrorMessage**: `object`
 
-Defined in: [packages/jest/src/error.ts:6](https://github.com/Xunnamius/test-utils/blob/222bee1f31e620fb1ced6fb601c15b3b378df287/packages/jest/src/error.ts#L6)
+Defined in: [jest/src/error.ts:6](https://github.com/Xunnamius/test-utils/blob/7e68f478394f141080eb757f07682b7a0fe411dd/packages/jest/src/error.ts#L6)
 
 A collection of possible error and warning messages.
 
@@ -62,7 +62,7 @@ A collection of possible error and warning messages.
 
 ##### packageName
 
-`undefined` | `string`
+`string` \| `undefined`
 
 #### Returns
 

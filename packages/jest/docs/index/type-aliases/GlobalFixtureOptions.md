@@ -8,7 +8,7 @@
 
 > **GlobalFixtureOptions** = `object`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:18
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:18
 
 The options available to every fixture.
 
@@ -16,9 +16,9 @@ The options available to every fixture.
 
 ### identifier?
 
-> `optional` **identifier**: `string`
+> `optional` **identifier?**: `string`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:28
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:28
 
 The identifier used in various places, including when creating the dummy
 root directory and when describing the test environment in output text.
@@ -36,9 +36,9 @@ other character will be replaced with a hyphen.
 
 ### initialVirtualFiles?
 
-> `optional` **initialVirtualFiles**: `object`
+> `optional` **initialVirtualFiles?**: `object`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:57
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:57
 
 An object describing "virtual files" represented by mappings between
 non-existent RelativePaths and their theoretical (immutable)
@@ -71,7 +71,7 @@ filesystem using the `initialDirectories` option.
 
 > **performCleanup**: `boolean`
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:34
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/types/options.d.ts:34
 
 When `true`, the dummy root directory will be deleted after the test
 complete (regardless of the outcome). Set `performCleanup` to `false` to

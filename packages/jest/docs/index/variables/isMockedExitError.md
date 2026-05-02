@@ -4,11 +4,11 @@
 
 [@-xun/jest](../../README.md) / [index](../README.md) / isMockedExitError
 
-# Variable: isMockedExitError()
+# Variable: isMockedExitError
 
 > `const` **isMockedExitError**: (`parameter`) => `parameter is Error & { cause?: unknown; message: string; name: string; stack?: string }`
 
-Defined in: packages/test-mock-exit/dist/packages/test-mock-exit/src/index.d.ts:3
+Defined in: test-mock-exit/dist/packages/test-mock-exit/src/index.d.ts:3
 
 ## Parameters
 

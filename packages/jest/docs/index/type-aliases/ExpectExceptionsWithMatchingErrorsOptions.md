@@ -8,7 +8,7 @@
 
 > **ExpectExceptionsWithMatchingErrorsOptions** = `object`
 
-Defined in: [packages/jest/src/index.ts:397](https://github.com/Xunnamius/test-utils/blob/222bee1f31e620fb1ced6fb601c15b3b378df287/packages/jest/src/index.ts#L397)
+Defined in: [jest/src/index.ts:397](https://github.com/Xunnamius/test-utils/blob/7e68f478394f141080eb757f07682b7a0fe411dd/packages/jest/src/index.ts#L397)
 
 ## See
 
@@ -18,9 +18,9 @@ Defined in: [packages/jest/src/index.ts:397](https://github.com/Xunnamius/test-u
 
 ### runOnly?
 
-> `optional` **runOnly**: `number`[]
+> `optional` **runOnly?**: `number`[]
 
-Defined in: [packages/jest/src/index.ts:404](https://github.com/Xunnamius/test-utils/blob/222bee1f31e620fb1ced6fb601c15b3b378df287/packages/jest/src/index.ts#L404)
+Defined in: [jest/src/index.ts:404](https://github.com/Xunnamius/test-utils/blob/7e68f478394f141080eb757f07682b7a0fe411dd/packages/jest/src/index.ts#L404)
 
 If present, only the given indices (zero-based) will be run. The others
 will be skipped.
@@ -35,9 +35,9 @@ undefined
 
 ### singleParameter?
 
-> `optional` **singleParameter**: `boolean`
+> `optional` **singleParameter?**: `boolean`
 
-Defined in: [packages/jest/src/index.ts:415](https://github.com/Xunnamius/test-utils/blob/222bee1f31e620fb1ced6fb601c15b3b378df287/packages/jest/src/index.ts#L415)
+Defined in: [jest/src/index.ts:415](https://github.com/Xunnamius/test-utils/blob/7e68f478394f141080eb757f07682b7a0fe411dd/packages/jest/src/index.ts#L415)
 
 If `true`, the first element of each `spec` tuple will be considered a
 lone parameter (as if it were wrapped in an array).

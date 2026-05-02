@@ -8,7 +8,7 @@
 
 > **IsolatedImportOptions** = `object`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:12
+Defined in: test-mock-import/dist/packages/test-mock-import/src/index.d.ts:12
 
 ## See
 
@@ -18,9 +18,9 @@ Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d
 
 ### reduceToDefault?
 
-> `optional` **reduceToDefault**: `boolean`
+> `optional` **reduceToDefault?**: `boolean`
 
-Defined in: packages/test-mock-import/dist/packages/test-mock-import/src/index.d.ts:21
+Defined in: test-mock-import/dist/packages/test-mock-import/src/index.d.ts:21
 
 By default, if `module.__esModule === true` and the only other property of
 `module.exports` is `"default"`, then said `"default"` export will be

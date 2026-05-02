@@ -8,7 +8,7 @@
 
 > **DescribeRootFixtureOptions** = `Tagged`\<`EmptyObject`, *typeof* [`describeRootFixtureName`](../variables/describeRootFixtureName.md)\>
 
-Defined in: packages/test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:19
+Defined in: test-mock-fixture/dist/packages/test-mock-fixture/src/fixtures/describe-root.d.ts:19
 
 Contains any additional options properties this fixture expects or allows.
 
