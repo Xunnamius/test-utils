@@ -8,7 +8,7 @@ if (process.env.GIT_REFLOG_ACTION?.startsWith('rebase')) {
   const isInSimpleVerificationMode = !!process.env.GAC_VERIFY_SIMPLE;
 
   if (!isInSimpleVerificationMode) {
-    await runWithInheritedIo('npm', ['run', 'lint:package']);
+    await runWithInheritedIo('npm', ['run', 'lint:packages']);
   }
 
   await runWithInheritedIo(
