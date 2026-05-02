@@ -277,7 +277,7 @@ export async function withMocks(
   {
     simulatedEnv = {},
     simulatedArgv = [],
-    options = undefined
+    options
   }: {
     simulatedEnv?: Record<string, string>;
     simulatedArgv?: string[];

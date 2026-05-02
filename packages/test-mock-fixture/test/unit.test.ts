@@ -1457,19 +1457,17 @@ describe('<fixtures>', () => {
         }
       };
 
-      mockGlob.mockImplementation((paths: string | string[]) =>
-        Promise.all(
-          [paths]
-            .flat()
-            .flatMap((path) =>
-              path === '/file/two/dir'
-                ? [
-                    toPath(fakeFixtureContext.root, path, `file-1.ts`),
-                    toPath(fakeFixtureContext.root, path, `file-2.jsx`)
-                  ]
-                : [toPath(fakeFixtureContext.root, path)]
-            )
-        )
+      mockGlob.mockImplementation(async (paths: string | string[]) =>
+        [paths]
+          .flat()
+          .flatMap((path) =>
+            path === '/file/two/dir'
+              ? [
+                  toPath(fakeFixtureContext.root, path, `file-1.ts`),
+                  toPath(fakeFixtureContext.root, path, `file-2.jsx`)
+                ]
+              : [toPath(fakeFixtureContext.root, path)]
+          )
       );
 
       fakeFixtureContext.fs = {

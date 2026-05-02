@@ -18,8 +18,8 @@ export const { MockedExitError } = makeNamedError(
     );
     constructor(
       /* istanbul ignore next */
-      code: string | number | null | undefined = undefined,
-      message: string | undefined = undefined,
+      code: string | number | null | undefined,
+      message?: string,
       superOptions: ErrorOptions = {}
     ) {
       super(message ?? ExitErrorMessage.SuppressedExitAttempt(code), superOptions);

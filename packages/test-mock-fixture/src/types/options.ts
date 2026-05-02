@@ -1,5 +1,5 @@
 import type { RelativePath } from '@-xun/fs';
-import type { IfAny } from 'type-fest';
+import type { IsAny } from 'type-fest';
 
 import type {
   DescribeRootFixture,
@@ -98,6 +98,9 @@ export type GlobalFixtureOptions = {
    */
   initialVirtualFiles?: { [filePath: RelativePath | string]: unknown };
 };
+
+type IfAny<T, TypeIfAny = true, TypeIfNotAny = false> =
+  IsAny<T> extends true ? TypeIfAny : TypeIfNotAny;
 
 /**
  * This type combines all possible configurable options conditioned on which

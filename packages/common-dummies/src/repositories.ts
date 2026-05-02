@@ -151,6 +151,7 @@ export function dummyToProjectMetadata(
       throw new Error(ErrorMessage.PackageInvalid(cwdPackageName, repositoryName));
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return rootPackage as GenericPackage;
   })();
 
