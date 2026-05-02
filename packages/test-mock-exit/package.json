@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "@-xun/error": "^1.1.6",
-    "core-js": "^3.45.1",
+    "core-js": "^3.49.0",
     "type-fest": "^4.41.0"
   },
   "peerDependencies": {
