@@ -182,6 +182,7 @@ export async function withMockedFixtures<
 
   let sawDescribeRootFixture = false;
 
+  // eslint-disable-next-line unicorn/no-useless-iterator-to-array
   for (const [index, fixture] of context.fixtures.entries().toArray()) {
     if (fixture.name === describeRootFixtureName) {
       sawDescribeRootFixture = true;
